@@ -1,151 +1,146 @@
 import Link from 'next/link';
-import { promises as fs } from 'fs';
-import path from 'path';
-import { PonziData } from '@/lib/types';
-import { formatNumber } from '@/lib/calculations';
-
-async function getPonziStats() {
-  try {
-    const filePath = path.join(process.cwd(), 'data', 'ponzi_index.json');
-    const data = await fs.readFile(filePath, 'utf-8');
-    const ponziData: PonziData = JSON.parse(data);
-    return ponziData['2035']?.statistics || null;
-  } catch {
-    return null;
-  }
-}
 
 export default async function Home() {
-  const stats = await getPonziStats();
-  
   return (
     <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Hero Section - Compact */}
+      <section className="relative py-20 md:py-32 overflow-hidden">
         {/* Background gradient effects */}
         <div className="absolute inset-0 bg-gradient-to-b from-red-950/20 via-transparent to-transparent" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-orange-600/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-amber-600/5 rounded-full blur-3xl" />
         
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-950/30 border border-red-900/50 rounded-full text-red-400 text-sm mb-8 animate-fade-in-up">
             <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-            Data updated from Statistics Finland
+            Public data • Open source • No agenda
           </div>
           
           {/* Main headline */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up delay-100">
-            <span className="text-white">The Numbers</span>
-            <br />
-            <span className="text-red-500 text-glow">Don't Lie</span>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in-up delay-100">
+            <span className="text-white">Finland</span>{' '}
+            <span className="text-red-500 text-glow">Truth Engine</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 animate-fade-in-up delay-200">
-            Revealing the mathematical reality behind Finnish municipal finances. 
-            Explore how demographic shifts and debt are creating an unsustainable 
-            burden for future generations.
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10 animate-fade-in-up delay-200">
+            Data-driven analysis of Finnish economic policy. 
+            Revealing what the numbers actually say about taxes, benefits, 
+            inflation, and municipal finances.
           </p>
           
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-300">
-            <Link href="/beta" className="btn-primary text-lg">
-              Explore the Ponzi Map
-              <span className="ml-2">→</span>
+          {/* Quick access to interactive tool */}
+          <div className="animate-fade-in-up delay-300">
+            <Link href="/alpha" className="btn-primary text-lg group">
+              <span>🧮</span>
+              Try the Wage Trap Calculator
+              <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
             </Link>
-            <a href="#projects" className="btn-secondary text-lg">
-              View All Projects
-            </a>
+            <p className="text-sm text-gray-500 mt-3">
+              See how much you really keep after taxes & benefit clawbacks
+            </p>
           </div>
-          
-          {/* Quick Stats */}
-          {stats && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 animate-fade-in-up delay-400">
-              <QuickStat 
-                value={stats.total_municipalities.toString()} 
-                label="Municipalities Analyzed" 
-              />
-              <QuickStat 
-                value={stats.risk_distribution.critical.toString()} 
-                label="Critical Risk" 
-                highlight 
-              />
-              <QuickStat 
-                value={`€${formatNumber(stats.debt_per_worker.median)}`} 
-                label="Median Debt/Worker" 
-              />
-              <QuickStat 
-                value={stats.dependency_ratio.median.toFixed(2)} 
-                label="Median Dep. Ratio" 
-              />
-            </div>
-          )}
-        </div>
-        
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-500">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
         </div>
       </section>
       
-      {/* Projects Section */}
-      <section id="projects" className="py-24 px-6">
+      {/* Featured Projects Grid */}
+      <section className="py-8 px-6 border-t border-gray-800/50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-            Truth Engines
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <FeaturedCard
+              emoji="🧮"
+              title="Wage Trap"
+              subtitle="Interactive Calculator"
+              href="/alpha"
+              color="amber"
+            />
+            <FeaturedCard
+              emoji="🗺️"
+              title="Ponzi Map"
+              subtitle="Municipal Finances"
+              href="/beta"
+              color="red"
+            />
+            <FeaturedCard
+              emoji="📈"
+              title="Hidden Inflation"
+              subtitle="Maslow CPI"
+              href="/gamma"
+              color="orange"
+            />
+            <FeaturedCard
+              emoji="💰"
+              title="Purchasing Power"
+              subtitle="By Income Decile"
+              href="/delta"
+              color="green"
+            />
+          </div>
+        </div>
+      </section>
+      
+      {/* Detailed Projects Section */}
+      <section id="projects" className="py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold mb-8 text-gray-300">
+            Explore the Data
           </h2>
-          <p className="text-gray-400 text-center max-w-2xl mx-auto mb-16">
-            Data-driven analysis revealing policy failures through public statistics
-          </p>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Project Beta */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Project Alpha - Wage Trap */}
             <ProjectCard
-              title="Demographic Ponzi"
+              title="The Wage Trap Calculator"
+              emoji="🧮"
               status="live"
-              description="Municipal debt meets demographic decline. See which municipalities face statistical insolvency by 2035."
+              description="Interactive tool showing how taxes and benefit clawbacks combine to create effective marginal tax rates over 90%. Includes dual-earner mode for couples."
+              href="/alpha"
+              highlight
+              metrics={[
+                { label: 'Profiles', value: '7' },
+                { label: 'Peak EMTR', value: '100%' },
+                { label: 'Dual Earner', value: 'Yes' },
+              ]}
+            />
+            
+            {/* Project Beta - Ponzi Map */}
+            <ProjectCard
+              title="Municipal Ponzi Heatmap"
+              emoji="🗺️"
+              status="live"
+              description="Which municipalities face statistical insolvency by 2035? Combining debt per worker with dependency ratios reveals the unsustainable math."
               href="/beta"
               metrics={[
                 { label: 'Municipalities', value: '309' },
                 { label: 'Projection', value: '2035' },
+                { label: 'Critical Risk', value: '45+' },
               ]}
             />
             
-            {/* Project Gamma */}
+            {/* Project Gamma - Inflation */}
             <ProjectCard
-              title="Hidden Inflation"
+              title="Hidden Inflation (Maslow CPI)"
+              emoji="📈"
               status="live"
-              description="The Maslow CPI - tracking survival essentials vs. official inflation."
+              description="Official CPI includes TVs and holidays. What if we only tracked essentials? The 'Maslow CPI' shows working-class inflation is higher."
               href="/gamma"
               metrics={[
                 { label: 'Period', value: '2015-2024' },
-                { label: 'Gap', value: '+2.0pp' },
+                { label: 'Gap', value: '+8pp' },
+                { label: 'Asset Index', value: '+89%' },
               ]}
             />
             
-            {/* Project Delta */}
+            {/* Project Delta - Purchasing Power */}
             <ProjectCard
-              title="Purchasing Power"
+              title="Purchasing Power by Decile"
+              emoji="💰"
               status="live"
-              description="How real income diverges across income deciles. The rich vs poor divide."
+              description="Tracking real income and wealth across income groups since 2015. See how prosperity gains have been distributed—or not."
               href="/delta"
               metrics={[
                 { label: 'Bottom 10%', value: '-23%' },
                 { label: 'Top 10%', value: '-15%' },
-              ]}
-            />
-            
-            {/* Project Alpha */}
-            <ProjectCard
-              title="The Wage Trap"
-              status="live"
-              description="Calculate the true hourly value of work after benefits clawback. See where EMTR hits 90%+."
-              href="/alpha"
-              metrics={[
-                { label: 'Peak EMTR', value: '90%+' },
-                { label: 'Profiles', value: '7' },
+                { label: 'Wealth Gap', value: '↗️' },
               ]}
             />
           </div>
@@ -192,33 +187,64 @@ export default async function Home() {
   );
 }
 
-function QuickStat({ value, label, highlight = false }: { value: string; label: string; highlight?: boolean }) {
+function FeaturedCard({ 
+  emoji,
+  title, 
+  subtitle,
+  href,
+  color = 'red'
+}: { 
+  emoji: string;
+  title: string; 
+  subtitle: string;
+  href: string;
+  color?: 'red' | 'amber' | 'orange' | 'green';
+}) {
+  const colorClasses = {
+    red: 'hover:border-red-500/50 hover:bg-red-950/20',
+    amber: 'hover:border-amber-500/50 hover:bg-amber-950/20',
+    orange: 'hover:border-orange-500/50 hover:bg-orange-950/20',
+    green: 'hover:border-green-500/50 hover:bg-green-950/20',
+  };
+  
   return (
-    <div className="text-center">
-      <div className={`text-3xl font-bold mono-data ${highlight ? 'text-red-500' : 'text-white'}`}>
-        {value}
+    <Link href={href}>
+      <div className={`p-4 rounded-lg border border-gray-800 bg-gray-900/50 transition-all cursor-pointer ${colorClasses[color]}`}>
+        <div className="flex items-center gap-3">
+          <span className="text-2xl">{emoji}</span>
+          <div>
+            <div className="font-semibold text-white">{title}</div>
+            <div className="text-xs text-gray-500">{subtitle}</div>
+          </div>
+        </div>
       </div>
-      <div className="text-gray-500 text-sm mt-1">{label}</div>
-    </div>
+    </Link>
   );
 }
 
 function ProjectCard({ 
   title, 
+  emoji,
   status, 
   description, 
   href, 
-  metrics 
+  metrics,
+  highlight = false,
 }: { 
   title: string; 
+  emoji: string;
   status: 'live' | 'coming'; 
   description: string; 
   href?: string; 
   metrics: { label: string; value: string }[];
+  highlight?: boolean;
 }) {
   const content = (
-    <div className={`card p-6 h-full transition-all ${href ? 'hover:border-red-900/50 hover:shadow-lg hover:shadow-red-950/20 cursor-pointer' : 'opacity-70'}`}>
-      <div className="flex items-center gap-2 mb-4">
+    <div className={`card p-6 h-full transition-all ${
+      href ? 'hover:border-red-900/50 hover:shadow-lg hover:shadow-red-950/20 cursor-pointer' : 'opacity-70'
+    } ${highlight ? 'border-amber-500/30 bg-amber-950/10' : ''}`}>
+      <div className="flex items-center gap-3 mb-4">
+        <span className="text-2xl">{emoji}</span>
         <span className={`px-2 py-1 rounded text-xs font-medium ${
           status === 'live' 
             ? 'bg-green-500/20 text-green-400' 
@@ -227,13 +253,13 @@ function ProjectCard({
           {status === 'live' ? 'LIVE' : 'COMING SOON'}
         </span>
       </div>
-      <h3 className="text-xl font-bold mb-3">{title}</h3>
-      <p className="text-gray-400 text-sm mb-6">{description}</p>
-      <div className="flex flex-wrap gap-4 mt-auto">
+      <h3 className="text-lg font-bold mb-2">{title}</h3>
+      <p className="text-gray-400 text-sm mb-4 leading-relaxed">{description}</p>
+      <div className="flex flex-wrap gap-4 mt-auto pt-4 border-t border-gray-800">
         {metrics.map((m, i) => (
           <div key={i}>
             <div className="text-gray-500 text-xs">{m.label}</div>
-            <div className="font-semibold mono-data">{m.value}</div>
+            <div className="font-semibold mono-data text-sm">{m.value}</div>
           </div>
         ))}
       </div>
