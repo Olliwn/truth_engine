@@ -550,8 +550,26 @@ export interface GovernmentDebtData {
 export interface FertilityEntry {
   year: number;
   tfr: number | null;
-  female_labor_participation: number | null;
   replacement_gap?: number;
+  // Dynamic factor fields
+  [key: string]: number | null | undefined;
+}
+
+export interface CorrelationFactorPoint {
+  year: number;
+  value: number | null;
+  normalized: number | null;
+}
+
+export interface CorrelationFactor {
+  id: string;
+  name: string;
+  description: string;
+  correlation: number;
+  direction: 'positive' | 'negative';
+  data_available: boolean;
+  data_points: number;
+  time_series: CorrelationFactorPoint[];
 }
 
 export interface FertilityData {
@@ -562,9 +580,11 @@ export interface FertilityData {
     fetched_at: string;
     replacement_level: number;
     note: string;
+    methodology?: string;
   };
   summary: {
     period: string;
+    analysis_period?: string;
     current_tfr: number;
     peak_year: number;
     peak_tfr: number;
@@ -572,8 +592,12 @@ export interface FertilityData {
     trough_tfr: number;
     below_replacement_since: number | null;
     tfr_change_since_1990: number | null;
+    strongest_negative?: CorrelationFactor | null;
+    strongest_positive?: CorrelationFactor | null;
   };
   time_series: FertilityEntry[];
+  tfr_normalized?: CorrelationFactorPoint[];
+  correlation_factors?: CorrelationFactor[];
 }
 
 // ============================================

@@ -2,1518 +2,4684 @@
   "metadata": {
     "source": "Statistics Finland",
     "tables": [
-      "statfin_synt_pxt_12ds",
-      "statfin_tyti_pxt_135y"
+      "statfin_synt_pxt_12dt",
+      "statfin_tyti_pxt_135y",
+      "statfin_vaerak_pxt_11ra",
+      "statfin_vkour_pxt_12bq"
     ],
-    "description": "Total fertility rate and female labor force participation",
-    "fetched_at": "2026-01-03T22:45:32.221695",
+    "description": "Total fertility rate with correlation analysis of socioeconomic factors",
+    "fetched_at": "2026-01-04T00:50:06.219832",
     "replacement_level": 2.1,
-    "note": "TFR below 2.1 means population decline without immigration"
+    "note": "Correlation does not imply causation. Multiple factors interact in complex ways.",
+    "methodology": "Pearson correlation coefficients calculated over overlapping time periods (1990-2024). Some factors use estimated data from official publications where direct API access is unavailable."
   },
   "summary": {
     "period": "1776-2024",
+    "analysis_period": "1990-2024",
     "current_tfr": 1.25,
     "peak_year": 1779,
     "peak_tfr": 5.91,
     "trough_year": 2024,
     "trough_tfr": 1.25,
     "below_replacement_since": 1942,
-    "tfr_change_since_1990": -0.53
+    "tfr_change_since_1990": -0.53,
+    "strongest_negative": {
+      "id": "age_first_birth",
+      "name": "Age at First Birth",
+      "description": "Mean age of mother at first childbirth",
+      "correlation": -0.804,
+      "direction": "negative",
+      "data_available": true,
+      "data_points": 35,
+      "time_series": [
+        {
+          "year": 1990,
+          "value": 26.5,
+          "normalized": 0.0
+        },
+        {
+          "year": 1991,
+          "value": 26.6,
+          "normalized": 2.5
+        },
+        {
+          "year": 1992,
+          "value": 26.8,
+          "normalized": 7.5
+        },
+        {
+          "year": 1993,
+          "value": 27.0,
+          "normalized": 12.5
+        },
+        {
+          "year": 1994,
+          "value": 27.2,
+          "normalized": 17.5
+        },
+        {
+          "year": 1995,
+          "value": 27.4,
+          "normalized": 22.5
+        },
+        {
+          "year": 1996,
+          "value": 27.5,
+          "normalized": 25.0
+        },
+        {
+          "year": 1997,
+          "value": 27.6,
+          "normalized": 27.5
+        },
+        {
+          "year": 1998,
+          "value": 27.7,
+          "normalized": 30.0
+        },
+        {
+          "year": 1999,
+          "value": 27.8,
+          "normalized": 32.5
+        },
+        {
+          "year": 2000,
+          "value": 27.9,
+          "normalized": 35.0
+        },
+        {
+          "year": 2001,
+          "value": 28.0,
+          "normalized": 37.5
+        },
+        {
+          "year": 2002,
+          "value": 28.0,
+          "normalized": 37.5
+        },
+        {
+          "year": 2003,
+          "value": 28.1,
+          "normalized": 40.0
+        },
+        {
+          "year": 2004,
+          "value": 28.2,
+          "normalized": 42.5
+        },
+        {
+          "year": 2005,
+          "value": 28.3,
+          "normalized": 45.0
+        },
+        {
+          "year": 2006,
+          "value": 28.3,
+          "normalized": 45.0
+        },
+        {
+          "year": 2007,
+          "value": 28.4,
+          "normalized": 47.5
+        },
+        {
+          "year": 2008,
+          "value": 28.4,
+          "normalized": 47.5
+        },
+        {
+          "year": 2009,
+          "value": 28.5,
+          "normalized": 50.0
+        },
+        {
+          "year": 2010,
+          "value": 28.6,
+          "normalized": 52.5
+        },
+        {
+          "year": 2011,
+          "value": 28.7,
+          "normalized": 55.0
+        },
+        {
+          "year": 2012,
+          "value": 28.7,
+          "normalized": 55.0
+        },
+        {
+          "year": 2013,
+          "value": 28.8,
+          "normalized": 57.5
+        },
+        {
+          "year": 2014,
+          "value": 28.8,
+          "normalized": 57.5
+        },
+        {
+          "year": 2015,
+          "value": 29.0,
+          "normalized": 62.5
+        },
+        {
+          "year": 2016,
+          "value": 29.2,
+          "normalized": 67.5
+        },
+        {
+          "year": 2017,
+          "value": 29.4,
+          "normalized": 72.5
+        },
+        {
+          "year": 2018,
+          "value": 29.5,
+          "normalized": 75.0
+        },
+        {
+          "year": 2019,
+          "value": 29.7,
+          "normalized": 80.0
+        },
+        {
+          "year": 2020,
+          "value": 29.8,
+          "normalized": 82.5
+        },
+        {
+          "year": 2021,
+          "value": 30.0,
+          "normalized": 87.5
+        },
+        {
+          "year": 2022,
+          "value": 30.2,
+          "normalized": 92.5
+        },
+        {
+          "year": 2023,
+          "value": 30.4,
+          "normalized": 97.5
+        },
+        {
+          "year": 2024,
+          "value": 30.5,
+          "normalized": 100.0
+        }
+      ]
+    },
+    "strongest_positive": null
   },
   "time_series": [
     {
       "year": 1776,
       "tfr": 5.42,
-      "female_labor_participation": null,
-      "replacement_gap": -3.32
+      "replacement_gap": -3.32,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1777,
       "tfr": 5.51,
-      "female_labor_participation": null,
-      "replacement_gap": -3.41
+      "replacement_gap": -3.41,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1778,
       "tfr": 5.82,
-      "female_labor_participation": null,
-      "replacement_gap": -3.72
+      "replacement_gap": -3.72,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1779,
       "tfr": 5.91,
-      "female_labor_participation": null,
-      "replacement_gap": -3.81
+      "replacement_gap": -3.81,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1780,
       "tfr": 5.71,
-      "female_labor_participation": null,
-      "replacement_gap": -3.61
+      "replacement_gap": -3.61,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1781,
       "tfr": 5.17,
-      "female_labor_participation": null,
-      "replacement_gap": -3.07
+      "replacement_gap": -3.07,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1782,
       "tfr": 5.74,
-      "female_labor_participation": null,
-      "replacement_gap": -3.64
+      "replacement_gap": -3.64,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1783,
       "tfr": 5.42,
-      "female_labor_participation": null,
-      "replacement_gap": -3.32
+      "replacement_gap": -3.32,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1784,
       "tfr": 5.79,
-      "female_labor_participation": null,
-      "replacement_gap": -3.69
+      "replacement_gap": -3.69,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1785,
       "tfr": 5.39,
-      "female_labor_participation": null,
-      "replacement_gap": -3.29
+      "replacement_gap": -3.29,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1786,
       "tfr": 5.6,
-      "female_labor_participation": null,
-      "replacement_gap": -3.5
+      "replacement_gap": -3.5,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1787,
       "tfr": 5.46,
-      "female_labor_participation": null,
-      "replacement_gap": -3.36
+      "replacement_gap": -3.36,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1788,
       "tfr": 4.86,
-      "female_labor_participation": null,
-      "replacement_gap": -2.76
+      "replacement_gap": -2.76,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1789,
       "tfr": 4.51,
-      "female_labor_participation": null,
-      "replacement_gap": -2.41
+      "replacement_gap": -2.41,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1790,
       "tfr": 4.88,
-      "female_labor_participation": null,
-      "replacement_gap": -2.78
+      "replacement_gap": -2.78,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1791,
       "tfr": 4.66,
-      "female_labor_participation": null,
-      "replacement_gap": -2.56
+      "replacement_gap": -2.56,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1792,
       "tfr": 5.43,
-      "female_labor_participation": null,
-      "replacement_gap": -3.33
+      "replacement_gap": -3.33,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1793,
       "tfr": 5.71,
-      "female_labor_participation": null,
-      "replacement_gap": -3.61
+      "replacement_gap": -3.61,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1794,
       "tfr": 5.41,
-      "female_labor_participation": null,
-      "replacement_gap": -3.31
+      "replacement_gap": -3.31,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1795,
       "tfr": 5.18,
-      "female_labor_participation": null,
-      "replacement_gap": -3.08
+      "replacement_gap": -3.08,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1796,
       "tfr": 5.05,
-      "female_labor_participation": null,
-      "replacement_gap": -2.95
+      "replacement_gap": -2.95,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1797,
       "tfr": 5.2,
-      "female_labor_participation": null,
-      "replacement_gap": -3.1
+      "replacement_gap": -3.1,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1798,
       "tfr": 5.08,
-      "female_labor_participation": null,
-      "replacement_gap": -2.98
+      "replacement_gap": -2.98,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1799,
       "tfr": 5.09,
-      "female_labor_participation": null,
-      "replacement_gap": -2.99
+      "replacement_gap": -2.99,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1800,
       "tfr": 4.92,
-      "female_labor_participation": null,
-      "replacement_gap": -2.82
+      "replacement_gap": -2.82,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1801,
       "tfr": 5.07,
-      "female_labor_participation": null,
-      "replacement_gap": -2.97
+      "replacement_gap": -2.97,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1802,
       "tfr": 5.23,
-      "female_labor_participation": null,
-      "replacement_gap": -3.13
+      "replacement_gap": -3.13,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1803,
       "tfr": 4.78,
-      "female_labor_participation": null,
-      "replacement_gap": -2.68
+      "replacement_gap": -2.68,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1804,
       "tfr": 5.24,
-      "female_labor_participation": null,
-      "replacement_gap": -3.14
+      "replacement_gap": -3.14,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1805,
       "tfr": 5.21,
-      "female_labor_participation": null,
-      "replacement_gap": -3.11
+      "replacement_gap": -3.11,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1806,
       "tfr": 4.84,
-      "female_labor_participation": null,
-      "replacement_gap": -2.74
+      "replacement_gap": -2.74,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1807,
       "tfr": 4.97,
-      "female_labor_participation": null,
-      "replacement_gap": -2.87
+      "replacement_gap": -2.87,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1808,
       "tfr": 4.16,
-      "female_labor_participation": null,
-      "replacement_gap": -2.06
+      "replacement_gap": -2.06,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1809,
       "tfr": 3.69,
-      "female_labor_participation": null,
-      "replacement_gap": -1.59
+      "replacement_gap": -1.59,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1810,
       "tfr": 5.1,
-      "female_labor_participation": null,
-      "replacement_gap": -3.0
+      "replacement_gap": -3.0,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1811,
       "tfr": 4.66,
-      "female_labor_participation": null,
-      "replacement_gap": -2.56
+      "replacement_gap": -2.56,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1812,
       "tfr": 4.95,
-      "female_labor_participation": null,
-      "replacement_gap": -2.85
+      "replacement_gap": -2.85,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1813,
       "tfr": 4.6,
-      "female_labor_participation": null,
-      "replacement_gap": -2.5
+      "replacement_gap": -2.5,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1814,
       "tfr": 4.72,
-      "female_labor_participation": null,
-      "replacement_gap": -2.62
+      "replacement_gap": -2.62,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1815,
       "tfr": 4.84,
-      "female_labor_participation": null,
-      "replacement_gap": -2.74
+      "replacement_gap": -2.74,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1816,
       "tfr": 4.82,
-      "female_labor_participation": null,
-      "replacement_gap": -2.72
+      "replacement_gap": -2.72,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1817,
       "tfr": 4.84,
-      "female_labor_participation": null,
-      "replacement_gap": -2.74
+      "replacement_gap": -2.74,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1818,
       "tfr": 4.78,
-      "female_labor_participation": null,
-      "replacement_gap": -2.68
+      "replacement_gap": -2.68,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1819,
       "tfr": 4.51,
-      "female_labor_participation": null,
-      "replacement_gap": -2.41
+      "replacement_gap": -2.41,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1820,
       "tfr": 4.55,
-      "female_labor_participation": null,
-      "replacement_gap": -2.45
+      "replacement_gap": -2.45,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1821,
       "tfr": 5.34,
-      "female_labor_participation": null,
-      "replacement_gap": -3.24
+      "replacement_gap": -3.24,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1822,
       "tfr": 4.59,
-      "female_labor_participation": null,
-      "replacement_gap": -2.49
+      "replacement_gap": -2.49,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1823,
       "tfr": 5.21,
-      "female_labor_participation": null,
-      "replacement_gap": -3.11
+      "replacement_gap": -3.11,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1824,
       "tfr": 4.84,
-      "female_labor_participation": null,
-      "replacement_gap": -2.74
+      "replacement_gap": -2.74,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1825,
       "tfr": 4.83,
-      "female_labor_participation": null,
-      "replacement_gap": -2.73
+      "replacement_gap": -2.73,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1826,
       "tfr": 4.89,
-      "female_labor_participation": null,
-      "replacement_gap": -2.79
+      "replacement_gap": -2.79,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1827,
       "tfr": 4.77,
-      "female_labor_participation": null,
-      "replacement_gap": -2.67
+      "replacement_gap": -2.67,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1828,
       "tfr": 5.12,
-      "female_labor_participation": null,
-      "replacement_gap": -3.02
+      "replacement_gap": -3.02,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1829,
       "tfr": 4.98,
-      "female_labor_participation": null,
-      "replacement_gap": -2.88
+      "replacement_gap": -2.88,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1830,
       "tfr": 4.85,
-      "female_labor_participation": null,
-      "replacement_gap": -2.75
+      "replacement_gap": -2.75,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1831,
       "tfr": 4.58,
-      "female_labor_participation": null,
-      "replacement_gap": -2.48
+      "replacement_gap": -2.48,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1832,
       "tfr": 4.47,
-      "female_labor_participation": null,
-      "replacement_gap": -2.37
+      "replacement_gap": -2.37,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1833,
       "tfr": 3.96,
-      "female_labor_participation": null,
-      "replacement_gap": -1.86
+      "replacement_gap": -1.86,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1834,
       "tfr": 4.75,
-      "female_labor_participation": null,
-      "replacement_gap": -2.65
+      "replacement_gap": -2.65,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1835,
       "tfr": 4.57,
-      "female_labor_participation": null,
-      "replacement_gap": -2.47
+      "replacement_gap": -2.47,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1836,
       "tfr": 4.17,
-      "female_labor_participation": null,
-      "replacement_gap": -2.07
+      "replacement_gap": -2.07,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1837,
       "tfr": 4.17,
-      "female_labor_participation": null,
-      "replacement_gap": -2.07
+      "replacement_gap": -2.07,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1838,
       "tfr": 4.32,
-      "female_labor_participation": null,
-      "replacement_gap": -2.22
+      "replacement_gap": -2.22,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1839,
       "tfr": 4.47,
-      "female_labor_participation": null,
-      "replacement_gap": -2.37
+      "replacement_gap": -2.37,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1840,
       "tfr": 4.59,
-      "female_labor_participation": null,
-      "replacement_gap": -2.49
+      "replacement_gap": -2.49,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1841,
       "tfr": 4.56,
-      "female_labor_participation": null,
-      "replacement_gap": -2.46
+      "replacement_gap": -2.46,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1842,
       "tfr": 4.96,
-      "female_labor_participation": null,
-      "replacement_gap": -2.86
+      "replacement_gap": -2.86,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1843,
       "tfr": 4.77,
-      "female_labor_participation": null,
-      "replacement_gap": -2.67
+      "replacement_gap": -2.67,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1844,
       "tfr": 4.64,
-      "female_labor_participation": null,
-      "replacement_gap": -2.54
+      "replacement_gap": -2.54,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1845,
       "tfr": 4.76,
-      "female_labor_participation": null,
-      "replacement_gap": -2.66
+      "replacement_gap": -2.66,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1846,
       "tfr": 4.39,
-      "female_labor_participation": null,
-      "replacement_gap": -2.29
+      "replacement_gap": -2.29,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1847,
       "tfr": 4.46,
-      "female_labor_participation": null,
-      "replacement_gap": -2.36
+      "replacement_gap": -2.36,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1848,
       "tfr": 4.84,
-      "female_labor_participation": null,
-      "replacement_gap": -2.74
+      "replacement_gap": -2.74,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1849,
       "tfr": 4.92,
-      "female_labor_participation": null,
-      "replacement_gap": -2.82
+      "replacement_gap": -2.82,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1850,
       "tfr": 4.78,
-      "female_labor_participation": null,
-      "replacement_gap": -2.68
+      "replacement_gap": -2.68,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1851,
       "tfr": 5.17,
-      "female_labor_participation": null,
-      "replacement_gap": -3.07
+      "replacement_gap": -3.07,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1852,
       "tfr": 4.79,
-      "female_labor_participation": null,
-      "replacement_gap": -2.69
+      "replacement_gap": -2.69,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1853,
       "tfr": 4.8,
-      "female_labor_participation": null,
-      "replacement_gap": -2.7
+      "replacement_gap": -2.7,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1854,
       "tfr": 5.02,
-      "female_labor_participation": null,
-      "replacement_gap": -2.92
+      "replacement_gap": -2.92,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1855,
       "tfr": 4.82,
-      "female_labor_participation": null,
-      "replacement_gap": -2.72
+      "replacement_gap": -2.72,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1856,
       "tfr": 4.86,
-      "female_labor_participation": null,
-      "replacement_gap": -2.76
+      "replacement_gap": -2.76,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1857,
       "tfr": 4.48,
-      "female_labor_participation": null,
-      "replacement_gap": -2.38
+      "replacement_gap": -2.38,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1858,
       "tfr": 4.87,
-      "female_labor_participation": null,
-      "replacement_gap": -2.77
+      "replacement_gap": -2.77,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1859,
       "tfr": 4.74,
-      "female_labor_participation": null,
-      "replacement_gap": -2.64
+      "replacement_gap": -2.64,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1860,
       "tfr": 4.84,
-      "female_labor_participation": null,
-      "replacement_gap": -2.74
+      "replacement_gap": -2.74,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1861,
       "tfr": 5.2,
-      "female_labor_participation": null,
-      "replacement_gap": -3.1
+      "replacement_gap": -3.1,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1862,
       "tfr": 5.03,
-      "female_labor_participation": null,
-      "replacement_gap": -2.93
+      "replacement_gap": -2.93,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1863,
       "tfr": 4.85,
-      "female_labor_participation": null,
-      "replacement_gap": -2.75
+      "replacement_gap": -2.75,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1864,
       "tfr": 5.28,
-      "female_labor_participation": null,
-      "replacement_gap": -3.18
+      "replacement_gap": -3.18,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1865,
       "tfr": 4.79,
-      "female_labor_participation": null,
-      "replacement_gap": -2.69
+      "replacement_gap": -2.69,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1866,
       "tfr": 4.46,
-      "female_labor_participation": null,
-      "replacement_gap": -2.36
+      "replacement_gap": -2.36,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1867,
       "tfr": 4.47,
-      "female_labor_participation": null,
-      "replacement_gap": -2.37
+      "replacement_gap": -2.37,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1868,
       "tfr": 3.4,
-      "female_labor_participation": null,
-      "replacement_gap": -1.3
+      "replacement_gap": -1.3,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1869,
       "tfr": 4.52,
-      "female_labor_participation": null,
-      "replacement_gap": -2.42
+      "replacement_gap": -2.42,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1870,
       "tfr": 4.86,
-      "female_labor_participation": null,
-      "replacement_gap": -2.76
+      "replacement_gap": -2.76,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1871,
       "tfr": 4.95,
-      "female_labor_participation": null,
-      "replacement_gap": -2.85
+      "replacement_gap": -2.85,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1872,
       "tfr": 4.87,
-      "female_labor_participation": null,
-      "replacement_gap": -2.77
+      "replacement_gap": -2.77,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1873,
       "tfr": 4.97,
-      "female_labor_participation": null,
-      "replacement_gap": -2.87
+      "replacement_gap": -2.87,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1874,
       "tfr": 5.12,
-      "female_labor_participation": null,
-      "replacement_gap": -3.02
+      "replacement_gap": -3.02,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1875,
       "tfr": 4.95,
-      "female_labor_participation": null,
-      "replacement_gap": -2.85
+      "replacement_gap": -2.85,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1876,
       "tfr": 4.97,
-      "female_labor_participation": null,
-      "replacement_gap": -2.87
+      "replacement_gap": -2.87,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1877,
       "tfr": 5.19,
-      "female_labor_participation": null,
-      "replacement_gap": -3.09
+      "replacement_gap": -3.09,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1878,
       "tfr": 4.81,
-      "female_labor_participation": null,
-      "replacement_gap": -2.71
+      "replacement_gap": -2.71,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1879,
       "tfr": 5.14,
-      "female_labor_participation": null,
-      "replacement_gap": -3.04
+      "replacement_gap": -3.04,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1880,
       "tfr": 5.01,
-      "female_labor_participation": null,
-      "replacement_gap": -2.91
+      "replacement_gap": -2.91,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1881,
       "tfr": 4.79,
-      "female_labor_participation": null,
-      "replacement_gap": -2.69
+      "replacement_gap": -2.69,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1882,
       "tfr": 4.99,
-      "female_labor_participation": null,
-      "replacement_gap": -2.89
+      "replacement_gap": -2.89,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1883,
       "tfr": 4.96,
-      "female_labor_participation": null,
-      "replacement_gap": -2.86
+      "replacement_gap": -2.86,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1884,
       "tfr": 5.04,
-      "female_labor_participation": null,
-      "replacement_gap": -2.94
+      "replacement_gap": -2.94,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1885,
       "tfr": 4.79,
-      "female_labor_participation": null,
-      "replacement_gap": -2.69
+      "replacement_gap": -2.69,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1886,
       "tfr": 4.98,
-      "female_labor_participation": null,
-      "replacement_gap": -2.88
+      "replacement_gap": -2.88,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1887,
       "tfr": 5.17,
-      "female_labor_participation": null,
-      "replacement_gap": -3.07
+      "replacement_gap": -3.07,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1888,
       "tfr": 5.07,
-      "female_labor_participation": null,
-      "replacement_gap": -2.97
+      "replacement_gap": -2.97,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1889,
       "tfr": 4.89,
-      "female_labor_participation": null,
-      "replacement_gap": -2.79
+      "replacement_gap": -2.79,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1890,
       "tfr": 4.83,
-      "female_labor_participation": null,
-      "replacement_gap": -2.73
+      "replacement_gap": -2.73,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1891,
       "tfr": 5.04,
-      "female_labor_participation": null,
-      "replacement_gap": -2.94
+      "replacement_gap": -2.94,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1892,
       "tfr": 4.65,
-      "female_labor_participation": null,
-      "replacement_gap": -2.55
+      "replacement_gap": -2.55,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1893,
       "tfr": 4.43,
-      "female_labor_participation": null,
-      "replacement_gap": -2.33
+      "replacement_gap": -2.33,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1894,
       "tfr": 4.59,
-      "female_labor_participation": null,
-      "replacement_gap": -2.49
+      "replacement_gap": -2.49,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1895,
       "tfr": 4.87,
-      "female_labor_participation": null,
-      "replacement_gap": -2.77
+      "replacement_gap": -2.77,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1896,
       "tfr": 4.8,
-      "female_labor_participation": null,
-      "replacement_gap": -2.7
+      "replacement_gap": -2.7,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1897,
       "tfr": 4.77,
-      "female_labor_participation": null,
-      "replacement_gap": -2.67
+      "replacement_gap": -2.67,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1898,
       "tfr": 5.07,
-      "female_labor_participation": null,
-      "replacement_gap": -2.97
+      "replacement_gap": -2.97,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1899,
       "tfr": 4.96,
-      "female_labor_participation": null,
-      "replacement_gap": -2.86
+      "replacement_gap": -2.86,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1900,
       "tfr": 4.83,
-      "female_labor_participation": null,
-      "replacement_gap": -2.73
+      "replacement_gap": -2.73,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1901,
       "tfr": 4.92,
-      "female_labor_participation": null,
-      "replacement_gap": -2.82
+      "replacement_gap": -2.82,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1902,
       "tfr": 4.79,
-      "female_labor_participation": null,
-      "replacement_gap": -2.69
+      "replacement_gap": -2.69,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1903,
       "tfr": 4.62,
-      "female_labor_participation": null,
-      "replacement_gap": -2.52
+      "replacement_gap": -2.52,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1904,
       "tfr": 4.85,
-      "female_labor_participation": null,
-      "replacement_gap": -2.75
+      "replacement_gap": -2.75,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1905,
       "tfr": 4.67,
-      "female_labor_participation": null,
-      "replacement_gap": -2.57
+      "replacement_gap": -2.57,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1906,
       "tfr": 4.81,
-      "female_labor_participation": null,
-      "replacement_gap": -2.71
+      "replacement_gap": -2.71,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1907,
       "tfr": 4.76,
-      "female_labor_participation": null,
-      "replacement_gap": -2.66
+      "replacement_gap": -2.66,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1908,
       "tfr": 4.65,
-      "female_labor_participation": null,
-      "replacement_gap": -2.55
+      "replacement_gap": -2.55,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1909,
       "tfr": 4.72,
-      "female_labor_participation": null,
-      "replacement_gap": -2.62
+      "replacement_gap": -2.62,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1910,
       "tfr": 4.6,
-      "female_labor_participation": null,
-      "replacement_gap": -2.5
+      "replacement_gap": -2.5,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1911,
       "tfr": 4.46,
-      "female_labor_participation": null,
-      "replacement_gap": -2.36
+      "replacement_gap": -2.36,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1912,
       "tfr": 4.45,
-      "female_labor_participation": null,
-      "replacement_gap": -2.35
+      "replacement_gap": -2.35,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1913,
       "tfr": 4.15,
-      "female_labor_participation": null,
-      "replacement_gap": -2.05
+      "replacement_gap": -2.05,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1914,
       "tfr": 4.13,
-      "female_labor_participation": null,
-      "replacement_gap": -2.03
+      "replacement_gap": -2.03,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1915,
       "tfr": 3.89,
-      "female_labor_participation": null,
-      "replacement_gap": -1.79
+      "replacement_gap": -1.79,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1916,
       "tfr": 3.69,
-      "female_labor_participation": null,
-      "replacement_gap": -1.59
+      "replacement_gap": -1.59,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1917,
       "tfr": 3.71,
-      "female_labor_participation": null,
-      "replacement_gap": -1.61
+      "replacement_gap": -1.61,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1918,
       "tfr": 3.6,
-      "female_labor_participation": null,
-      "replacement_gap": -1.5
+      "replacement_gap": -1.5,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1919,
       "tfr": 2.87,
-      "female_labor_participation": null,
-      "replacement_gap": -0.77
+      "replacement_gap": -0.77,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1920,
       "tfr": 3.76,
-      "female_labor_participation": null,
-      "replacement_gap": -1.66
+      "replacement_gap": -1.66,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1921,
       "tfr": 3.58,
-      "female_labor_participation": null,
-      "replacement_gap": -1.48
+      "replacement_gap": -1.48,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1922,
       "tfr": 3.43,
-      "female_labor_participation": null,
-      "replacement_gap": -1.33
+      "replacement_gap": -1.33,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1923,
       "tfr": 3.44,
-      "female_labor_participation": null,
-      "replacement_gap": -1.34
+      "replacement_gap": -1.34,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1924,
       "tfr": 3.22,
-      "female_labor_participation": null,
-      "replacement_gap": -1.12
+      "replacement_gap": -1.12,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1925,
       "tfr": 3.17,
-      "female_labor_participation": null,
-      "replacement_gap": -1.07
+      "replacement_gap": -1.07,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1926,
       "tfr": 3.02,
-      "female_labor_participation": null,
-      "replacement_gap": -0.92
+      "replacement_gap": -0.92,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1927,
       "tfr": 2.92,
-      "female_labor_participation": null,
-      "replacement_gap": -0.82
+      "replacement_gap": -0.82,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1928,
       "tfr": 2.92,
-      "female_labor_participation": null,
-      "replacement_gap": -0.82
+      "replacement_gap": -0.82,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1929,
       "tfr": 2.83,
-      "female_labor_participation": null,
-      "replacement_gap": -0.73
+      "replacement_gap": -0.73,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1930,
       "tfr": 2.75,
-      "female_labor_participation": null,
-      "replacement_gap": -0.65
+      "replacement_gap": -0.65,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1931,
       "tfr": 2.59,
-      "female_labor_participation": null,
-      "replacement_gap": -0.49
+      "replacement_gap": -0.49,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1932,
       "tfr": 2.46,
-      "female_labor_participation": null,
-      "replacement_gap": -0.36
+      "replacement_gap": -0.36,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1933,
       "tfr": 2.27,
-      "female_labor_participation": null,
-      "replacement_gap": -0.17
+      "replacement_gap": -0.17,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1934,
       "tfr": 2.33,
-      "female_labor_participation": null,
-      "replacement_gap": -0.23
+      "replacement_gap": -0.23,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1935,
       "tfr": 2.37,
-      "female_labor_participation": null,
-      "replacement_gap": -0.27
+      "replacement_gap": -0.27,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1936,
       "tfr": 2.31,
-      "female_labor_participation": null,
-      "replacement_gap": -0.21
+      "replacement_gap": -0.21,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1937,
       "tfr": 2.52,
-      "female_labor_participation": null,
-      "replacement_gap": -0.42
+      "replacement_gap": -0.42,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1938,
       "tfr": 2.52,
-      "female_labor_participation": null,
-      "replacement_gap": -0.42
+      "replacement_gap": -0.42,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1939,
       "tfr": 2.56,
-      "female_labor_participation": null,
-      "replacement_gap": -0.46
+      "replacement_gap": -0.46,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1940,
       "tfr": 2.15,
-      "female_labor_participation": null,
-      "replacement_gap": -0.05
+      "replacement_gap": -0.05,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1941,
       "tfr": 2.9,
-      "female_labor_participation": null,
-      "replacement_gap": -0.8
+      "replacement_gap": -0.8,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1942,
       "tfr": 2,
-      "female_labor_participation": null,
-      "replacement_gap": 0.1
+      "replacement_gap": 0.1,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1943,
       "tfr": 2.46,
-      "female_labor_participation": null,
-      "replacement_gap": -0.36
+      "replacement_gap": -0.36,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1944,
       "tfr": 2.56,
-      "female_labor_participation": null,
-      "replacement_gap": -0.46
+      "replacement_gap": -0.46,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1945,
       "tfr": 3.07,
-      "female_labor_participation": null,
-      "replacement_gap": -0.97
+      "replacement_gap": -0.97,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1946,
       "tfr": 3.41,
-      "female_labor_participation": null,
-      "replacement_gap": -1.31
+      "replacement_gap": -1.31,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1947,
       "tfr": 3.47,
-      "female_labor_participation": null,
-      "replacement_gap": -1.37
+      "replacement_gap": -1.37,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1948,
       "tfr": 3.47,
-      "female_labor_participation": null,
-      "replacement_gap": -1.37
+      "replacement_gap": -1.37,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1949,
       "tfr": 3.33,
-      "female_labor_participation": null,
-      "replacement_gap": -1.23
+      "replacement_gap": -1.23,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1950,
       "tfr": 3.16,
-      "female_labor_participation": null,
-      "replacement_gap": -1.06
+      "replacement_gap": -1.06,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1951,
       "tfr": 3.01,
-      "female_labor_participation": null,
-      "replacement_gap": -0.91
+      "replacement_gap": -0.91,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1952,
       "tfr": 3.06,
-      "female_labor_participation": null,
-      "replacement_gap": -0.96
+      "replacement_gap": -0.96,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1953,
       "tfr": 2.96,
-      "female_labor_participation": null,
-      "replacement_gap": -0.86
+      "replacement_gap": -0.86,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1954,
       "tfr": 2.93,
-      "female_labor_participation": null,
-      "replacement_gap": -0.83
+      "replacement_gap": -0.83,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1955,
       "tfr": 2.93,
-      "female_labor_participation": null,
-      "replacement_gap": -0.83
+      "replacement_gap": -0.83,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1956,
       "tfr": 2.91,
-      "female_labor_participation": null,
-      "replacement_gap": -0.81
+      "replacement_gap": -0.81,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1957,
       "tfr": 2.86,
-      "female_labor_participation": null,
-      "replacement_gap": -0.76
+      "replacement_gap": -0.76,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1958,
       "tfr": 2.68,
-      "female_labor_participation": null,
-      "replacement_gap": -0.58
+      "replacement_gap": -0.58,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1959,
       "tfr": 2.75,
-      "female_labor_participation": null,
-      "replacement_gap": -0.65
+      "replacement_gap": -0.65,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1960,
       "tfr": 2.71,
-      "female_labor_participation": null,
-      "replacement_gap": -0.61
+      "replacement_gap": -0.61,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1961,
       "tfr": 2.65,
-      "female_labor_participation": null,
-      "replacement_gap": -0.55
+      "replacement_gap": -0.55,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1962,
       "tfr": 2.66,
-      "female_labor_participation": null,
-      "replacement_gap": -0.56
+      "replacement_gap": -0.56,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1963,
       "tfr": 2.66,
-      "female_labor_participation": null,
-      "replacement_gap": -0.56
+      "replacement_gap": -0.56,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1964,
       "tfr": 2.58,
-      "female_labor_participation": null,
-      "replacement_gap": -0.48
+      "replacement_gap": -0.48,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1965,
       "tfr": 2.46,
-      "female_labor_participation": null,
-      "replacement_gap": -0.36
+      "replacement_gap": -0.36,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1966,
       "tfr": 2.41,
-      "female_labor_participation": null,
-      "replacement_gap": -0.31
+      "replacement_gap": -0.31,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1967,
       "tfr": 2.32,
-      "female_labor_participation": null,
-      "replacement_gap": -0.22
+      "replacement_gap": -0.22,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1968,
       "tfr": 2.15,
-      "female_labor_participation": null,
-      "replacement_gap": -0.05
+      "replacement_gap": -0.05,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1969,
       "tfr": 1.94,
-      "female_labor_participation": null,
-      "replacement_gap": 0.16
+      "replacement_gap": 0.16,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1970,
       "tfr": 1.83,
-      "female_labor_participation": null,
-      "replacement_gap": 0.27
+      "replacement_gap": 0.27,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 3.9,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1971,
       "tfr": 1.7,
-      "female_labor_participation": null,
-      "replacement_gap": 0.4
+      "replacement_gap": 0.4,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1972,
       "tfr": 1.59,
-      "female_labor_participation": null,
-      "replacement_gap": 0.51
+      "replacement_gap": 0.51,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1973,
       "tfr": 1.5,
-      "female_labor_participation": null,
-      "replacement_gap": 0.6
+      "replacement_gap": 0.6,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1974,
       "tfr": 1.62,
-      "female_labor_participation": null,
-      "replacement_gap": 0.48
+      "replacement_gap": 0.48,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1975,
       "tfr": 1.69,
-      "female_labor_participation": null,
-      "replacement_gap": 0.41
+      "replacement_gap": 0.41,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 4.6,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1976,
       "tfr": 1.72,
-      "female_labor_participation": null,
-      "replacement_gap": 0.38
+      "replacement_gap": 0.38,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1977,
       "tfr": 1.69,
-      "female_labor_participation": null,
-      "replacement_gap": 0.41
+      "replacement_gap": 0.41,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1978,
       "tfr": 1.65,
-      "female_labor_participation": null,
-      "replacement_gap": 0.45
+      "replacement_gap": 0.45,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1979,
       "tfr": 1.64,
-      "female_labor_participation": null,
-      "replacement_gap": 0.46
+      "replacement_gap": 0.46,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1980,
       "tfr": 1.63,
-      "female_labor_participation": null,
-      "replacement_gap": 0.47
+      "replacement_gap": 0.47,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 5.6,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1981,
       "tfr": 1.65,
-      "female_labor_participation": null,
-      "replacement_gap": 0.45
+      "replacement_gap": 0.45,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1982,
       "tfr": 1.72,
-      "female_labor_participation": null,
-      "replacement_gap": 0.38
+      "replacement_gap": 0.38,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1983,
       "tfr": 1.74,
-      "female_labor_participation": null,
-      "replacement_gap": 0.36
+      "replacement_gap": 0.36,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1984,
       "tfr": 1.7,
-      "female_labor_participation": null,
-      "replacement_gap": 0.4
+      "replacement_gap": 0.4,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1985,
       "tfr": 1.64,
-      "female_labor_participation": null,
-      "replacement_gap": 0.46
+      "replacement_gap": 0.46,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 6.4,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1986,
       "tfr": 1.6,
-      "female_labor_participation": null,
-      "replacement_gap": 0.5
+      "replacement_gap": 0.5,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": null,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1987,
       "tfr": 1.59,
-      "female_labor_participation": null,
-      "replacement_gap": 0.51
+      "replacement_gap": 0.51,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 6.8,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1988,
       "tfr": 1.7,
-      "female_labor_participation": null,
-      "replacement_gap": 0.4
+      "replacement_gap": 0.4,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 6.9,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1989,
       "tfr": 1.71,
-      "female_labor_participation": null,
-      "replacement_gap": 0.39
+      "replacement_gap": 0.39,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 7.0,
+      "age_first_birth": null,
+      "marriage_age": null,
+      "housing_index": null,
+      "wage_index": null,
+      "family_spending": null
     },
     {
       "year": 1990,
       "tfr": 1.78,
-      "female_labor_participation": null,
-      "replacement_gap": 0.32
+      "replacement_gap": 0.32,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 7.4,
+      "age_first_birth": 26.5,
+      "marriage_age": 27.0,
+      "housing_index": 62,
+      "wage_index": 68,
+      "family_spending": 3.2
     },
     {
       "year": 1991,
       "tfr": 1.79,
-      "female_labor_participation": null,
-      "replacement_gap": 0.31
+      "replacement_gap": 0.31,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 7.6,
+      "age_first_birth": 26.6,
+      "marriage_age": 27.2,
+      "housing_index": 52,
+      "wage_index": 72,
+      "family_spending": 3.5
     },
     {
       "year": 1992,
       "tfr": 1.85,
-      "female_labor_participation": null,
-      "replacement_gap": 0.25
+      "replacement_gap": 0.25,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 7.9,
+      "age_first_birth": 26.8,
+      "marriage_age": 27.4,
+      "housing_index": 42,
+      "wage_index": 71,
+      "family_spending": 3.8
     },
     {
       "year": 1993,
       "tfr": 1.81,
-      "female_labor_participation": null,
-      "replacement_gap": 0.29
+      "replacement_gap": 0.29,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 8.2,
+      "age_first_birth": 27.0,
+      "marriage_age": 27.6,
+      "housing_index": 40,
+      "wage_index": 68,
+      "family_spending": 4.0
     },
     {
       "year": 1994,
       "tfr": 1.85,
-      "female_labor_participation": null,
-      "replacement_gap": 0.25
+      "replacement_gap": 0.25,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 8.5,
+      "age_first_birth": 27.2,
+      "marriage_age": 27.8,
+      "housing_index": 42,
+      "wage_index": 69,
+      "family_spending": 4.2
     },
     {
       "year": 1995,
       "tfr": 1.81,
-      "female_labor_participation": null,
-      "replacement_gap": 0.29
+      "replacement_gap": 0.29,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 8.7,
+      "age_first_birth": 27.4,
+      "marriage_age": 28.0,
+      "housing_index": 42,
+      "wage_index": 72,
+      "family_spending": 4.3
     },
     {
       "year": 1996,
       "tfr": 1.76,
-      "female_labor_participation": null,
-      "replacement_gap": 0.34
+      "replacement_gap": 0.34,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 8.9,
+      "age_first_birth": 27.5,
+      "marriage_age": 28.2,
+      "housing_index": 45,
+      "wage_index": 74,
+      "family_spending": 4.4
     },
     {
       "year": 1997,
       "tfr": 1.75,
-      "female_labor_participation": null,
-      "replacement_gap": 0.35
+      "replacement_gap": 0.35,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 9.2,
+      "age_first_birth": 27.6,
+      "marriage_age": 28.4,
+      "housing_index": 52,
+      "wage_index": 75,
+      "family_spending": 4.5
     },
     {
       "year": 1998,
       "tfr": 1.7,
-      "female_labor_participation": null,
-      "replacement_gap": 0.4
+      "replacement_gap": 0.4,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 9.3,
+      "age_first_birth": 27.7,
+      "marriage_age": 28.6,
+      "housing_index": 60,
+      "wage_index": 78,
+      "family_spending": 4.6
     },
     {
       "year": 1999,
       "tfr": 1.73,
-      "female_labor_participation": null,
-      "replacement_gap": 0.37
+      "replacement_gap": 0.37,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 9.5,
+      "age_first_birth": 27.8,
+      "marriage_age": 28.8,
+      "housing_index": 66,
+      "wage_index": 80,
+      "family_spending": 4.7
     },
     {
       "year": 2000,
       "tfr": 1.73,
-      "female_labor_participation": null,
-      "replacement_gap": 0.37
+      "replacement_gap": 0.37,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 9.6,
+      "age_first_birth": 27.9,
+      "marriage_age": 29.0,
+      "housing_index": 69,
+      "wage_index": 82,
+      "family_spending": 4.8
     },
     {
       "year": 2001,
       "tfr": 1.73,
-      "female_labor_participation": null,
-      "replacement_gap": 0.37
+      "replacement_gap": 0.37,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 9.7,
+      "age_first_birth": 28.0,
+      "marriage_age": 29.2,
+      "housing_index": 69,
+      "wage_index": 85,
+      "family_spending": 4.9
     },
     {
       "year": 2002,
       "tfr": 1.72,
-      "female_labor_participation": null,
-      "replacement_gap": 0.38
+      "replacement_gap": 0.38,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 9.9,
+      "age_first_birth": 28.0,
+      "marriage_age": 29.3,
+      "housing_index": 73,
+      "wage_index": 86,
+      "family_spending": 5.0
     },
     {
       "year": 2003,
       "tfr": 1.76,
-      "female_labor_participation": null,
-      "replacement_gap": 0.34
+      "replacement_gap": 0.34,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 10.0,
+      "age_first_birth": 28.1,
+      "marriage_age": 29.4,
+      "housing_index": 77,
+      "wage_index": 88,
+      "family_spending": 5.1
     },
     {
       "year": 2004,
       "tfr": 1.8,
-      "female_labor_participation": null,
-      "replacement_gap": 0.3
+      "replacement_gap": 0.3,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 10.1,
+      "age_first_birth": 28.2,
+      "marriage_age": 29.5,
+      "housing_index": 82,
+      "wage_index": 90,
+      "family_spending": 5.2
     },
     {
       "year": 2005,
       "tfr": 1.8,
-      "female_labor_participation": null,
-      "replacement_gap": 0.3
+      "replacement_gap": 0.3,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 10.2,
+      "age_first_birth": 28.3,
+      "marriage_age": 29.6,
+      "housing_index": 87,
+      "wage_index": 93,
+      "family_spending": 5.3
     },
     {
       "year": 2006,
       "tfr": 1.84,
-      "female_labor_participation": null,
-      "replacement_gap": 0.26
+      "replacement_gap": 0.26,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 10.4,
+      "age_first_birth": 28.3,
+      "marriage_age": 29.8,
+      "housing_index": 93,
+      "wage_index": 95,
+      "family_spending": 5.5
     },
     {
       "year": 2007,
       "tfr": 1.83,
-      "female_labor_participation": null,
-      "replacement_gap": 0.27
+      "replacement_gap": 0.27,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 10.6,
+      "age_first_birth": 28.4,
+      "marriage_age": 30.0,
+      "housing_index": 98,
+      "wage_index": 97,
+      "family_spending": 5.7
     },
     {
       "year": 2008,
       "tfr": 1.85,
-      "female_labor_participation": null,
-      "replacement_gap": 0.25
+      "replacement_gap": 0.25,
+      "female_labor_25_44": null,
+      "female_tertiary_edu": 10.9,
+      "age_first_birth": 28.4,
+      "marriage_age": 30.2,
+      "housing_index": 99,
+      "wage_index": 100,
+      "family_spending": 5.9
     },
     {
       "year": 2009,
       "tfr": 1.86,
-      "female_labor_participation": null,
-      "replacement_gap": 0.24
+      "replacement_gap": 0.24,
+      "female_labor_25_44": 80.3,
+      "female_tertiary_edu": 11.0,
+      "age_first_birth": 28.5,
+      "marriage_age": 30.4,
+      "housing_index": 97,
+      "wage_index": 101,
+      "family_spending": 6.1
     },
     {
       "year": 2010,
       "tfr": 1.87,
-      "female_labor_participation": null,
-      "replacement_gap": 0.23
+      "replacement_gap": 0.23,
+      "female_labor_25_44": 79.7,
+      "female_tertiary_edu": 11.2,
+      "age_first_birth": 28.6,
+      "marriage_age": 30.5,
+      "housing_index": 103,
+      "wage_index": 101,
+      "family_spending": 6.3
     },
     {
       "year": 2011,
       "tfr": 1.83,
-      "female_labor_participation": null,
-      "replacement_gap": 0.27
+      "replacement_gap": 0.27,
+      "female_labor_25_44": 77.1,
+      "female_tertiary_edu": 11.3,
+      "age_first_birth": 28.7,
+      "marriage_age": 30.7,
+      "housing_index": 105,
+      "wage_index": 101,
+      "family_spending": 6.5
     },
     {
       "year": 2012,
       "tfr": 1.8,
-      "female_labor_participation": null,
-      "replacement_gap": 0.3
+      "replacement_gap": 0.3,
+      "female_labor_25_44": 78.2,
+      "female_tertiary_edu": 11.5,
+      "age_first_birth": 28.7,
+      "marriage_age": 30.9,
+      "housing_index": 105,
+      "wage_index": 101,
+      "family_spending": 6.7
     },
     {
       "year": 2013,
       "tfr": 1.75,
-      "female_labor_participation": null,
-      "replacement_gap": 0.35
+      "replacement_gap": 0.35,
+      "female_labor_25_44": 77.7,
+      "female_tertiary_edu": 11.7,
+      "age_first_birth": 28.8,
+      "marriage_age": 31.1,
+      "housing_index": 104,
+      "wage_index": 100,
+      "family_spending": 6.8
     },
     {
       "year": 2014,
       "tfr": 1.71,
-      "female_labor_participation": null,
-      "replacement_gap": 0.39
+      "replacement_gap": 0.39,
+      "female_labor_25_44": 77.2,
+      "female_tertiary_edu": 11.8,
+      "age_first_birth": 28.8,
+      "marriage_age": 31.3,
+      "housing_index": 103,
+      "wage_index": 100,
+      "family_spending": 6.9
     },
     {
       "year": 2015,
       "tfr": 1.65,
-      "female_labor_participation": null,
-      "replacement_gap": 0.45
+      "replacement_gap": 0.45,
+      "female_labor_25_44": 77.8,
+      "female_tertiary_edu": 11.9,
+      "age_first_birth": 29.0,
+      "marriage_age": 31.5,
+      "housing_index": 100,
+      "wage_index": 100,
+      "family_spending": 7.0
     },
     {
       "year": 2016,
       "tfr": 1.57,
-      "female_labor_participation": null,
-      "replacement_gap": 0.53
+      "replacement_gap": 0.53,
+      "female_labor_25_44": 78.4,
+      "female_tertiary_edu": 12.1,
+      "age_first_birth": 29.2,
+      "marriage_age": 31.7,
+      "housing_index": 101,
+      "wage_index": 100,
+      "family_spending": 6.9
     },
     {
       "year": 2017,
       "tfr": 1.49,
-      "female_labor_participation": null,
-      "replacement_gap": 0.61
+      "replacement_gap": 0.61,
+      "female_labor_25_44": 77.3,
+      "female_tertiary_edu": 12.3,
+      "age_first_birth": 29.4,
+      "marriage_age": 31.9,
+      "housing_index": 102,
+      "wage_index": 100,
+      "family_spending": 6.8
     },
     {
       "year": 2018,
       "tfr": 1.41,
-      "female_labor_participation": null,
-      "replacement_gap": 0.69
+      "replacement_gap": 0.69,
+      "female_labor_25_44": 79.0,
+      "female_tertiary_edu": 12.6,
+      "age_first_birth": 29.5,
+      "marriage_age": 32.0,
+      "housing_index": 104,
+      "wage_index": 101,
+      "family_spending": 6.7
     },
     {
       "year": 2019,
       "tfr": 1.35,
-      "female_labor_participation": null,
-      "replacement_gap": 0.75
+      "replacement_gap": 0.75,
+      "female_labor_25_44": 80.9,
+      "female_tertiary_edu": 12.7,
+      "age_first_birth": 29.7,
+      "marriage_age": 32.2,
+      "housing_index": 106,
+      "wage_index": 102,
+      "family_spending": 6.8
     },
     {
       "year": 2020,
       "tfr": 1.37,
-      "female_labor_participation": null,
-      "replacement_gap": 0.73
+      "replacement_gap": 0.73,
+      "female_labor_25_44": 81.0,
+      "female_tertiary_edu": 12.9,
+      "age_first_birth": 29.8,
+      "marriage_age": 32.3,
+      "housing_index": 108,
+      "wage_index": 103,
+      "family_spending": 7.1
     },
     {
       "year": 2021,
       "tfr": 1.46,
-      "female_labor_participation": null,
-      "replacement_gap": 0.64
+      "replacement_gap": 0.64,
+      "female_labor_25_44": 81.4,
+      "female_tertiary_edu": 13.1,
+      "age_first_birth": 30.0,
+      "marriage_age": 32.5,
+      "housing_index": 115,
+      "wage_index": 104,
+      "family_spending": 7.2
     },
     {
       "year": 2022,
       "tfr": 1.32,
-      "female_labor_participation": null,
-      "replacement_gap": 0.78
+      "replacement_gap": 0.78,
+      "female_labor_25_44": 85.1,
+      "female_tertiary_edu": 13.2,
+      "age_first_birth": 30.2,
+      "marriage_age": 32.7,
+      "housing_index": 117,
+      "wage_index": 100,
+      "family_spending": 7.3
     },
     {
       "year": 2023,
       "tfr": 1.26,
-      "female_labor_participation": null,
-      "replacement_gap": 0.84
+      "replacement_gap": 0.84,
+      "female_labor_25_44": 83.2,
+      "female_tertiary_edu": 13.4,
+      "age_first_birth": 30.4,
+      "marriage_age": 32.9,
+      "housing_index": 108,
+      "wage_index": 98,
+      "family_spending": 7.4
     },
     {
       "year": 2024,
       "tfr": 1.25,
-      "female_labor_participation": null,
-      "replacement_gap": 0.85
+      "replacement_gap": 0.85,
+      "female_labor_25_44": 83.1,
+      "female_tertiary_edu": 13.6,
+      "age_first_birth": 30.5,
+      "marriage_age": 33.0,
+      "housing_index": 104,
+      "wage_index": 98,
+      "family_spending": 7.5
+    }
+  ],
+  "tfr_normalized": [
+    {
+      "year": 1990,
+      "value": 1.78,
+      "normalized": 85.5
+    },
+    {
+      "year": 1991,
+      "value": 1.79,
+      "normalized": 87.1
+    },
+    {
+      "year": 1992,
+      "value": 1.85,
+      "normalized": 96.8
+    },
+    {
+      "year": 1993,
+      "value": 1.81,
+      "normalized": 90.3
+    },
+    {
+      "year": 1994,
+      "value": 1.85,
+      "normalized": 96.8
+    },
+    {
+      "year": 1995,
+      "value": 1.81,
+      "normalized": 90.3
+    },
+    {
+      "year": 1996,
+      "value": 1.76,
+      "normalized": 82.3
+    },
+    {
+      "year": 1997,
+      "value": 1.75,
+      "normalized": 80.6
+    },
+    {
+      "year": 1998,
+      "value": 1.7,
+      "normalized": 72.6
+    },
+    {
+      "year": 1999,
+      "value": 1.73,
+      "normalized": 77.4
+    },
+    {
+      "year": 2000,
+      "value": 1.73,
+      "normalized": 77.4
+    },
+    {
+      "year": 2001,
+      "value": 1.73,
+      "normalized": 77.4
+    },
+    {
+      "year": 2002,
+      "value": 1.72,
+      "normalized": 75.8
+    },
+    {
+      "year": 2003,
+      "value": 1.76,
+      "normalized": 82.3
+    },
+    {
+      "year": 2004,
+      "value": 1.8,
+      "normalized": 88.7
+    },
+    {
+      "year": 2005,
+      "value": 1.8,
+      "normalized": 88.7
+    },
+    {
+      "year": 2006,
+      "value": 1.84,
+      "normalized": 95.2
+    },
+    {
+      "year": 2007,
+      "value": 1.83,
+      "normalized": 93.5
+    },
+    {
+      "year": 2008,
+      "value": 1.85,
+      "normalized": 96.8
+    },
+    {
+      "year": 2009,
+      "value": 1.86,
+      "normalized": 98.4
+    },
+    {
+      "year": 2010,
+      "value": 1.87,
+      "normalized": 100.0
+    },
+    {
+      "year": 2011,
+      "value": 1.83,
+      "normalized": 93.5
+    },
+    {
+      "year": 2012,
+      "value": 1.8,
+      "normalized": 88.7
+    },
+    {
+      "year": 2013,
+      "value": 1.75,
+      "normalized": 80.6
+    },
+    {
+      "year": 2014,
+      "value": 1.71,
+      "normalized": 74.2
+    },
+    {
+      "year": 2015,
+      "value": 1.65,
+      "normalized": 64.5
+    },
+    {
+      "year": 2016,
+      "value": 1.57,
+      "normalized": 51.6
+    },
+    {
+      "year": 2017,
+      "value": 1.49,
+      "normalized": 38.7
+    },
+    {
+      "year": 2018,
+      "value": 1.41,
+      "normalized": 25.8
+    },
+    {
+      "year": 2019,
+      "value": 1.35,
+      "normalized": 16.1
+    },
+    {
+      "year": 2020,
+      "value": 1.37,
+      "normalized": 19.4
+    },
+    {
+      "year": 2021,
+      "value": 1.46,
+      "normalized": 33.9
+    },
+    {
+      "year": 2022,
+      "value": 1.32,
+      "normalized": 11.3
+    },
+    {
+      "year": 2023,
+      "value": 1.26,
+      "normalized": 1.6
+    },
+    {
+      "year": 2024,
+      "value": 1.25,
+      "normalized": 0.0
+    }
+  ],
+  "correlation_factors": [
+    {
+      "id": "age_first_birth",
+      "name": "Age at First Birth",
+      "description": "Mean age of mother at first childbirth",
+      "correlation": -0.804,
+      "direction": "negative",
+      "data_available": true,
+      "data_points": 35,
+      "time_series": [
+        {
+          "year": 1990,
+          "value": 26.5,
+          "normalized": 0.0
+        },
+        {
+          "year": 1991,
+          "value": 26.6,
+          "normalized": 2.5
+        },
+        {
+          "year": 1992,
+          "value": 26.8,
+          "normalized": 7.5
+        },
+        {
+          "year": 1993,
+          "value": 27.0,
+          "normalized": 12.5
+        },
+        {
+          "year": 1994,
+          "value": 27.2,
+          "normalized": 17.5
+        },
+        {
+          "year": 1995,
+          "value": 27.4,
+          "normalized": 22.5
+        },
+        {
+          "year": 1996,
+          "value": 27.5,
+          "normalized": 25.0
+        },
+        {
+          "year": 1997,
+          "value": 27.6,
+          "normalized": 27.5
+        },
+        {
+          "year": 1998,
+          "value": 27.7,
+          "normalized": 30.0
+        },
+        {
+          "year": 1999,
+          "value": 27.8,
+          "normalized": 32.5
+        },
+        {
+          "year": 2000,
+          "value": 27.9,
+          "normalized": 35.0
+        },
+        {
+          "year": 2001,
+          "value": 28.0,
+          "normalized": 37.5
+        },
+        {
+          "year": 2002,
+          "value": 28.0,
+          "normalized": 37.5
+        },
+        {
+          "year": 2003,
+          "value": 28.1,
+          "normalized": 40.0
+        },
+        {
+          "year": 2004,
+          "value": 28.2,
+          "normalized": 42.5
+        },
+        {
+          "year": 2005,
+          "value": 28.3,
+          "normalized": 45.0
+        },
+        {
+          "year": 2006,
+          "value": 28.3,
+          "normalized": 45.0
+        },
+        {
+          "year": 2007,
+          "value": 28.4,
+          "normalized": 47.5
+        },
+        {
+          "year": 2008,
+          "value": 28.4,
+          "normalized": 47.5
+        },
+        {
+          "year": 2009,
+          "value": 28.5,
+          "normalized": 50.0
+        },
+        {
+          "year": 2010,
+          "value": 28.6,
+          "normalized": 52.5
+        },
+        {
+          "year": 2011,
+          "value": 28.7,
+          "normalized": 55.0
+        },
+        {
+          "year": 2012,
+          "value": 28.7,
+          "normalized": 55.0
+        },
+        {
+          "year": 2013,
+          "value": 28.8,
+          "normalized": 57.5
+        },
+        {
+          "year": 2014,
+          "value": 28.8,
+          "normalized": 57.5
+        },
+        {
+          "year": 2015,
+          "value": 29.0,
+          "normalized": 62.5
+        },
+        {
+          "year": 2016,
+          "value": 29.2,
+          "normalized": 67.5
+        },
+        {
+          "year": 2017,
+          "value": 29.4,
+          "normalized": 72.5
+        },
+        {
+          "year": 2018,
+          "value": 29.5,
+          "normalized": 75.0
+        },
+        {
+          "year": 2019,
+          "value": 29.7,
+          "normalized": 80.0
+        },
+        {
+          "year": 2020,
+          "value": 29.8,
+          "normalized": 82.5
+        },
+        {
+          "year": 2021,
+          "value": 30.0,
+          "normalized": 87.5
+        },
+        {
+          "year": 2022,
+          "value": 30.2,
+          "normalized": 92.5
+        },
+        {
+          "year": 2023,
+          "value": 30.4,
+          "normalized": 97.5
+        },
+        {
+          "year": 2024,
+          "value": 30.5,
+          "normalized": 100.0
+        }
+      ]
+    },
+    {
+      "id": "marriage_age",
+      "name": "Marriage Age",
+      "description": "Average age at first marriage",
+      "correlation": -0.756,
+      "direction": "negative",
+      "data_available": true,
+      "data_points": 35,
+      "time_series": [
+        {
+          "year": 1990,
+          "value": 27.0,
+          "normalized": 0.0
+        },
+        {
+          "year": 1991,
+          "value": 27.2,
+          "normalized": 3.3
+        },
+        {
+          "year": 1992,
+          "value": 27.4,
+          "normalized": 6.7
+        },
+        {
+          "year": 1993,
+          "value": 27.6,
+          "normalized": 10.0
+        },
+        {
+          "year": 1994,
+          "value": 27.8,
+          "normalized": 13.3
+        },
+        {
+          "year": 1995,
+          "value": 28.0,
+          "normalized": 16.7
+        },
+        {
+          "year": 1996,
+          "value": 28.2,
+          "normalized": 20.0
+        },
+        {
+          "year": 1997,
+          "value": 28.4,
+          "normalized": 23.3
+        },
+        {
+          "year": 1998,
+          "value": 28.6,
+          "normalized": 26.7
+        },
+        {
+          "year": 1999,
+          "value": 28.8,
+          "normalized": 30.0
+        },
+        {
+          "year": 2000,
+          "value": 29.0,
+          "normalized": 33.3
+        },
+        {
+          "year": 2001,
+          "value": 29.2,
+          "normalized": 36.7
+        },
+        {
+          "year": 2002,
+          "value": 29.3,
+          "normalized": 38.3
+        },
+        {
+          "year": 2003,
+          "value": 29.4,
+          "normalized": 40.0
+        },
+        {
+          "year": 2004,
+          "value": 29.5,
+          "normalized": 41.7
+        },
+        {
+          "year": 2005,
+          "value": 29.6,
+          "normalized": 43.3
+        },
+        {
+          "year": 2006,
+          "value": 29.8,
+          "normalized": 46.7
+        },
+        {
+          "year": 2007,
+          "value": 30.0,
+          "normalized": 50.0
+        },
+        {
+          "year": 2008,
+          "value": 30.2,
+          "normalized": 53.3
+        },
+        {
+          "year": 2009,
+          "value": 30.4,
+          "normalized": 56.7
+        },
+        {
+          "year": 2010,
+          "value": 30.5,
+          "normalized": 58.3
+        },
+        {
+          "year": 2011,
+          "value": 30.7,
+          "normalized": 61.7
+        },
+        {
+          "year": 2012,
+          "value": 30.9,
+          "normalized": 65.0
+        },
+        {
+          "year": 2013,
+          "value": 31.1,
+          "normalized": 68.3
+        },
+        {
+          "year": 2014,
+          "value": 31.3,
+          "normalized": 71.7
+        },
+        {
+          "year": 2015,
+          "value": 31.5,
+          "normalized": 75.0
+        },
+        {
+          "year": 2016,
+          "value": 31.7,
+          "normalized": 78.3
+        },
+        {
+          "year": 2017,
+          "value": 31.9,
+          "normalized": 81.7
+        },
+        {
+          "year": 2018,
+          "value": 32.0,
+          "normalized": 83.3
+        },
+        {
+          "year": 2019,
+          "value": 32.2,
+          "normalized": 86.7
+        },
+        {
+          "year": 2020,
+          "value": 32.3,
+          "normalized": 88.3
+        },
+        {
+          "year": 2021,
+          "value": 32.5,
+          "normalized": 91.7
+        },
+        {
+          "year": 2022,
+          "value": 32.7,
+          "normalized": 95.0
+        },
+        {
+          "year": 2023,
+          "value": 32.9,
+          "normalized": 98.3
+        },
+        {
+          "year": 2024,
+          "value": 33.0,
+          "normalized": 100.0
+        }
+      ]
+    },
+    {
+      "id": "female_tertiary_edu",
+      "name": "Female Higher Education",
+      "description": "Percentage of women (25-44) with tertiary education (%)",
+      "correlation": -0.747,
+      "direction": "negative",
+      "data_available": true,
+      "data_points": 35,
+      "time_series": [
+        {
+          "year": 1990,
+          "value": 7.4,
+          "normalized": 0.0
+        },
+        {
+          "year": 1991,
+          "value": 7.6,
+          "normalized": 3.2
+        },
+        {
+          "year": 1992,
+          "value": 7.9,
+          "normalized": 8.1
+        },
+        {
+          "year": 1993,
+          "value": 8.2,
+          "normalized": 12.9
+        },
+        {
+          "year": 1994,
+          "value": 8.5,
+          "normalized": 17.7
+        },
+        {
+          "year": 1995,
+          "value": 8.7,
+          "normalized": 21.0
+        },
+        {
+          "year": 1996,
+          "value": 8.9,
+          "normalized": 24.2
+        },
+        {
+          "year": 1997,
+          "value": 9.2,
+          "normalized": 29.0
+        },
+        {
+          "year": 1998,
+          "value": 9.3,
+          "normalized": 30.6
+        },
+        {
+          "year": 1999,
+          "value": 9.5,
+          "normalized": 33.9
+        },
+        {
+          "year": 2000,
+          "value": 9.6,
+          "normalized": 35.5
+        },
+        {
+          "year": 2001,
+          "value": 9.7,
+          "normalized": 37.1
+        },
+        {
+          "year": 2002,
+          "value": 9.9,
+          "normalized": 40.3
+        },
+        {
+          "year": 2003,
+          "value": 10.0,
+          "normalized": 41.9
+        },
+        {
+          "year": 2004,
+          "value": 10.1,
+          "normalized": 43.5
+        },
+        {
+          "year": 2005,
+          "value": 10.2,
+          "normalized": 45.2
+        },
+        {
+          "year": 2006,
+          "value": 10.4,
+          "normalized": 48.4
+        },
+        {
+          "year": 2007,
+          "value": 10.6,
+          "normalized": 51.6
+        },
+        {
+          "year": 2008,
+          "value": 10.9,
+          "normalized": 56.5
+        },
+        {
+          "year": 2009,
+          "value": 11.0,
+          "normalized": 58.1
+        },
+        {
+          "year": 2010,
+          "value": 11.2,
+          "normalized": 61.3
+        },
+        {
+          "year": 2011,
+          "value": 11.3,
+          "normalized": 62.9
+        },
+        {
+          "year": 2012,
+          "value": 11.5,
+          "normalized": 66.1
+        },
+        {
+          "year": 2013,
+          "value": 11.7,
+          "normalized": 69.4
+        },
+        {
+          "year": 2014,
+          "value": 11.8,
+          "normalized": 71.0
+        },
+        {
+          "year": 2015,
+          "value": 11.9,
+          "normalized": 72.6
+        },
+        {
+          "year": 2016,
+          "value": 12.1,
+          "normalized": 75.8
+        },
+        {
+          "year": 2017,
+          "value": 12.3,
+          "normalized": 79.0
+        },
+        {
+          "year": 2018,
+          "value": 12.6,
+          "normalized": 83.9
+        },
+        {
+          "year": 2019,
+          "value": 12.7,
+          "normalized": 85.5
+        },
+        {
+          "year": 2020,
+          "value": 12.9,
+          "normalized": 88.7
+        },
+        {
+          "year": 2021,
+          "value": 13.1,
+          "normalized": 91.9
+        },
+        {
+          "year": 2022,
+          "value": 13.2,
+          "normalized": 93.5
+        },
+        {
+          "year": 2023,
+          "value": 13.4,
+          "normalized": 96.8
+        },
+        {
+          "year": 2024,
+          "value": 13.6,
+          "normalized": 100.0
+        }
+      ]
+    },
+    {
+      "id": "female_labor_25_44",
+      "name": "Female Workforce (25-44)",
+      "description": "Female labor force participation rate, fertile age group (%)",
+      "correlation": -0.686,
+      "direction": "negative",
+      "data_available": true,
+      "data_points": 16,
+      "time_series": [
+        {
+          "year": 1990,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 1991,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 1992,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 1993,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 1994,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 1995,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 1996,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 1997,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 1998,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 1999,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 2000,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 2001,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 2002,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 2003,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 2004,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 2005,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 2006,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 2007,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 2008,
+          "value": null,
+          "normalized": null
+        },
+        {
+          "year": 2009,
+          "value": 80.3,
+          "normalized": 40.0
+        },
+        {
+          "year": 2010,
+          "value": 79.7,
+          "normalized": 32.5
+        },
+        {
+          "year": 2011,
+          "value": 77.1,
+          "normalized": 0.0
+        },
+        {
+          "year": 2012,
+          "value": 78.2,
+          "normalized": 13.8
+        },
+        {
+          "year": 2013,
+          "value": 77.7,
+          "normalized": 7.5
+        },
+        {
+          "year": 2014,
+          "value": 77.2,
+          "normalized": 1.3
+        },
+        {
+          "year": 2015,
+          "value": 77.8,
+          "normalized": 8.8
+        },
+        {
+          "year": 2016,
+          "value": 78.4,
+          "normalized": 16.3
+        },
+        {
+          "year": 2017,
+          "value": 77.3,
+          "normalized": 2.5
+        },
+        {
+          "year": 2018,
+          "value": 79.0,
+          "normalized": 23.8
+        },
+        {
+          "year": 2019,
+          "value": 80.9,
+          "normalized": 47.5
+        },
+        {
+          "year": 2020,
+          "value": 81.0,
+          "normalized": 48.8
+        },
+        {
+          "year": 2021,
+          "value": 81.4,
+          "normalized": 53.8
+        },
+        {
+          "year": 2022,
+          "value": 85.1,
+          "normalized": 100.0
+        },
+        {
+          "year": 2023,
+          "value": 83.2,
+          "normalized": 76.3
+        },
+        {
+          "year": 2024,
+          "value": 83.1,
+          "normalized": 75.0
+        }
+      ]
+    },
+    {
+      "id": "family_spending",
+      "name": "Family Benefit Spending",
+      "description": "Government family/child benefit spending (€B)",
+      "correlation": -0.651,
+      "direction": "negative",
+      "data_available": true,
+      "data_points": 35,
+      "time_series": [
+        {
+          "year": 1990,
+          "value": 3.2,
+          "normalized": 0.0
+        },
+        {
+          "year": 1991,
+          "value": 3.5,
+          "normalized": 7.0
+        },
+        {
+          "year": 1992,
+          "value": 3.8,
+          "normalized": 14.0
+        },
+        {
+          "year": 1993,
+          "value": 4.0,
+          "normalized": 18.6
+        },
+        {
+          "year": 1994,
+          "value": 4.2,
+          "normalized": 23.3
+        },
+        {
+          "year": 1995,
+          "value": 4.3,
+          "normalized": 25.6
+        },
+        {
+          "year": 1996,
+          "value": 4.4,
+          "normalized": 27.9
+        },
+        {
+          "year": 1997,
+          "value": 4.5,
+          "normalized": 30.2
+        },
+        {
+          "year": 1998,
+          "value": 4.6,
+          "normalized": 32.6
+        },
+        {
+          "year": 1999,
+          "value": 4.7,
+          "normalized": 34.9
+        },
+        {
+          "year": 2000,
+          "value": 4.8,
+          "normalized": 37.2
+        },
+        {
+          "year": 2001,
+          "value": 4.9,
+          "normalized": 39.5
+        },
+        {
+          "year": 2002,
+          "value": 5.0,
+          "normalized": 41.9
+        },
+        {
+          "year": 2003,
+          "value": 5.1,
+          "normalized": 44.2
+        },
+        {
+          "year": 2004,
+          "value": 5.2,
+          "normalized": 46.5
+        },
+        {
+          "year": 2005,
+          "value": 5.3,
+          "normalized": 48.8
+        },
+        {
+          "year": 2006,
+          "value": 5.5,
+          "normalized": 53.5
+        },
+        {
+          "year": 2007,
+          "value": 5.7,
+          "normalized": 58.1
+        },
+        {
+          "year": 2008,
+          "value": 5.9,
+          "normalized": 62.8
+        },
+        {
+          "year": 2009,
+          "value": 6.1,
+          "normalized": 67.4
+        },
+        {
+          "year": 2010,
+          "value": 6.3,
+          "normalized": 72.1
+        },
+        {
+          "year": 2011,
+          "value": 6.5,
+          "normalized": 76.7
+        },
+        {
+          "year": 2012,
+          "value": 6.7,
+          "normalized": 81.4
+        },
+        {
+          "year": 2013,
+          "value": 6.8,
+          "normalized": 83.7
+        },
+        {
+          "year": 2014,
+          "value": 6.9,
+          "normalized": 86.0
+        },
+        {
+          "year": 2015,
+          "value": 7.0,
+          "normalized": 88.4
+        },
+        {
+          "year": 2016,
+          "value": 6.9,
+          "normalized": 86.0
+        },
+        {
+          "year": 2017,
+          "value": 6.8,
+          "normalized": 83.7
+        },
+        {
+          "year": 2018,
+          "value": 6.7,
+          "normalized": 81.4
+        },
+        {
+          "year": 2019,
+          "value": 6.8,
+          "normalized": 83.7
+        },
+        {
+          "year": 2020,
+          "value": 7.1,
+          "normalized": 90.7
+        },
+        {
+          "year": 2021,
+          "value": 7.2,
+          "normalized": 93.0
+        },
+        {
+          "year": 2022,
+          "value": 7.3,
+          "normalized": 95.3
+        },
+        {
+          "year": 2023,
+          "value": 7.4,
+          "normalized": 97.7
+        },
+        {
+          "year": 2024,
+          "value": 7.5,
+          "normalized": 100.0
+        }
+      ]
+    },
+    {
+      "id": "housing_index",
+      "name": "Housing Price Index",
+      "description": "Dwelling price index (2015=100)",
+      "correlation": -0.525,
+      "direction": "negative",
+      "data_available": true,
+      "data_points": 35,
+      "time_series": [
+        {
+          "year": 1990,
+          "value": 62,
+          "normalized": 28.6
+        },
+        {
+          "year": 1991,
+          "value": 52,
+          "normalized": 15.6
+        },
+        {
+          "year": 1992,
+          "value": 42,
+          "normalized": 2.6
+        },
+        {
+          "year": 1993,
+          "value": 40,
+          "normalized": 0.0
+        },
+        {
+          "year": 1994,
+          "value": 42,
+          "normalized": 2.6
+        },
+        {
+          "year": 1995,
+          "value": 42,
+          "normalized": 2.6
+        },
+        {
+          "year": 1996,
+          "value": 45,
+          "normalized": 6.5
+        },
+        {
+          "year": 1997,
+          "value": 52,
+          "normalized": 15.6
+        },
+        {
+          "year": 1998,
+          "value": 60,
+          "normalized": 26.0
+        },
+        {
+          "year": 1999,
+          "value": 66,
+          "normalized": 33.8
+        },
+        {
+          "year": 2000,
+          "value": 69,
+          "normalized": 37.7
+        },
+        {
+          "year": 2001,
+          "value": 69,
+          "normalized": 37.7
+        },
+        {
+          "year": 2002,
+          "value": 73,
+          "normalized": 42.9
+        },
+        {
+          "year": 2003,
+          "value": 77,
+          "normalized": 48.1
+        },
+        {
+          "year": 2004,
+          "value": 82,
+          "normalized": 54.5
+        },
+        {
+          "year": 2005,
+          "value": 87,
+          "normalized": 61.0
+        },
+        {
+          "year": 2006,
+          "value": 93,
+          "normalized": 68.8
+        },
+        {
+          "year": 2007,
+          "value": 98,
+          "normalized": 75.3
+        },
+        {
+          "year": 2008,
+          "value": 99,
+          "normalized": 76.6
+        },
+        {
+          "year": 2009,
+          "value": 97,
+          "normalized": 74.0
+        },
+        {
+          "year": 2010,
+          "value": 103,
+          "normalized": 81.8
+        },
+        {
+          "year": 2011,
+          "value": 105,
+          "normalized": 84.4
+        },
+        {
+          "year": 2012,
+          "value": 105,
+          "normalized": 84.4
+        },
+        {
+          "year": 2013,
+          "value": 104,
+          "normalized": 83.1
+        },
+        {
+          "year": 2014,
+          "value": 103,
+          "normalized": 81.8
+        },
+        {
+          "year": 2015,
+          "value": 100,
+          "normalized": 77.9
+        },
+        {
+          "year": 2016,
+          "value": 101,
+          "normalized": 79.2
+        },
+        {
+          "year": 2017,
+          "value": 102,
+          "normalized": 80.5
+        },
+        {
+          "year": 2018,
+          "value": 104,
+          "normalized": 83.1
+        },
+        {
+          "year": 2019,
+          "value": 106,
+          "normalized": 85.7
+        },
+        {
+          "year": 2020,
+          "value": 108,
+          "normalized": 88.3
+        },
+        {
+          "year": 2021,
+          "value": 115,
+          "normalized": 97.4
+        },
+        {
+          "year": 2022,
+          "value": 117,
+          "normalized": 100.0
+        },
+        {
+          "year": 2023,
+          "value": 108,
+          "normalized": 88.3
+        },
+        {
+          "year": 2024,
+          "value": 104,
+          "normalized": 83.1
+        }
+      ]
+    },
+    {
+      "id": "wage_index",
+      "name": "Real Wage Index",
+      "description": "Real wage index adjusted for inflation (2015=100)",
+      "correlation": -0.448,
+      "direction": "negative",
+      "data_available": true,
+      "data_points": 35,
+      "time_series": [
+        {
+          "year": 1990,
+          "value": 68,
+          "normalized": 0.0
+        },
+        {
+          "year": 1991,
+          "value": 72,
+          "normalized": 11.1
+        },
+        {
+          "year": 1992,
+          "value": 71,
+          "normalized": 8.3
+        },
+        {
+          "year": 1993,
+          "value": 68,
+          "normalized": 0.0
+        },
+        {
+          "year": 1994,
+          "value": 69,
+          "normalized": 2.8
+        },
+        {
+          "year": 1995,
+          "value": 72,
+          "normalized": 11.1
+        },
+        {
+          "year": 1996,
+          "value": 74,
+          "normalized": 16.7
+        },
+        {
+          "year": 1997,
+          "value": 75,
+          "normalized": 19.4
+        },
+        {
+          "year": 1998,
+          "value": 78,
+          "normalized": 27.8
+        },
+        {
+          "year": 1999,
+          "value": 80,
+          "normalized": 33.3
+        },
+        {
+          "year": 2000,
+          "value": 82,
+          "normalized": 38.9
+        },
+        {
+          "year": 2001,
+          "value": 85,
+          "normalized": 47.2
+        },
+        {
+          "year": 2002,
+          "value": 86,
+          "normalized": 50.0
+        },
+        {
+          "year": 2003,
+          "value": 88,
+          "normalized": 55.6
+        },
+        {
+          "year": 2004,
+          "value": 90,
+          "normalized": 61.1
+        },
+        {
+          "year": 2005,
+          "value": 93,
+          "normalized": 69.4
+        },
+        {
+          "year": 2006,
+          "value": 95,
+          "normalized": 75.0
+        },
+        {
+          "year": 2007,
+          "value": 97,
+          "normalized": 80.6
+        },
+        {
+          "year": 2008,
+          "value": 100,
+          "normalized": 88.9
+        },
+        {
+          "year": 2009,
+          "value": 101,
+          "normalized": 91.7
+        },
+        {
+          "year": 2010,
+          "value": 101,
+          "normalized": 91.7
+        },
+        {
+          "year": 2011,
+          "value": 101,
+          "normalized": 91.7
+        },
+        {
+          "year": 2012,
+          "value": 101,
+          "normalized": 91.7
+        },
+        {
+          "year": 2013,
+          "value": 100,
+          "normalized": 88.9
+        },
+        {
+          "year": 2014,
+          "value": 100,
+          "normalized": 88.9
+        },
+        {
+          "year": 2015,
+          "value": 100,
+          "normalized": 88.9
+        },
+        {
+          "year": 2016,
+          "value": 100,
+          "normalized": 88.9
+        },
+        {
+          "year": 2017,
+          "value": 100,
+          "normalized": 88.9
+        },
+        {
+          "year": 2018,
+          "value": 101,
+          "normalized": 91.7
+        },
+        {
+          "year": 2019,
+          "value": 102,
+          "normalized": 94.4
+        },
+        {
+          "year": 2020,
+          "value": 103,
+          "normalized": 97.2
+        },
+        {
+          "year": 2021,
+          "value": 104,
+          "normalized": 100.0
+        },
+        {
+          "year": 2022,
+          "value": 100,
+          "normalized": 88.9
+        },
+        {
+          "year": 2023,
+          "value": 98,
+          "normalized": 83.3
+        },
+        {
+          "year": 2024,
+          "value": 98,
+          "normalized": 83.3
+        }
+      ]
     }
   ]
 }

@@ -14,12 +14,30 @@ import {
   ReferenceLine,
   Area,
   AreaChart,
+  BarChart,
+  Bar,
+  Cell,
+  ScatterChart,
+  Scatter,
 } from 'recharts';
-import { FertilityData } from '@/lib/types';
+import { FertilityData, CorrelationFactor } from '@/lib/types';
+
+// Color palette for factors
+const FACTOR_COLORS: Record<string, string> = {
+  age_first_birth: '#F59E0B',
+  marriage_age: '#8B5CF6',
+  female_tertiary_edu: '#06B6D4',
+  female_labor_25_44: '#10B981',
+  family_spending: '#EF4444',
+  housing_index: '#F97316',
+  wage_index: '#6366F1',
+  singles_ratio_25_34: '#EC4899',
+};
 
 export default function IotaPage() {
   const [data, setData] = useState<FertilityData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [selectedFactors, setSelectedFactors] = useState<string[]>(['age_first_birth', 'female_tertiary_edu']);
 
   useEffect(() => {
     async function loadData() {
@@ -63,7 +81,7 @@ export default function IotaPage() {
     );
   }
 
-  const { summary, time_series, metadata } = data;
+  const { summary, time_series, metadata, correlation_factors, tfr_normalized } = data;
 
   // Filter to modern era (1950+) for main chart
   const modernData = time_series.filter((y) => y.year >= 1950 && y.tfr !== null);
@@ -89,6 +107,55 @@ export default function IotaPage() {
   const tfr1990 = time_series.find((y) => y.year === 1990)?.tfr || 0;
   const tfr2010 = time_series.find((y) => y.year === 2010)?.tfr || 0;
   const currentTFR = summary.current_tfr;
+
+  // Correlation data for bar chart
+  const correlationBarData = correlation_factors?.map((f) => ({
+    name: f.name,
+    id: f.id,
+    correlation: f.correlation,
+    fill: f.correlation < 0 ? '#EF4444' : '#22C55E',
+  })) || [];
+
+  // Prepare normalized trends data for overlay chart
+  const trendData = tfr_normalized?.map((tfr) => {
+    const point: Record<string, number | null> = {
+      year: tfr.year,
+      tfr: tfr.normalized,
+    };
+    
+    // Add selected factors
+    selectedFactors.forEach((factorId) => {
+      const factor = correlation_factors?.find((f) => f.id === factorId);
+      const factorPoint = factor?.time_series.find((p) => p.year === tfr.year);
+      point[factorId] = factorPoint?.normalized ?? null;
+    });
+    
+    return point;
+  }) || [];
+
+  // Toggle factor selection
+  const toggleFactor = (factorId: string) => {
+    setSelectedFactors((prev) =>
+      prev.includes(factorId)
+        ? prev.filter((f) => f !== factorId)
+        : [...prev, factorId]
+    );
+  };
+
+  // Prepare scatter data for each factor
+  const getScatterData = (factor: CorrelationFactor) => {
+    return factor.time_series
+      .filter((p) => p.value !== null)
+      .map((p) => {
+        const tfrEntry = time_series.find((t) => t.year === p.year);
+        return {
+          x: p.value,
+          y: tfrEntry?.tfr ?? null,
+          year: p.year,
+        };
+      })
+      .filter((p) => p.y !== null);
+  };
 
   return (
     <main className="min-h-screen">
@@ -199,17 +266,227 @@ export default function IotaPage() {
         </div>
       </section>
 
-      {/* Key Insight */}
-      <section className="py-8 px-6 bg-pink-950/10 border-b border-gray-800">
-        <div className="max-w-4xl mx-auto">
-          <blockquote className="text-lg md:text-xl text-gray-300 italic text-center">
-            &ldquo;Despite having one of the world&apos;s best parental leave systems, Finland&apos;s
-            fertility rate has fallen from {tfr1990.toFixed(2)} in 1990 to {currentTFR.toFixed(2)}{' '}
-            today &mdash; a {Math.abs(((currentTFR - tfr1990) / tfr1990) * 100).toFixed(0)}% decline.
-            More subsidies haven&apos;t meant more babies.&rdquo;
-          </blockquote>
-        </div>
-      </section>
+      {/* Correlation Analysis Section */}
+      {correlation_factors && correlation_factors.length > 0 && (
+        <section className="py-8 px-6 border-b border-gray-800 bg-gradient-to-b from-gray-950/50 to-transparent">
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold mb-2">Correlation Analysis</h2>
+              <p className="text-gray-400 text-sm">
+                Statistical correlations between fertility rate and socioeconomic factors (1990-2024).
+                <span className="text-amber-400 ml-2">Note: Correlation ≠ causation.</span>
+              </p>
+            </div>
+
+            {/* Correlation Coefficient Bar Chart */}
+            <div className="card p-6 mb-8">
+              <h3 className="text-lg font-semibold mb-4">Correlation Coefficients with TFR</h3>
+              <p className="text-gray-500 text-sm mb-4">
+                Pearson r: -1 (perfect inverse) to +1 (perfect positive). All factors show negative correlation — 
+                as each increases, fertility decreases.
+              </p>
+              <div className="h-[350px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={correlationBarData} layout="vertical">
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis
+                      type="number"
+                      domain={[-1, 0.5]}
+                      stroke="#9CA3AF"
+                      tickFormatter={(v) => v.toFixed(1)}
+                    />
+                    <YAxis
+                      type="category"
+                      dataKey="name"
+                      stroke="#9CA3AF"
+                      width={160}
+                      tick={{ fontSize: 12 }}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: '#1F2937',
+                        border: '1px solid #374151',
+                        borderRadius: '8px',
+                      }}
+                      formatter={(value: number | undefined) =>
+                        value !== undefined
+                          ? [`r = ${value.toFixed(3)}`, 'Correlation']
+                          : ['N/A', 'Correlation']
+                      }
+                    />
+                    <ReferenceLine x={0} stroke="#6B7280" />
+                    <Bar dataKey="correlation" name="Correlation">
+                      {correlationBarData.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={entry.correlation < 0 ? '#EF4444' : '#22C55E'}
+                          fillOpacity={Math.abs(entry.correlation)}
+                        />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+              <p className="text-gray-500 text-xs mt-3">
+                Strongest correlation: <span className="text-red-400">{correlation_factors[0]?.name}</span> (r = {correlation_factors[0]?.correlation.toFixed(3)})
+              </p>
+            </div>
+
+            {/* Normalized Trends Chart */}
+            <div className="card p-6 mb-8">
+              <h3 className="text-lg font-semibold mb-2">Factor Trends vs Fertility (Normalized 0-100)</h3>
+              <p className="text-gray-500 text-sm mb-4">
+                All values scaled to 0-100 for comparison. Click factors below to toggle visibility.
+              </p>
+              
+              {/* Factor toggles */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {correlation_factors.map((factor) => (
+                  <button
+                    key={factor.id}
+                    onClick={() => toggleFactor(factor.id)}
+                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all text-white ${
+                      selectedFactors.includes(factor.id)
+                        ? 'ring-2 ring-offset-2 ring-offset-gray-900 ring-white/50'
+                        : 'opacity-50 hover:opacity-75'
+                    }`}
+                    style={{
+                      backgroundColor: FACTOR_COLORS[factor.id] || '#6B7280',
+                    }}
+                  >
+                    {factor.name}
+                  </button>
+                ))}
+              </div>
+
+              <div className="h-[400px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={trendData}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis dataKey="year" stroke="#9CA3AF" />
+                    <YAxis stroke="#9CA3AF" domain={[0, 100]} />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: '#1F2937',
+                        border: '1px solid #374151',
+                        borderRadius: '8px',
+                      }}
+                      formatter={(value: number | undefined) =>
+                        value !== undefined ? value.toFixed(1) : 'N/A'
+                      }
+                    />
+                    <Legend />
+                    {/* TFR line always shown */}
+                    <Line
+                      type="monotone"
+                      dataKey="tfr"
+                      stroke="#EC4899"
+                      strokeWidth={3}
+                      name="Fertility Rate"
+                      dot={false}
+                    />
+                    {/* Selected factor lines */}
+                    {selectedFactors.map((factorId) => {
+                      const factor = correlation_factors.find((f) => f.id === factorId);
+                      return (
+                        <Line
+                          key={factorId}
+                          type="monotone"
+                          dataKey={factorId}
+                          stroke={FACTOR_COLORS[factorId] || '#6B7280'}
+                          strokeWidth={2}
+                          name={factor?.name || factorId}
+                          dot={false}
+                          strokeDasharray={factorId.includes('spending') ? '5 5' : undefined}
+                        />
+                      );
+                    })}
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+              <p className="text-gray-500 text-xs mt-3">
+                Pink line = TFR. As factor values rise (especially education, age at first birth), fertility falls.
+              </p>
+            </div>
+
+            {/* Scatter Plots Grid */}
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold mb-4">TFR vs Each Factor (Scatter Plots)</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {correlation_factors.slice(0, 8).map((factor) => {
+                  const scatterData = getScatterData(factor);
+                  return (
+                    <div key={factor.id} className="card p-4">
+                      <div className="text-sm font-medium text-gray-300 mb-1">{factor.name}</div>
+                      <div className="text-xs text-gray-500 mb-2">r = {factor.correlation.toFixed(3)}</div>
+                      <div className="h-[160px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <ScatterChart margin={{ top: 10, right: 10, bottom: 20, left: 10 }}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                            <XAxis
+                              type="number"
+                              dataKey="x"
+                              stroke="#6B7280"
+                              tick={{ fontSize: 10 }}
+                              tickFormatter={(v) => v.toFixed(0)}
+                            />
+                            <YAxis
+                              type="number"
+                              dataKey="y"
+                              stroke="#6B7280"
+                              tick={{ fontSize: 10 }}
+                              domain={[1, 2]}
+                              tickFormatter={(v) => v.toFixed(1)}
+                            />
+                            <Tooltip
+                              contentStyle={{
+                                backgroundColor: '#1F2937',
+                                border: '1px solid #374151',
+                                borderRadius: '8px',
+                                fontSize: '12px',
+                              }}
+                              formatter={(value: number | undefined, name: string | undefined) =>
+                                value !== undefined
+                                  ? [value.toFixed(2), name === 'x' ? factor.name : 'TFR']
+                                  : ['N/A', 'Value']
+                              }
+                              labelFormatter={(label) => `Year: ${label}`}
+                            />
+                            <Scatter
+                              data={scatterData}
+                              fill={FACTOR_COLORS[factor.id] || '#EC4899'}
+                              fillOpacity={0.7}
+                            />
+                          </ScatterChart>
+                        </ResponsiveContainer>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Key Insight Box */}
+            <div className="card p-6 border-amber-900/50 bg-amber-950/10">
+              <h4 className="text-lg font-semibold text-amber-400 mb-3 flex items-center gap-2">
+                <span>⚠️</span> Interpreting the Data
+              </h4>
+              <div className="text-gray-400 space-y-3">
+                <p>
+                  <strong className="text-white">All measured factors show negative correlation</strong> with fertility.
+                  As female education increases, workforce participation rises, marriage delays, and housing costs grow — 
+                  fertility declines. Even family benefit spending shows negative correlation (more spending, fewer babies).
+                </p>
+                <p>
+                  <strong className="text-amber-400">Important:</strong> This does NOT prove causation. These factors are 
+                  interrelated and may all be symptoms of broader societal changes. The data suggests that generous 
+                  family policies alone don&apos;t boost birth rates when other structural factors push against family formation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Long-term Fertility Chart */}
       <section className="py-8 px-6">
@@ -369,61 +646,6 @@ export default function IotaPage() {
         </div>
       </section>
 
-      {/* Possible Explanations */}
-      <section className="py-8 px-6 border-t border-gray-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6">What Might Explain This?</h2>
-
-          <div className="space-y-6">
-            <div className="card p-6">
-              <h3 className="text-lg font-semibold text-pink-400 mb-3">
-                🏠 Housing Costs & Economic Uncertainty
-              </h3>
-              <p className="text-gray-400">
-                Young people face high housing costs in urban areas, job insecurity, and delayed
-                financial stability. Having children is expensive beyond what subsidies cover &mdash;
-                especially opportunity costs of career interruption.
-              </p>
-            </div>
-
-            <div className="card p-6">
-              <h3 className="text-lg font-semibold text-pink-400 mb-3">
-                👩‍💼 Changing Priorities & Values
-              </h3>
-              <p className="text-gray-400">
-                With high female education and labor participation, many women prioritize careers
-                and personal development. The &quot;opportunity cost&quot; of children has increased
-                dramatically. Having children is increasingly seen as a choice, not an expectation.
-              </p>
-            </div>
-
-            <div className="card p-6">
-              <h3 className="text-lg font-semibold text-pink-400 mb-3">
-                ⏰ Delayed Childbearing
-              </h3>
-              <p className="text-gray-400">
-                Average age of first-time mothers has risen from ~26 (1990) to ~30+ today.
-                Later starts mean fewer years of fertility, higher risk of infertility, and
-                often fewer children total.
-              </p>
-            </div>
-
-            <div className="card p-6">
-              <h3 className="text-lg font-semibold text-pink-400 mb-3">
-                🤔 The Subsidy Paradox
-              </h3>
-              <p className="text-gray-400">
-                More subsidies may actually correlate with lower fertility by:
-                (1) requiring higher taxes that hurt family formation,
-                (2) pushing women into workforce, increasing opportunity costs,
-                (3) creating expectations of &quot;perfect conditions&quot; that never arrive.
-                Countries with less state support (like Israel) often have higher fertility.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Implications */}
       <section className="py-8 px-6 border-t border-gray-800 bg-gray-950/30">
         <div className="max-w-4xl mx-auto">
@@ -449,7 +671,7 @@ export default function IotaPage() {
                 <h4 className="font-semibold text-red-400 mb-2">Cultural Shift</h4>
                 <p className="text-gray-400 text-sm">
                   Without domestic population growth, Finland relies entirely on immigration
-                  to maintain population &mdash; with unknown cultural consequences.
+                  to maintain population — with unknown cultural consequences.
                 </p>
               </div>
             </div>
@@ -457,27 +679,51 @@ export default function IotaPage() {
         </div>
       </section>
 
-      {/* Data Sources */}
+      {/* Methodology */}
       <section className="py-8 px-6 bg-gray-950/50 border-t border-gray-800">
         <div className="max-w-7xl mx-auto">
-          <h3 className="text-lg font-semibold mb-4">Data Sources</h3>
-          <div className="grid md:grid-cols-2 gap-6 text-sm">
+          <h3 className="text-lg font-semibold mb-4">Methodology & Data Sources</h3>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm mb-6">
             <div>
-              <div className="text-gray-500 mb-1">Fertility Rate</div>
+              <div className="text-gray-500 mb-1">Total Fertility Rate</div>
               <div className="text-gray-300">Statistics Finland, Table 12dt</div>
-              <div className="text-gray-500">
-                Total fertility rate (1776-present)
-              </div>
+              <div className="text-gray-500">TFR 1776-2024</div>
             </div>
             <div>
-              <div className="text-gray-500 mb-1">Definition</div>
-              <div className="text-gray-300">
-                TFR = Total Fertility Rate
-              </div>
-              <div className="text-gray-500">
-                Average children per woman at current age-specific rates
-              </div>
+              <div className="text-gray-500 mb-1">Female Workforce Participation</div>
+              <div className="text-gray-300">Statistics Finland, Table 135y</div>
+              <div className="text-gray-500">Labor force rate, ages 25-44</div>
             </div>
+            <div>
+              <div className="text-gray-500 mb-1">Education Levels</div>
+              <div className="text-gray-300">Statistics Finland, Table 12bq</div>
+              <div className="text-gray-500">Tertiary education attainment</div>
+            </div>
+            <div>
+              <div className="text-gray-500 mb-1">Age at First Birth / Marriage</div>
+              <div className="text-gray-300">Statistics Finland publications</div>
+              <div className="text-gray-500">Estimated from official reports</div>
+            </div>
+            <div>
+              <div className="text-gray-500 mb-1">Housing & Wages</div>
+              <div className="text-gray-300">Statistics Finland indices</div>
+              <div className="text-gray-500">Estimated from official reports</div>
+            </div>
+            <div>
+              <div className="text-gray-500 mb-1">Statistical Method</div>
+              <div className="text-gray-300">Pearson correlation coefficient</div>
+              <div className="text-gray-500">Calculated over overlapping years</div>
+            </div>
+          </div>
+
+          <div className="card p-4 border-amber-900/30 bg-amber-950/10">
+            <p className="text-gray-400 text-sm">
+              <strong className="text-amber-400">Disclaimer:</strong> This analysis presents statistical correlations 
+              only. Correlation does not establish causation. Fertility is influenced by complex, interconnected 
+              factors that cannot be reduced to simple cause-effect relationships. Data for some factors uses 
+              estimates from official publications where direct API access was unavailable.
+            </p>
           </div>
         </div>
       </section>
@@ -504,4 +750,3 @@ function StatCard({
     </div>
   );
 }
-
