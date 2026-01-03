@@ -5,10 +5,11 @@
       "statfin_synt_pxt_12dt",
       "statfin_tyti_pxt_135y",
       "statfin_vaerak_pxt_11ra",
-      "statfin_vkour_pxt_12bq"
+      "statfin_vkour_pxt_12bq",
+      "statfin_kbar_pxt_11vq"
     ],
     "description": "Total fertility rate with correlation analysis of socioeconomic factors",
-    "fetched_at": "2026-01-04T01:02:54.760210",
+    "fetched_at": "2026-01-04T01:28:33.358022",
     "replacement_level": 2.1,
     "note": "Correlation does not imply causation. Multiple factors interact in complex ways.",
     "methodology": "Pearson correlation coefficients calculated over overlapping time periods (1990-2024). Some factors use estimated data from official publications where direct API access is unavailable."
@@ -210,188 +211,188 @@
       ]
     },
     "strongest_positive": {
-      "id": "church_membership",
-      "name": "Church Membership",
-      "description": "Evangelical Lutheran Church membership (% of population)",
-      "correlation": 0.863,
+      "id": "cci_18_29",
+      "name": "Consumer Confidence (18-29)",
+      "description": "Consumer confidence indicator (CCI), age 18-29 (annual avg)",
+      "correlation": 0.949,
       "direction": "positive",
       "data_available": true,
-      "data_points": 35,
+      "data_points": 6,
       "time_series": [
         {
           "year": 1990,
-          "value": 87.9,
-          "indexed": 100.0
+          "value": null,
+          "indexed": null
         },
         {
           "year": 1991,
-          "value": 87.6,
-          "indexed": 99.7
+          "value": null,
+          "indexed": null
         },
         {
           "year": 1992,
-          "value": 87.3,
-          "indexed": 99.3
+          "value": null,
+          "indexed": null
         },
         {
           "year": 1993,
-          "value": 86.9,
-          "indexed": 98.9
+          "value": null,
+          "indexed": null
         },
         {
           "year": 1994,
-          "value": 86.5,
-          "indexed": 98.4
+          "value": null,
+          "indexed": null
         },
         {
           "year": 1995,
-          "value": 86.1,
-          "indexed": 98.0
+          "value": null,
+          "indexed": null
         },
         {
           "year": 1996,
-          "value": 85.7,
-          "indexed": 97.5
+          "value": null,
+          "indexed": null
         },
         {
           "year": 1997,
-          "value": 85.3,
-          "indexed": 97.0
+          "value": null,
+          "indexed": null
         },
         {
           "year": 1998,
-          "value": 85.0,
-          "indexed": 96.7
+          "value": null,
+          "indexed": null
         },
         {
           "year": 1999,
-          "value": 84.7,
-          "indexed": 96.4
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2000,
-          "value": 85.1,
-          "indexed": 96.8
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2001,
-          "value": 84.7,
-          "indexed": 96.4
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2002,
-          "value": 84.2,
-          "indexed": 95.8
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2003,
-          "value": 83.7,
-          "indexed": 95.2
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2004,
-          "value": 83.1,
-          "indexed": 94.5
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2005,
-          "value": 82.4,
-          "indexed": 93.7
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2006,
-          "value": 81.8,
-          "indexed": 93.1
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2007,
-          "value": 81.0,
-          "indexed": 92.2
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2008,
-          "value": 80.6,
-          "indexed": 91.7
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2009,
-          "value": 79.9,
-          "indexed": 90.9
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2010,
-          "value": 78.2,
-          "indexed": 89.0
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2011,
-          "value": 77.2,
-          "indexed": 87.8
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2012,
-          "value": 76.4,
-          "indexed": 86.9
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2013,
-          "value": 75.3,
-          "indexed": 85.7
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2014,
-          "value": 74.0,
-          "indexed": 84.2
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2015,
-          "value": 73.0,
-          "indexed": 83.0
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2016,
-          "value": 71.9,
-          "indexed": 81.8
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2017,
-          "value": 70.9,
-          "indexed": 80.7
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2018,
-          "value": 69.7,
-          "indexed": 79.3
+          "value": null,
+          "indexed": null
         },
         {
           "year": 2019,
-          "value": 68.6,
-          "indexed": 78.0
+          "value": 5.41,
+          "indexed": 100.0
         },
         {
           "year": 2020,
-          "value": 66.6,
-          "indexed": 75.8
+          "value": 3.72,
+          "indexed": 68.8
         },
         {
           "year": 2021,
-          "value": 65.2,
-          "indexed": 74.2
+          "value": 9.07,
+          "indexed": 167.7
         },
         {
           "year": 2022,
-          "value": 63.6,
-          "indexed": 72.4
+          "value": -0.49,
+          "indexed": -9.1
         },
         {
           "year": 2023,
-          "value": 62.5,
-          "indexed": 71.1
+          "value": -1.31,
+          "indexed": -24.2
         },
         {
           "year": 2024,
-          "value": 61.5,
-          "indexed": 70.0
+          "value": -1.99,
+          "indexed": -36.8
         }
       ]
     }
@@ -410,7 +411,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1777,
@@ -425,7 +429,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1778,
@@ -440,7 +447,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1779,
@@ -455,7 +465,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1780,
@@ -470,7 +483,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1781,
@@ -485,7 +501,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1782,
@@ -500,7 +519,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1783,
@@ -515,7 +537,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1784,
@@ -530,7 +555,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1785,
@@ -545,7 +573,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1786,
@@ -560,7 +591,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1787,
@@ -575,7 +609,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1788,
@@ -590,7 +627,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1789,
@@ -605,7 +645,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1790,
@@ -620,7 +663,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1791,
@@ -635,7 +681,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1792,
@@ -650,7 +699,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1793,
@@ -665,7 +717,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1794,
@@ -680,7 +735,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1795,
@@ -695,7 +753,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1796,
@@ -710,7 +771,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1797,
@@ -725,7 +789,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1798,
@@ -740,7 +807,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1799,
@@ -755,7 +825,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1800,
@@ -770,7 +843,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1801,
@@ -785,7 +861,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1802,
@@ -800,7 +879,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1803,
@@ -815,7 +897,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1804,
@@ -830,7 +915,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1805,
@@ -845,7 +933,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1806,
@@ -860,7 +951,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1807,
@@ -875,7 +969,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1808,
@@ -890,7 +987,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1809,
@@ -905,7 +1005,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1810,
@@ -920,7 +1023,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1811,
@@ -935,7 +1041,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1812,
@@ -950,7 +1059,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1813,
@@ -965,7 +1077,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1814,
@@ -980,7 +1095,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1815,
@@ -995,7 +1113,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1816,
@@ -1010,7 +1131,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1817,
@@ -1025,7 +1149,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1818,
@@ -1040,7 +1167,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1819,
@@ -1055,7 +1185,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1820,
@@ -1070,7 +1203,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1821,
@@ -1085,7 +1221,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1822,
@@ -1100,7 +1239,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1823,
@@ -1115,7 +1257,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1824,
@@ -1130,7 +1275,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1825,
@@ -1145,7 +1293,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1826,
@@ -1160,7 +1311,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1827,
@@ -1175,7 +1329,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1828,
@@ -1190,7 +1347,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1829,
@@ -1205,7 +1365,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1830,
@@ -1220,7 +1383,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1831,
@@ -1235,7 +1401,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1832,
@@ -1250,7 +1419,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1833,
@@ -1265,7 +1437,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1834,
@@ -1280,7 +1455,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1835,
@@ -1295,7 +1473,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1836,
@@ -1310,7 +1491,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1837,
@@ -1325,7 +1509,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1838,
@@ -1340,7 +1527,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1839,
@@ -1355,7 +1545,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1840,
@@ -1370,7 +1563,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1841,
@@ -1385,7 +1581,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1842,
@@ -1400,7 +1599,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1843,
@@ -1415,7 +1617,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1844,
@@ -1430,7 +1635,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1845,
@@ -1445,7 +1653,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1846,
@@ -1460,7 +1671,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1847,
@@ -1475,7 +1689,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1848,
@@ -1490,7 +1707,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1849,
@@ -1505,7 +1725,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1850,
@@ -1520,7 +1743,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1851,
@@ -1535,7 +1761,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1852,
@@ -1550,7 +1779,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1853,
@@ -1565,7 +1797,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1854,
@@ -1580,7 +1815,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1855,
@@ -1595,7 +1833,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1856,
@@ -1610,7 +1851,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1857,
@@ -1625,7 +1869,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1858,
@@ -1640,7 +1887,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1859,
@@ -1655,7 +1905,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1860,
@@ -1670,7 +1923,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1861,
@@ -1685,7 +1941,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1862,
@@ -1700,7 +1959,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1863,
@@ -1715,7 +1977,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1864,
@@ -1730,7 +1995,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1865,
@@ -1745,7 +2013,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1866,
@@ -1760,7 +2031,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1867,
@@ -1775,7 +2049,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1868,
@@ -1790,7 +2067,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1869,
@@ -1805,7 +2085,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1870,
@@ -1820,7 +2103,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1871,
@@ -1835,7 +2121,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1872,
@@ -1850,7 +2139,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1873,
@@ -1865,7 +2157,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1874,
@@ -1880,7 +2175,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1875,
@@ -1895,7 +2193,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1876,
@@ -1910,7 +2211,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1877,
@@ -1925,7 +2229,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1878,
@@ -1940,7 +2247,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1879,
@@ -1955,7 +2265,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1880,
@@ -1970,7 +2283,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1881,
@@ -1985,7 +2301,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1882,
@@ -2000,7 +2319,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1883,
@@ -2015,7 +2337,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1884,
@@ -2030,7 +2355,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1885,
@@ -2045,7 +2373,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1886,
@@ -2060,7 +2391,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1887,
@@ -2075,7 +2409,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1888,
@@ -2090,7 +2427,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1889,
@@ -2105,7 +2445,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1890,
@@ -2120,7 +2463,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1891,
@@ -2135,7 +2481,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1892,
@@ -2150,7 +2499,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1893,
@@ -2165,7 +2517,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1894,
@@ -2180,7 +2535,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1895,
@@ -2195,7 +2553,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1896,
@@ -2210,7 +2571,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1897,
@@ -2225,7 +2589,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1898,
@@ -2240,7 +2607,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1899,
@@ -2255,7 +2625,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1900,
@@ -2270,7 +2643,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1901,
@@ -2285,7 +2661,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1902,
@@ -2300,7 +2679,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1903,
@@ -2315,7 +2697,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1904,
@@ -2330,7 +2715,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1905,
@@ -2345,7 +2733,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1906,
@@ -2360,7 +2751,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1907,
@@ -2375,7 +2769,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1908,
@@ -2390,7 +2787,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1909,
@@ -2405,7 +2805,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1910,
@@ -2420,7 +2823,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1911,
@@ -2435,7 +2841,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1912,
@@ -2450,7 +2859,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1913,
@@ -2465,7 +2877,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1914,
@@ -2480,7 +2895,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1915,
@@ -2495,7 +2913,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1916,
@@ -2510,7 +2931,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1917,
@@ -2525,7 +2949,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1918,
@@ -2540,7 +2967,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1919,
@@ -2555,7 +2985,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1920,
@@ -2570,7 +3003,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1921,
@@ -2585,7 +3021,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1922,
@@ -2600,7 +3039,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1923,
@@ -2615,7 +3057,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1924,
@@ -2630,7 +3075,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1925,
@@ -2645,7 +3093,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1926,
@@ -2660,7 +3111,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1927,
@@ -2675,7 +3129,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1928,
@@ -2690,7 +3147,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1929,
@@ -2705,7 +3165,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1930,
@@ -2720,7 +3183,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1931,
@@ -2735,7 +3201,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1932,
@@ -2750,7 +3219,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1933,
@@ -2765,7 +3237,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1934,
@@ -2780,7 +3255,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1935,
@@ -2795,7 +3273,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1936,
@@ -2810,7 +3291,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1937,
@@ -2825,7 +3309,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1938,
@@ -2840,7 +3327,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1939,
@@ -2855,7 +3345,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1940,
@@ -2870,7 +3363,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1941,
@@ -2885,7 +3381,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1942,
@@ -2900,7 +3399,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1943,
@@ -2915,7 +3417,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1944,
@@ -2930,7 +3435,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1945,
@@ -2945,7 +3453,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1946,
@@ -2960,7 +3471,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1947,
@@ -2975,7 +3489,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1948,
@@ -2990,7 +3507,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1949,
@@ -3005,7 +3525,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1950,
@@ -3020,7 +3543,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1951,
@@ -3035,7 +3561,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1952,
@@ -3050,7 +3579,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1953,
@@ -3065,7 +3597,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1954,
@@ -3080,7 +3615,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1955,
@@ -3095,7 +3633,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1956,
@@ -3110,7 +3651,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1957,
@@ -3125,7 +3669,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1958,
@@ -3140,7 +3687,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1959,
@@ -3155,7 +3705,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1960,
@@ -3170,7 +3723,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1961,
@@ -3185,7 +3741,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1962,
@@ -3200,7 +3759,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1963,
@@ -3215,7 +3777,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1964,
@@ -3230,7 +3795,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1965,
@@ -3245,7 +3813,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1966,
@@ -3260,7 +3831,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1967,
@@ -3275,7 +3849,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1968,
@@ -3290,7 +3867,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1969,
@@ -3305,7 +3885,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1970,
@@ -3320,7 +3903,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1971,
@@ -3335,7 +3921,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1972,
@@ -3350,7 +3939,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1973,
@@ -3365,7 +3957,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1974,
@@ -3380,7 +3975,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1975,
@@ -3395,7 +3993,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1976,
@@ -3410,7 +4011,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1977,
@@ -3425,7 +4029,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1978,
@@ -3440,7 +4047,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1979,
@@ -3455,7 +4065,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1980,
@@ -3470,7 +4083,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1981,
@@ -3485,7 +4101,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1982,
@@ -3500,7 +4119,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1983,
@@ -3515,7 +4137,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1984,
@@ -3530,7 +4155,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1985,
@@ -3545,7 +4173,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1986,
@@ -3560,7 +4191,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1987,
@@ -3575,7 +4209,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1988,
@@ -3590,7 +4227,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1989,
@@ -3605,7 +4245,10 @@
       "family_spending": null,
       "church_membership": null,
       "social_media": null,
-      "cohabitation_rate": null
+      "cohabitation_rate": null,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1990,
@@ -3620,7 +4263,10 @@
       "family_spending": 3.2,
       "church_membership": 87.9,
       "social_media": null,
-      "cohabitation_rate": 18.0
+      "cohabitation_rate": 18.0,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1991,
@@ -3635,7 +4281,10 @@
       "family_spending": 3.5,
       "church_membership": 87.6,
       "social_media": null,
-      "cohabitation_rate": 18.4
+      "cohabitation_rate": 18.4,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1992,
@@ -3650,7 +4299,10 @@
       "family_spending": 3.8,
       "church_membership": 87.3,
       "social_media": null,
-      "cohabitation_rate": 18.8
+      "cohabitation_rate": 18.8,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1993,
@@ -3665,7 +4317,10 @@
       "family_spending": 4.0,
       "church_membership": 86.9,
       "social_media": null,
-      "cohabitation_rate": 19.2
+      "cohabitation_rate": 19.2,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1994,
@@ -3680,7 +4335,10 @@
       "family_spending": 4.2,
       "church_membership": 86.5,
       "social_media": null,
-      "cohabitation_rate": 19.6
+      "cohabitation_rate": 19.6,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1995,
@@ -3695,7 +4353,10 @@
       "family_spending": 4.3,
       "church_membership": 86.1,
       "social_media": null,
-      "cohabitation_rate": 20.0
+      "cohabitation_rate": 20.0,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1996,
@@ -3710,7 +4371,10 @@
       "family_spending": 4.4,
       "church_membership": 85.7,
       "social_media": null,
-      "cohabitation_rate": 20.4
+      "cohabitation_rate": 20.4,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1997,
@@ -3725,7 +4389,10 @@
       "family_spending": 4.5,
       "church_membership": 85.3,
       "social_media": null,
-      "cohabitation_rate": 20.8
+      "cohabitation_rate": 20.8,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1998,
@@ -3740,7 +4407,10 @@
       "family_spending": 4.6,
       "church_membership": 85.0,
       "social_media": null,
-      "cohabitation_rate": 21.2
+      "cohabitation_rate": 21.2,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 1999,
@@ -3755,7 +4425,10 @@
       "family_spending": 4.7,
       "church_membership": 84.7,
       "social_media": null,
-      "cohabitation_rate": 21.6
+      "cohabitation_rate": 21.6,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2000,
@@ -3770,7 +4443,10 @@
       "family_spending": 4.8,
       "church_membership": 85.1,
       "social_media": null,
-      "cohabitation_rate": 22.0
+      "cohabitation_rate": 22.0,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2001,
@@ -3785,7 +4461,10 @@
       "family_spending": 4.9,
       "church_membership": 84.7,
       "social_media": null,
-      "cohabitation_rate": 22.4
+      "cohabitation_rate": 22.4,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2002,
@@ -3800,7 +4479,10 @@
       "family_spending": 5.0,
       "church_membership": 84.2,
       "social_media": null,
-      "cohabitation_rate": 22.8
+      "cohabitation_rate": 22.8,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2003,
@@ -3815,7 +4497,10 @@
       "family_spending": 5.1,
       "church_membership": 83.7,
       "social_media": null,
-      "cohabitation_rate": 23.2
+      "cohabitation_rate": 23.2,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2004,
@@ -3830,7 +4515,10 @@
       "family_spending": 5.2,
       "church_membership": 83.1,
       "social_media": null,
-      "cohabitation_rate": 23.6
+      "cohabitation_rate": 23.6,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2005,
@@ -3845,7 +4533,10 @@
       "family_spending": 5.3,
       "church_membership": 82.4,
       "social_media": null,
-      "cohabitation_rate": 24.0
+      "cohabitation_rate": 24.0,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2006,
@@ -3860,7 +4551,10 @@
       "family_spending": 5.5,
       "church_membership": 81.8,
       "social_media": null,
-      "cohabitation_rate": 24.5
+      "cohabitation_rate": 24.5,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2007,
@@ -3875,7 +4569,10 @@
       "family_spending": 5.7,
       "church_membership": 81.0,
       "social_media": null,
-      "cohabitation_rate": 25.0
+      "cohabitation_rate": 25.0,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2008,
@@ -3890,7 +4587,10 @@
       "family_spending": 5.9,
       "church_membership": 80.6,
       "social_media": null,
-      "cohabitation_rate": 25.5
+      "cohabitation_rate": 25.5,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2009,
@@ -3905,7 +4605,10 @@
       "family_spending": 6.1,
       "church_membership": 79.9,
       "social_media": null,
-      "cohabitation_rate": 26.0
+      "cohabitation_rate": 26.0,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2010,
@@ -3920,7 +4623,10 @@
       "family_spending": 6.3,
       "church_membership": 78.2,
       "social_media": 25,
-      "cohabitation_rate": 26.5
+      "cohabitation_rate": 26.5,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2011,
@@ -3935,7 +4641,10 @@
       "family_spending": 6.5,
       "church_membership": 77.2,
       "social_media": 32,
-      "cohabitation_rate": 27.0
+      "cohabitation_rate": 27.0,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2012,
@@ -3950,7 +4659,10 @@
       "family_spending": 6.7,
       "church_membership": 76.4,
       "social_media": 38,
-      "cohabitation_rate": 27.5
+      "cohabitation_rate": 27.5,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2013,
@@ -3965,7 +4677,10 @@
       "family_spending": 6.8,
       "church_membership": 75.3,
       "social_media": 45,
-      "cohabitation_rate": 28.0
+      "cohabitation_rate": 28.0,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2014,
@@ -3980,7 +4695,10 @@
       "family_spending": 6.9,
       "church_membership": 74.0,
       "social_media": 51,
-      "cohabitation_rate": 28.5
+      "cohabitation_rate": 28.5,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2015,
@@ -3995,7 +4713,10 @@
       "family_spending": 7.0,
       "church_membership": 73.0,
       "social_media": 55,
-      "cohabitation_rate": 29.0
+      "cohabitation_rate": 29.0,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2016,
@@ -4010,7 +4731,10 @@
       "family_spending": 6.9,
       "church_membership": 71.9,
       "social_media": 59,
-      "cohabitation_rate": 29.4
+      "cohabitation_rate": 29.4,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2017,
@@ -4025,7 +4749,10 @@
       "family_spending": 6.8,
       "church_membership": 70.9,
       "social_media": 63,
-      "cohabitation_rate": 29.8
+      "cohabitation_rate": 29.8,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2018,
@@ -4040,7 +4767,10 @@
       "family_spending": 6.7,
       "church_membership": 69.7,
       "social_media": 66,
-      "cohabitation_rate": 30.2
+      "cohabitation_rate": 30.2,
+      "cci_18_29": null,
+      "finland_outlook_18_29": null,
+      "unemployment_fear_18_29": null
     },
     {
       "year": 2019,
@@ -4055,7 +4785,10 @@
       "family_spending": 6.8,
       "church_membership": 68.6,
       "social_media": 69,
-      "cohabitation_rate": 30.6
+      "cohabitation_rate": 30.6,
+      "cci_18_29": 5.41,
+      "finland_outlook_18_29": -7.75,
+      "unemployment_fear_18_29": -5.64
     },
     {
       "year": 2020,
@@ -4070,7 +4803,10 @@
       "family_spending": 7.1,
       "church_membership": 66.6,
       "social_media": 72,
-      "cohabitation_rate": 31.0
+      "cohabitation_rate": 31.0,
+      "cci_18_29": 3.72,
+      "finland_outlook_18_29": -4.03,
+      "unemployment_fear_18_29": -19.34
     },
     {
       "year": 2021,
@@ -4085,7 +4821,10 @@
       "family_spending": 7.2,
       "church_membership": 65.2,
       "social_media": 74,
-      "cohabitation_rate": 31.4
+      "cohabitation_rate": 31.4,
+      "cci_18_29": 9.07,
+      "finland_outlook_18_29": 5.42,
+      "unemployment_fear_18_29": -3.81
     },
     {
       "year": 2022,
@@ -4100,7 +4839,10 @@
       "family_spending": 7.3,
       "church_membership": 63.6,
       "social_media": 76,
-      "cohabitation_rate": 31.8
+      "cohabitation_rate": 31.8,
+      "cci_18_29": -0.49,
+      "finland_outlook_18_29": -16.91,
+      "unemployment_fear_18_29": -13.68
     },
     {
       "year": 2023,
@@ -4115,7 +4857,10 @@
       "family_spending": 7.4,
       "church_membership": 62.5,
       "social_media": 77,
-      "cohabitation_rate": 32.2
+      "cohabitation_rate": 32.2,
+      "cci_18_29": -1.31,
+      "finland_outlook_18_29": -4.42,
+      "unemployment_fear_18_29": -15.25
     },
     {
       "year": 2024,
@@ -4130,7 +4875,10 @@
       "family_spending": 7.5,
       "church_membership": 61.5,
       "social_media": 78,
-      "cohabitation_rate": 32.5
+      "cohabitation_rate": 32.5,
+      "cci_18_29": -1.99,
+      "finland_outlook_18_29": -10.56,
+      "unemployment_fear_18_29": -26.14
     }
   ],
   "tfr_normalized": [
@@ -4494,6 +5242,192 @@
           "year": 2024,
           "value": 78,
           "indexed": 312.0
+        }
+      ]
+    },
+    {
+      "id": "cci_18_29",
+      "name": "Consumer Confidence (18-29)",
+      "description": "Consumer confidence indicator (CCI), age 18-29 (annual avg)",
+      "correlation": 0.949,
+      "direction": "positive",
+      "data_available": true,
+      "data_points": 6,
+      "time_series": [
+        {
+          "year": 1990,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1991,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1992,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1993,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1994,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1995,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1996,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1997,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1998,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1999,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2000,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2001,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2002,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2003,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2004,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2005,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2006,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2007,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2008,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2009,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2010,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2011,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2012,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2013,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2014,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2015,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2016,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2017,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2018,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2019,
+          "value": 5.41,
+          "indexed": 100.0
+        },
+        {
+          "year": 2020,
+          "value": 3.72,
+          "indexed": 68.8
+        },
+        {
+          "year": 2021,
+          "value": 9.07,
+          "indexed": 167.7
+        },
+        {
+          "year": 2022,
+          "value": -0.49,
+          "indexed": -9.1
+        },
+        {
+          "year": 2023,
+          "value": -1.31,
+          "indexed": -24.2
+        },
+        {
+          "year": 2024,
+          "value": -1.99,
+          "indexed": -36.8
         }
       ]
     },
@@ -5428,6 +6362,192 @@
       ]
     },
     {
+      "id": "unemployment_fear_18_29",
+      "name": "Unemployment Fear (18-29)",
+      "description": "Unemployment in Finland in 12 months (balance), age 18-29",
+      "correlation": 0.717,
+      "direction": "positive",
+      "data_available": true,
+      "data_points": 6,
+      "time_series": [
+        {
+          "year": 1990,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1991,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1992,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1993,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1994,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1995,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1996,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1997,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1998,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1999,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2000,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2001,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2002,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2003,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2004,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2005,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2006,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2007,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2008,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2009,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2010,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2011,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2012,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2013,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2014,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2015,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2016,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2017,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2018,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2019,
+          "value": -5.64,
+          "indexed": 100.0
+        },
+        {
+          "year": 2020,
+          "value": -19.34,
+          "indexed": 342.9
+        },
+        {
+          "year": 2021,
+          "value": -3.81,
+          "indexed": 67.6
+        },
+        {
+          "year": 2022,
+          "value": -13.68,
+          "indexed": 242.6
+        },
+        {
+          "year": 2023,
+          "value": -15.25,
+          "indexed": 270.4
+        },
+        {
+          "year": 2024,
+          "value": -26.14,
+          "indexed": 463.5
+        }
+      ]
+    },
+    {
       "id": "female_labor_25_44",
       "name": "Female Workforce (25-44)",
       "description": "Female labor force participation rate, fertile age group (%)",
@@ -5610,6 +6730,192 @@
           "year": 2024,
           "value": 83.1,
           "indexed": 103.5
+        }
+      ]
+    },
+    {
+      "id": "finland_outlook_18_29",
+      "name": "Economy Outlook (18-29)",
+      "description": "Finland's economy in 12 months (balance), age 18-29",
+      "correlation": 0.656,
+      "direction": "positive",
+      "data_available": true,
+      "data_points": 6,
+      "time_series": [
+        {
+          "year": 1990,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1991,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1992,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1993,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1994,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1995,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1996,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1997,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1998,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1999,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2000,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2001,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2002,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2003,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2004,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2005,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2006,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2007,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2008,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2009,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2010,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2011,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2012,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2013,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2014,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2015,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2016,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2017,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2018,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2019,
+          "value": -7.75,
+          "indexed": 100.0
+        },
+        {
+          "year": 2020,
+          "value": -4.03,
+          "indexed": 52.0
+        },
+        {
+          "year": 2021,
+          "value": 5.42,
+          "indexed": -69.9
+        },
+        {
+          "year": 2022,
+          "value": -16.91,
+          "indexed": 218.2
+        },
+        {
+          "year": 2023,
+          "value": -4.42,
+          "indexed": 57.0
+        },
+        {
+          "year": 2024,
+          "value": -10.56,
+          "indexed": 136.3
         }
       ]
     },

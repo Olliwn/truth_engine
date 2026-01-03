@@ -37,12 +37,16 @@ const FACTOR_COLORS: Record<string, string> = {
   church_membership: '#22C55E',
   social_media: '#3B82F6',
   cohabitation_rate: '#A855F7',
+  // Pessimism/outlook factors (18-29 age group)
+  cci_18_29: '#60A5FA',           // Consumer confidence - sky blue
+  finland_outlook_18_29: '#FBBF24', // Economy outlook - amber
+  unemployment_fear_18_29: '#F87171', // Unemployment fear - red
 };
 
 export default function IotaPage() {
   const [data, setData] = useState<FertilityData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [selectedFactors, setSelectedFactors] = useState<string[]>(['social_media', 'church_membership']);
+  const [selectedFactors, setSelectedFactors] = useState<string[]>(['cci_18_29', 'finland_outlook_18_29']);
 
   useEffect(() => {
     async function loadData() {
@@ -480,18 +484,20 @@ export default function IotaPage() {
               </h4>
               <div className="text-gray-400 space-y-3">
                 <p>
-                  <strong className="text-white">Cultural factors show striking correlations:</strong>{' '}
-                  <span className="text-blue-400">Social media usage</span> (r=-0.97) emerged as the strongest negative correlation.
-                  Meanwhile, <span className="text-green-400">church membership decline</span> (r=+0.86) tracks closely with fertility decline.
-                  Both are proxies for deeper cultural shifts in how young adults spend time and form relationships.
+                  <strong className="text-white">Pessimism hypothesis:</strong>{' '}
+                  <span className="text-sky-400">Consumer confidence (18-29)</span> shows r=+0.95 — as young adults become more
+                  pessimistic about the economy, fertility declines in lockstep. Economy outlook and unemployment fear (ages 18-29)
+                  also correlate strongly. However, this data only spans 2019-2024 (7 years) — too short to be conclusive.
                 </p>
                 <p>
-                  Traditional socioeconomic factors also correlate negatively: female education, delayed marriage, 
-                  and rising housing costs. Even family benefit spending shows negative correlation (more spending, fewer babies).
+                  <strong className="text-white">Cultural factors:</strong>{' '}
+                  <span className="text-blue-400">Social media usage</span> (r=-0.97) and{' '}
+                  <span className="text-green-400">church membership decline</span> (r=+0.86) track closely with fertility.
+                  Both are proxies for deeper shifts in how young adults spend time and form relationships.
                 </p>
                 <p>
                   <strong className="text-amber-400">Important:</strong> Correlation ≠ causation. These factors are 
-                  interrelated and may all be symptoms of broader societal changes — secularization, individualism, 
+                  interrelated and may all be symptoms of broader societal changes — pessimism, secularization, individualism, 
                   digital lifestyles, and delayed family formation reinforcing each other.
                 </p>
               </div>

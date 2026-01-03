@@ -250,6 +250,76 @@ def fetch_education_data():
     return fetch_data(url, query)
 
 
+def fetch_consumer_confidence_by_age():
+    """
+    Fetch consumer confidence indicators by age group (18-29).
+    Table: statfin_kbar_pxt_11vq (monthly, 2019M05-present)
+    We annualize the monthly data for correlation with TFR.
+    """
+    print("Fetching consumer confidence by age (18-29)...")
+    url = f"{BASE_URL}/kbar/statfin_kbar_pxt_11vq.px"
+    metadata = fetch_table_metadata(url)
+    if not metadata:
+        return None
+    
+    variables = {v['code']: v for v in metadata['variables']}
+    month_codes = variables.get('Kuukausi', {}).get('values', [])
+    
+    query = {
+        "query": [
+            {"code": "Ikä", "selection": {"filter": "item", "values": ["18-29"]}},
+            {"code": "Kuukausi", "selection": {"filter": "item", "values": month_codes}},
+            # Key indicators:
+            # CCI_A1 = Consumer confidence indicator (composite)
+            # CCI_B4 = Finland's economy in 12 months (outlook)
+            # CCI_B7 = Unemployment in Finland in 12 months (fear)
+            {"code": "Tiedot", "selection": {"filter": "item", "values": ["CCI_A1", "CCI_B4", "CCI_B7"]}},
+        ],
+        "response": {"format": "json-stat2"}
+    }
+    
+    return fetch_data(url, query)
+
+
+def annualize_kbar_data(raw_data) -> dict:
+    """
+    Process monthly consumer confidence data into annual averages.
+    Returns dict: {indicator_code: {year: avg_value}}
+    """
+    records = parse_json_stat(raw_data)
+    
+    by_metric_year = {}
+    for rec in records:
+        month_code = rec.get('Kuukausi_code', '')
+        info_code = rec.get('Tiedot_code', '')
+        value = rec.get('value')
+        
+        if not month_code or value is None or not info_code:
+            continue
+        
+        try:
+            year = int(month_code[:4])
+        except (ValueError, IndexError):
+            continue
+        
+        if info_code not in by_metric_year:
+            by_metric_year[info_code] = {}
+        if year not in by_metric_year[info_code]:
+            by_metric_year[info_code][year] = []
+        by_metric_year[info_code][year].append(value)
+    
+    # Calculate annual averages
+    result = {}
+    for info_code, years in by_metric_year.items():
+        result[info_code] = {
+            year: round(sum(vals) / len(vals), 2) 
+            for year, vals in years.items() 
+            if vals
+        }
+    
+    return result
+
+
 def pearson_correlation(x: list, y: list) -> float:
     """Calculate Pearson correlation coefficient."""
     n = len(x)
@@ -655,7 +725,7 @@ def transform_data(fertility_records, factor_data_dict):
     return {
         'metadata': {
             'source': 'Statistics Finland',
-            'tables': ['statfin_synt_pxt_12dt', 'statfin_tyti_pxt_135y', 'statfin_vaerak_pxt_11ra', 'statfin_vkour_pxt_12bq'],
+            'tables': ['statfin_synt_pxt_12dt', 'statfin_tyti_pxt_135y', 'statfin_vaerak_pxt_11ra', 'statfin_vkour_pxt_12bq', 'statfin_kbar_pxt_11vq'],
             'description': 'Total fertility rate with correlation analysis of socioeconomic factors',
             'fetched_at': datetime.now().isoformat(),
             'replacement_level': 2.1,
@@ -733,6 +803,36 @@ def main():
         print("Adding additional factors from official estimates...")
         additional = create_additional_factors()
         factor_data.update(additional)
+        
+        # 9. Consumer confidence (pessimism indicators) for age 18-29
+        print("=" * 60)
+        raw_kbar = fetch_consumer_confidence_by_age()
+        if raw_kbar:
+            kbar_annual = annualize_kbar_data(raw_kbar)
+            
+            if kbar_annual.get('CCI_A1'):
+                factor_data['cci_18_29'] = {
+                    'name': 'Consumer Confidence (18-29)',
+                    'description': 'Consumer confidence indicator (CCI), age 18-29 (annual avg)',
+                    'data': kbar_annual['CCI_A1']
+                }
+                print(f"  Got {len(kbar_annual['CCI_A1'])} years of CCI data (18-29)")
+            
+            if kbar_annual.get('CCI_B4'):
+                factor_data['finland_outlook_18_29'] = {
+                    'name': 'Economy Outlook (18-29)',
+                    'description': "Finland's economy in 12 months (balance), age 18-29",
+                    'data': kbar_annual['CCI_B4']
+                }
+                print(f"  Got {len(kbar_annual['CCI_B4'])} years of economy outlook data (18-29)")
+            
+            if kbar_annual.get('CCI_B7'):
+                factor_data['unemployment_fear_18_29'] = {
+                    'name': 'Unemployment Fear (18-29)',
+                    'description': 'Unemployment in Finland in 12 months (balance), age 18-29',
+                    'data': kbar_annual['CCI_B7']
+                }
+                print(f"  Got {len(kbar_annual['CCI_B7'])} years of unemployment fear data (18-29)")
         
         # Transform all data
         print("=" * 60)
