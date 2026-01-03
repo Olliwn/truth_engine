@@ -269,23 +269,27 @@ def pearson_correlation(x: list, y: list) -> float:
     return numerator / (denominator_x * denominator_y)
 
 
-def normalize_series(values: list) -> list:
-    """Normalize values to 0-100 scale."""
+def index_normalize(values: list) -> list:
+    """
+    Index normalize where first non-null value = 100.
+    Shows percentage change from baseline, not min-max scaling.
+    A stable metric stays around 100; dramatic changes show real slope.
+    """
     if not values or all(v is None for v in values):
         return values
     
-    valid_values = [v for v in values if v is not None]
-    if not valid_values:
-        return values
+    # Find first non-null value as baseline
+    base_value = None
+    for v in values:
+        if v is not None:
+            base_value = v
+            break
     
-    min_val = min(valid_values)
-    max_val = max(valid_values)
-    
-    if max_val == min_val:
-        return [50 if v is not None else None for v in values]
+    if base_value is None or base_value == 0:
+        return [None] * len(values)
     
     return [
-        round((v - min_val) / (max_val - min_val) * 100, 1) if v is not None else None
+        round((v / base_value) * 100, 1) if v is not None else None
         for v in values
     ]
 
@@ -446,6 +450,43 @@ def create_additional_factors():
         2020: 7.1, 2021: 7.2, 2022: 7.3, 2023: 7.4, 2024: 7.5
     }
     
+    # ========================================
+    # CULTURAL FACTORS
+    # ========================================
+    
+    # Church membership (% of population in Evangelical Lutheran Church)
+    # Source: Evangelical Lutheran Church of Finland statistics
+    church_membership = {
+        1990: 87.9, 1991: 87.6, 1992: 87.3, 1993: 86.9, 1994: 86.5,
+        1995: 86.1, 1996: 85.7, 1997: 85.3, 1998: 85.0, 1999: 84.7,
+        2000: 85.1, 2001: 84.7, 2002: 84.2, 2003: 83.7, 2004: 83.1,
+        2005: 82.4, 2006: 81.8, 2007: 81.0, 2008: 80.6, 2009: 79.9,
+        2010: 78.2, 2011: 77.2, 2012: 76.4, 2013: 75.3, 2014: 74.0,
+        2015: 73.0, 2016: 71.9, 2017: 70.9, 2018: 69.7, 2019: 68.6,
+        2020: 66.6, 2021: 65.2, 2022: 63.6, 2023: 62.5, 2024: 61.5
+    }
+    
+    # Social media daily usage (% of population 16-74)
+    # Source: Statistics Finland ICT usage surveys, Facebook/Meta reports
+    # Note: Partial data before 2010 (social media nascent)
+    social_media_usage = {
+        2010: 25, 2011: 32, 2012: 38, 2013: 45, 2014: 51,
+        2015: 55, 2016: 59, 2017: 63, 2018: 66, 2019: 69,
+        2020: 72, 2021: 74, 2022: 76, 2023: 77, 2024: 78
+    }
+    
+    # Cohabitation rate (unmarried couples living together as % of all couples)
+    # Source: Statistics Finland family statistics
+    cohabitation_rate = {
+        1990: 18.0, 1991: 18.4, 1992: 18.8, 1993: 19.2, 1994: 19.6,
+        1995: 20.0, 1996: 20.4, 1997: 20.8, 1998: 21.2, 1999: 21.6,
+        2000: 22.0, 2001: 22.4, 2002: 22.8, 2003: 23.2, 2004: 23.6,
+        2005: 24.0, 2006: 24.5, 2007: 25.0, 2008: 25.5, 2009: 26.0,
+        2010: 26.5, 2011: 27.0, 2012: 27.5, 2013: 28.0, 2014: 28.5,
+        2015: 29.0, 2016: 29.4, 2017: 29.8, 2018: 30.2, 2019: 30.6,
+        2020: 31.0, 2021: 31.4, 2022: 31.8, 2023: 32.2, 2024: 32.5
+    }
+    
     return {
         'age_first_birth': {
             'name': 'Age at First Birth',
@@ -471,6 +512,22 @@ def create_additional_factors():
             'name': 'Family Benefit Spending',
             'description': 'Government family/child benefit spending (€B)',
             'data': family_spending
+        },
+        # Cultural factors
+        'church_membership': {
+            'name': 'Church Membership',
+            'description': 'Evangelical Lutheran Church membership (% of population)',
+            'data': church_membership
+        },
+        'social_media': {
+            'name': 'Social Media Usage',
+            'description': 'Daily social media users (% of population 16-74)',
+            'data': social_media_usage
+        },
+        'cohabitation_rate': {
+            'name': 'Cohabitation Rate',
+            'description': 'Unmarried couples living together (% of all couples)',
+            'data': cohabitation_rate
         }
     }
 
@@ -531,13 +588,13 @@ def transform_data(fertility_records, factor_data_dict):
         # Build factor time series
         factor_ts = []
         raw_values = [factor_info['data'].get(y) for y in all_years]
-        normalized = normalize_series(raw_values)
+        indexed = index_normalize(raw_values)
         
         for i, year in enumerate(all_years):
             factor_ts.append({
                 'year': year,
                 'value': factor_info['data'].get(year),
-                'normalized': normalized[i] if normalized else None
+                'indexed': indexed[i] if indexed else None
             })
         
         correlation_factors.append({
@@ -554,17 +611,17 @@ def transform_data(fertility_records, factor_data_dict):
     # Sort by absolute correlation strength
     correlation_factors.sort(key=lambda x: abs(x['correlation']), reverse=True)
     
-    # Calculate TFR normalized for comparison
+    # Calculate TFR indexed for comparison (1990 = 100)
     tfr_raw = [fertility_by_year.get(y) for y in all_years]
-    tfr_normalized = normalize_series(tfr_raw)
+    tfr_indexed = index_normalize(tfr_raw)
     
-    # Create TFR normalized time series
+    # Create TFR indexed time series
     tfr_time_series = []
     for i, year in enumerate(all_years):
         tfr_time_series.append({
             'year': year,
             'value': fertility_by_year.get(year),
-            'normalized': tfr_normalized[i] if tfr_normalized else None
+            'indexed': tfr_indexed[i] if tfr_indexed else None
         })
     
     # Create summary

@@ -8,7 +8,7 @@
       "statfin_vkour_pxt_12bq"
     ],
     "description": "Total fertility rate with correlation analysis of socioeconomic factors",
-    "fetched_at": "2026-01-04T00:50:06.219832",
+    "fetched_at": "2026-01-04T01:02:54.760210",
     "replacement_level": 2.1,
     "note": "Correlation does not imply causation. Multiple factors interact in complex ways.",
     "methodology": "Pearson correlation coefficients calculated over overlapping time periods (1990-2024). Some factors use estimated data from official publications where direct API access is unavailable."
@@ -24,192 +24,377 @@
     "below_replacement_since": 1942,
     "tfr_change_since_1990": -0.53,
     "strongest_negative": {
-      "id": "age_first_birth",
-      "name": "Age at First Birth",
-      "description": "Mean age of mother at first childbirth",
-      "correlation": -0.804,
+      "id": "social_media",
+      "name": "Social Media Usage",
+      "description": "Daily social media users (% of population 16-74)",
+      "correlation": -0.965,
       "direction": "negative",
+      "data_available": true,
+      "data_points": 15,
+      "time_series": [
+        {
+          "year": 1990,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1991,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1992,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1993,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1994,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1995,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1996,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1997,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1998,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1999,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2000,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2001,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2002,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2003,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2004,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2005,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2006,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2007,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2008,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2009,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2010,
+          "value": 25,
+          "indexed": 100.0
+        },
+        {
+          "year": 2011,
+          "value": 32,
+          "indexed": 128.0
+        },
+        {
+          "year": 2012,
+          "value": 38,
+          "indexed": 152.0
+        },
+        {
+          "year": 2013,
+          "value": 45,
+          "indexed": 180.0
+        },
+        {
+          "year": 2014,
+          "value": 51,
+          "indexed": 204.0
+        },
+        {
+          "year": 2015,
+          "value": 55,
+          "indexed": 220.0
+        },
+        {
+          "year": 2016,
+          "value": 59,
+          "indexed": 236.0
+        },
+        {
+          "year": 2017,
+          "value": 63,
+          "indexed": 252.0
+        },
+        {
+          "year": 2018,
+          "value": 66,
+          "indexed": 264.0
+        },
+        {
+          "year": 2019,
+          "value": 69,
+          "indexed": 276.0
+        },
+        {
+          "year": 2020,
+          "value": 72,
+          "indexed": 288.0
+        },
+        {
+          "year": 2021,
+          "value": 74,
+          "indexed": 296.0
+        },
+        {
+          "year": 2022,
+          "value": 76,
+          "indexed": 304.0
+        },
+        {
+          "year": 2023,
+          "value": 77,
+          "indexed": 308.0
+        },
+        {
+          "year": 2024,
+          "value": 78,
+          "indexed": 312.0
+        }
+      ]
+    },
+    "strongest_positive": {
+      "id": "church_membership",
+      "name": "Church Membership",
+      "description": "Evangelical Lutheran Church membership (% of population)",
+      "correlation": 0.863,
+      "direction": "positive",
       "data_available": true,
       "data_points": 35,
       "time_series": [
         {
           "year": 1990,
-          "value": 26.5,
-          "normalized": 0.0
+          "value": 87.9,
+          "indexed": 100.0
         },
         {
           "year": 1991,
-          "value": 26.6,
-          "normalized": 2.5
+          "value": 87.6,
+          "indexed": 99.7
         },
         {
           "year": 1992,
-          "value": 26.8,
-          "normalized": 7.5
+          "value": 87.3,
+          "indexed": 99.3
         },
         {
           "year": 1993,
-          "value": 27.0,
-          "normalized": 12.5
+          "value": 86.9,
+          "indexed": 98.9
         },
         {
           "year": 1994,
-          "value": 27.2,
-          "normalized": 17.5
+          "value": 86.5,
+          "indexed": 98.4
         },
         {
           "year": 1995,
-          "value": 27.4,
-          "normalized": 22.5
+          "value": 86.1,
+          "indexed": 98.0
         },
         {
           "year": 1996,
-          "value": 27.5,
-          "normalized": 25.0
+          "value": 85.7,
+          "indexed": 97.5
         },
         {
           "year": 1997,
-          "value": 27.6,
-          "normalized": 27.5
+          "value": 85.3,
+          "indexed": 97.0
         },
         {
           "year": 1998,
-          "value": 27.7,
-          "normalized": 30.0
+          "value": 85.0,
+          "indexed": 96.7
         },
         {
           "year": 1999,
-          "value": 27.8,
-          "normalized": 32.5
+          "value": 84.7,
+          "indexed": 96.4
         },
         {
           "year": 2000,
-          "value": 27.9,
-          "normalized": 35.0
+          "value": 85.1,
+          "indexed": 96.8
         },
         {
           "year": 2001,
-          "value": 28.0,
-          "normalized": 37.5
+          "value": 84.7,
+          "indexed": 96.4
         },
         {
           "year": 2002,
-          "value": 28.0,
-          "normalized": 37.5
+          "value": 84.2,
+          "indexed": 95.8
         },
         {
           "year": 2003,
-          "value": 28.1,
-          "normalized": 40.0
+          "value": 83.7,
+          "indexed": 95.2
         },
         {
           "year": 2004,
-          "value": 28.2,
-          "normalized": 42.5
+          "value": 83.1,
+          "indexed": 94.5
         },
         {
           "year": 2005,
-          "value": 28.3,
-          "normalized": 45.0
+          "value": 82.4,
+          "indexed": 93.7
         },
         {
           "year": 2006,
-          "value": 28.3,
-          "normalized": 45.0
+          "value": 81.8,
+          "indexed": 93.1
         },
         {
           "year": 2007,
-          "value": 28.4,
-          "normalized": 47.5
+          "value": 81.0,
+          "indexed": 92.2
         },
         {
           "year": 2008,
-          "value": 28.4,
-          "normalized": 47.5
+          "value": 80.6,
+          "indexed": 91.7
         },
         {
           "year": 2009,
-          "value": 28.5,
-          "normalized": 50.0
+          "value": 79.9,
+          "indexed": 90.9
         },
         {
           "year": 2010,
-          "value": 28.6,
-          "normalized": 52.5
+          "value": 78.2,
+          "indexed": 89.0
         },
         {
           "year": 2011,
-          "value": 28.7,
-          "normalized": 55.0
+          "value": 77.2,
+          "indexed": 87.8
         },
         {
           "year": 2012,
-          "value": 28.7,
-          "normalized": 55.0
+          "value": 76.4,
+          "indexed": 86.9
         },
         {
           "year": 2013,
-          "value": 28.8,
-          "normalized": 57.5
+          "value": 75.3,
+          "indexed": 85.7
         },
         {
           "year": 2014,
-          "value": 28.8,
-          "normalized": 57.5
+          "value": 74.0,
+          "indexed": 84.2
         },
         {
           "year": 2015,
-          "value": 29.0,
-          "normalized": 62.5
+          "value": 73.0,
+          "indexed": 83.0
         },
         {
           "year": 2016,
-          "value": 29.2,
-          "normalized": 67.5
+          "value": 71.9,
+          "indexed": 81.8
         },
         {
           "year": 2017,
-          "value": 29.4,
-          "normalized": 72.5
+          "value": 70.9,
+          "indexed": 80.7
         },
         {
           "year": 2018,
-          "value": 29.5,
-          "normalized": 75.0
+          "value": 69.7,
+          "indexed": 79.3
         },
         {
           "year": 2019,
-          "value": 29.7,
-          "normalized": 80.0
+          "value": 68.6,
+          "indexed": 78.0
         },
         {
           "year": 2020,
-          "value": 29.8,
-          "normalized": 82.5
+          "value": 66.6,
+          "indexed": 75.8
         },
         {
           "year": 2021,
-          "value": 30.0,
-          "normalized": 87.5
+          "value": 65.2,
+          "indexed": 74.2
         },
         {
           "year": 2022,
-          "value": 30.2,
-          "normalized": 92.5
+          "value": 63.6,
+          "indexed": 72.4
         },
         {
           "year": 2023,
-          "value": 30.4,
-          "normalized": 97.5
+          "value": 62.5,
+          "indexed": 71.1
         },
         {
           "year": 2024,
-          "value": 30.5,
-          "normalized": 100.0
+          "value": 61.5,
+          "indexed": 70.0
         }
       ]
-    },
-    "strongest_positive": null
+    }
   },
   "time_series": [
     {
@@ -222,7 +407,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1777,
@@ -234,7 +422,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1778,
@@ -246,7 +437,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1779,
@@ -258,7 +452,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1780,
@@ -270,7 +467,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1781,
@@ -282,7 +482,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1782,
@@ -294,7 +497,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1783,
@@ -306,7 +512,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1784,
@@ -318,7 +527,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1785,
@@ -330,7 +542,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1786,
@@ -342,7 +557,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1787,
@@ -354,7 +572,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1788,
@@ -366,7 +587,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1789,
@@ -378,7 +602,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1790,
@@ -390,7 +617,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1791,
@@ -402,7 +632,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1792,
@@ -414,7 +647,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1793,
@@ -426,7 +662,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1794,
@@ -438,7 +677,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1795,
@@ -450,7 +692,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1796,
@@ -462,7 +707,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1797,
@@ -474,7 +722,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1798,
@@ -486,7 +737,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1799,
@@ -498,7 +752,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1800,
@@ -510,7 +767,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1801,
@@ -522,7 +782,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1802,
@@ -534,7 +797,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1803,
@@ -546,7 +812,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1804,
@@ -558,7 +827,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1805,
@@ -570,7 +842,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1806,
@@ -582,7 +857,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1807,
@@ -594,7 +872,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1808,
@@ -606,7 +887,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1809,
@@ -618,7 +902,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1810,
@@ -630,7 +917,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1811,
@@ -642,7 +932,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1812,
@@ -654,7 +947,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1813,
@@ -666,7 +962,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1814,
@@ -678,7 +977,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1815,
@@ -690,7 +992,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1816,
@@ -702,7 +1007,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1817,
@@ -714,7 +1022,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1818,
@@ -726,7 +1037,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1819,
@@ -738,7 +1052,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1820,
@@ -750,7 +1067,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1821,
@@ -762,7 +1082,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1822,
@@ -774,7 +1097,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1823,
@@ -786,7 +1112,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1824,
@@ -798,7 +1127,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1825,
@@ -810,7 +1142,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1826,
@@ -822,7 +1157,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1827,
@@ -834,7 +1172,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1828,
@@ -846,7 +1187,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1829,
@@ -858,7 +1202,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1830,
@@ -870,7 +1217,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1831,
@@ -882,7 +1232,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1832,
@@ -894,7 +1247,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1833,
@@ -906,7 +1262,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1834,
@@ -918,7 +1277,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1835,
@@ -930,7 +1292,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1836,
@@ -942,7 +1307,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1837,
@@ -954,7 +1322,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1838,
@@ -966,7 +1337,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1839,
@@ -978,7 +1352,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1840,
@@ -990,7 +1367,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1841,
@@ -1002,7 +1382,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1842,
@@ -1014,7 +1397,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1843,
@@ -1026,7 +1412,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1844,
@@ -1038,7 +1427,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1845,
@@ -1050,7 +1442,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1846,
@@ -1062,7 +1457,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1847,
@@ -1074,7 +1472,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1848,
@@ -1086,7 +1487,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1849,
@@ -1098,7 +1502,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1850,
@@ -1110,7 +1517,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1851,
@@ -1122,7 +1532,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1852,
@@ -1134,7 +1547,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1853,
@@ -1146,7 +1562,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1854,
@@ -1158,7 +1577,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1855,
@@ -1170,7 +1592,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1856,
@@ -1182,7 +1607,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1857,
@@ -1194,7 +1622,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1858,
@@ -1206,7 +1637,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1859,
@@ -1218,7 +1652,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1860,
@@ -1230,7 +1667,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1861,
@@ -1242,7 +1682,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1862,
@@ -1254,7 +1697,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1863,
@@ -1266,7 +1712,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1864,
@@ -1278,7 +1727,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1865,
@@ -1290,7 +1742,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1866,
@@ -1302,7 +1757,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1867,
@@ -1314,7 +1772,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1868,
@@ -1326,7 +1787,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1869,
@@ -1338,7 +1802,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1870,
@@ -1350,7 +1817,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1871,
@@ -1362,7 +1832,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1872,
@@ -1374,7 +1847,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1873,
@@ -1386,7 +1862,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1874,
@@ -1398,7 +1877,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1875,
@@ -1410,7 +1892,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1876,
@@ -1422,7 +1907,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1877,
@@ -1434,7 +1922,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1878,
@@ -1446,7 +1937,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1879,
@@ -1458,7 +1952,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1880,
@@ -1470,7 +1967,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1881,
@@ -1482,7 +1982,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1882,
@@ -1494,7 +1997,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1883,
@@ -1506,7 +2012,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1884,
@@ -1518,7 +2027,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1885,
@@ -1530,7 +2042,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1886,
@@ -1542,7 +2057,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1887,
@@ -1554,7 +2072,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1888,
@@ -1566,7 +2087,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1889,
@@ -1578,7 +2102,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1890,
@@ -1590,7 +2117,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1891,
@@ -1602,7 +2132,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1892,
@@ -1614,7 +2147,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1893,
@@ -1626,7 +2162,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1894,
@@ -1638,7 +2177,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1895,
@@ -1650,7 +2192,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1896,
@@ -1662,7 +2207,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1897,
@@ -1674,7 +2222,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1898,
@@ -1686,7 +2237,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1899,
@@ -1698,7 +2252,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1900,
@@ -1710,7 +2267,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1901,
@@ -1722,7 +2282,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1902,
@@ -1734,7 +2297,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1903,
@@ -1746,7 +2312,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1904,
@@ -1758,7 +2327,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1905,
@@ -1770,7 +2342,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1906,
@@ -1782,7 +2357,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1907,
@@ -1794,7 +2372,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1908,
@@ -1806,7 +2387,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1909,
@@ -1818,7 +2402,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1910,
@@ -1830,7 +2417,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1911,
@@ -1842,7 +2432,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1912,
@@ -1854,7 +2447,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1913,
@@ -1866,7 +2462,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1914,
@@ -1878,7 +2477,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1915,
@@ -1890,7 +2492,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1916,
@@ -1902,7 +2507,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1917,
@@ -1914,7 +2522,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1918,
@@ -1926,7 +2537,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1919,
@@ -1938,7 +2552,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1920,
@@ -1950,7 +2567,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1921,
@@ -1962,7 +2582,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1922,
@@ -1974,7 +2597,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1923,
@@ -1986,7 +2612,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1924,
@@ -1998,7 +2627,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1925,
@@ -2010,7 +2642,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1926,
@@ -2022,7 +2657,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1927,
@@ -2034,7 +2672,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1928,
@@ -2046,7 +2687,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1929,
@@ -2058,7 +2702,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1930,
@@ -2070,7 +2717,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1931,
@@ -2082,7 +2732,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1932,
@@ -2094,7 +2747,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1933,
@@ -2106,7 +2762,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1934,
@@ -2118,7 +2777,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1935,
@@ -2130,7 +2792,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1936,
@@ -2142,7 +2807,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1937,
@@ -2154,7 +2822,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1938,
@@ -2166,7 +2837,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1939,
@@ -2178,7 +2852,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1940,
@@ -2190,7 +2867,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1941,
@@ -2202,7 +2882,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1942,
@@ -2214,7 +2897,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1943,
@@ -2226,7 +2912,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1944,
@@ -2238,7 +2927,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1945,
@@ -2250,7 +2942,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1946,
@@ -2262,7 +2957,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1947,
@@ -2274,7 +2972,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1948,
@@ -2286,7 +2987,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1949,
@@ -2298,7 +3002,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1950,
@@ -2310,7 +3017,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1951,
@@ -2322,7 +3032,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1952,
@@ -2334,7 +3047,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1953,
@@ -2346,7 +3062,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1954,
@@ -2358,7 +3077,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1955,
@@ -2370,7 +3092,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1956,
@@ -2382,7 +3107,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1957,
@@ -2394,7 +3122,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1958,
@@ -2406,7 +3137,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1959,
@@ -2418,7 +3152,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1960,
@@ -2430,7 +3167,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1961,
@@ -2442,7 +3182,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1962,
@@ -2454,7 +3197,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1963,
@@ -2466,7 +3212,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1964,
@@ -2478,7 +3227,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1965,
@@ -2490,7 +3242,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1966,
@@ -2502,7 +3257,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1967,
@@ -2514,7 +3272,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1968,
@@ -2526,7 +3287,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1969,
@@ -2538,7 +3302,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1970,
@@ -2550,7 +3317,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1971,
@@ -2562,7 +3332,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1972,
@@ -2574,7 +3347,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1973,
@@ -2586,7 +3362,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1974,
@@ -2598,7 +3377,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1975,
@@ -2610,7 +3392,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1976,
@@ -2622,7 +3407,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1977,
@@ -2634,7 +3422,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1978,
@@ -2646,7 +3437,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1979,
@@ -2658,7 +3452,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1980,
@@ -2670,7 +3467,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1981,
@@ -2682,7 +3482,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1982,
@@ -2694,7 +3497,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1983,
@@ -2706,7 +3512,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1984,
@@ -2718,7 +3527,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1985,
@@ -2730,7 +3542,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1986,
@@ -2742,7 +3557,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1987,
@@ -2754,7 +3572,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1988,
@@ -2766,7 +3587,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1989,
@@ -2778,7 +3602,10 @@
       "marriage_age": null,
       "housing_index": null,
       "wage_index": null,
-      "family_spending": null
+      "family_spending": null,
+      "church_membership": null,
+      "social_media": null,
+      "cohabitation_rate": null
     },
     {
       "year": 1990,
@@ -2790,7 +3617,10 @@
       "marriage_age": 27.0,
       "housing_index": 62,
       "wage_index": 68,
-      "family_spending": 3.2
+      "family_spending": 3.2,
+      "church_membership": 87.9,
+      "social_media": null,
+      "cohabitation_rate": 18.0
     },
     {
       "year": 1991,
@@ -2802,7 +3632,10 @@
       "marriage_age": 27.2,
       "housing_index": 52,
       "wage_index": 72,
-      "family_spending": 3.5
+      "family_spending": 3.5,
+      "church_membership": 87.6,
+      "social_media": null,
+      "cohabitation_rate": 18.4
     },
     {
       "year": 1992,
@@ -2814,7 +3647,10 @@
       "marriage_age": 27.4,
       "housing_index": 42,
       "wage_index": 71,
-      "family_spending": 3.8
+      "family_spending": 3.8,
+      "church_membership": 87.3,
+      "social_media": null,
+      "cohabitation_rate": 18.8
     },
     {
       "year": 1993,
@@ -2826,7 +3662,10 @@
       "marriage_age": 27.6,
       "housing_index": 40,
       "wage_index": 68,
-      "family_spending": 4.0
+      "family_spending": 4.0,
+      "church_membership": 86.9,
+      "social_media": null,
+      "cohabitation_rate": 19.2
     },
     {
       "year": 1994,
@@ -2838,7 +3677,10 @@
       "marriage_age": 27.8,
       "housing_index": 42,
       "wage_index": 69,
-      "family_spending": 4.2
+      "family_spending": 4.2,
+      "church_membership": 86.5,
+      "social_media": null,
+      "cohabitation_rate": 19.6
     },
     {
       "year": 1995,
@@ -2850,7 +3692,10 @@
       "marriage_age": 28.0,
       "housing_index": 42,
       "wage_index": 72,
-      "family_spending": 4.3
+      "family_spending": 4.3,
+      "church_membership": 86.1,
+      "social_media": null,
+      "cohabitation_rate": 20.0
     },
     {
       "year": 1996,
@@ -2862,7 +3707,10 @@
       "marriage_age": 28.2,
       "housing_index": 45,
       "wage_index": 74,
-      "family_spending": 4.4
+      "family_spending": 4.4,
+      "church_membership": 85.7,
+      "social_media": null,
+      "cohabitation_rate": 20.4
     },
     {
       "year": 1997,
@@ -2874,7 +3722,10 @@
       "marriage_age": 28.4,
       "housing_index": 52,
       "wage_index": 75,
-      "family_spending": 4.5
+      "family_spending": 4.5,
+      "church_membership": 85.3,
+      "social_media": null,
+      "cohabitation_rate": 20.8
     },
     {
       "year": 1998,
@@ -2886,7 +3737,10 @@
       "marriage_age": 28.6,
       "housing_index": 60,
       "wage_index": 78,
-      "family_spending": 4.6
+      "family_spending": 4.6,
+      "church_membership": 85.0,
+      "social_media": null,
+      "cohabitation_rate": 21.2
     },
     {
       "year": 1999,
@@ -2898,7 +3752,10 @@
       "marriage_age": 28.8,
       "housing_index": 66,
       "wage_index": 80,
-      "family_spending": 4.7
+      "family_spending": 4.7,
+      "church_membership": 84.7,
+      "social_media": null,
+      "cohabitation_rate": 21.6
     },
     {
       "year": 2000,
@@ -2910,7 +3767,10 @@
       "marriage_age": 29.0,
       "housing_index": 69,
       "wage_index": 82,
-      "family_spending": 4.8
+      "family_spending": 4.8,
+      "church_membership": 85.1,
+      "social_media": null,
+      "cohabitation_rate": 22.0
     },
     {
       "year": 2001,
@@ -2922,7 +3782,10 @@
       "marriage_age": 29.2,
       "housing_index": 69,
       "wage_index": 85,
-      "family_spending": 4.9
+      "family_spending": 4.9,
+      "church_membership": 84.7,
+      "social_media": null,
+      "cohabitation_rate": 22.4
     },
     {
       "year": 2002,
@@ -2934,7 +3797,10 @@
       "marriage_age": 29.3,
       "housing_index": 73,
       "wage_index": 86,
-      "family_spending": 5.0
+      "family_spending": 5.0,
+      "church_membership": 84.2,
+      "social_media": null,
+      "cohabitation_rate": 22.8
     },
     {
       "year": 2003,
@@ -2946,7 +3812,10 @@
       "marriage_age": 29.4,
       "housing_index": 77,
       "wage_index": 88,
-      "family_spending": 5.1
+      "family_spending": 5.1,
+      "church_membership": 83.7,
+      "social_media": null,
+      "cohabitation_rate": 23.2
     },
     {
       "year": 2004,
@@ -2958,7 +3827,10 @@
       "marriage_age": 29.5,
       "housing_index": 82,
       "wage_index": 90,
-      "family_spending": 5.2
+      "family_spending": 5.2,
+      "church_membership": 83.1,
+      "social_media": null,
+      "cohabitation_rate": 23.6
     },
     {
       "year": 2005,
@@ -2970,7 +3842,10 @@
       "marriage_age": 29.6,
       "housing_index": 87,
       "wage_index": 93,
-      "family_spending": 5.3
+      "family_spending": 5.3,
+      "church_membership": 82.4,
+      "social_media": null,
+      "cohabitation_rate": 24.0
     },
     {
       "year": 2006,
@@ -2982,7 +3857,10 @@
       "marriage_age": 29.8,
       "housing_index": 93,
       "wage_index": 95,
-      "family_spending": 5.5
+      "family_spending": 5.5,
+      "church_membership": 81.8,
+      "social_media": null,
+      "cohabitation_rate": 24.5
     },
     {
       "year": 2007,
@@ -2994,7 +3872,10 @@
       "marriage_age": 30.0,
       "housing_index": 98,
       "wage_index": 97,
-      "family_spending": 5.7
+      "family_spending": 5.7,
+      "church_membership": 81.0,
+      "social_media": null,
+      "cohabitation_rate": 25.0
     },
     {
       "year": 2008,
@@ -3006,7 +3887,10 @@
       "marriage_age": 30.2,
       "housing_index": 99,
       "wage_index": 100,
-      "family_spending": 5.9
+      "family_spending": 5.9,
+      "church_membership": 80.6,
+      "social_media": null,
+      "cohabitation_rate": 25.5
     },
     {
       "year": 2009,
@@ -3018,7 +3902,10 @@
       "marriage_age": 30.4,
       "housing_index": 97,
       "wage_index": 101,
-      "family_spending": 6.1
+      "family_spending": 6.1,
+      "church_membership": 79.9,
+      "social_media": null,
+      "cohabitation_rate": 26.0
     },
     {
       "year": 2010,
@@ -3030,7 +3917,10 @@
       "marriage_age": 30.5,
       "housing_index": 103,
       "wage_index": 101,
-      "family_spending": 6.3
+      "family_spending": 6.3,
+      "church_membership": 78.2,
+      "social_media": 25,
+      "cohabitation_rate": 26.5
     },
     {
       "year": 2011,
@@ -3042,7 +3932,10 @@
       "marriage_age": 30.7,
       "housing_index": 105,
       "wage_index": 101,
-      "family_spending": 6.5
+      "family_spending": 6.5,
+      "church_membership": 77.2,
+      "social_media": 32,
+      "cohabitation_rate": 27.0
     },
     {
       "year": 2012,
@@ -3054,7 +3947,10 @@
       "marriage_age": 30.9,
       "housing_index": 105,
       "wage_index": 101,
-      "family_spending": 6.7
+      "family_spending": 6.7,
+      "church_membership": 76.4,
+      "social_media": 38,
+      "cohabitation_rate": 27.5
     },
     {
       "year": 2013,
@@ -3066,7 +3962,10 @@
       "marriage_age": 31.1,
       "housing_index": 104,
       "wage_index": 100,
-      "family_spending": 6.8
+      "family_spending": 6.8,
+      "church_membership": 75.3,
+      "social_media": 45,
+      "cohabitation_rate": 28.0
     },
     {
       "year": 2014,
@@ -3078,7 +3977,10 @@
       "marriage_age": 31.3,
       "housing_index": 103,
       "wage_index": 100,
-      "family_spending": 6.9
+      "family_spending": 6.9,
+      "church_membership": 74.0,
+      "social_media": 51,
+      "cohabitation_rate": 28.5
     },
     {
       "year": 2015,
@@ -3090,7 +3992,10 @@
       "marriage_age": 31.5,
       "housing_index": 100,
       "wage_index": 100,
-      "family_spending": 7.0
+      "family_spending": 7.0,
+      "church_membership": 73.0,
+      "social_media": 55,
+      "cohabitation_rate": 29.0
     },
     {
       "year": 2016,
@@ -3102,7 +4007,10 @@
       "marriage_age": 31.7,
       "housing_index": 101,
       "wage_index": 100,
-      "family_spending": 6.9
+      "family_spending": 6.9,
+      "church_membership": 71.9,
+      "social_media": 59,
+      "cohabitation_rate": 29.4
     },
     {
       "year": 2017,
@@ -3114,7 +4022,10 @@
       "marriage_age": 31.9,
       "housing_index": 102,
       "wage_index": 100,
-      "family_spending": 6.8
+      "family_spending": 6.8,
+      "church_membership": 70.9,
+      "social_media": 63,
+      "cohabitation_rate": 29.8
     },
     {
       "year": 2018,
@@ -3126,7 +4037,10 @@
       "marriage_age": 32.0,
       "housing_index": 104,
       "wage_index": 101,
-      "family_spending": 6.7
+      "family_spending": 6.7,
+      "church_membership": 69.7,
+      "social_media": 66,
+      "cohabitation_rate": 30.2
     },
     {
       "year": 2019,
@@ -3138,7 +4052,10 @@
       "marriage_age": 32.2,
       "housing_index": 106,
       "wage_index": 102,
-      "family_spending": 6.8
+      "family_spending": 6.8,
+      "church_membership": 68.6,
+      "social_media": 69,
+      "cohabitation_rate": 30.6
     },
     {
       "year": 2020,
@@ -3150,7 +4067,10 @@
       "marriage_age": 32.3,
       "housing_index": 108,
       "wage_index": 103,
-      "family_spending": 7.1
+      "family_spending": 7.1,
+      "church_membership": 66.6,
+      "social_media": 72,
+      "cohabitation_rate": 31.0
     },
     {
       "year": 2021,
@@ -3162,7 +4082,10 @@
       "marriage_age": 32.5,
       "housing_index": 115,
       "wage_index": 104,
-      "family_spending": 7.2
+      "family_spending": 7.2,
+      "church_membership": 65.2,
+      "social_media": 74,
+      "cohabitation_rate": 31.4
     },
     {
       "year": 2022,
@@ -3174,7 +4097,10 @@
       "marriage_age": 32.7,
       "housing_index": 117,
       "wage_index": 100,
-      "family_spending": 7.3
+      "family_spending": 7.3,
+      "church_membership": 63.6,
+      "social_media": 76,
+      "cohabitation_rate": 31.8
     },
     {
       "year": 2023,
@@ -3186,7 +4112,10 @@
       "marriage_age": 32.9,
       "housing_index": 108,
       "wage_index": 98,
-      "family_spending": 7.4
+      "family_spending": 7.4,
+      "church_membership": 62.5,
+      "social_media": 77,
+      "cohabitation_rate": 32.2
     },
     {
       "year": 2024,
@@ -3198,187 +4127,562 @@
       "marriage_age": 33.0,
       "housing_index": 104,
       "wage_index": 98,
-      "family_spending": 7.5
+      "family_spending": 7.5,
+      "church_membership": 61.5,
+      "social_media": 78,
+      "cohabitation_rate": 32.5
     }
   ],
   "tfr_normalized": [
     {
       "year": 1990,
       "value": 1.78,
-      "normalized": 85.5
+      "indexed": 100.0
     },
     {
       "year": 1991,
       "value": 1.79,
-      "normalized": 87.1
+      "indexed": 100.6
     },
     {
       "year": 1992,
       "value": 1.85,
-      "normalized": 96.8
+      "indexed": 103.9
     },
     {
       "year": 1993,
       "value": 1.81,
-      "normalized": 90.3
+      "indexed": 101.7
     },
     {
       "year": 1994,
       "value": 1.85,
-      "normalized": 96.8
+      "indexed": 103.9
     },
     {
       "year": 1995,
       "value": 1.81,
-      "normalized": 90.3
+      "indexed": 101.7
     },
     {
       "year": 1996,
       "value": 1.76,
-      "normalized": 82.3
+      "indexed": 98.9
     },
     {
       "year": 1997,
       "value": 1.75,
-      "normalized": 80.6
+      "indexed": 98.3
     },
     {
       "year": 1998,
       "value": 1.7,
-      "normalized": 72.6
+      "indexed": 95.5
     },
     {
       "year": 1999,
       "value": 1.73,
-      "normalized": 77.4
+      "indexed": 97.2
     },
     {
       "year": 2000,
       "value": 1.73,
-      "normalized": 77.4
+      "indexed": 97.2
     },
     {
       "year": 2001,
       "value": 1.73,
-      "normalized": 77.4
+      "indexed": 97.2
     },
     {
       "year": 2002,
       "value": 1.72,
-      "normalized": 75.8
+      "indexed": 96.6
     },
     {
       "year": 2003,
       "value": 1.76,
-      "normalized": 82.3
+      "indexed": 98.9
     },
     {
       "year": 2004,
       "value": 1.8,
-      "normalized": 88.7
+      "indexed": 101.1
     },
     {
       "year": 2005,
       "value": 1.8,
-      "normalized": 88.7
+      "indexed": 101.1
     },
     {
       "year": 2006,
       "value": 1.84,
-      "normalized": 95.2
+      "indexed": 103.4
     },
     {
       "year": 2007,
       "value": 1.83,
-      "normalized": 93.5
+      "indexed": 102.8
     },
     {
       "year": 2008,
       "value": 1.85,
-      "normalized": 96.8
+      "indexed": 103.9
     },
     {
       "year": 2009,
       "value": 1.86,
-      "normalized": 98.4
+      "indexed": 104.5
     },
     {
       "year": 2010,
       "value": 1.87,
-      "normalized": 100.0
+      "indexed": 105.1
     },
     {
       "year": 2011,
       "value": 1.83,
-      "normalized": 93.5
+      "indexed": 102.8
     },
     {
       "year": 2012,
       "value": 1.8,
-      "normalized": 88.7
+      "indexed": 101.1
     },
     {
       "year": 2013,
       "value": 1.75,
-      "normalized": 80.6
+      "indexed": 98.3
     },
     {
       "year": 2014,
       "value": 1.71,
-      "normalized": 74.2
+      "indexed": 96.1
     },
     {
       "year": 2015,
       "value": 1.65,
-      "normalized": 64.5
+      "indexed": 92.7
     },
     {
       "year": 2016,
       "value": 1.57,
-      "normalized": 51.6
+      "indexed": 88.2
     },
     {
       "year": 2017,
       "value": 1.49,
-      "normalized": 38.7
+      "indexed": 83.7
     },
     {
       "year": 2018,
       "value": 1.41,
-      "normalized": 25.8
+      "indexed": 79.2
     },
     {
       "year": 2019,
       "value": 1.35,
-      "normalized": 16.1
+      "indexed": 75.8
     },
     {
       "year": 2020,
       "value": 1.37,
-      "normalized": 19.4
+      "indexed": 77.0
     },
     {
       "year": 2021,
       "value": 1.46,
-      "normalized": 33.9
+      "indexed": 82.0
     },
     {
       "year": 2022,
       "value": 1.32,
-      "normalized": 11.3
+      "indexed": 74.2
     },
     {
       "year": 2023,
       "value": 1.26,
-      "normalized": 1.6
+      "indexed": 70.8
     },
     {
       "year": 2024,
       "value": 1.25,
-      "normalized": 0.0
+      "indexed": 70.2
     }
   ],
   "correlation_factors": [
+    {
+      "id": "social_media",
+      "name": "Social Media Usage",
+      "description": "Daily social media users (% of population 16-74)",
+      "correlation": -0.965,
+      "direction": "negative",
+      "data_available": true,
+      "data_points": 15,
+      "time_series": [
+        {
+          "year": 1990,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1991,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1992,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1993,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1994,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1995,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1996,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1997,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1998,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 1999,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2000,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2001,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2002,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2003,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2004,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2005,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2006,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2007,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2008,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2009,
+          "value": null,
+          "indexed": null
+        },
+        {
+          "year": 2010,
+          "value": 25,
+          "indexed": 100.0
+        },
+        {
+          "year": 2011,
+          "value": 32,
+          "indexed": 128.0
+        },
+        {
+          "year": 2012,
+          "value": 38,
+          "indexed": 152.0
+        },
+        {
+          "year": 2013,
+          "value": 45,
+          "indexed": 180.0
+        },
+        {
+          "year": 2014,
+          "value": 51,
+          "indexed": 204.0
+        },
+        {
+          "year": 2015,
+          "value": 55,
+          "indexed": 220.0
+        },
+        {
+          "year": 2016,
+          "value": 59,
+          "indexed": 236.0
+        },
+        {
+          "year": 2017,
+          "value": 63,
+          "indexed": 252.0
+        },
+        {
+          "year": 2018,
+          "value": 66,
+          "indexed": 264.0
+        },
+        {
+          "year": 2019,
+          "value": 69,
+          "indexed": 276.0
+        },
+        {
+          "year": 2020,
+          "value": 72,
+          "indexed": 288.0
+        },
+        {
+          "year": 2021,
+          "value": 74,
+          "indexed": 296.0
+        },
+        {
+          "year": 2022,
+          "value": 76,
+          "indexed": 304.0
+        },
+        {
+          "year": 2023,
+          "value": 77,
+          "indexed": 308.0
+        },
+        {
+          "year": 2024,
+          "value": 78,
+          "indexed": 312.0
+        }
+      ]
+    },
+    {
+      "id": "church_membership",
+      "name": "Church Membership",
+      "description": "Evangelical Lutheran Church membership (% of population)",
+      "correlation": 0.863,
+      "direction": "positive",
+      "data_available": true,
+      "data_points": 35,
+      "time_series": [
+        {
+          "year": 1990,
+          "value": 87.9,
+          "indexed": 100.0
+        },
+        {
+          "year": 1991,
+          "value": 87.6,
+          "indexed": 99.7
+        },
+        {
+          "year": 1992,
+          "value": 87.3,
+          "indexed": 99.3
+        },
+        {
+          "year": 1993,
+          "value": 86.9,
+          "indexed": 98.9
+        },
+        {
+          "year": 1994,
+          "value": 86.5,
+          "indexed": 98.4
+        },
+        {
+          "year": 1995,
+          "value": 86.1,
+          "indexed": 98.0
+        },
+        {
+          "year": 1996,
+          "value": 85.7,
+          "indexed": 97.5
+        },
+        {
+          "year": 1997,
+          "value": 85.3,
+          "indexed": 97.0
+        },
+        {
+          "year": 1998,
+          "value": 85.0,
+          "indexed": 96.7
+        },
+        {
+          "year": 1999,
+          "value": 84.7,
+          "indexed": 96.4
+        },
+        {
+          "year": 2000,
+          "value": 85.1,
+          "indexed": 96.8
+        },
+        {
+          "year": 2001,
+          "value": 84.7,
+          "indexed": 96.4
+        },
+        {
+          "year": 2002,
+          "value": 84.2,
+          "indexed": 95.8
+        },
+        {
+          "year": 2003,
+          "value": 83.7,
+          "indexed": 95.2
+        },
+        {
+          "year": 2004,
+          "value": 83.1,
+          "indexed": 94.5
+        },
+        {
+          "year": 2005,
+          "value": 82.4,
+          "indexed": 93.7
+        },
+        {
+          "year": 2006,
+          "value": 81.8,
+          "indexed": 93.1
+        },
+        {
+          "year": 2007,
+          "value": 81.0,
+          "indexed": 92.2
+        },
+        {
+          "year": 2008,
+          "value": 80.6,
+          "indexed": 91.7
+        },
+        {
+          "year": 2009,
+          "value": 79.9,
+          "indexed": 90.9
+        },
+        {
+          "year": 2010,
+          "value": 78.2,
+          "indexed": 89.0
+        },
+        {
+          "year": 2011,
+          "value": 77.2,
+          "indexed": 87.8
+        },
+        {
+          "year": 2012,
+          "value": 76.4,
+          "indexed": 86.9
+        },
+        {
+          "year": 2013,
+          "value": 75.3,
+          "indexed": 85.7
+        },
+        {
+          "year": 2014,
+          "value": 74.0,
+          "indexed": 84.2
+        },
+        {
+          "year": 2015,
+          "value": 73.0,
+          "indexed": 83.0
+        },
+        {
+          "year": 2016,
+          "value": 71.9,
+          "indexed": 81.8
+        },
+        {
+          "year": 2017,
+          "value": 70.9,
+          "indexed": 80.7
+        },
+        {
+          "year": 2018,
+          "value": 69.7,
+          "indexed": 79.3
+        },
+        {
+          "year": 2019,
+          "value": 68.6,
+          "indexed": 78.0
+        },
+        {
+          "year": 2020,
+          "value": 66.6,
+          "indexed": 75.8
+        },
+        {
+          "year": 2021,
+          "value": 65.2,
+          "indexed": 74.2
+        },
+        {
+          "year": 2022,
+          "value": 63.6,
+          "indexed": 72.4
+        },
+        {
+          "year": 2023,
+          "value": 62.5,
+          "indexed": 71.1
+        },
+        {
+          "year": 2024,
+          "value": 61.5,
+          "indexed": 70.0
+        }
+      ]
+    },
     {
       "id": "age_first_birth",
       "name": "Age at First Birth",
@@ -3391,177 +4695,177 @@
         {
           "year": 1990,
           "value": 26.5,
-          "normalized": 0.0
+          "indexed": 100.0
         },
         {
           "year": 1991,
           "value": 26.6,
-          "normalized": 2.5
+          "indexed": 100.4
         },
         {
           "year": 1992,
           "value": 26.8,
-          "normalized": 7.5
+          "indexed": 101.1
         },
         {
           "year": 1993,
           "value": 27.0,
-          "normalized": 12.5
+          "indexed": 101.9
         },
         {
           "year": 1994,
           "value": 27.2,
-          "normalized": 17.5
+          "indexed": 102.6
         },
         {
           "year": 1995,
           "value": 27.4,
-          "normalized": 22.5
+          "indexed": 103.4
         },
         {
           "year": 1996,
           "value": 27.5,
-          "normalized": 25.0
+          "indexed": 103.8
         },
         {
           "year": 1997,
           "value": 27.6,
-          "normalized": 27.5
+          "indexed": 104.2
         },
         {
           "year": 1998,
           "value": 27.7,
-          "normalized": 30.0
+          "indexed": 104.5
         },
         {
           "year": 1999,
           "value": 27.8,
-          "normalized": 32.5
+          "indexed": 104.9
         },
         {
           "year": 2000,
           "value": 27.9,
-          "normalized": 35.0
+          "indexed": 105.3
         },
         {
           "year": 2001,
           "value": 28.0,
-          "normalized": 37.5
+          "indexed": 105.7
         },
         {
           "year": 2002,
           "value": 28.0,
-          "normalized": 37.5
+          "indexed": 105.7
         },
         {
           "year": 2003,
           "value": 28.1,
-          "normalized": 40.0
+          "indexed": 106.0
         },
         {
           "year": 2004,
           "value": 28.2,
-          "normalized": 42.5
+          "indexed": 106.4
         },
         {
           "year": 2005,
           "value": 28.3,
-          "normalized": 45.0
+          "indexed": 106.8
         },
         {
           "year": 2006,
           "value": 28.3,
-          "normalized": 45.0
+          "indexed": 106.8
         },
         {
           "year": 2007,
           "value": 28.4,
-          "normalized": 47.5
+          "indexed": 107.2
         },
         {
           "year": 2008,
           "value": 28.4,
-          "normalized": 47.5
+          "indexed": 107.2
         },
         {
           "year": 2009,
           "value": 28.5,
-          "normalized": 50.0
+          "indexed": 107.5
         },
         {
           "year": 2010,
           "value": 28.6,
-          "normalized": 52.5
+          "indexed": 107.9
         },
         {
           "year": 2011,
           "value": 28.7,
-          "normalized": 55.0
+          "indexed": 108.3
         },
         {
           "year": 2012,
           "value": 28.7,
-          "normalized": 55.0
+          "indexed": 108.3
         },
         {
           "year": 2013,
           "value": 28.8,
-          "normalized": 57.5
+          "indexed": 108.7
         },
         {
           "year": 2014,
           "value": 28.8,
-          "normalized": 57.5
+          "indexed": 108.7
         },
         {
           "year": 2015,
           "value": 29.0,
-          "normalized": 62.5
+          "indexed": 109.4
         },
         {
           "year": 2016,
           "value": 29.2,
-          "normalized": 67.5
+          "indexed": 110.2
         },
         {
           "year": 2017,
           "value": 29.4,
-          "normalized": 72.5
+          "indexed": 110.9
         },
         {
           "year": 2018,
           "value": 29.5,
-          "normalized": 75.0
+          "indexed": 111.3
         },
         {
           "year": 2019,
           "value": 29.7,
-          "normalized": 80.0
+          "indexed": 112.1
         },
         {
           "year": 2020,
           "value": 29.8,
-          "normalized": 82.5
+          "indexed": 112.5
         },
         {
           "year": 2021,
           "value": 30.0,
-          "normalized": 87.5
+          "indexed": 113.2
         },
         {
           "year": 2022,
           "value": 30.2,
-          "normalized": 92.5
+          "indexed": 114.0
         },
         {
           "year": 2023,
           "value": 30.4,
-          "normalized": 97.5
+          "indexed": 114.7
         },
         {
           "year": 2024,
           "value": 30.5,
-          "normalized": 100.0
+          "indexed": 115.1
         }
       ]
     },
@@ -3577,177 +4881,363 @@
         {
           "year": 1990,
           "value": 27.0,
-          "normalized": 0.0
+          "indexed": 100.0
         },
         {
           "year": 1991,
           "value": 27.2,
-          "normalized": 3.3
+          "indexed": 100.7
         },
         {
           "year": 1992,
           "value": 27.4,
-          "normalized": 6.7
+          "indexed": 101.5
         },
         {
           "year": 1993,
           "value": 27.6,
-          "normalized": 10.0
+          "indexed": 102.2
         },
         {
           "year": 1994,
           "value": 27.8,
-          "normalized": 13.3
+          "indexed": 103.0
         },
         {
           "year": 1995,
           "value": 28.0,
-          "normalized": 16.7
+          "indexed": 103.7
         },
         {
           "year": 1996,
           "value": 28.2,
-          "normalized": 20.0
+          "indexed": 104.4
         },
         {
           "year": 1997,
           "value": 28.4,
-          "normalized": 23.3
+          "indexed": 105.2
         },
         {
           "year": 1998,
           "value": 28.6,
-          "normalized": 26.7
+          "indexed": 105.9
         },
         {
           "year": 1999,
           "value": 28.8,
-          "normalized": 30.0
+          "indexed": 106.7
         },
         {
           "year": 2000,
           "value": 29.0,
-          "normalized": 33.3
+          "indexed": 107.4
         },
         {
           "year": 2001,
           "value": 29.2,
-          "normalized": 36.7
+          "indexed": 108.1
         },
         {
           "year": 2002,
           "value": 29.3,
-          "normalized": 38.3
+          "indexed": 108.5
         },
         {
           "year": 2003,
           "value": 29.4,
-          "normalized": 40.0
+          "indexed": 108.9
         },
         {
           "year": 2004,
           "value": 29.5,
-          "normalized": 41.7
+          "indexed": 109.3
         },
         {
           "year": 2005,
           "value": 29.6,
-          "normalized": 43.3
+          "indexed": 109.6
         },
         {
           "year": 2006,
           "value": 29.8,
-          "normalized": 46.7
+          "indexed": 110.4
         },
         {
           "year": 2007,
           "value": 30.0,
-          "normalized": 50.0
+          "indexed": 111.1
         },
         {
           "year": 2008,
           "value": 30.2,
-          "normalized": 53.3
+          "indexed": 111.9
         },
         {
           "year": 2009,
           "value": 30.4,
-          "normalized": 56.7
+          "indexed": 112.6
         },
         {
           "year": 2010,
           "value": 30.5,
-          "normalized": 58.3
+          "indexed": 113.0
         },
         {
           "year": 2011,
           "value": 30.7,
-          "normalized": 61.7
+          "indexed": 113.7
         },
         {
           "year": 2012,
           "value": 30.9,
-          "normalized": 65.0
+          "indexed": 114.4
         },
         {
           "year": 2013,
           "value": 31.1,
-          "normalized": 68.3
+          "indexed": 115.2
         },
         {
           "year": 2014,
           "value": 31.3,
-          "normalized": 71.7
+          "indexed": 115.9
         },
         {
           "year": 2015,
           "value": 31.5,
-          "normalized": 75.0
+          "indexed": 116.7
         },
         {
           "year": 2016,
           "value": 31.7,
-          "normalized": 78.3
+          "indexed": 117.4
         },
         {
           "year": 2017,
           "value": 31.9,
-          "normalized": 81.7
+          "indexed": 118.1
         },
         {
           "year": 2018,
           "value": 32.0,
-          "normalized": 83.3
+          "indexed": 118.5
         },
         {
           "year": 2019,
           "value": 32.2,
-          "normalized": 86.7
+          "indexed": 119.3
         },
         {
           "year": 2020,
           "value": 32.3,
-          "normalized": 88.3
+          "indexed": 119.6
         },
         {
           "year": 2021,
           "value": 32.5,
-          "normalized": 91.7
+          "indexed": 120.4
         },
         {
           "year": 2022,
           "value": 32.7,
-          "normalized": 95.0
+          "indexed": 121.1
         },
         {
           "year": 2023,
           "value": 32.9,
-          "normalized": 98.3
+          "indexed": 121.9
         },
         {
           "year": 2024,
           "value": 33.0,
-          "normalized": 100.0
+          "indexed": 122.2
+        }
+      ]
+    },
+    {
+      "id": "cohabitation_rate",
+      "name": "Cohabitation Rate",
+      "description": "Unmarried couples living together (% of all couples)",
+      "correlation": -0.751,
+      "direction": "negative",
+      "data_available": true,
+      "data_points": 35,
+      "time_series": [
+        {
+          "year": 1990,
+          "value": 18.0,
+          "indexed": 100.0
+        },
+        {
+          "year": 1991,
+          "value": 18.4,
+          "indexed": 102.2
+        },
+        {
+          "year": 1992,
+          "value": 18.8,
+          "indexed": 104.4
+        },
+        {
+          "year": 1993,
+          "value": 19.2,
+          "indexed": 106.7
+        },
+        {
+          "year": 1994,
+          "value": 19.6,
+          "indexed": 108.9
+        },
+        {
+          "year": 1995,
+          "value": 20.0,
+          "indexed": 111.1
+        },
+        {
+          "year": 1996,
+          "value": 20.4,
+          "indexed": 113.3
+        },
+        {
+          "year": 1997,
+          "value": 20.8,
+          "indexed": 115.6
+        },
+        {
+          "year": 1998,
+          "value": 21.2,
+          "indexed": 117.8
+        },
+        {
+          "year": 1999,
+          "value": 21.6,
+          "indexed": 120.0
+        },
+        {
+          "year": 2000,
+          "value": 22.0,
+          "indexed": 122.2
+        },
+        {
+          "year": 2001,
+          "value": 22.4,
+          "indexed": 124.4
+        },
+        {
+          "year": 2002,
+          "value": 22.8,
+          "indexed": 126.7
+        },
+        {
+          "year": 2003,
+          "value": 23.2,
+          "indexed": 128.9
+        },
+        {
+          "year": 2004,
+          "value": 23.6,
+          "indexed": 131.1
+        },
+        {
+          "year": 2005,
+          "value": 24.0,
+          "indexed": 133.3
+        },
+        {
+          "year": 2006,
+          "value": 24.5,
+          "indexed": 136.1
+        },
+        {
+          "year": 2007,
+          "value": 25.0,
+          "indexed": 138.9
+        },
+        {
+          "year": 2008,
+          "value": 25.5,
+          "indexed": 141.7
+        },
+        {
+          "year": 2009,
+          "value": 26.0,
+          "indexed": 144.4
+        },
+        {
+          "year": 2010,
+          "value": 26.5,
+          "indexed": 147.2
+        },
+        {
+          "year": 2011,
+          "value": 27.0,
+          "indexed": 150.0
+        },
+        {
+          "year": 2012,
+          "value": 27.5,
+          "indexed": 152.8
+        },
+        {
+          "year": 2013,
+          "value": 28.0,
+          "indexed": 155.6
+        },
+        {
+          "year": 2014,
+          "value": 28.5,
+          "indexed": 158.3
+        },
+        {
+          "year": 2015,
+          "value": 29.0,
+          "indexed": 161.1
+        },
+        {
+          "year": 2016,
+          "value": 29.4,
+          "indexed": 163.3
+        },
+        {
+          "year": 2017,
+          "value": 29.8,
+          "indexed": 165.6
+        },
+        {
+          "year": 2018,
+          "value": 30.2,
+          "indexed": 167.8
+        },
+        {
+          "year": 2019,
+          "value": 30.6,
+          "indexed": 170.0
+        },
+        {
+          "year": 2020,
+          "value": 31.0,
+          "indexed": 172.2
+        },
+        {
+          "year": 2021,
+          "value": 31.4,
+          "indexed": 174.4
+        },
+        {
+          "year": 2022,
+          "value": 31.8,
+          "indexed": 176.7
+        },
+        {
+          "year": 2023,
+          "value": 32.2,
+          "indexed": 178.9
+        },
+        {
+          "year": 2024,
+          "value": 32.5,
+          "indexed": 180.6
         }
       ]
     },
@@ -3763,177 +5253,177 @@
         {
           "year": 1990,
           "value": 7.4,
-          "normalized": 0.0
+          "indexed": 100.0
         },
         {
           "year": 1991,
           "value": 7.6,
-          "normalized": 3.2
+          "indexed": 102.7
         },
         {
           "year": 1992,
           "value": 7.9,
-          "normalized": 8.1
+          "indexed": 106.8
         },
         {
           "year": 1993,
           "value": 8.2,
-          "normalized": 12.9
+          "indexed": 110.8
         },
         {
           "year": 1994,
           "value": 8.5,
-          "normalized": 17.7
+          "indexed": 114.9
         },
         {
           "year": 1995,
           "value": 8.7,
-          "normalized": 21.0
+          "indexed": 117.6
         },
         {
           "year": 1996,
           "value": 8.9,
-          "normalized": 24.2
+          "indexed": 120.3
         },
         {
           "year": 1997,
           "value": 9.2,
-          "normalized": 29.0
+          "indexed": 124.3
         },
         {
           "year": 1998,
           "value": 9.3,
-          "normalized": 30.6
+          "indexed": 125.7
         },
         {
           "year": 1999,
           "value": 9.5,
-          "normalized": 33.9
+          "indexed": 128.4
         },
         {
           "year": 2000,
           "value": 9.6,
-          "normalized": 35.5
+          "indexed": 129.7
         },
         {
           "year": 2001,
           "value": 9.7,
-          "normalized": 37.1
+          "indexed": 131.1
         },
         {
           "year": 2002,
           "value": 9.9,
-          "normalized": 40.3
+          "indexed": 133.8
         },
         {
           "year": 2003,
           "value": 10.0,
-          "normalized": 41.9
+          "indexed": 135.1
         },
         {
           "year": 2004,
           "value": 10.1,
-          "normalized": 43.5
+          "indexed": 136.5
         },
         {
           "year": 2005,
           "value": 10.2,
-          "normalized": 45.2
+          "indexed": 137.8
         },
         {
           "year": 2006,
           "value": 10.4,
-          "normalized": 48.4
+          "indexed": 140.5
         },
         {
           "year": 2007,
           "value": 10.6,
-          "normalized": 51.6
+          "indexed": 143.2
         },
         {
           "year": 2008,
           "value": 10.9,
-          "normalized": 56.5
+          "indexed": 147.3
         },
         {
           "year": 2009,
           "value": 11.0,
-          "normalized": 58.1
+          "indexed": 148.6
         },
         {
           "year": 2010,
           "value": 11.2,
-          "normalized": 61.3
+          "indexed": 151.4
         },
         {
           "year": 2011,
           "value": 11.3,
-          "normalized": 62.9
+          "indexed": 152.7
         },
         {
           "year": 2012,
           "value": 11.5,
-          "normalized": 66.1
+          "indexed": 155.4
         },
         {
           "year": 2013,
           "value": 11.7,
-          "normalized": 69.4
+          "indexed": 158.1
         },
         {
           "year": 2014,
           "value": 11.8,
-          "normalized": 71.0
+          "indexed": 159.5
         },
         {
           "year": 2015,
           "value": 11.9,
-          "normalized": 72.6
+          "indexed": 160.8
         },
         {
           "year": 2016,
           "value": 12.1,
-          "normalized": 75.8
+          "indexed": 163.5
         },
         {
           "year": 2017,
           "value": 12.3,
-          "normalized": 79.0
+          "indexed": 166.2
         },
         {
           "year": 2018,
           "value": 12.6,
-          "normalized": 83.9
+          "indexed": 170.3
         },
         {
           "year": 2019,
           "value": 12.7,
-          "normalized": 85.5
+          "indexed": 171.6
         },
         {
           "year": 2020,
           "value": 12.9,
-          "normalized": 88.7
+          "indexed": 174.3
         },
         {
           "year": 2021,
           "value": 13.1,
-          "normalized": 91.9
+          "indexed": 177.0
         },
         {
           "year": 2022,
           "value": 13.2,
-          "normalized": 93.5
+          "indexed": 178.4
         },
         {
           "year": 2023,
           "value": 13.4,
-          "normalized": 96.8
+          "indexed": 181.1
         },
         {
           "year": 2024,
           "value": 13.6,
-          "normalized": 100.0
+          "indexed": 183.8
         }
       ]
     },
@@ -3949,177 +5439,177 @@
         {
           "year": 1990,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 1991,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 1992,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 1993,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 1994,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 1995,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 1996,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 1997,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 1998,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 1999,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 2000,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 2001,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 2002,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 2003,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 2004,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 2005,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 2006,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 2007,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 2008,
           "value": null,
-          "normalized": null
+          "indexed": null
         },
         {
           "year": 2009,
           "value": 80.3,
-          "normalized": 40.0
+          "indexed": 100.0
         },
         {
           "year": 2010,
           "value": 79.7,
-          "normalized": 32.5
+          "indexed": 99.3
         },
         {
           "year": 2011,
           "value": 77.1,
-          "normalized": 0.0
+          "indexed": 96.0
         },
         {
           "year": 2012,
           "value": 78.2,
-          "normalized": 13.8
+          "indexed": 97.4
         },
         {
           "year": 2013,
           "value": 77.7,
-          "normalized": 7.5
+          "indexed": 96.8
         },
         {
           "year": 2014,
           "value": 77.2,
-          "normalized": 1.3
+          "indexed": 96.1
         },
         {
           "year": 2015,
           "value": 77.8,
-          "normalized": 8.8
+          "indexed": 96.9
         },
         {
           "year": 2016,
           "value": 78.4,
-          "normalized": 16.3
+          "indexed": 97.6
         },
         {
           "year": 2017,
           "value": 77.3,
-          "normalized": 2.5
+          "indexed": 96.3
         },
         {
           "year": 2018,
           "value": 79.0,
-          "normalized": 23.8
+          "indexed": 98.4
         },
         {
           "year": 2019,
           "value": 80.9,
-          "normalized": 47.5
+          "indexed": 100.7
         },
         {
           "year": 2020,
           "value": 81.0,
-          "normalized": 48.8
+          "indexed": 100.9
         },
         {
           "year": 2021,
           "value": 81.4,
-          "normalized": 53.8
+          "indexed": 101.4
         },
         {
           "year": 2022,
           "value": 85.1,
-          "normalized": 100.0
+          "indexed": 106.0
         },
         {
           "year": 2023,
           "value": 83.2,
-          "normalized": 76.3
+          "indexed": 103.6
         },
         {
           "year": 2024,
           "value": 83.1,
-          "normalized": 75.0
+          "indexed": 103.5
         }
       ]
     },
@@ -4135,177 +5625,177 @@
         {
           "year": 1990,
           "value": 3.2,
-          "normalized": 0.0
+          "indexed": 100.0
         },
         {
           "year": 1991,
           "value": 3.5,
-          "normalized": 7.0
+          "indexed": 109.4
         },
         {
           "year": 1992,
           "value": 3.8,
-          "normalized": 14.0
+          "indexed": 118.7
         },
         {
           "year": 1993,
           "value": 4.0,
-          "normalized": 18.6
+          "indexed": 125.0
         },
         {
           "year": 1994,
           "value": 4.2,
-          "normalized": 23.3
+          "indexed": 131.2
         },
         {
           "year": 1995,
           "value": 4.3,
-          "normalized": 25.6
+          "indexed": 134.4
         },
         {
           "year": 1996,
           "value": 4.4,
-          "normalized": 27.9
+          "indexed": 137.5
         },
         {
           "year": 1997,
           "value": 4.5,
-          "normalized": 30.2
+          "indexed": 140.6
         },
         {
           "year": 1998,
           "value": 4.6,
-          "normalized": 32.6
+          "indexed": 143.7
         },
         {
           "year": 1999,
           "value": 4.7,
-          "normalized": 34.9
+          "indexed": 146.9
         },
         {
           "year": 2000,
           "value": 4.8,
-          "normalized": 37.2
+          "indexed": 150.0
         },
         {
           "year": 2001,
           "value": 4.9,
-          "normalized": 39.5
+          "indexed": 153.1
         },
         {
           "year": 2002,
           "value": 5.0,
-          "normalized": 41.9
+          "indexed": 156.2
         },
         {
           "year": 2003,
           "value": 5.1,
-          "normalized": 44.2
+          "indexed": 159.4
         },
         {
           "year": 2004,
           "value": 5.2,
-          "normalized": 46.5
+          "indexed": 162.5
         },
         {
           "year": 2005,
           "value": 5.3,
-          "normalized": 48.8
+          "indexed": 165.6
         },
         {
           "year": 2006,
           "value": 5.5,
-          "normalized": 53.5
+          "indexed": 171.9
         },
         {
           "year": 2007,
           "value": 5.7,
-          "normalized": 58.1
+          "indexed": 178.1
         },
         {
           "year": 2008,
           "value": 5.9,
-          "normalized": 62.8
+          "indexed": 184.4
         },
         {
           "year": 2009,
           "value": 6.1,
-          "normalized": 67.4
+          "indexed": 190.6
         },
         {
           "year": 2010,
           "value": 6.3,
-          "normalized": 72.1
+          "indexed": 196.9
         },
         {
           "year": 2011,
           "value": 6.5,
-          "normalized": 76.7
+          "indexed": 203.1
         },
         {
           "year": 2012,
           "value": 6.7,
-          "normalized": 81.4
+          "indexed": 209.4
         },
         {
           "year": 2013,
           "value": 6.8,
-          "normalized": 83.7
+          "indexed": 212.5
         },
         {
           "year": 2014,
           "value": 6.9,
-          "normalized": 86.0
+          "indexed": 215.6
         },
         {
           "year": 2015,
           "value": 7.0,
-          "normalized": 88.4
+          "indexed": 218.8
         },
         {
           "year": 2016,
           "value": 6.9,
-          "normalized": 86.0
+          "indexed": 215.6
         },
         {
           "year": 2017,
           "value": 6.8,
-          "normalized": 83.7
+          "indexed": 212.5
         },
         {
           "year": 2018,
           "value": 6.7,
-          "normalized": 81.4
+          "indexed": 209.4
         },
         {
           "year": 2019,
           "value": 6.8,
-          "normalized": 83.7
+          "indexed": 212.5
         },
         {
           "year": 2020,
           "value": 7.1,
-          "normalized": 90.7
+          "indexed": 221.9
         },
         {
           "year": 2021,
           "value": 7.2,
-          "normalized": 93.0
+          "indexed": 225.0
         },
         {
           "year": 2022,
           "value": 7.3,
-          "normalized": 95.3
+          "indexed": 228.1
         },
         {
           "year": 2023,
           "value": 7.4,
-          "normalized": 97.7
+          "indexed": 231.2
         },
         {
           "year": 2024,
           "value": 7.5,
-          "normalized": 100.0
+          "indexed": 234.4
         }
       ]
     },
@@ -4321,177 +5811,177 @@
         {
           "year": 1990,
           "value": 62,
-          "normalized": 28.6
+          "indexed": 100.0
         },
         {
           "year": 1991,
           "value": 52,
-          "normalized": 15.6
+          "indexed": 83.9
         },
         {
           "year": 1992,
           "value": 42,
-          "normalized": 2.6
+          "indexed": 67.7
         },
         {
           "year": 1993,
           "value": 40,
-          "normalized": 0.0
+          "indexed": 64.5
         },
         {
           "year": 1994,
           "value": 42,
-          "normalized": 2.6
+          "indexed": 67.7
         },
         {
           "year": 1995,
           "value": 42,
-          "normalized": 2.6
+          "indexed": 67.7
         },
         {
           "year": 1996,
           "value": 45,
-          "normalized": 6.5
+          "indexed": 72.6
         },
         {
           "year": 1997,
           "value": 52,
-          "normalized": 15.6
+          "indexed": 83.9
         },
         {
           "year": 1998,
           "value": 60,
-          "normalized": 26.0
+          "indexed": 96.8
         },
         {
           "year": 1999,
           "value": 66,
-          "normalized": 33.8
+          "indexed": 106.5
         },
         {
           "year": 2000,
           "value": 69,
-          "normalized": 37.7
+          "indexed": 111.3
         },
         {
           "year": 2001,
           "value": 69,
-          "normalized": 37.7
+          "indexed": 111.3
         },
         {
           "year": 2002,
           "value": 73,
-          "normalized": 42.9
+          "indexed": 117.7
         },
         {
           "year": 2003,
           "value": 77,
-          "normalized": 48.1
+          "indexed": 124.2
         },
         {
           "year": 2004,
           "value": 82,
-          "normalized": 54.5
+          "indexed": 132.3
         },
         {
           "year": 2005,
           "value": 87,
-          "normalized": 61.0
+          "indexed": 140.3
         },
         {
           "year": 2006,
           "value": 93,
-          "normalized": 68.8
+          "indexed": 150.0
         },
         {
           "year": 2007,
           "value": 98,
-          "normalized": 75.3
+          "indexed": 158.1
         },
         {
           "year": 2008,
           "value": 99,
-          "normalized": 76.6
+          "indexed": 159.7
         },
         {
           "year": 2009,
           "value": 97,
-          "normalized": 74.0
+          "indexed": 156.5
         },
         {
           "year": 2010,
           "value": 103,
-          "normalized": 81.8
+          "indexed": 166.1
         },
         {
           "year": 2011,
           "value": 105,
-          "normalized": 84.4
+          "indexed": 169.4
         },
         {
           "year": 2012,
           "value": 105,
-          "normalized": 84.4
+          "indexed": 169.4
         },
         {
           "year": 2013,
           "value": 104,
-          "normalized": 83.1
+          "indexed": 167.7
         },
         {
           "year": 2014,
           "value": 103,
-          "normalized": 81.8
+          "indexed": 166.1
         },
         {
           "year": 2015,
           "value": 100,
-          "normalized": 77.9
+          "indexed": 161.3
         },
         {
           "year": 2016,
           "value": 101,
-          "normalized": 79.2
+          "indexed": 162.9
         },
         {
           "year": 2017,
           "value": 102,
-          "normalized": 80.5
+          "indexed": 164.5
         },
         {
           "year": 2018,
           "value": 104,
-          "normalized": 83.1
+          "indexed": 167.7
         },
         {
           "year": 2019,
           "value": 106,
-          "normalized": 85.7
+          "indexed": 171.0
         },
         {
           "year": 2020,
           "value": 108,
-          "normalized": 88.3
+          "indexed": 174.2
         },
         {
           "year": 2021,
           "value": 115,
-          "normalized": 97.4
+          "indexed": 185.5
         },
         {
           "year": 2022,
           "value": 117,
-          "normalized": 100.0
+          "indexed": 188.7
         },
         {
           "year": 2023,
           "value": 108,
-          "normalized": 88.3
+          "indexed": 174.2
         },
         {
           "year": 2024,
           "value": 104,
-          "normalized": 83.1
+          "indexed": 167.7
         }
       ]
     },
@@ -4507,177 +5997,177 @@
         {
           "year": 1990,
           "value": 68,
-          "normalized": 0.0
+          "indexed": 100.0
         },
         {
           "year": 1991,
           "value": 72,
-          "normalized": 11.1
+          "indexed": 105.9
         },
         {
           "year": 1992,
           "value": 71,
-          "normalized": 8.3
+          "indexed": 104.4
         },
         {
           "year": 1993,
           "value": 68,
-          "normalized": 0.0
+          "indexed": 100.0
         },
         {
           "year": 1994,
           "value": 69,
-          "normalized": 2.8
+          "indexed": 101.5
         },
         {
           "year": 1995,
           "value": 72,
-          "normalized": 11.1
+          "indexed": 105.9
         },
         {
           "year": 1996,
           "value": 74,
-          "normalized": 16.7
+          "indexed": 108.8
         },
         {
           "year": 1997,
           "value": 75,
-          "normalized": 19.4
+          "indexed": 110.3
         },
         {
           "year": 1998,
           "value": 78,
-          "normalized": 27.8
+          "indexed": 114.7
         },
         {
           "year": 1999,
           "value": 80,
-          "normalized": 33.3
+          "indexed": 117.6
         },
         {
           "year": 2000,
           "value": 82,
-          "normalized": 38.9
+          "indexed": 120.6
         },
         {
           "year": 2001,
           "value": 85,
-          "normalized": 47.2
+          "indexed": 125.0
         },
         {
           "year": 2002,
           "value": 86,
-          "normalized": 50.0
+          "indexed": 126.5
         },
         {
           "year": 2003,
           "value": 88,
-          "normalized": 55.6
+          "indexed": 129.4
         },
         {
           "year": 2004,
           "value": 90,
-          "normalized": 61.1
+          "indexed": 132.4
         },
         {
           "year": 2005,
           "value": 93,
-          "normalized": 69.4
+          "indexed": 136.8
         },
         {
           "year": 2006,
           "value": 95,
-          "normalized": 75.0
+          "indexed": 139.7
         },
         {
           "year": 2007,
           "value": 97,
-          "normalized": 80.6
+          "indexed": 142.6
         },
         {
           "year": 2008,
           "value": 100,
-          "normalized": 88.9
+          "indexed": 147.1
         },
         {
           "year": 2009,
           "value": 101,
-          "normalized": 91.7
+          "indexed": 148.5
         },
         {
           "year": 2010,
           "value": 101,
-          "normalized": 91.7
+          "indexed": 148.5
         },
         {
           "year": 2011,
           "value": 101,
-          "normalized": 91.7
+          "indexed": 148.5
         },
         {
           "year": 2012,
           "value": 101,
-          "normalized": 91.7
+          "indexed": 148.5
         },
         {
           "year": 2013,
           "value": 100,
-          "normalized": 88.9
+          "indexed": 147.1
         },
         {
           "year": 2014,
           "value": 100,
-          "normalized": 88.9
+          "indexed": 147.1
         },
         {
           "year": 2015,
           "value": 100,
-          "normalized": 88.9
+          "indexed": 147.1
         },
         {
           "year": 2016,
           "value": 100,
-          "normalized": 88.9
+          "indexed": 147.1
         },
         {
           "year": 2017,
           "value": 100,
-          "normalized": 88.9
+          "indexed": 147.1
         },
         {
           "year": 2018,
           "value": 101,
-          "normalized": 91.7
+          "indexed": 148.5
         },
         {
           "year": 2019,
           "value": 102,
-          "normalized": 94.4
+          "indexed": 150.0
         },
         {
           "year": 2020,
           "value": 103,
-          "normalized": 97.2
+          "indexed": 151.5
         },
         {
           "year": 2021,
           "value": 104,
-          "normalized": 100.0
+          "indexed": 152.9
         },
         {
           "year": 2022,
           "value": 100,
-          "normalized": 88.9
+          "indexed": 147.1
         },
         {
           "year": 2023,
           "value": 98,
-          "normalized": 83.3
+          "indexed": 144.1
         },
         {
           "year": 2024,
           "value": 98,
-          "normalized": 83.3
+          "indexed": 144.1
         }
       ]
     }

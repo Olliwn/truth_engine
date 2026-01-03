@@ -558,7 +558,7 @@ export interface FertilityEntry {
 export interface CorrelationFactorPoint {
   year: number;
   value: number | null;
-  normalized: number | null;
+  indexed: number | null;  // Index normalized (first year = 100)
 }
 
 export interface CorrelationFactor {

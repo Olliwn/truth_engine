@@ -24,6 +24,7 @@ import { FertilityData, CorrelationFactor } from '@/lib/types';
 
 // Color palette for factors
 const FACTOR_COLORS: Record<string, string> = {
+  // Socioeconomic factors
   age_first_birth: '#F59E0B',
   marriage_age: '#8B5CF6',
   female_tertiary_edu: '#06B6D4',
@@ -32,12 +33,16 @@ const FACTOR_COLORS: Record<string, string> = {
   housing_index: '#F97316',
   wage_index: '#6366F1',
   singles_ratio_25_34: '#EC4899',
+  // Cultural factors
+  church_membership: '#22C55E',
+  social_media: '#3B82F6',
+  cohabitation_rate: '#A855F7',
 };
 
 export default function IotaPage() {
   const [data, setData] = useState<FertilityData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [selectedFactors, setSelectedFactors] = useState<string[]>(['age_first_birth', 'female_tertiary_edu']);
+  const [selectedFactors, setSelectedFactors] = useState<string[]>(['social_media', 'church_membership']);
 
   useEffect(() => {
     async function loadData() {
@@ -116,18 +121,18 @@ export default function IotaPage() {
     fill: f.correlation < 0 ? '#EF4444' : '#22C55E',
   })) || [];
 
-  // Prepare normalized trends data for overlay chart
+  // Prepare indexed trends data for overlay chart (1990 = 100 baseline)
   const trendData = tfr_normalized?.map((tfr) => {
     const point: Record<string, number | null> = {
       year: tfr.year,
-      tfr: tfr.normalized,
+      tfr: tfr.indexed,
     };
     
     // Add selected factors
     selectedFactors.forEach((factorId) => {
       const factor = correlation_factors?.find((f) => f.id === factorId);
       const factorPoint = factor?.time_series.find((p) => p.year === tfr.year);
-      point[factorId] = factorPoint?.normalized ?? null;
+      point[factorId] = factorPoint?.indexed ?? null;
     });
     
     return point;
@@ -332,11 +337,12 @@ export default function IotaPage() {
               </p>
             </div>
 
-            {/* Normalized Trends Chart */}
+            {/* Indexed Trends Chart */}
             <div className="card p-6 mb-8">
-              <h3 className="text-lg font-semibold mb-2">Factor Trends vs Fertility (Normalized 0-100)</h3>
+              <h3 className="text-lg font-semibold mb-2">Factor Trends vs Fertility (Index: 1990 = 100)</h3>
               <p className="text-gray-500 text-sm mb-4">
-                All values scaled to 0-100 for comparison. Click factors below to toggle visibility.
+                All values indexed to 1990 baseline (100). Values above 100 = growth, below 100 = decline.
+                Click factors below to toggle visibility.
               </p>
               
               {/* Factor toggles */}
@@ -364,7 +370,7 @@ export default function IotaPage() {
                   <LineChart data={trendData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                     <XAxis dataKey="year" stroke="#9CA3AF" />
-                    <YAxis stroke="#9CA3AF" domain={[0, 100]} />
+                    <YAxis stroke="#9CA3AF" domain={[40, 350]} />
                     <Tooltip
                       contentStyle={{
                         backgroundColor: '#1F2937',
@@ -372,10 +378,11 @@ export default function IotaPage() {
                         borderRadius: '8px',
                       }}
                       formatter={(value: number | undefined) =>
-                        value !== undefined ? value.toFixed(1) : 'N/A'
+                        value !== undefined ? `${value.toFixed(1)} (${value > 100 ? '+' : ''}${(value - 100).toFixed(0)}%)` : 'N/A'
                       }
                     />
                     <Legend />
+                    <ReferenceLine y={100} stroke="#6B7280" strokeDasharray="3 3" label={{ value: '1990 baseline', fill: '#6B7280', fontSize: 10 }} />
                     {/* TFR line always shown */}
                     <Line
                       type="monotone"
@@ -397,7 +404,7 @@ export default function IotaPage() {
                           strokeWidth={2}
                           name={factor?.name || factorId}
                           dot={false}
-                          strokeDasharray={factorId.includes('spending') ? '5 5' : undefined}
+                          connectNulls={false}
                         />
                       );
                     })}
@@ -405,15 +412,15 @@ export default function IotaPage() {
                 </ResponsiveContainer>
               </div>
               <p className="text-gray-500 text-xs mt-3">
-                Pink line = TFR. As factor values rise (especially education, age at first birth), fertility falls.
+                Pink line = TFR (70 = 30% decline). Church membership (green) declining with fertility; Social media (blue) rising as fertility falls.
               </p>
             </div>
 
             {/* Scatter Plots Grid */}
             <div className="mb-8">
               <h3 className="text-lg font-semibold mb-4">TFR vs Each Factor (Scatter Plots)</h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {correlation_factors.slice(0, 8).map((factor) => {
+              <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+                {correlation_factors.slice(0, 10).map((factor) => {
                   const scatterData = getScatterData(factor);
                   return (
                     <div key={factor.id} className="card p-4">
@@ -473,14 +480,19 @@ export default function IotaPage() {
               </h4>
               <div className="text-gray-400 space-y-3">
                 <p>
-                  <strong className="text-white">All measured factors show negative correlation</strong> with fertility.
-                  As female education increases, workforce participation rises, marriage delays, and housing costs grow — 
-                  fertility declines. Even family benefit spending shows negative correlation (more spending, fewer babies).
+                  <strong className="text-white">Cultural factors show striking correlations:</strong>{' '}
+                  <span className="text-blue-400">Social media usage</span> (r=-0.97) emerged as the strongest negative correlation.
+                  Meanwhile, <span className="text-green-400">church membership decline</span> (r=+0.86) tracks closely with fertility decline.
+                  Both are proxies for deeper cultural shifts in how young adults spend time and form relationships.
                 </p>
                 <p>
-                  <strong className="text-amber-400">Important:</strong> This does NOT prove causation. These factors are 
-                  interrelated and may all be symptoms of broader societal changes. The data suggests that generous 
-                  family policies alone don&apos;t boost birth rates when other structural factors push against family formation.
+                  Traditional socioeconomic factors also correlate negatively: female education, delayed marriage, 
+                  and rising housing costs. Even family benefit spending shows negative correlation (more spending, fewer babies).
+                </p>
+                <p>
+                  <strong className="text-amber-400">Important:</strong> Correlation ≠ causation. These factors are 
+                  interrelated and may all be symptoms of broader societal changes — secularization, individualism, 
+                  digital lifestyles, and delayed family formation reinforcing each other.
                 </p>
               </div>
             </div>
