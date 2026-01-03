@@ -15,11 +15,15 @@ interface ProfileSelectorProps {
   employmentStatus: WageTrapEmploymentStatus;
   monthlyRent: number;
   hasDaycare: boolean;
+  dualEarner?: boolean;
+  incomeDistribution?: number;
   onHouseholdChange: (profile: WageTrapHouseholdProfile) => void;
   onMunicipalityChange: (municipality: WageTrapMunicipality) => void;
   onEmploymentChange: (status: WageTrapEmploymentStatus) => void;
   onRentChange: (rent: number) => void;
   onDaycareChange: (hasDaycare: boolean) => void;
+  onDualEarnerChange?: (dualEarner: boolean) => void;
+  onIncomeDistributionChange?: (distribution: number) => void;
 }
 
 // Icons for household types
@@ -50,12 +54,17 @@ export default function ProfileSelector({
   employmentStatus,
   monthlyRent,
   hasDaycare,
+  dualEarner = false,
+  incomeDistribution = 0.5,
   onHouseholdChange,
   onMunicipalityChange,
   onEmploymentChange,
   onRentChange,
   onDaycareChange,
+  onDualEarnerChange,
+  onIncomeDistributionChange,
 }: ProfileSelectorProps) {
+  const isCouple = householdProfile.startsWith('couple');
   const formatEuro = (amount: number) => {
     return new Intl.NumberFormat('fi-FI', {
       style: 'currency',
@@ -248,6 +257,81 @@ export default function ProfileSelector({
         </div>
       )}
 
+      {/* Dual Earner Mode - only show for couples */}
+      {isCouple && onDualEarnerChange && (
+        <div>
+          <label className="block text-sm font-medium text-gray-400 mb-3">
+            Income Earners
+          </label>
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => onDualEarnerChange(!dualEarner)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  dualEarner ? 'bg-blue-500' : 'bg-gray-700'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    dualEarner ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+              <span className={`text-sm ${dualEarner ? 'text-white' : 'text-gray-500'}`}>
+                {dualEarner ? '👫 Both partners earn income' : '👤 Single earner household'}
+              </span>
+            </div>
+            
+            {/* Income distribution slider - only show when dual earner is on */}
+            {dualEarner && onIncomeDistributionChange && (
+              <div className="mt-3 p-4 bg-gray-800/50 rounded-lg border border-blue-500/20">
+                <label className="block text-xs text-gray-400 mb-2">
+                  Income Split
+                </label>
+                <input
+                  type="range"
+                  min={0.2}
+                  max={0.8}
+                  step={0.1}
+                  value={incomeDistribution}
+                  onChange={(e) => onIncomeDistributionChange(Number(e.target.value))}
+                  className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+                />
+                <div className="flex justify-between mt-2 text-xs">
+                  <span className="text-blue-400">
+                    Partner 1: {Math.round(incomeDistribution * 100)}%
+                  </span>
+                  <span className="text-purple-400">
+                    Partner 2: {Math.round((1 - incomeDistribution) * 100)}%
+                  </span>
+                </div>
+                <div className="flex justify-center gap-2 mt-3">
+                  {[0.5, 0.6, 0.7, 0.8].map((preset) => (
+                    <button
+                      key={preset}
+                      onClick={() => onIncomeDistributionChange(preset)}
+                      className={`px-2 py-1 text-xs rounded transition-colors ${
+                        Math.abs(incomeDistribution - preset) < 0.05
+                          ? 'bg-blue-500/30 text-blue-300'
+                          : 'bg-gray-800 text-gray-500 hover:text-white'
+                      }`}
+                    >
+                      {Math.round(preset * 100)}/{Math.round((1 - preset) * 100)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+          <p className="mt-2 text-xs text-gray-500">
+            {dualEarner 
+              ? '💡 With two earners, taxes are calculated separately (progressive tax advantage). Benefits still use combined household income.'
+              : 'Single earner: All income is taxed on one person (higher marginal rates).'
+            }
+          </p>
+        </div>
+      )}
+
       {/* Summary of selected profile */}
       <div className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
         <h4 className="text-sm font-medium text-gray-300 mb-2">Selected Profile</h4>
@@ -273,6 +357,17 @@ export default function ProfileSelector({
               <span className="text-gray-500">Daycare:</span>{' '}
               <span className={hasDaycare ? 'text-amber-400' : 'text-gray-400'}>
                 {hasDaycare ? '🏫 Municipal daycare' : 'No daycare'}
+              </span>
+            </div>
+          )}
+          {isCouple && (
+            <div className="col-span-2">
+              <span className="text-gray-500">Earners:</span>{' '}
+              <span className={dualEarner ? 'text-blue-400' : 'text-gray-400'}>
+                {dualEarner 
+                  ? `👫 Dual (${Math.round(incomeDistribution * 100)}/${Math.round((1 - incomeDistribution) * 100)} split)`
+                  : '👤 Single earner'
+                }
               </span>
             </div>
           )}

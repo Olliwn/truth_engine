@@ -16,12 +16,14 @@ import type {
 import { HOUSEHOLD_PROFILES } from './constants/benefits2024';
 
 export interface WageCalculationInput {
-  grossMonthlyIncome: number;
+  grossMonthlyIncome: number; // Total household gross income
   monthlyRent: number;
   municipality: Municipality;
   householdProfile: HouseholdProfile;
   employmentStatus: EmploymentStatus;
   hasDaycare?: boolean; // Whether household uses municipal daycare (default: true for families with children)
+  dualEarner?: boolean; // If true, income is split between two earners for tax purposes
+  incomeDistribution?: number; // 0-1, proportion of income for first earner (default: 0.5 = equal split)
 }
 
 export interface WageCalculationResult {
@@ -32,6 +34,7 @@ export interface WageCalculationResult {
   
   // Tax breakdown
   taxes: TaxBreakdown;
+  taxes2?: TaxBreakdown; // Second earner's taxes (dual earner mode)
   
   // Benefits breakdown
   benefits: BenefitsBreakdown;
@@ -51,6 +54,12 @@ export interface WageCalculationResult {
   
   // Key insight
   keepPerEuro: number; // How much of each additional €1 you keep
+  
+  // Dual earner mode
+  isDualEarner: boolean;
+  earner1Income: number;
+  earner2Income: number;
+  taxSavingsFromSplit: number; // How much tax saved by splitting vs single earner
 }
 
 /**
@@ -58,6 +67,7 @@ export interface WageCalculationResult {
  */
 function calculateWageInternal(input: WageCalculationInput): {
   taxes: TaxBreakdown;
+  taxes2?: TaxBreakdown; // Second earner's taxes (dual earner mode)
   benefits: BenefitsBreakdown;
   netDisposableIncome: number;
   totalBenefits: number;
@@ -65,6 +75,9 @@ function calculateWageInternal(input: WageCalculationInput): {
   daycareCost: number;
   netIncomeAfterTax: number;
   hasDaycare: boolean;
+  isDualEarner: boolean;
+  earner1Income: number;
+  earner2Income: number;
 } {
   const {
     grossMonthlyIncome,
@@ -73,18 +86,51 @@ function calculateWageInternal(input: WageCalculationInput): {
     householdProfile,
     employmentStatus,
     hasDaycare,
+    dualEarner = false,
+    incomeDistribution = 0.5, // Default 50/50 split
   } = input;
   
-  // Calculate taxes
-  const taxes = calculateTaxes({
-    grossMonthlyIncome,
-    municipality,
-  });
+  const householdConfig = HOUSEHOLD_PROFILES[householdProfile];
+  const isCouple = householdConfig.adults === 2;
+  const isDualEarner = dualEarner && isCouple;
   
-  // Calculate benefits (includes daycare costs)
+  let taxes: TaxBreakdown;
+  let taxes2: TaxBreakdown | undefined;
+  let netIncomeAfterTax: number;
+  let earner1Income = grossMonthlyIncome;
+  let earner2Income = 0;
+  
+  if (isDualEarner) {
+    // Split income between two earners
+    earner1Income = grossMonthlyIncome * incomeDistribution;
+    earner2Income = grossMonthlyIncome * (1 - incomeDistribution);
+    
+    // Calculate taxes for each earner separately
+    taxes = calculateTaxes({
+      grossMonthlyIncome: earner1Income,
+      municipality,
+    });
+    
+    taxes2 = calculateTaxes({
+      grossMonthlyIncome: earner2Income,
+      municipality,
+    });
+    
+    // Combined net income after tax
+    netIncomeAfterTax = taxes.netMonthlyIncome + taxes2.netMonthlyIncome;
+  } else {
+    // Single earner - all income to one person
+    taxes = calculateTaxes({
+      grossMonthlyIncome,
+      municipality,
+    });
+    netIncomeAfterTax = taxes.netMonthlyIncome;
+  }
+  
+  // Calculate benefits using COMBINED household income (this is how Finnish benefits work)
   const benefits = calculateBenefits({
-    grossMonthlyIncome,
-    netMonthlyIncomeAfterTax: taxes.netMonthlyIncome,
+    grossMonthlyIncome, // Always use combined income for benefits
+    netMonthlyIncomeAfterTax: netIncomeAfterTax,
     monthlyRent,
     municipality,
     householdProfile,
@@ -94,17 +140,21 @@ function calculateWageInternal(input: WageCalculationInput): {
   
   // Final disposable income = net income after tax + benefits - daycare costs
   // benefits.netBenefits already accounts for daycare
-  const netDisposableIncome = taxes.netMonthlyIncome + benefits.netBenefits;
+  const netDisposableIncome = netIncomeAfterTax + benefits.netBenefits;
   
   return {
     taxes,
+    taxes2,
     benefits,
     netDisposableIncome,
     totalBenefits: benefits.totalBenefits,
     netBenefits: benefits.netBenefits,
     daycareCost: benefits.daycareFee,
-    netIncomeAfterTax: taxes.netMonthlyIncome,
-    hasDaycare: hasDaycare !== false && HOUSEHOLD_PROFILES[householdProfile].children > 0,
+    netIncomeAfterTax,
+    hasDaycare: hasDaycare !== false && householdConfig.children > 0,
+    isDualEarner,
+    earner1Income,
+    earner2Income,
   };
 }
 
@@ -118,22 +168,45 @@ export function calculateWage(input: WageCalculationInput): WageCalculationResul
   // Calculate effective marginal tax rate including benefit clawbacks AND daycare increase
   const { emtr, benefitClawback, daycareClawback } = calculateEMTR(input);
   
+  // Calculate tax savings from income splitting (if applicable)
+  let taxSavingsFromSplit = 0;
+  if (internal.isDualEarner) {
+    // Compare with single earner scenario
+    const singleEarnerTaxes = calculateTaxes({
+      grossMonthlyIncome: input.grossMonthlyIncome,
+      municipality: input.municipality,
+    });
+    const dualEarnerTotalTax = internal.taxes.totalTax + (internal.taxes2?.totalTax || 0);
+    taxSavingsFromSplit = singleEarnerTaxes.totalTax - dualEarnerTotalTax;
+  }
+  
+  // Calculate effective tax rate based on combined taxes
+  const totalTax = internal.taxes.totalTax + (internal.taxes2?.totalTax || 0);
+  const effectiveTaxRate = input.grossMonthlyIncome > 0 
+    ? totalTax / input.grossMonthlyIncome 
+    : 0;
+  
   return {
     grossMonthlyIncome: input.grossMonthlyIncome,
     monthlyRent: input.monthlyRent,
     hasDaycare: internal.hasDaycare,
     taxes: internal.taxes,
+    taxes2: internal.taxes2,
     benefits: internal.benefits,
     netIncomeAfterTax: internal.netIncomeAfterTax,
     totalBenefits: internal.totalBenefits,
     daycareCost: internal.daycareCost,
     netBenefits: internal.netBenefits,
     netDisposableIncome: internal.netDisposableIncome,
-    effectiveTaxRate: internal.taxes.effectiveTaxRate,
+    effectiveTaxRate,
     effectiveMarginalTaxRate: emtr,
     benefitClawbackRate: benefitClawback,
     daycareClawbackRate: daycareClawback,
     keepPerEuro: 1 - emtr,
+    isDualEarner: internal.isDualEarner,
+    earner1Income: internal.earner1Income,
+    earner2Income: internal.earner2Income,
+    taxSavingsFromSplit,
   };
 }
 
@@ -182,9 +255,11 @@ export function generateWageCurve(
   municipality: Municipality,
   householdProfile: HouseholdProfile,
   employmentStatus: EmploymentStatus,
-  maxGrossIncome: number = 6000,
+  maxGrossIncome: number = 10000,
   step: number = 50,
-  hasDaycare?: boolean
+  hasDaycare?: boolean,
+  dualEarner?: boolean,
+  incomeDistribution?: number
 ): WageCalculationResult[] {
   const results: WageCalculationResult[] = [];
   
@@ -196,6 +271,8 @@ export function generateWageCurve(
       householdProfile,
       employmentStatus,
       hasDaycare,
+      dualEarner,
+      incomeDistribution,
     });
     results.push(result);
   }
@@ -211,16 +288,20 @@ export function findValleyOfDeath(
   municipality: Municipality,
   householdProfile: HouseholdProfile,
   employmentStatus: EmploymentStatus,
-  hasDaycare?: boolean
+  hasDaycare?: boolean,
+  dualEarner?: boolean,
+  incomeDistribution?: number
 ): { start: number; end: number; peakEMTR: number; flatZone: boolean } {
   const curve = generateWageCurve(
     monthlyRent,
     municipality,
     householdProfile,
     employmentStatus,
-    6000,
+    10000,
     25,
-    hasDaycare
+    hasDaycare,
+    dualEarner,
+    incomeDistribution
   );
   
   // Find the range where EMTR is highest (>80%)
@@ -249,7 +330,7 @@ export function findValleyOfDeath(
   
   // If still in valley at end
   if (inValley) {
-    valleyEnd = 6000;
+    valleyEnd = 10000;
   }
   
   // Check if there's a true flat zone (EMTR > 90%)
@@ -266,7 +347,9 @@ export function calculateEscapeVelocity(
   municipality: Municipality,
   householdProfile: HouseholdProfile,
   employmentStatus: EmploymentStatus,
-  hasDaycare?: boolean
+  hasDaycare?: boolean,
+  dualEarner?: boolean,
+  incomeDistribution?: number
 ): number {
   // Income at zero work (no daycare fees when not working)
   const zeroWorkIncome = calculateWage({
@@ -276,10 +359,12 @@ export function calculateEscapeVelocity(
     householdProfile,
     employmentStatus,
     hasDaycare,
+    dualEarner,
+    incomeDistribution,
   }).netDisposableIncome;
   
   // Find where disposable income exceeds zero-work income
-  for (let gross = 0; gross <= 6000; gross += 25) {
+  for (let gross = 0; gross <= 10000; gross += 25) {
     const result = calculateWage({
       grossMonthlyIncome: gross,
       monthlyRent,
@@ -287,6 +372,8 @@ export function calculateEscapeVelocity(
       householdProfile,
       employmentStatus,
       hasDaycare,
+      dualEarner,
+      incomeDistribution,
     });
     
     if (result.netDisposableIncome > zeroWorkIncome + 50) { // €50 buffer
@@ -294,7 +381,7 @@ export function calculateEscapeVelocity(
     }
   }
   
-  return 6000; // Not found within range
+  return 10000; // Not found within range
 }
 
 /**
@@ -305,7 +392,9 @@ export function getProfileSummary(
   municipality: Municipality,
   householdProfile: HouseholdProfile,
   employmentStatus: EmploymentStatus,
-  hasDaycare?: boolean
+  hasDaycare?: boolean,
+  dualEarner?: boolean,
+  incomeDistribution?: number
 ): {
   zeroWorkIncome: number;
   escapeVelocity: number;
@@ -320,6 +409,8 @@ export function getProfileSummary(
     householdProfile,
     employmentStatus,
     hasDaycare,
+    dualEarner,
+    incomeDistribution,
   });
   
   const escapeVelocity = calculateEscapeVelocity(
@@ -327,7 +418,9 @@ export function getProfileSummary(
     municipality,
     householdProfile,
     employmentStatus,
-    hasDaycare
+    hasDaycare,
+    dualEarner,
+    incomeDistribution
   );
   
   const valley = findValleyOfDeath(
@@ -335,7 +428,9 @@ export function getProfileSummary(
     municipality,
     householdProfile,
     employmentStatus,
-    hasDaycare
+    hasDaycare,
+    dualEarner,
+    incomeDistribution
   );
   
   const at2000 = calculateWage({
@@ -345,6 +440,8 @@ export function getProfileSummary(
     householdProfile,
     employmentStatus,
     hasDaycare,
+    dualEarner,
+    incomeDistribution,
   });
   
   const at4000 = calculateWage({
@@ -354,6 +451,8 @@ export function getProfileSummary(
     householdProfile,
     employmentStatus,
     hasDaycare,
+    dualEarner,
+    incomeDistribution,
   });
   
   return {

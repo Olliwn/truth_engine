@@ -29,6 +29,11 @@ export default function AlphaPage() {
   const [municipality, setMunicipality] = useState<WageTrapMunicipality>('helsinki');
   const [employmentStatus, setEmploymentStatus] = useState<WageTrapEmploymentStatus>('employed');
   const [hasDaycare, setHasDaycare] = useState(true); // Default ON per user request
+  const [dualEarner, setDualEarner] = useState(false); // Dual earner mode for couples
+  const [incomeDistribution, setIncomeDistribution] = useState(0.5); // 50/50 split default
+
+  // Check if profile is a couple (has 2 adults)
+  const isCouple = householdProfile.startsWith('couple');
 
   // Calculate current result
   const currentResult = useMemo(() => {
@@ -39,8 +44,10 @@ export default function AlphaPage() {
       householdProfile: householdProfile as HouseholdProfile,
       employmentStatus: employmentStatus as EmploymentStatus,
       hasDaycare,
+      dualEarner: isCouple ? dualEarner : false,
+      incomeDistribution,
     });
-  }, [grossIncome, monthlyRent, municipality, householdProfile, employmentStatus, hasDaycare]);
+  }, [grossIncome, monthlyRent, municipality, householdProfile, employmentStatus, hasDaycare, dualEarner, incomeDistribution, isCouple]);
 
   // Generate curve data
   const curveData = useMemo(() => {
@@ -51,9 +58,11 @@ export default function AlphaPage() {
       employmentStatus as EmploymentStatus,
       10000,
       50,
-      hasDaycare
+      hasDaycare,
+      isCouple ? dualEarner : false,
+      incomeDistribution
     );
-  }, [monthlyRent, municipality, householdProfile, employmentStatus, hasDaycare]);
+  }, [monthlyRent, municipality, householdProfile, employmentStatus, hasDaycare, dualEarner, incomeDistribution, isCouple]);
 
   // Find valley and escape velocity
   const valley = useMemo(() => {
@@ -62,9 +71,11 @@ export default function AlphaPage() {
       municipality as Municipality,
       householdProfile as HouseholdProfile,
       employmentStatus as EmploymentStatus,
-      hasDaycare
+      hasDaycare,
+      isCouple ? dualEarner : false,
+      incomeDistribution
     );
-  }, [monthlyRent, municipality, householdProfile, employmentStatus, hasDaycare]);
+  }, [monthlyRent, municipality, householdProfile, employmentStatus, hasDaycare, dualEarner, incomeDistribution, isCouple]);
 
   const escapeVelocity = useMemo(() => {
     return calculateEscapeVelocity(
@@ -72,9 +83,11 @@ export default function AlphaPage() {
       municipality as Municipality,
       householdProfile as HouseholdProfile,
       employmentStatus as EmploymentStatus,
-      hasDaycare
+      hasDaycare,
+      isCouple ? dualEarner : false,
+      incomeDistribution
     );
-  }, [monthlyRent, municipality, householdProfile, employmentStatus, hasDaycare]);
+  }, [monthlyRent, municipality, householdProfile, employmentStatus, hasDaycare, dualEarner, incomeDistribution, isCouple]);
 
   // Zero work income
   const zeroWorkResult = useMemo(() => {
@@ -85,8 +98,10 @@ export default function AlphaPage() {
       householdProfile: householdProfile as HouseholdProfile,
       employmentStatus: employmentStatus as EmploymentStatus,
       hasDaycare,
+      dualEarner: isCouple ? dualEarner : false,
+      incomeDistribution,
     });
-  }, [monthlyRent, municipality, householdProfile, employmentStatus, hasDaycare]);
+  }, [monthlyRent, municipality, householdProfile, employmentStatus, hasDaycare, dualEarner, incomeDistribution, isCouple]);
 
   const formatEuro = (amount: number) => {
     return new Intl.NumberFormat('fi-FI', {
@@ -213,11 +228,15 @@ export default function AlphaPage() {
                 employmentStatus={employmentStatus}
                 monthlyRent={monthlyRent}
                 hasDaycare={hasDaycare}
+                dualEarner={dualEarner}
+                incomeDistribution={incomeDistribution}
                 onHouseholdChange={setHouseholdProfile}
                 onMunicipalityChange={setMunicipality}
                 onEmploymentChange={setEmploymentStatus}
                 onRentChange={setMonthlyRent}
                 onDaycareChange={setHasDaycare}
+                onDualEarnerChange={setDualEarner}
+                onIncomeDistributionChange={setIncomeDistribution}
               />
             </div>
           </div>
@@ -244,23 +263,60 @@ export default function AlphaPage() {
             <div className="card p-6">
               <h3 className="text-lg font-semibold text-red-400 mb-4 flex items-center gap-2">
                 <span>💸</span> Taxes & Deductions
+                {currentResult.isDualEarner && <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded">Dual Earner</span>}
               </h3>
               <div className="space-y-3 text-sm">
-                <BreakdownRow label="Gross Income" value={currentResult.grossMonthlyIncome} />
-                <div className="border-t border-gray-800 pt-2 mt-2">
-                  <BreakdownRow label="Pension contribution" value={-currentResult.taxes.pensionContribution} negative />
-                  <BreakdownRow label="Unemployment insurance" value={-currentResult.taxes.unemploymentInsurance} negative />
-                  <BreakdownRow label="Health insurance" value={-currentResult.taxes.healthInsurance} negative />
-                  <BreakdownRow label="National tax" value={-currentResult.taxes.nationalTax} negative />
-                  <BreakdownRow label="Municipal tax" value={-currentResult.taxes.municipalTax} negative />
-                </div>
-                <div className="border-t border-gray-800 pt-2 mt-2">
-                  <BreakdownRow 
-                    label="Net after tax" 
-                    value={currentResult.netIncomeAfterTax} 
-                    highlight
-                  />
-                </div>
+                <BreakdownRow label="Gross Income (Combined)" value={currentResult.grossMonthlyIncome} />
+                
+                {currentResult.isDualEarner && currentResult.taxes2 ? (
+                  <>
+                    <div className="border-t border-gray-800 pt-2 mt-2">
+                      <div className="text-xs text-blue-400 font-medium mb-2">
+                        Partner 1 ({formatEuro(currentResult.earner1Income)})
+                      </div>
+                      <BreakdownRow label="Pension contribution" value={-currentResult.taxes.pensionContribution} negative />
+                      <BreakdownRow label="Income tax" value={-(currentResult.taxes.nationalTax + currentResult.taxes.municipalTax)} negative />
+                      <BreakdownRow label="Net income" value={currentResult.taxes.netMonthlyIncome} highlight />
+                    </div>
+                    <div className="border-t border-gray-800 pt-2 mt-2">
+                      <div className="text-xs text-purple-400 font-medium mb-2">
+                        Partner 2 ({formatEuro(currentResult.earner2Income)})
+                      </div>
+                      <BreakdownRow label="Pension contribution" value={-currentResult.taxes2.pensionContribution} negative />
+                      <BreakdownRow label="Income tax" value={-(currentResult.taxes2.nationalTax + currentResult.taxes2.municipalTax)} negative />
+                      <BreakdownRow label="Net income" value={currentResult.taxes2.netMonthlyIncome} highlight />
+                    </div>
+                    <div className="border-t border-gray-800 pt-2 mt-2">
+                      <BreakdownRow 
+                        label="Combined Net after tax" 
+                        value={currentResult.netIncomeAfterTax} 
+                        highlight
+                      />
+                    </div>
+                    {currentResult.taxSavingsFromSplit > 0 && (
+                      <div className="text-xs text-green-400 mt-2 p-2 bg-green-500/10 rounded">
+                        💰 Tax savings from income split: {formatEuro(currentResult.taxSavingsFromSplit)}/mo
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <div className="border-t border-gray-800 pt-2 mt-2">
+                      <BreakdownRow label="Pension contribution" value={-currentResult.taxes.pensionContribution} negative />
+                      <BreakdownRow label="Unemployment insurance" value={-currentResult.taxes.unemploymentInsurance} negative />
+                      <BreakdownRow label="Health insurance" value={-currentResult.taxes.healthInsurance} negative />
+                      <BreakdownRow label="National tax" value={-currentResult.taxes.nationalTax} negative />
+                      <BreakdownRow label="Municipal tax" value={-currentResult.taxes.municipalTax} negative />
+                    </div>
+                    <div className="border-t border-gray-800 pt-2 mt-2">
+                      <BreakdownRow 
+                        label="Net after tax" 
+                        value={currentResult.netIncomeAfterTax} 
+                        highlight
+                      />
+                    </div>
+                  </>
+                )}
                 <div className="text-xs text-gray-500 mt-2">
                   Effective tax rate: {(currentResult.effectiveTaxRate * 100).toFixed(1)}%
                 </div>
