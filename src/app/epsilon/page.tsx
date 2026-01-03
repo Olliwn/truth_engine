@@ -13,9 +13,6 @@ import {
   ResponsiveContainer,
   Area,
   AreaChart,
-  BarChart,
-  Bar,
-  Cell,
 } from 'recharts';
 import { GDPSectorsData, EmploymentSectorsData, PublicSubsidiesData } from '@/lib/types';
 
@@ -154,25 +151,6 @@ export default function EpsilonPage() {
         total: totalGdp,
       };
     });
-
-  // Breakdown chart for all public funding
-  const fundingBreakdownData = latestSubsidies ? [
-    { name: 'Pensions & Benefits', value: latestSubsidies.benefits_total_million / 1000, color: '#84CC16' },
-    { name: 'Social Care (purchased)', value: latestSubsidies.purchased_social_million / 1000, color: '#ef4444' },
-    { name: 'Healthcare (purchased)', value: latestSubsidies.purchased_health_million / 1000, color: '#f97316' },
-    { name: 'Business Subsidies', value: (latestSubsidies.subsidies_economic_million - latestSubsidies.subsidies_agriculture_million) / 1000, color: '#22c55e' },
-    { name: 'Agriculture', value: latestSubsidies.subsidies_agriculture_million / 1000, color: '#06b6d4' },
-    { name: 'Housing', value: latestSubsidies.subsidies_housing_million / 1000, color: '#8b5cf6' },
-  ] : [];
-
-  // Time series for all public funding categories
-  const publicFundingTimeSeries = subsidiesData?.time_series.map(entry => ({
-    year: entry.year,
-    subsidies: entry.subsidies_total_million / 1000,
-    benefits: entry.benefits_total_million / 1000,
-    purchased: entry.purchased_total_million / 1000,
-    total: entry.total_public_funding_million / 1000,
-  })) || [];
 
   // Calculate government footprint percentage
   const latestFourWay = fourWayGdpData[fourWayGdpData.length - 1];
@@ -440,89 +418,6 @@ export default function EpsilonPage() {
                     />
                   </AreaChart>
                 </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Funding Breakdown */}
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Bar chart of breakdown */}
-              <div>
-                <h3 className="text-xl font-bold mb-4">Public Funding Breakdown ({latestSubsidies.year})</h3>
-                <div className="card p-6 h-[350px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={fundingBreakdownData} layout="vertical">
-                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                      <XAxis type="number" stroke="#9CA3AF" tickFormatter={(v) => `€${v}B`} />
-                      <YAxis type="category" dataKey="name" stroke="#9CA3AF" width={140} tick={{ fontSize: 12 }} />
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: '#1F2937',
-                          border: '1px solid #374151',
-                          borderRadius: '8px',
-                        }}
-                        formatter={(value: number | undefined) => value !== undefined ? `€${value.toFixed(1)}B` : 'N/A'}
-                      />
-                      <Bar dataKey="value" name="Amount">
-                        {fundingBreakdownData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
-                        ))}
-                      </Bar>
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              </div>
-
-              {/* Time series of all public funding */}
-              <div>
-                <h3 className="text-xl font-bold mb-4">Growth Over Time</h3>
-                <div className="card p-6 h-[350px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={publicFundingTimeSeries}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                      <XAxis dataKey="year" stroke="#9CA3AF" />
-                      <YAxis stroke="#9CA3AF" tickFormatter={(v) => `€${v}B`} />
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: '#1F2937',
-                          border: '1px solid #374151',
-                          borderRadius: '8px',
-                        }}
-                        formatter={(value: number | undefined) => value !== undefined ? `€${value.toFixed(1)}B` : 'N/A'}
-                      />
-                      <Legend />
-                      <Area
-                        type="monotone"
-                        dataKey="subsidies"
-                        stackId="1"
-                        stroke="#F97316"
-                        fill="#F97316"
-                        fillOpacity={0.6}
-                        name="Subsidies (D3K)"
-                      />
-                      <Area
-                        type="monotone"
-                        dataKey="purchased"
-                        stackId="1"
-                        stroke="#F59E0B"
-                        fill="#F59E0B"
-                        fillOpacity={0.6}
-                        name="Purchased (D632K)"
-                      />
-                      <Area
-                        type="monotone"
-                        dataKey="benefits"
-                        stackId="1"
-                        stroke="#84CC16"
-                        fill="#84CC16"
-                        fillOpacity={0.6}
-                        name="Benefits (D62K)"
-                      />
-                    </AreaChart>
-                  </ResponsiveContainer>
-                </div>
-                <p className="text-sm text-gray-500 mt-2">
-                  Total growth: +{subsidiesSummary?.growth_since_start_pct}% since {subsidiesSummary?.start_year}
-                </p>
               </div>
             </div>
 
