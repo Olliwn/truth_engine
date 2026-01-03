@@ -1,0 +1,345 @@
+{
+  "metadata": {
+    "source": "Statistics Finland",
+    "tables": [
+      "statfin_vaerak (population)",
+      "statfin_tyokay (employment)",
+      "population projections"
+    ],
+    "description": "Workforce participation rates and future scenarios",
+    "fetched_at": "2026-01-04T00:11:22.533939",
+    "scenarios": {
+      "static": "Public/private ratio stays at 2023 levels",
+      "aging_driven": "Healthcare/social grows proportionally to elderly population",
+      "efficiency": "Public sector shrinks 1%/year through automation/reform"
+    }
+  },
+  "summary": {
+    "period": "2007-2040",
+    "historical_period": "2007-2023",
+    "projection_period": "2024-2040",
+    "current_participation_rate": 75.5,
+    "current_working_age": 3200000,
+    "current_elderly": 1345000,
+    "projected_working_age_2040": 3488474,
+    "projected_elderly_2040": 1487351,
+    "working_age_change_pct": 9.0,
+    "elderly_change_pct": 10.6,
+    "scenario_2040": {
+      "static_ratio": 0.434,
+      "aging_driven_ratio": 0.465,
+      "efficiency_ratio": 0.342
+    },
+    "key_insight": "By 2040, elderly population grows while working-age shrinks, straining workforce sustainability"
+  },
+  "time_series": [
+    {
+      "year": 2007,
+      "is_projection": false,
+      "working_age_population": 3420000,
+      "elderly_population": 890000,
+      "total_population": 5300000,
+      "total_employed": 2369066,
+      "public_sector": 639583,
+      "private_sector": 1729483,
+      "participation_rate": 69.3,
+      "current_ratio": 0.37
+    },
+    {
+      "year": 2008,
+      "is_projection": false,
+      "working_age_population": 3415000,
+      "elderly_population": 905000,
+      "total_population": 5326000,
+      "total_employed": 2377181,
+      "public_sector": 651839,
+      "private_sector": 1725342,
+      "participation_rate": 69.6,
+      "current_ratio": 0.378
+    },
+    {
+      "year": 2009,
+      "is_projection": false,
+      "working_age_population": 3410000,
+      "elderly_population": 920000,
+      "total_population": 5351000,
+      "total_employed": 2289975,
+      "public_sector": 653479,
+      "private_sector": 1636496,
+      "participation_rate": 67.2,
+      "current_ratio": 0.399
+    },
+    {
+      "year": 2010,
+      "is_projection": false,
+      "working_age_population": 3400000,
+      "elderly_population": 943000,
+      "total_population": 5375000,
+      "total_employed": 2325679,
+      "public_sector": 658819,
+      "private_sector": 1666860,
+      "participation_rate": 68.4,
+      "current_ratio": 0.395
+    },
+    {
+      "year": 2011,
+      "is_projection": false,
+      "working_age_population": 3390000,
+      "elderly_population": 979000,
+      "total_population": 5401000,
+      "total_employed": 2354422,
+      "public_sector": 665954,
+      "private_sector": 1688468,
+      "participation_rate": 69.5,
+      "current_ratio": 0.394
+    },
+    {
+      "year": 2012,
+      "is_projection": false,
+      "working_age_population": 3375000,
+      "elderly_population": 1018000,
+      "total_population": 5427000,
+      "total_employed": 2339904,
+      "public_sector": 673296,
+      "private_sector": 1666608,
+      "participation_rate": 69.3,
+      "current_ratio": 0.404
+    },
+    {
+      "year": 2013,
+      "is_projection": false,
+      "working_age_population": 3360000,
+      "elderly_population": 1056000,
+      "total_population": 5451000,
+      "total_employed": 2301751,
+      "public_sector": 669789,
+      "private_sector": 1631962,
+      "participation_rate": 68.5,
+      "current_ratio": 0.41
+    },
+    {
+      "year": 2014,
+      "is_projection": false,
+      "working_age_population": 3345000,
+      "elderly_population": 1091000,
+      "total_population": 5472000,
+      "total_employed": 2274076,
+      "public_sector": 665822,
+      "private_sector": 1608254,
+      "participation_rate": 68.0,
+      "current_ratio": 0.414
+    },
+    {
+      "year": 2015,
+      "is_projection": false,
+      "working_age_population": 3325000,
+      "elderly_population": 1124000,
+      "total_population": 5487000,
+      "total_employed": 2256459,
+      "public_sector": 658709,
+      "private_sector": 1597750,
+      "participation_rate": 67.9,
+      "current_ratio": 0.412
+    },
+    {
+      "year": 2016,
+      "is_projection": false,
+      "working_age_population": 3305000,
+      "elderly_population": 1157000,
+      "total_population": 5503000,
+      "total_employed": 2275679,
+      "public_sector": 656999,
+      "private_sector": 1618680,
+      "participation_rate": 68.9,
+      "current_ratio": 0.406
+    },
+    {
+      "year": 2017,
+      "is_projection": false,
+      "working_age_population": 3285000,
+      "elderly_population": 1189000,
+      "total_population": 5513000,
+      "total_employed": 2327730,
+      "public_sector": 667332,
+      "private_sector": 1660398,
+      "participation_rate": 70.9,
+      "current_ratio": 0.402
+    },
+    {
+      "year": 2018,
+      "is_projection": false,
+      "working_age_population": 3265000,
+      "elderly_population": 1222000,
+      "total_population": 5518000,
+      "total_employed": 2373668,
+      "public_sector": 676193,
+      "private_sector": 1697475,
+      "participation_rate": 72.7,
+      "current_ratio": 0.398
+    },
+    {
+      "year": 2019,
+      "is_projection": false,
+      "working_age_population": 3250000,
+      "elderly_population": 1252000,
+      "total_population": 5525000,
+      "total_employed": 2373526,
+      "public_sector": 688078,
+      "private_sector": 1685448,
+      "participation_rate": 73.0,
+      "current_ratio": 0.408
+    },
+    {
+      "year": 2020,
+      "is_projection": false,
+      "working_age_population": 3235000,
+      "elderly_population": 1280000,
+      "total_population": 5531000,
+      "total_employed": 2284673,
+      "public_sector": 700012,
+      "private_sector": 1584661,
+      "participation_rate": 70.6,
+      "current_ratio": 0.442
+    },
+    {
+      "year": 2021,
+      "is_projection": false,
+      "working_age_population": 3220000,
+      "elderly_population": 1305000,
+      "total_population": 5541000,
+      "total_employed": 2377126,
+      "public_sector": 701919,
+      "private_sector": 1675207,
+      "participation_rate": 73.8,
+      "current_ratio": 0.419
+    },
+    {
+      "year": 2022,
+      "is_projection": false,
+      "working_age_population": 3210000,
+      "elderly_population": 1325000,
+      "total_population": 5556000,
+      "total_employed": 2423548,
+      "public_sector": 715583,
+      "private_sector": 1707965,
+      "participation_rate": 75.5,
+      "current_ratio": 0.419
+    },
+    {
+      "year": 2023,
+      "is_projection": false,
+      "working_age_population": 3200000,
+      "elderly_population": 1345000,
+      "total_population": 5564000,
+      "total_employed": 2417365,
+      "public_sector": 731282,
+      "private_sector": 1686083,
+      "participation_rate": 75.5,
+      "current_ratio": 0.434
+    },
+    {
+      "year": 2024,
+      "is_projection": true,
+      "working_age_population": 3171438,
+      "elderly_population": 1326950,
+      "total_population": 5639334,
+      "total_employed": 2394435,
+      "participation_rate": 75.5,
+      "scenarios": {
+        "static": {
+          "public": 731282,
+          "private": 1686083,
+          "ratio": 0.434
+        },
+        "aging_driven": {
+          "public": 725402,
+          "private": 1687846,
+          "ratio": 0.43
+        },
+        "efficiency": {
+          "public": 723969,
+          "private": 1693395,
+          "ratio": 0.428
+        }
+      }
+    },
+    {
+      "year": 2030,
+      "is_projection": true,
+      "working_age_population": 3292176,
+      "elderly_population": 1409999,
+      "total_population": 5780217,
+      "total_employed": 2485592,
+      "participation_rate": 75.5,
+      "scenarios": {
+        "static": {
+          "public": 731282,
+          "private": 1686083,
+          "ratio": 0.434
+        },
+        "aging_driven": {
+          "public": 752454,
+          "private": 1679731,
+          "ratio": 0.448
+        },
+        "efficiency": {
+          "public": 681602,
+          "private": 1735762,
+          "ratio": 0.393
+        }
+      }
+    },
+    {
+      "year": 2035,
+      "is_projection": true,
+      "working_age_population": 3392792,
+      "elderly_population": 1479207,
+      "total_population": 5897621,
+      "total_employed": 2561557,
+      "participation_rate": 75.5,
+      "scenarios": {
+        "static": {
+          "public": 731282,
+          "private": 1686083,
+          "ratio": 0.434
+        },
+        "aging_driven": {
+          "public": 774998,
+          "private": 1672968,
+          "ratio": 0.463
+        },
+        "efficiency": {
+          "public": 648197,
+          "private": 1769167,
+          "ratio": 0.366
+        }
+      }
+    },
+    {
+      "year": 2040,
+      "is_projection": true,
+      "working_age_population": 3488474,
+      "elderly_population": 1487351,
+      "total_population": 5996560,
+      "total_employed": 2633797,
+      "participation_rate": 75.5,
+      "scenarios": {
+        "static": {
+          "public": 731282,
+          "private": 1686083,
+          "ratio": 0.434
+        },
+        "aging_driven": {
+          "public": 777650,
+          "private": 1672172,
+          "ratio": 0.465
+        },
+        "efficiency": {
+          "public": 616429,
+          "private": 1800935,
+          "ratio": 0.342
+        }
+      }
+    }
+  ]
+}

@@ -638,3 +638,65 @@ export interface PublicSubsidiesData {
   };
   time_series: PublicSubsidiesEntry[];
 }
+
+// ============================================
+// Workforce Projection Types (Project Mu)
+// ============================================
+
+export interface WorkforceScenario {
+  public: number;
+  private: number;
+  ratio: number;
+}
+
+export interface WorkforceProjectionEntry {
+  year: number;
+  is_projection: boolean;
+  working_age_population: number;
+  elderly_population: number;
+  total_population: number;
+  total_employed: number;
+  public_sector?: number;
+  private_sector?: number;
+  participation_rate: number;
+  current_ratio?: number;
+  // Scenario data (only for projection years)
+  scenarios?: {
+    static: WorkforceScenario;
+    aging_driven: WorkforceScenario;
+    efficiency: WorkforceScenario;
+  };
+}
+
+export interface WorkforceProjectionData {
+  metadata: {
+    source: string;
+    tables: string[];
+    description: string;
+    fetched_at: string;
+    scenarios: {
+      static: string;
+      aging_driven: string;
+      efficiency: string;
+    };
+  };
+  summary: {
+    period: string;
+    historical_period: string;
+    projection_period: string;
+    current_participation_rate: number;
+    current_working_age: number;
+    current_elderly: number;
+    projected_working_age_2040: number;
+    projected_elderly_2040: number;
+    working_age_change_pct: number;
+    elderly_change_pct: number;
+    scenario_2040: {
+      static_ratio: number;
+      aging_driven_ratio: number;
+      efficiency_ratio: number;
+    };
+    key_insight: string;
+  };
+  time_series: WorkforceProjectionEntry[];
+}

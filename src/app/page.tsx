@@ -70,8 +70,15 @@ export default async function Home() {
               color="purple"
             />
           </div>
-          {/* Other analyses */}
-          <div className="grid md:grid-cols-3 lg:grid-cols-7 gap-4">
+          {/* Row 2: Workforce, Ponzi Map, Hidden Inflation */}
+          <div className="grid md:grid-cols-3 gap-4 mb-4">
+            <FeaturedCard
+              emoji="📉"
+              title="Workforce Futures"
+              subtitle="2040 Projections"
+              href="/mu"
+              color="teal"
+            />
             <FeaturedCard
               emoji="🗺️"
               title="Ponzi Map"
@@ -86,6 +93,9 @@ export default async function Home() {
               href="/gamma"
               color="orange"
             />
+          </div>
+          {/* Row 3: Purchasing Power, Deindustrialization, Trade */}
+          <div className="grid md:grid-cols-3 gap-4 mb-4">
             <FeaturedCard
               emoji="💰"
               title="Purchasing Power"
@@ -107,6 +117,9 @@ export default async function Home() {
               href="/eta"
               color="teal"
             />
+          </div>
+          {/* Row 4: Balance Sheet, Fertility */}
+          <div className="grid md:grid-cols-3 gap-4">
             <FeaturedCard
               emoji="📊"
               title="Balance Sheet"
@@ -175,6 +188,20 @@ export default async function Home() {
                 { label: 'Pro-Big-Govt', value: '~68%' },
                 { label: 'Public Workers', value: '731k' },
                 { label: 'Pensioners', value: '1.5M' },
+              ]}
+            />
+            
+            {/* Workforce Futures */}
+            <ProjectCard
+              title="Workforce Futures"
+              emoji="📉"
+              status="live"
+              description="How will Finland's shrinking workforce support a growing elderly population? Three scenarios project the public/private balance to 2040."
+              href="/mu"
+              metrics={[
+                { label: 'Participation', value: '75%' },
+                { label: 'Elderly +', value: '11%' },
+                { label: 'Horizon', value: '2040' },
               ]}
             />
             
