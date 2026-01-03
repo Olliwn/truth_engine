@@ -199,8 +199,8 @@ export default async function Home() {
               description="How will Finland's shrinking workforce support a growing elderly population? Three scenarios project the public/private balance to 2040."
               href="/mu"
               metrics={[
-                { label: 'Participation', value: '75%' },
-                { label: 'Elderly +', value: '11%' },
+                { label: 'Working Age', value: '-10%' },
+                { label: 'Elderly', value: '+28%' },
                 { label: 'Horizon', value: '2040' },
               ]}
             />

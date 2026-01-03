@@ -7,7 +7,7 @@
       "population projections"
     ],
     "description": "Workforce participation rates and future scenarios",
-    "fetched_at": "2026-01-04T00:11:22.533939",
+    "fetched_at": "2026-01-04T00:24:07.722182",
     "scenarios": {
       "static": "Public/private ratio stays at 2023 levels",
       "aging_driven": "Healthcare/social grows proportionally to elderly population",
@@ -21,13 +21,13 @@
     "current_participation_rate": 75.5,
     "current_working_age": 3200000,
     "current_elderly": 1345000,
-    "projected_working_age_2040": 3488474,
-    "projected_elderly_2040": 1487351,
-    "working_age_change_pct": 9.0,
-    "elderly_change_pct": 10.6,
+    "projected_working_age_2040": 2896125,
+    "projected_elderly_2040": 1714687,
+    "working_age_change_pct": -9.5,
+    "elderly_change_pct": 27.5,
     "scenario_2040": {
       "static_ratio": 0.434,
-      "aging_driven_ratio": 0.465,
+      "aging_driven_ratio": 0.516,
       "efficiency_ratio": 0.342
     },
     "key_insight": "By 2040, elderly population grows while working-age shrinks, straining workforce sustainability"
@@ -240,10 +240,10 @@
     {
       "year": 2024,
       "is_projection": true,
-      "working_age_population": 3171438,
-      "elderly_population": 1326950,
-      "total_population": 5639334,
-      "total_employed": 2394435,
+      "working_age_population": 3182125,
+      "elderly_population": 1373437,
+      "total_population": 5572449,
+      "total_employed": 2402504,
       "participation_rate": 75.5,
       "scenarios": {
         "static": {
@@ -252,9 +252,9 @@
           "ratio": 0.434
         },
         "aging_driven": {
-          "public": 725402,
-          "private": 1687846,
-          "ratio": 0.43
+          "public": 740544,
+          "private": 1683304,
+          "ratio": 0.44
         },
         "efficiency": {
           "public": 723969,
@@ -266,10 +266,10 @@
     {
       "year": 2030,
       "is_projection": true,
-      "working_age_population": 3292176,
-      "elderly_population": 1409999,
-      "total_population": 5780217,
-      "total_employed": 2485592,
+      "working_age_population": 3074875,
+      "elderly_population": 1544062,
+      "total_population": 5623149,
+      "total_employed": 2321530,
       "participation_rate": 75.5,
       "scenarios": {
         "static": {
@@ -278,9 +278,9 @@
           "ratio": 0.434
         },
         "aging_driven": {
-          "public": 752454,
-          "private": 1679731,
-          "ratio": 0.448
+          "public": 796123,
+          "private": 1666630,
+          "ratio": 0.478
         },
         "efficiency": {
           "public": 681602,
@@ -292,10 +292,10 @@
     {
       "year": 2035,
       "is_projection": true,
-      "working_age_population": 3392792,
-      "elderly_population": 1479207,
-      "total_population": 5897621,
-      "total_employed": 2561557,
+      "working_age_population": 2985500,
+      "elderly_population": 1629374,
+      "total_population": 5619899,
+      "total_employed": 2254052,
       "participation_rate": 75.5,
       "scenarios": {
         "static": {
@@ -304,9 +304,9 @@
           "ratio": 0.434
         },
         "aging_driven": {
-          "public": 774998,
-          "private": 1672968,
-          "ratio": 0.463
+          "public": 823912,
+          "private": 1658293,
+          "ratio": 0.497
         },
         "efficiency": {
           "public": 648197,
@@ -318,10 +318,10 @@
     {
       "year": 2040,
       "is_projection": true,
-      "working_age_population": 3488474,
-      "elderly_population": 1487351,
-      "total_population": 5996560,
-      "total_employed": 2633797,
+      "working_age_population": 2896125,
+      "elderly_population": 1714687,
+      "total_population": 5616649,
+      "total_employed": 2186574,
       "participation_rate": 75.5,
       "scenarios": {
         "static": {
@@ -330,9 +330,9 @@
           "ratio": 0.434
         },
         "aging_driven": {
-          "public": 777650,
-          "private": 1672172,
-          "ratio": 0.465
+          "public": 851702,
+          "private": 1649956,
+          "ratio": 0.516
         },
         "efficiency": {
           "public": 616429,

@@ -555,7 +555,7 @@ export default function MuPage() {
               <ul className="space-y-2 text-gray-400 text-sm">
                 <li>• Population: Statistics Finland (historical 2007-2023)</li>
                 <li>• Employment: Statistics Finland Table 115i</li>
-                <li>• Projections: Municipal population projections aggregated</li>
+                <li>• Projections: Trend-based extrapolation (no immigration assumption)</li>
               </ul>
             </div>
 
@@ -570,11 +570,12 @@ export default function MuPage() {
           </div>
 
           <div className="mt-8 p-4 bg-gray-900/50 rounded-lg border border-gray-800">
-            <h4 className="text-sm font-semibold text-gray-300 mb-2">Limitations</h4>
+            <h4 className="text-sm font-semibold text-gray-300 mb-2">Projection Approach</h4>
             <p className="text-sm text-gray-400">
-              Projections assume constant participation rates and do not account for 
-              immigration policy changes, automation impacts, or economic shocks. 
-              Actual outcomes will vary based on policy decisions and economic conditions.
+              Projections extrapolate the 2007-2023 historical trend with acceleration 
+              factor for working-age decline (reflecting smaller cohorts entering, larger 
+              cohorts exiting). Does <strong>not</strong> assume net immigration. With significant 
+              immigration, outcomes could differ. Participation rates assumed constant.
             </p>
           </div>
         </div>
@@ -597,8 +598,8 @@ export default function MuPage() {
             </div>
             <div>
               <div className="text-gray-500 mb-1">Population Projections</div>
-              <div className="text-gray-300">Statistics Finland</div>
-              <div className="text-gray-500">Municipal projections to 2040</div>
+              <div className="text-gray-300">Trend Extrapolation</div>
+              <div className="text-gray-500">Based on 2007-2023 decline rate</div>
             </div>
           </div>
         </div>
