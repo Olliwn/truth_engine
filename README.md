@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Finland Truth Engine
 
-## Getting Started
+> Data-driven policy analysis revealing the mathematical reality behind Finnish municipal finances.
 
-First, run the development server:
+## 🎯 Overview
+
+This project visualizes the demographic "Ponzi" dynamics threatening Finnish local governments. By combining population projections with municipal debt data from Statistics Finland, we calculate a "Ponzi Index" that reveals which municipalities face statistical insolvency.
+
+## 📊 The Ponzi Index
+
+```
+Ponzi Index = (Debt / Workers₂₀₃₅) × (Dependents₂₀₃₅ / Workers₂₀₃₅)
+```
+
+Higher values indicate municipalities where each future worker carries more debt while supporting more dependents.
+
+### Risk Categories
+- **Critical** (> 30,000): Severe fiscal challenges
+- **High** (20,000 - 30,000): Significant warning signs  
+- **Elevated** (10,000 - 20,000): Elevated risk indicators
+- **Moderate** (5,000 - 10,000): Moderate stability
+- **Low** (< 5,000): Fiscal resilience
+
+## 🛠 Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Styling**: Tailwind CSS
+- **Maps**: React-Leaflet
+- **Charts**: Recharts
+- **Data Pipeline**: Python scripts
+- **Deployment**: Vercel
+
+## 📁 Project Structure
+
+```
+truth-engine/
+├── scripts/                    # Python data fetching
+│   ├── fetch_population.py     # Statistics Finland population API
+│   ├── fetch_municipal_debt.py # Municipal key figures API
+│   └── transform_data.py       # Calculate Ponzi Index
+├── data/                       # Cached JSON data
+│   ├── population_projection.json
+│   ├── municipal_debt.json
+│   └── ponzi_index.json
+├── public/
+│   └── finland_municipalities.geojson
+├── src/
+│   ├── app/                    # Next.js pages
+│   ├── components/             # React components
+│   └── lib/                    # Utilities & types
+└── package.json
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- Python 3.9+
+
+### Installation
+
+```bash
+# Clone and install
+cd truth-engine
+npm install
+
+# Setup Python environment
+python -m venv venv
+source venv/bin/activate
+pip install -r scripts/requirements.txt
+```
+
+### Fetch Fresh Data
+
+```bash
+# Activate Python environment
+source venv/bin/activate
+
+# Fetch population projections
+python scripts/fetch_population.py
+
+# Fetch municipal debt data
+python scripts/fetch_municipal_debt.py
+
+# Calculate Ponzi Index
+python scripts/transform_data.py
+```
+
+### Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📡 Data Sources
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Data | Source | Table |
+|------|--------|-------|
+| Population Projections | Statistics Finland | 14wx |
+| Municipal Debt | Statistics Finland | Municipal Key Figures 2020 |
+| Geographic Boundaries | Statistics Finland GeoServer | kunta4500k_2024 |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔮 Future Projects
 
-## Learn More
+- **Project Alpha**: Wage Trap Calculator - Calculate true hourly value after benefits clawback
+- **Project Gamma**: Hidden Inflation - "Maslow CPI" tracking survival essentials vs official CPI
 
-To learn more about Next.js, take a look at the following resources:
+## 📜 License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT - Use freely, but attribute data to Statistics Finland.

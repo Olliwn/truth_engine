@@ -1,0 +1,2510 @@
+{
+  "metadata": {
+    "name": "Purchasing Power by Income Decile",
+    "description": "Analysis of disposable income, wealth, and debt across income groups",
+    "calculated_at": "2026-01-03T20:39:09.931643",
+    "base_year": 2015,
+    "maslow_adjusted": true
+  },
+  "summary": {
+    "income_period": "2015-2024",
+    "wealth_period": "2016-2023",
+    "decile_changes": {
+      "1": {
+        "real_income_change_pct": -23.3,
+        "nominal_income_change_pct": -4.6,
+        "wealth_change_pct": -22.7
+      },
+      "2": {
+        "real_income_change_pct": -22.4,
+        "nominal_income_change_pct": -3.5,
+        "wealth_change_pct": -43.3
+      },
+      "3": {
+        "real_income_change_pct": -21.2,
+        "nominal_income_change_pct": -2.0,
+        "wealth_change_pct": 15.3
+      },
+      "4": {
+        "real_income_change_pct": -21.2,
+        "nominal_income_change_pct": -2.0,
+        "wealth_change_pct": -28.4
+      },
+      "5": {
+        "real_income_change_pct": -20.2,
+        "nominal_income_change_pct": -0.8,
+        "wealth_change_pct": -21.5
+      },
+      "6": {
+        "real_income_change_pct": -19.5,
+        "nominal_income_change_pct": 0.1,
+        "wealth_change_pct": -19.7
+      },
+      "7": {
+        "real_income_change_pct": -18.8,
+        "nominal_income_change_pct": 1.0,
+        "wealth_change_pct": -24.6
+      },
+      "8": {
+        "real_income_change_pct": -18.0,
+        "nominal_income_change_pct": 1.9,
+        "wealth_change_pct": -15.4
+      },
+      "9": {
+        "real_income_change_pct": -17.2,
+        "nominal_income_change_pct": 3.0,
+        "wealth_change_pct": -10.9
+      },
+      "10": {
+        "real_income_change_pct": -14.9,
+        "nominal_income_change_pct": 5.9,
+        "wealth_change_pct": -2.1
+      }
+    },
+    "key_insights": [],
+    "gaps": {
+      "income_gap_widened": 8.4,
+      "wealth_gap_widened": 20.599999999999998
+    },
+    "key_insight": "Since 2015, the bottom 10% saw real purchasing power fall 23.3% while the top 10% gained -14.9%. The wealth gap widened by 21 percentage points."
+  },
+  "income_time_series": [
+    {
+      "year": 2015,
+      "deciles": {
+        "SS": {
+          "nominal_income": 47684,
+          "real_income": 47684.0,
+          "nominal_median": 38647,
+          "real_median": 38647.0,
+          "income_index": 100.0,
+          "real_income_index": 100.0
+        },
+        "1": {
+          "nominal_income": 15432,
+          "real_income": 15432.0,
+          "nominal_median": 14747,
+          "real_median": 14747.0,
+          "income_index": 100.0,
+          "real_income_index": 100.0
+        },
+        "2": {
+          "nominal_income": 23838,
+          "real_income": 23838.0,
+          "nominal_median": 19309,
+          "real_median": 19309.0,
+          "income_index": 100.0,
+          "real_income_index": 100.0
+        },
+        "3": {
+          "nominal_income": 30296,
+          "real_income": 30296.0,
+          "nominal_median": 23292,
+          "real_median": 23292.0,
+          "income_index": 100.0,
+          "real_income_index": 100.0
+        },
+        "4": {
+          "nominal_income": 36815,
+          "real_income": 36815.0,
+          "nominal_median": 36120,
+          "real_median": 36120.0,
+          "income_index": 100.0,
+          "real_income_index": 100.0
+        },
+        "5": {
+          "nominal_income": 42214,
+          "real_income": 42214.0,
+          "nominal_median": 41095,
+          "real_median": 41095.0,
+          "income_index": 100.0,
+          "real_income_index": 100.0
+        },
+        "6": {
+          "nominal_income": 47736,
+          "real_income": 47736.0,
+          "nominal_median": 46200,
+          "real_median": 46200.0,
+          "income_index": 100.0,
+          "real_income_index": 100.0
+        },
+        "7": {
+          "nominal_income": 53980,
+          "real_income": 53980.0,
+          "nominal_median": 51964,
+          "real_median": 51964.0,
+          "income_index": 100.0,
+          "real_income_index": 100.0
+        },
+        "8": {
+          "nominal_income": 61374,
+          "real_income": 61374.0,
+          "nominal_median": 58975,
+          "real_median": 58975.0,
+          "income_index": 100.0,
+          "real_income_index": 100.0
+        },
+        "9": {
+          "nominal_income": 72017,
+          "real_income": 72017.0,
+          "nominal_median": 69276,
+          "real_median": 69276.0,
+          "income_index": 100.0,
+          "real_income_index": 100.0
+        },
+        "10": {
+          "nominal_income": 120161,
+          "real_income": 120161.0,
+          "nominal_median": 97539,
+          "real_median": 97539.0,
+          "income_index": 100.0,
+          "real_income_index": 100.0
+        }
+      }
+    },
+    {
+      "year": 2016,
+      "deciles": {
+        "SS": {
+          "nominal_income": 47872,
+          "real_income": 47939.0,
+          "nominal_median": 38795,
+          "real_median": 38849.0,
+          "income_index": 100.4,
+          "real_income_index": 100.5
+        },
+        "1": {
+          "nominal_income": 15477,
+          "real_income": 15499.0,
+          "nominal_median": 14866,
+          "real_median": 14887.0,
+          "income_index": 100.3,
+          "real_income_index": 100.4
+        },
+        "2": {
+          "nominal_income": 23909,
+          "real_income": 23943.0,
+          "nominal_median": 19461,
+          "real_median": 19488.0,
+          "income_index": 100.3,
+          "real_income_index": 100.4
+        },
+        "3": {
+          "nominal_income": 30564,
+          "real_income": 30607.0,
+          "nominal_median": 23522,
+          "real_median": 23555.0,
+          "income_index": 100.9,
+          "real_income_index": 101.0
+        },
+        "4": {
+          "nominal_income": 36994,
+          "real_income": 37046.0,
+          "nominal_median": 36414,
+          "real_median": 36465.0,
+          "income_index": 100.5,
+          "real_income_index": 100.6
+        },
+        "5": {
+          "nominal_income": 42503,
+          "real_income": 42563.0,
+          "nominal_median": 41441,
+          "real_median": 41499.0,
+          "income_index": 100.7,
+          "real_income_index": 100.8
+        },
+        "6": {
+          "nominal_income": 48002,
+          "real_income": 48069.0,
+          "nominal_median": 46574,
+          "real_median": 46639.0,
+          "income_index": 100.6,
+          "real_income_index": 100.7
+        },
+        "7": {
+          "nominal_income": 54414,
+          "real_income": 54490.0,
+          "nominal_median": 52471,
+          "real_median": 52545.0,
+          "income_index": 100.8,
+          "real_income_index": 100.9
+        },
+        "8": {
+          "nominal_income": 61992,
+          "real_income": 62079.0,
+          "nominal_median": 59603,
+          "real_median": 59687.0,
+          "income_index": 101.0,
+          "real_income_index": 101.1
+        },
+        "9": {
+          "nominal_income": 72747,
+          "real_income": 72849.0,
+          "nominal_median": 69971,
+          "real_median": 70069.0,
+          "income_index": 101.0,
+          "real_income_index": 101.2
+        },
+        "10": {
+          "nominal_income": 120465,
+          "real_income": 120634.0,
+          "nominal_median": 98511,
+          "real_median": 98649.0,
+          "income_index": 100.3,
+          "real_income_index": 100.4
+        }
+      }
+    },
+    {
+      "year": 2017,
+      "deciles": {
+        "SS": {
+          "nominal_income": 48550,
+          "real_income": 47757.0,
+          "nominal_median": 38900,
+          "real_median": 38265.0,
+          "income_index": 101.8,
+          "real_income_index": 100.2
+        },
+        "1": {
+          "nominal_income": 15642,
+          "real_income": 15387.0,
+          "nominal_median": 15017,
+          "real_median": 14772.0,
+          "income_index": 101.4,
+          "real_income_index": 99.7
+        },
+        "2": {
+          "nominal_income": 24053,
+          "real_income": 23660.0,
+          "nominal_median": 19622,
+          "real_median": 19302.0,
+          "income_index": 100.9,
+          "real_income_index": 99.3
+        },
+        "3": {
+          "nominal_income": 30677,
+          "real_income": 30176.0,
+          "nominal_median": 23691,
+          "real_median": 23304.0,
+          "income_index": 101.3,
+          "real_income_index": 99.6
+        },
+        "4": {
+          "nominal_income": 37061,
+          "real_income": 36456.0,
+          "nominal_median": 36575,
+          "real_median": 35978.0,
+          "income_index": 100.7,
+          "real_income_index": 99.0
+        },
+        "5": {
+          "nominal_income": 42730,
+          "real_income": 42032.0,
+          "nominal_median": 41796,
+          "real_median": 41114.0,
+          "income_index": 101.2,
+          "real_income_index": 99.6
+        },
+        "6": {
+          "nominal_income": 48449,
+          "real_income": 47658.0,
+          "nominal_median": 47085,
+          "real_median": 46316.0,
+          "income_index": 101.5,
+          "real_income_index": 99.8
+        },
+        "7": {
+          "nominal_income": 54947,
+          "real_income": 54050.0,
+          "nominal_median": 53052,
+          "real_median": 52186.0,
+          "income_index": 101.8,
+          "real_income_index": 100.1
+        },
+        "8": {
+          "nominal_income": 62694,
+          "real_income": 61670.0,
+          "nominal_median": 60348,
+          "real_median": 59363.0,
+          "income_index": 102.2,
+          "real_income_index": 100.5
+        },
+        "9": {
+          "nominal_income": 73721,
+          "real_income": 72517.0,
+          "nominal_median": 70980,
+          "real_median": 69821.0,
+          "income_index": 102.4,
+          "real_income_index": 100.7
+        },
+        "10": {
+          "nominal_income": 125669,
+          "real_income": 123617.0,
+          "nominal_median": 100609,
+          "real_median": 98966.0,
+          "income_index": 104.6,
+          "real_income_index": 102.9
+        }
+      }
+    },
+    {
+      "year": 2018,
+      "deciles": {
+        "SS": {
+          "nominal_income": 49141,
+          "real_income": 47079.0,
+          "nominal_median": 38991,
+          "real_median": 37355.0,
+          "income_index": 103.1,
+          "real_income_index": 98.7
+        },
+        "1": {
+          "nominal_income": 15710,
+          "real_income": 15051.0,
+          "nominal_median": 15141,
+          "real_median": 14506.0,
+          "income_index": 101.8,
+          "real_income_index": 97.5
+        },
+        "2": {
+          "nominal_income": 24066,
+          "real_income": 23056.0,
+          "nominal_median": 19733,
+          "real_median": 18905.0,
+          "income_index": 101.0,
+          "real_income_index": 96.7
+        },
+        "3": {
+          "nominal_income": 30743,
+          "real_income": 29453.0,
+          "nominal_median": 23895,
+          "real_median": 22892.0,
+          "income_index": 101.5,
+          "real_income_index": 97.2
+        },
+        "4": {
+          "nominal_income": 37357,
+          "real_income": 35789.0,
+          "nominal_median": 36924,
+          "real_median": 35375.0,
+          "income_index": 101.5,
+          "real_income_index": 97.2
+        },
+        "5": {
+          "nominal_income": 42924,
+          "real_income": 41123.0,
+          "nominal_median": 42157,
+          "real_median": 40388.0,
+          "income_index": 101.7,
+          "real_income_index": 97.4
+        },
+        "6": {
+          "nominal_income": 48833,
+          "real_income": 46784.0,
+          "nominal_median": 47606,
+          "real_median": 45608.0,
+          "income_index": 102.3,
+          "real_income_index": 98.0
+        },
+        "7": {
+          "nominal_income": 55577,
+          "real_income": 53245.0,
+          "nominal_median": 53811,
+          "real_median": 51553.0,
+          "income_index": 103.0,
+          "real_income_index": 98.6
+        },
+        "8": {
+          "nominal_income": 63471,
+          "real_income": 60808.0,
+          "nominal_median": 61209,
+          "real_median": 58641.0,
+          "income_index": 103.4,
+          "real_income_index": 99.1
+        },
+        "9": {
+          "nominal_income": 74863,
+          "real_income": 71722.0,
+          "nominal_median": 72076,
+          "real_median": 69052.0,
+          "income_index": 104.0,
+          "real_income_index": 99.6
+        },
+        "10": {
+          "nominal_income": 129751,
+          "real_income": 124306.0,
+          "nominal_median": 102511,
+          "real_median": 98209.0,
+          "income_index": 108.0,
+          "real_income_index": 103.4
+        }
+      }
+    },
+    {
+      "year": 2019,
+      "deciles": {
+        "SS": {
+          "nominal_income": 49390,
+          "real_income": 46280.0,
+          "nominal_median": 39207,
+          "real_median": 36738.0,
+          "income_index": 103.6,
+          "real_income_index": 97.1
+        },
+        "1": {
+          "nominal_income": 15691,
+          "real_income": 14703.0,
+          "nominal_median": 15200,
+          "real_median": 14243.0,
+          "income_index": 101.7,
+          "real_income_index": 95.3
+        },
+        "2": {
+          "nominal_income": 24147,
+          "real_income": 22626.0,
+          "nominal_median": 19899,
+          "real_median": 18646.0,
+          "income_index": 101.3,
+          "real_income_index": 94.9
+        },
+        "3": {
+          "nominal_income": 30944,
+          "real_income": 28996.0,
+          "nominal_median": 24153,
+          "real_median": 22632.0,
+          "income_index": 102.1,
+          "real_income_index": 95.7
+        },
+        "4": {
+          "nominal_income": 37681,
+          "real_income": 35308.0,
+          "nominal_median": 37329,
+          "real_median": 34978.0,
+          "income_index": 102.4,
+          "real_income_index": 95.9
+        },
+        "5": {
+          "nominal_income": 43316,
+          "real_income": 40588.0,
+          "nominal_median": 42666,
+          "real_median": 39979.0,
+          "income_index": 102.6,
+          "real_income_index": 96.1
+        },
+        "6": {
+          "nominal_income": 49289,
+          "real_income": 46185.0,
+          "nominal_median": 48233,
+          "real_median": 45196.0,
+          "income_index": 103.3,
+          "real_income_index": 96.8
+        },
+        "7": {
+          "nominal_income": 56206,
+          "real_income": 52667.0,
+          "nominal_median": 54554,
+          "real_median": 51119.0,
+          "income_index": 104.1,
+          "real_income_index": 97.6
+        },
+        "8": {
+          "nominal_income": 64220,
+          "real_income": 60176.0,
+          "nominal_median": 62115,
+          "real_median": 58204.0,
+          "income_index": 104.6,
+          "real_income_index": 98.0
+        },
+        "9": {
+          "nominal_income": 75880,
+          "real_income": 71102.0,
+          "nominal_median": 73133,
+          "real_median": 68528.0,
+          "income_index": 105.4,
+          "real_income_index": 98.7
+        },
+        "10": {
+          "nominal_income": 129325,
+          "real_income": 121182.0,
+          "nominal_median": 103539,
+          "real_median": 97019.0,
+          "income_index": 107.6,
+          "real_income_index": 100.8
+        }
+      }
+    },
+    {
+      "year": 2020,
+      "deciles": {
+        "SS": {
+          "nominal_income": 49206,
+          "real_income": 46155.0,
+          "nominal_median": 39089,
+          "real_median": 36665.0,
+          "income_index": 103.2,
+          "real_income_index": 96.8
+        },
+        "1": {
+          "nominal_income": 15804,
+          "real_income": 14824.0,
+          "nominal_median": 15482,
+          "real_median": 14522.0,
+          "income_index": 102.4,
+          "real_income_index": 96.1
+        },
+        "2": {
+          "nominal_income": 24364,
+          "real_income": 22853.0,
+          "nominal_median": 20130,
+          "real_median": 18882.0,
+          "income_index": 102.2,
+          "real_income_index": 95.9
+        },
+        "3": {
+          "nominal_income": 30969,
+          "real_income": 29049.0,
+          "nominal_median": 24241,
+          "real_median": 22738.0,
+          "income_index": 102.2,
+          "real_income_index": 95.9
+        },
+        "4": {
+          "nominal_income": 37700,
+          "real_income": 35363.0,
+          "nominal_median": 37489,
+          "real_median": 35165.0,
+          "income_index": 102.4,
+          "real_income_index": 96.1
+        },
+        "5": {
+          "nominal_income": 43283,
+          "real_income": 40599.0,
+          "nominal_median": 42752,
+          "real_median": 40101.0,
+          "income_index": 102.5,
+          "real_income_index": 96.2
+        },
+        "6": {
+          "nominal_income": 49141,
+          "real_income": 46094.0,
+          "nominal_median": 48202,
+          "real_median": 45213.0,
+          "income_index": 102.9,
+          "real_income_index": 96.6
+        },
+        "7": {
+          "nominal_income": 55932,
+          "real_income": 52464.0,
+          "nominal_median": 54441,
+          "real_median": 51066.0,
+          "income_index": 103.6,
+          "real_income_index": 97.2
+        },
+        "8": {
+          "nominal_income": 63873,
+          "real_income": 59913.0,
+          "nominal_median": 61974,
+          "real_median": 58132.0,
+          "income_index": 104.1,
+          "real_income_index": 97.6
+        },
+        "9": {
+          "nominal_income": 75431,
+          "real_income": 70754.0,
+          "nominal_median": 72895,
+          "real_median": 68375.0,
+          "income_index": 104.7,
+          "real_income_index": 98.2
+        },
+        "10": {
+          "nominal_income": 129175,
+          "real_income": 121166.0,
+          "nominal_median": 102921,
+          "real_median": 96540.0,
+          "income_index": 107.5,
+          "real_income_index": 100.8
+        }
+      }
+    },
+    {
+      "year": 2021,
+      "deciles": {
+        "SS": {
+          "nominal_income": 50313,
+          "real_income": 45940.0,
+          "nominal_median": 39138,
+          "real_median": 35736.0,
+          "income_index": 105.5,
+          "real_income_index": 96.3
+        },
+        "1": {
+          "nominal_income": 15757,
+          "real_income": 14387.0,
+          "nominal_median": 15396,
+          "real_median": 14058.0,
+          "income_index": 102.1,
+          "real_income_index": 93.2
+        },
+        "2": {
+          "nominal_income": 24090,
+          "real_income": 21996.0,
+          "nominal_median": 20076,
+          "real_median": 18331.0,
+          "income_index": 101.1,
+          "real_income_index": 92.3
+        },
+        "3": {
+          "nominal_income": 30961,
+          "real_income": 28270.0,
+          "nominal_median": 24360,
+          "real_median": 22243.0,
+          "income_index": 102.2,
+          "real_income_index": 93.3
+        },
+        "4": {
+          "nominal_income": 37816,
+          "real_income": 34529.0,
+          "nominal_median": 37648,
+          "real_median": 34375.0,
+          "income_index": 102.7,
+          "real_income_index": 93.8
+        },
+        "5": {
+          "nominal_income": 43532,
+          "real_income": 39748.0,
+          "nominal_median": 43067,
+          "real_median": 39323.0,
+          "income_index": 103.1,
+          "real_income_index": 94.2
+        },
+        "6": {
+          "nominal_income": 49624,
+          "real_income": 45310.0,
+          "nominal_median": 48715,
+          "real_median": 44480.0,
+          "income_index": 104.0,
+          "real_income_index": 94.9
+        },
+        "7": {
+          "nominal_income": 56693,
+          "real_income": 51765.0,
+          "nominal_median": 55206,
+          "real_median": 50407.0,
+          "income_index": 105.0,
+          "real_income_index": 95.9
+        },
+        "8": {
+          "nominal_income": 64831,
+          "real_income": 59196.0,
+          "nominal_median": 62901,
+          "real_median": 57433.0,
+          "income_index": 105.6,
+          "real_income_index": 96.5
+        },
+        "9": {
+          "nominal_income": 76972,
+          "real_income": 70281.0,
+          "nominal_median": 74345,
+          "real_median": 67883.0,
+          "income_index": 106.9,
+          "real_income_index": 97.6
+        },
+        "10": {
+          "nominal_income": 139434,
+          "real_income": 127314.0,
+          "nominal_median": 106720,
+          "real_median": 97443.0,
+          "income_index": 116.0,
+          "real_income_index": 106.0
+        }
+      }
+    },
+    {
+      "year": 2022,
+      "deciles": {
+        "SS": {
+          "nominal_income": 48276,
+          "real_income": 39406.0,
+          "nominal_median": 37672,
+          "real_median": 30750.0,
+          "income_index": 101.2,
+          "real_income_index": 82.6
+        },
+        "1": {
+          "nominal_income": 15093,
+          "real_income": 12320.0,
+          "nominal_median": 14844,
+          "real_median": 12117.0,
+          "income_index": 97.8,
+          "real_income_index": 79.8
+        },
+        "2": {
+          "nominal_income": 23195,
+          "real_income": 18933.0,
+          "nominal_median": 19416,
+          "real_median": 15849.0,
+          "income_index": 97.3,
+          "real_income_index": 79.4
+        },
+        "3": {
+          "nominal_income": 29932,
+          "real_income": 24432.0,
+          "nominal_median": 23615,
+          "real_median": 19276.0,
+          "income_index": 98.8,
+          "real_income_index": 80.6
+        },
+        "4": {
+          "nominal_income": 36496,
+          "real_income": 29790.0,
+          "nominal_median": 36408,
+          "real_median": 29718.0,
+          "income_index": 99.1,
+          "real_income_index": 80.9
+        },
+        "5": {
+          "nominal_income": 42100,
+          "real_income": 34365.0,
+          "nominal_median": 41725,
+          "real_median": 34058.0,
+          "income_index": 99.7,
+          "real_income_index": 81.4
+        },
+        "6": {
+          "nominal_income": 48102,
+          "real_income": 39264.0,
+          "nominal_median": 47250,
+          "real_median": 38568.0,
+          "income_index": 100.8,
+          "real_income_index": 82.3
+        },
+        "7": {
+          "nominal_income": 55001,
+          "real_income": 44895.0,
+          "nominal_median": 53565,
+          "real_median": 43723.0,
+          "income_index": 101.9,
+          "real_income_index": 83.2
+        },
+        "8": {
+          "nominal_income": 62845,
+          "real_income": 51298.0,
+          "nominal_median": 60991,
+          "real_median": 49785.0,
+          "income_index": 102.4,
+          "real_income_index": 83.6
+        },
+        "9": {
+          "nominal_income": 74576,
+          "real_income": 60873.0,
+          "nominal_median": 72020,
+          "real_median": 58787.0,
+          "income_index": 103.6,
+          "real_income_index": 84.5
+        },
+        "10": {
+          "nominal_income": 131615,
+          "real_income": 107432.0,
+          "nominal_median": 102502,
+          "real_median": 83668.0,
+          "income_index": 109.5,
+          "real_income_index": 89.4
+        }
+      }
+    },
+    {
+      "year": 2023,
+      "deciles": {
+        "SS": {
+          "nominal_income": 46772,
+          "real_income": 36953.0,
+          "nominal_median": 36975,
+          "real_median": 29213.0,
+          "income_index": 98.1,
+          "real_income_index": 77.5
+        },
+        "1": {
+          "nominal_income": 14595,
+          "real_income": 11531.0,
+          "nominal_median": 14456,
+          "real_median": 11421.0,
+          "income_index": 94.6,
+          "real_income_index": 74.7
+        },
+        "2": {
+          "nominal_income": 22856,
+          "real_income": 18058.0,
+          "nominal_median": 19092,
+          "real_median": 15084.0,
+          "income_index": 95.9,
+          "real_income_index": 75.8
+        },
+        "3": {
+          "nominal_income": 29407,
+          "real_income": 23234.0,
+          "nominal_median": 23208,
+          "real_median": 18336.0,
+          "income_index": 97.1,
+          "real_income_index": 76.7
+        },
+        "4": {
+          "nominal_income": 35513,
+          "real_income": 28058.0,
+          "nominal_median": 35503,
+          "real_median": 28050.0,
+          "income_index": 96.5,
+          "real_income_index": 76.2
+        },
+        "5": {
+          "nominal_income": 41180,
+          "real_income": 32535.0,
+          "nominal_median": 40946,
+          "real_median": 32350.0,
+          "income_index": 97.6,
+          "real_income_index": 77.1
+        },
+        "6": {
+          "nominal_income": 46961,
+          "real_income": 37103.0,
+          "nominal_median": 46326,
+          "real_median": 36601.0,
+          "income_index": 98.4,
+          "real_income_index": 77.7
+        },
+        "7": {
+          "nominal_income": 53537,
+          "real_income": 42298.0,
+          "nominal_median": 52362,
+          "real_median": 41370.0,
+          "income_index": 99.2,
+          "real_income_index": 78.4
+        },
+        "8": {
+          "nominal_income": 61283,
+          "real_income": 48418.0,
+          "nominal_median": 59600,
+          "real_median": 47089.0,
+          "income_index": 99.9,
+          "real_income_index": 78.9
+        },
+        "9": {
+          "nominal_income": 72610,
+          "real_income": 57367.0,
+          "nominal_median": 70202,
+          "real_median": 55465.0,
+          "income_index": 100.8,
+          "real_income_index": 79.7
+        },
+        "10": {
+          "nominal_income": 123003,
+          "real_income": 97182.0,
+          "nominal_median": 99028,
+          "real_median": 78240.0,
+          "income_index": 102.4,
+          "real_income_index": 80.9
+        }
+      }
+    },
+    {
+      "year": 2024,
+      "deciles": {
+        "SS": {
+          "nominal_income": 47886,
+          "real_income": 38515.0,
+          "nominal_median": 37777,
+          "real_median": 30384.0,
+          "income_index": 100.4,
+          "real_income_index": 80.8
+        },
+        "1": {
+          "nominal_income": 14721,
+          "real_income": 11840.0,
+          "nominal_median": 14405,
+          "real_median": 11586.0,
+          "income_index": 95.4,
+          "real_income_index": 76.7
+        },
+        "2": {
+          "nominal_income": 23008,
+          "real_income": 18506.0,
+          "nominal_median": 19244,
+          "real_median": 15478.0,
+          "income_index": 96.5,
+          "real_income_index": 77.6
+        },
+        "3": {
+          "nominal_income": 29685,
+          "real_income": 23876.0,
+          "nominal_median": 23518,
+          "real_median": 18916.0,
+          "income_index": 98.0,
+          "real_income_index": 78.8
+        },
+        "4": {
+          "nominal_income": 36063,
+          "real_income": 29006.0,
+          "nominal_median": 35008,
+          "real_median": 28157.0,
+          "income_index": 98.0,
+          "real_income_index": 78.8
+        },
+        "5": {
+          "nominal_income": 41883,
+          "real_income": 33687.0,
+          "nominal_median": 41700,
+          "real_median": 33540.0,
+          "income_index": 99.2,
+          "real_income_index": 79.8
+        },
+        "6": {
+          "nominal_income": 47797,
+          "real_income": 38444.0,
+          "nominal_median": 47245,
+          "real_median": 38000.0,
+          "income_index": 100.1,
+          "real_income_index": 80.5
+        },
+        "7": {
+          "nominal_income": 54524,
+          "real_income": 43854.0,
+          "nominal_median": 53440,
+          "real_median": 42982.0,
+          "income_index": 101.0,
+          "real_income_index": 81.2
+        },
+        "8": {
+          "nominal_income": 62544,
+          "real_income": 50305.0,
+          "nominal_median": 60921,
+          "real_median": 48999.0,
+          "income_index": 101.9,
+          "real_income_index": 82.0
+        },
+        "9": {
+          "nominal_income": 74171,
+          "real_income": 59657.0,
+          "nominal_median": 71873,
+          "real_median": 57808.0,
+          "income_index": 103.0,
+          "real_income_index": 82.8
+        },
+        "10": {
+          "nominal_income": 127203,
+          "real_income": 102311.0,
+          "nominal_median": 101856,
+          "real_median": 81924.0,
+          "income_index": 105.9,
+          "real_income_index": 85.1
+        }
+      }
+    }
+  ],
+  "wealth_data": {
+    "years_available": [
+      2004,
+      2009,
+      2013,
+      2016,
+      2019,
+      2023
+    ],
+    "time_series": [
+      {
+        "year": 2004,
+        "deciles": {
+          "SS": {
+            "mean": {
+              "nettoae_DN3001": 189243,
+              "bruttoae_DA1000": 217814,
+              "realvar": 177090,
+              "finan": 36617,
+              "kturaha": 42764,
+              "luototy": 28571,
+              "asuntm": 23821
+            },
+            "median": {
+              "nettoae_DN3001": 111882,
+              "bruttoae_DA1000": 154266,
+              "realvar": 161691,
+              "finan": 8718,
+              "kturaha": 34128,
+              "luototy": 28498,
+              "asuntm": 61252
+            },
+            "debt_to_income": 66.8,
+            "wealth_index": 86.9
+          },
+          "1": {
+            "mean": {
+              "nettoae_DN3001": 68537,
+              "bruttoae_DA1000": 74483,
+              "realvar": 59770,
+              "finan": 12700,
+              "kturaha": 11287,
+              "luototy": 5946,
+              "asuntm": 3678
+            },
+            "median": {
+              "nettoae_DN3001": 5086,
+              "bruttoae_DA1000": 5812,
+              "realvar": 73997,
+              "finan": 1453,
+              "kturaha": 11240,
+              "luototy": 8350,
+              "asuntm": 24034
+            },
+            "debt_to_income": 52.7,
+            "wealth_index": 78.5
+          },
+          "2": {
+            "mean": {
+              "nettoae_DN3001": 81819,
+              "bruttoae_DA1000": 88890,
+              "realvar": 74077,
+              "finan": 12469,
+              "kturaha": 18597,
+              "luototy": 7071,
+              "asuntm": 5255
+            },
+            "median": {
+              "nettoae_DN3001": 34825,
+              "bruttoae_DA1000": 40030,
+              "realvar": 87180,
+              "finan": 3923,
+              "kturaha": 14808,
+              "luototy": 7810,
+              "asuntm": 31998
+            },
+            "debt_to_income": 38.0,
+            "wealth_index": 106.3
+          },
+          "3": {
+            "mean": {
+              "nettoae_DN3001": 110772,
+              "bruttoae_DA1000": 120287,
+              "realvar": 101656,
+              "finan": 15090,
+              "kturaha": 21940,
+              "luototy": 9516,
+              "asuntm": 7680
+            },
+            "median": {
+              "nettoae_DN3001": 65385,
+              "bruttoae_DA1000": 85873,
+              "realvar": 121083,
+              "finan": 3596,
+              "kturaha": 17218,
+              "luototy": 14530,
+              "asuntm": 36736
+            },
+            "debt_to_income": 43.4,
+            "wealth_index": 216.1
+          },
+          "4": {
+            "mean": {
+              "nettoae_DN3001": 117473,
+              "bruttoae_DA1000": 134285,
+              "realvar": 113483,
+              "finan": 15645,
+              "kturaha": 28325,
+              "luototy": 16812,
+              "asuntm": 13537
+            },
+            "median": {
+              "nettoae_DN3001": 82513,
+              "bruttoae_DA1000": 110763,
+              "realvar": 115514,
+              "finan": 5914,
+              "kturaha": 27592,
+              "luototy": 15983,
+              "asuntm": 44071
+            },
+            "debt_to_income": 59.4,
+            "wealth_index": 85.1
+          },
+          "5": {
+            "mean": {
+              "nettoae_DN3001": 159461,
+              "bruttoae_DA1000": 185036,
+              "realvar": 155723,
+              "finan": 26786,
+              "kturaha": 36762,
+              "luototy": 25575,
+              "asuntm": 20920
+            },
+            "median": {
+              "nettoae_DN3001": 114732,
+              "bruttoae_DA1000": 154988,
+              "realvar": 159831,
+              "finan": 10026,
+              "kturaha": 33972,
+              "luototy": 27623,
+              "asuntm": 56585
+            },
+            "debt_to_income": 69.6,
+            "wealth_index": 82.7
+          },
+          "6": {
+            "mean": {
+              "nettoae_DN3001": 144148,
+              "bruttoae_DA1000": 171133,
+              "realvar": 145567,
+              "finan": 21658,
+              "kturaha": 40036,
+              "luototy": 26985,
+              "asuntm": 22173
+            },
+            "median": {
+              "nettoae_DN3001": 94445,
+              "bruttoae_DA1000": 139220,
+              "realvar": 136583,
+              "finan": 6248,
+              "kturaha": 38070,
+              "luototy": 17324,
+              "asuntm": 53535
+            },
+            "debt_to_income": 67.4,
+            "wealth_index": 73.4
+          },
+          "7": {
+            "mean": {
+              "nettoae_DN3001": 201211,
+              "bruttoae_DA1000": 239821,
+              "realvar": 200381,
+              "finan": 35979,
+              "kturaha": 46972,
+              "luototy": 38610,
+              "asuntm": 31884
+            },
+            "median": {
+              "nettoae_DN3001": 137024,
+              "bruttoae_DA1000": 190882,
+              "realvar": 175233,
+              "finan": 9182,
+              "kturaha": 44456,
+              "luototy": 27127,
+              "asuntm": 62173
+            },
+            "debt_to_income": 82.2,
+            "wealth_index": 81.2
+          },
+          "8": {
+            "mean": {
+              "nettoae_DN3001": 190982,
+              "bruttoae_DA1000": 240058,
+              "realvar": 208011,
+              "finan": 27927,
+              "kturaha": 54397,
+              "luototy": 49076,
+              "asuntm": 41513
+            },
+            "median": {
+              "nettoae_DN3001": 157651,
+              "bruttoae_DA1000": 206029,
+              "realvar": 195063,
+              "finan": 11769,
+              "kturaha": 51550,
+              "luototy": 44298,
+              "asuntm": 73990
+            },
+            "debt_to_income": 90.2,
+            "wealth_index": 80.6
+          },
+          "9": {
+            "mean": {
+              "nettoae_DN3001": 278023,
+              "bruttoae_DA1000": 327126,
+              "realvar": 265677,
+              "finan": 56325,
+              "kturaha": 61575,
+              "luototy": 49104,
+              "asuntm": 41730
+            },
+            "median": {
+              "nettoae_DN3001": 219946,
+              "bruttoae_DA1000": 270942,
+              "realvar": 234661,
+              "finan": 20240,
+              "kturaha": 60311,
+              "luototy": 54182,
+              "asuntm": 71181
+            },
+            "debt_to_income": 79.7,
+            "wealth_index": 91.6
+          },
+          "10": {
+            "mean": {
+              "nettoae_DN3001": 540991,
+              "bruttoae_DA1000": 598181,
+              "realvar": 447473,
+              "finan": 141800,
+              "kturaha": 108021,
+              "luototy": 57191,
+              "asuntm": 49996
+            },
+            "median": {
+              "nettoae_DN3001": 347826,
+              "bruttoae_DA1000": 421339,
+              "realvar": 325038,
+              "finan": 55360,
+              "kturaha": 86360,
+              "luototy": 70937,
+              "asuntm": 73444
+            },
+            "debt_to_income": 52.9,
+            "wealth_index": 70.9
+          }
+        }
+      },
+      {
+        "year": 2009,
+        "deciles": {
+          "SS": {
+            "mean": {
+              "nettoae_DN3001": 223367,
+              "bruttoae_DA1000": 272693,
+              "realvar": 208067,
+              "finan": 50285,
+              "kturaha": 46281,
+              "luototy": 49326,
+              "asuntm": 34696
+            },
+            "median": {
+              "nettoae_DN3001": 126922,
+              "bruttoae_DA1000": 190362,
+              "realvar": 196924,
+              "finan": 10512,
+              "kturaha": 38386,
+              "luototy": 40877,
+              "asuntm": 85795
+            },
+            "debt_to_income": 106.6,
+            "wealth_index": 98.6
+          },
+          "1": {
+            "mean": {
+              "nettoae_DN3001": 77820,
+              "bruttoae_DA1000": 90396,
+              "realvar": 72844,
+              "finan": 10874,
+              "kturaha": 14001,
+              "luototy": 12576,
+              "asuntm": 6327
+            },
+            "median": {
+              "nettoae_DN3001": 10671,
+              "bruttoae_DA1000": 13993,
+              "realvar": 89259,
+              "finan": 2549,
+              "kturaha": 13239,
+              "luototy": 7770,
+              "asuntm": 53883
+            },
+            "debt_to_income": 89.8,
+            "wealth_index": 164.7
+          },
+          "2": {
+            "mean": {
+              "nettoae_DN3001": 103900,
+              "bruttoae_DA1000": 114223,
+              "realvar": 91090,
+              "finan": 15887,
+              "kturaha": 20893,
+              "luototy": 10323,
+              "asuntm": 4826
+            },
+            "median": {
+              "nettoae_DN3001": 39413,
+              "bruttoae_DA1000": 56974,
+              "realvar": 110976,
+              "finan": 3961,
+              "kturaha": 16900,
+              "luototy": 9086,
+              "asuntm": 45872
+            },
+            "debt_to_income": 49.4,
+            "wealth_index": 120.3
+          },
+          "3": {
+            "mean": {
+              "nettoae_DN3001": 125700,
+              "bruttoae_DA1000": 143089,
+              "realvar": 115058,
+              "finan": 17849,
+              "kturaha": 26790,
+              "luototy": 17389,
+              "asuntm": 11682
+            },
+            "median": {
+              "nettoae_DN3001": 60354,
+              "bruttoae_DA1000": 83599,
+              "realvar": 128359,
+              "finan": 6307,
+              "kturaha": 20630,
+              "luototy": 12178,
+              "asuntm": 67138
+            },
+            "debt_to_income": 64.9,
+            "wealth_index": 199.5
+          },
+          "4": {
+            "mean": {
+              "nettoae_DN3001": 155106,
+              "bruttoae_DA1000": 184490,
+              "realvar": 149424,
+              "finan": 24248,
+              "kturaha": 33267,
+              "luototy": 29384,
+              "asuntm": 19617
+            },
+            "median": {
+              "nettoae_DN3001": 96527,
+              "bruttoae_DA1000": 148399,
+              "realvar": 158660,
+              "finan": 7795,
+              "kturaha": 32349,
+              "luototy": 18735,
+              "asuntm": 62391
+            },
+            "debt_to_income": 88.3,
+            "wealth_index": 99.5
+          },
+          "5": {
+            "mean": {
+              "nettoae_DN3001": 185972,
+              "bruttoae_DA1000": 225240,
+              "realvar": 186717,
+              "finan": 25775,
+              "kturaha": 39788,
+              "luototy": 39268,
+              "asuntm": 27895
+            },
+            "median": {
+              "nettoae_DN3001": 129473,
+              "bruttoae_DA1000": 184890,
+              "realvar": 181070,
+              "finan": 9009,
+              "kturaha": 37826,
+              "luototy": 33219,
+              "asuntm": 73506
+            },
+            "debt_to_income": 98.7,
+            "wealth_index": 93.3
+          },
+          "6": {
+            "mean": {
+              "nettoae_DN3001": 189077,
+              "bruttoae_DA1000": 246112,
+              "realvar": 201277,
+              "finan": 32559,
+              "kturaha": 45803,
+              "luototy": 57036,
+              "asuntm": 41295
+            },
+            "median": {
+              "nettoae_DN3001": 139630,
+              "bruttoae_DA1000": 212848,
+              "realvar": 196446,
+              "finan": 10512,
+              "kturaha": 43690,
+              "luototy": 47543,
+              "asuntm": 86396
+            },
+            "debt_to_income": 124.5,
+            "wealth_index": 108.6
+          },
+          "7": {
+            "mean": {
+              "nettoae_DN3001": 216549,
+              "bruttoae_DA1000": 275224,
+              "realvar": 224736,
+              "finan": 35946,
+              "kturaha": 50336,
+              "luototy": 58675,
+              "asuntm": 43047
+            },
+            "median": {
+              "nettoae_DN3001": 153593,
+              "bruttoae_DA1000": 230429,
+              "realvar": 207168,
+              "finan": 13815,
+              "kturaha": 48659,
+              "luototy": 49833,
+              "asuntm": 87866
+            },
+            "debt_to_income": 116.6,
+            "wealth_index": 91.1
+          },
+          "8": {
+            "mean": {
+              "nettoae_DN3001": 231891,
+              "bruttoae_DA1000": 304154,
+              "realvar": 252263,
+              "finan": 39309,
+              "kturaha": 57470,
+              "luototy": 72263,
+              "asuntm": 55680
+            },
+            "median": {
+              "nettoae_DN3001": 173703,
+              "bruttoae_DA1000": 253571,
+              "realvar": 238310,
+              "finan": 16144,
+              "kturaha": 55419,
+              "luototy": 68424,
+              "asuntm": 92471
+            },
+            "debt_to_income": 125.7,
+            "wealth_index": 88.8
+          },
+          "9": {
+            "mean": {
+              "nettoae_DN3001": 298222,
+              "bruttoae_DA1000": 387994,
+              "realvar": 303425,
+              "finan": 63236,
+              "kturaha": 67629,
+              "luototy": 89773,
+              "asuntm": 66259
+            },
+            "median": {
+              "nettoae_DN3001": 221746,
+              "bruttoae_DA1000": 316737,
+              "realvar": 271515,
+              "finan": 25013,
+              "kturaha": 64862,
+              "luototy": 89870,
+              "asuntm": 108154
+            },
+            "debt_to_income": 132.7,
+            "wealth_index": 92.3
+          },
+          "10": {
+            "mean": {
+              "nettoae_DN3001": 649597,
+              "bruttoae_DA1000": 756215,
+              "realvar": 483982,
+              "finan": 237215,
+              "kturaha": 106871,
+              "luototy": 106617,
+              "asuntm": 70369
+            },
+            "median": {
+              "nettoae_DN3001": 433777,
+              "bruttoae_DA1000": 529418,
+              "realvar": 404596,
+              "finan": 64331,
+              "kturaha": 89919,
+              "luototy": 90739,
+              "asuntm": 104680
+            },
+            "debt_to_income": 99.8,
+            "wealth_index": 88.5
+          }
+        }
+      },
+      {
+        "year": 2013,
+        "deciles": {
+          "SS": {
+            "mean": {
+              "nettoae_DN3001": 234632,
+              "bruttoae_DA1000": 287277,
+              "realvar": 211323,
+              "finan": 61558,
+              "kturaha": 46639,
+              "luototy": 52645,
+              "asuntm": 36570
+            },
+            "median": {
+              "nettoae_DN3001": 132136,
+              "bruttoae_DA1000": 194718,
+              "realvar": 199170,
+              "finan": 11555,
+              "kturaha": 38399,
+              "luototy": 49036,
+              "asuntm": 90298
+            },
+            "debt_to_income": 112.9,
+            "wealth_index": 102.7
+          },
+          "1": {
+            "mean": {
+              "nettoae_DN3001": 88540,
+              "bruttoae_DA1000": 102041,
+              "realvar": 81247,
+              "finan": 13946,
+              "kturaha": 14191,
+              "luototy": 13501,
+              "asuntm": 5962
+            },
+            "median": {
+              "nettoae_DN3001": 6998,
+              "bruttoae_DA1000": 8723,
+              "realvar": 81818,
+              "finan": 1943,
+              "kturaha": 13516,
+              "luototy": 7401,
+              "asuntm": 61945
+            },
+            "debt_to_income": 95.1,
+            "wealth_index": 108.0
+          },
+          "2": {
+            "mean": {
+              "nettoae_DN3001": 94754,
+              "bruttoae_DA1000": 106241,
+              "realvar": 87941,
+              "finan": 13277,
+              "kturaha": 20978,
+              "luototy": 11488,
+              "asuntm": 7601
+            },
+            "median": {
+              "nettoae_DN3001": 20647,
+              "bruttoae_DA1000": 29648,
+              "realvar": 109015,
+              "finan": 3644,
+              "kturaha": 17199,
+              "luototy": 9716,
+              "asuntm": 62987
+            },
+            "debt_to_income": 54.8,
+            "wealth_index": 63.0
+          },
+          "3": {
+            "mean": {
+              "nettoae_DN3001": 105220,
+              "bruttoae_DA1000": 123071,
+              "realvar": 98689,
+              "finan": 16792,
+              "kturaha": 26166,
+              "luototy": 17851,
+              "asuntm": 12457
+            },
+            "median": {
+              "nettoae_DN3001": 41704,
+              "bruttoae_DA1000": 72027,
+              "realvar": 120463,
+              "finan": 3644,
+              "kturaha": 20300,
+              "luototy": 10152,
+              "asuntm": 62556
+            },
+            "debt_to_income": 68.2,
+            "wealth_index": 137.8
+          },
+          "4": {
+            "mean": {
+              "nettoae_DN3001": 147938,
+              "bruttoae_DA1000": 174402,
+              "realvar": 139646,
+              "finan": 22592,
+              "kturaha": 32582,
+              "luototy": 26464,
+              "asuntm": 17733
+            },
+            "median": {
+              "nettoae_DN3001": 97645,
+              "bruttoae_DA1000": 136536,
+              "realvar": 143677,
+              "finan": 7165,
+              "kturaha": 32087,
+              "luototy": 24210,
+              "asuntm": 66800
+            },
+            "debt_to_income": 81.2,
+            "wealth_index": 100.7
+          },
+          "5": {
+            "mean": {
+              "nettoae_DN3001": 178118,
+              "bruttoae_DA1000": 217597,
+              "realvar": 177513,
+              "finan": 27906,
+              "kturaha": 38340,
+              "luototy": 39479,
+              "asuntm": 29182
+            },
+            "median": {
+              "nettoae_DN3001": 132526,
+              "bruttoae_DA1000": 184676,
+              "realvar": 174573,
+              "finan": 9716,
+              "kturaha": 37378,
+              "luototy": 34561,
+              "asuntm": 79699
+            },
+            "debt_to_income": 103.0,
+            "wealth_index": 95.5
+          },
+          "6": {
+            "mean": {
+              "nettoae_DN3001": 201435,
+              "bruttoae_DA1000": 253742,
+              "realvar": 205004,
+              "finan": 36132,
+              "kturaha": 45254,
+              "luototy": 52307,
+              "asuntm": 37191
+            },
+            "median": {
+              "nettoae_DN3001": 149973,
+              "bruttoae_DA1000": 211725,
+              "realvar": 192242,
+              "finan": 12146,
+              "kturaha": 43227,
+              "luototy": 47784,
+              "asuntm": 83033
+            },
+            "debt_to_income": 115.6,
+            "wealth_index": 116.6
+          },
+          "7": {
+            "mean": {
+              "nettoae_DN3001": 206654,
+              "bruttoae_DA1000": 265983,
+              "realvar": 211734,
+              "finan": 40674,
+              "kturaha": 50260,
+              "luototy": 59329,
+              "asuntm": 43060
+            },
+            "median": {
+              "nettoae_DN3001": 149938,
+              "bruttoae_DA1000": 229325,
+              "realvar": 201910,
+              "finan": 13967,
+              "kturaha": 48729,
+              "luototy": 56382,
+              "asuntm": 76425
+            },
+            "debt_to_income": 118.0,
+            "wealth_index": 88.9
+          },
+          "8": {
+            "mean": {
+              "nettoae_DN3001": 243097,
+              "bruttoae_DA1000": 326589,
+              "realvar": 269934,
+              "finan": 43567,
+              "kturaha": 59343,
+              "luototy": 83492,
+              "asuntm": 64526
+            },
+            "median": {
+              "nettoae_DN3001": 181057,
+              "bruttoae_DA1000": 284974,
+              "realvar": 244864,
+              "finan": 17464,
+              "kturaha": 56310,
+              "luototy": 81197,
+              "asuntm": 101483
+            },
+            "debt_to_income": 140.7,
+            "wealth_index": 92.5
+          },
+          "9": {
+            "mean": {
+              "nettoae_DN3001": 320234,
+              "bruttoae_DA1000": 405878,
+              "realvar": 312986,
+              "finan": 72414,
+              "kturaha": 68615,
+              "luototy": 85645,
+              "asuntm": 62912
+            },
+            "median": {
+              "nettoae_DN3001": 242416,
+              "bruttoae_DA1000": 339802,
+              "realvar": 275439,
+              "finan": 30698,
+              "kturaha": 66270,
+              "luototy": 87464,
+              "asuntm": 106611
+            },
+            "debt_to_income": 124.8,
+            "wealth_index": 100.9
+          },
+          "10": {
+            "mean": {
+              "nettoae_DN3001": 760669,
+              "bruttoae_DA1000": 897636,
+              "realvar": 528780,
+              "finan": 328435,
+              "kturaha": 110709,
+              "luototy": 136967,
+              "asuntm": 85125
+            },
+            "median": {
+              "nettoae_DN3001": 477428,
+              "bruttoae_DA1000": 612188,
+              "realvar": 437358,
+              "finan": 78822,
+              "kturaha": 91676,
+              "luototy": 132505,
+              "asuntm": 128921
+            },
+            "debt_to_income": 123.7,
+            "wealth_index": 97.4
+          }
+        }
+      },
+      {
+        "year": 2016,
+        "deciles": {
+          "SS": {
+            "mean": {
+              "nettoae_DN3001": 247958,
+              "bruttoae_DA1000": 301815,
+              "realvar": 210936,
+              "finan": 76669,
+              "kturaha": 46817,
+              "luototy": 53857,
+              "asuntm": 37063
+            },
+            "median": {
+              "nettoae_DN3001": 128675,
+              "bruttoae_DA1000": 192585,
+              "realvar": 192637,
+              "finan": 13203,
+              "kturaha": 38629,
+              "luototy": 47106,
+              "asuntm": 91195
+            },
+            "debt_to_income": 115.0,
+            "wealth_index": 100.0
+          },
+          "1": {
+            "mean": {
+              "nettoae_DN3001": 76994,
+              "bruttoae_DA1000": 90478,
+              "realvar": 66979,
+              "finan": 16142,
+              "kturaha": 14491,
+              "luototy": 13484,
+              "asuntm": 7023
+            },
+            "median": {
+              "nettoae_DN3001": 6481,
+              "bruttoae_DA1000": 9562,
+              "realvar": 59393,
+              "finan": 2400,
+              "kturaha": 13872,
+              "luototy": 10645,
+              "asuntm": 65092
+            },
+            "debt_to_income": 93.1,
+            "wealth_index": 100.0
+          },
+          "2": {
+            "mean": {
+              "nettoae_DN3001": 101435,
+              "bruttoae_DA1000": 112867,
+              "realvar": 85849,
+              "finan": 19011,
+              "kturaha": 21421,
+              "luototy": 11433,
+              "asuntm": 5956
+            },
+            "median": {
+              "nettoae_DN3001": 32774,
+              "bruttoae_DA1000": 39092,
+              "realvar": 91502,
+              "finan": 3601,
+              "kturaha": 17694,
+              "luototy": 10743,
+              "asuntm": 48539
+            },
+            "debt_to_income": 53.4,
+            "wealth_index": 100.0
+          },
+          "3": {
+            "mean": {
+              "nettoae_DN3001": 107117,
+              "bruttoae_DA1000": 125772,
+              "realvar": 96511,
+              "finan": 22333,
+              "kturaha": 26982,
+              "luototy": 18654,
+              "asuntm": 11804
+            },
+            "median": {
+              "nettoae_DN3001": 30259,
+              "bruttoae_DA1000": 43942,
+              "realvar": 101901,
+              "finan": 4291,
+              "kturaha": 20891,
+              "luototy": 16811,
+              "asuntm": 67508
+            },
+            "debt_to_income": 69.1,
+            "wealth_index": 100.0
+          },
+          "4": {
+            "mean": {
+              "nettoae_DN3001": 154514,
+              "bruttoae_DA1000": 180842,
+              "realvar": 136260,
+              "finan": 33305,
+              "kturaha": 33177,
+              "luototy": 26328,
+              "asuntm": 18377
+            },
+            "median": {
+              "nettoae_DN3001": 96998,
+              "bruttoae_DA1000": 134807,
+              "realvar": 130080,
+              "finan": 7932,
+              "kturaha": 32868,
+              "luototy": 21160,
+              "asuntm": 81655
+            },
+            "debt_to_income": 79.4,
+            "wealth_index": 100.0
+          },
+          "5": {
+            "mean": {
+              "nettoae_DN3001": 188711,
+              "bruttoae_DA1000": 232853,
+              "realvar": 180158,
+              "finan": 41233,
+              "kturaha": 39087,
+              "luototy": 44142,
+              "asuntm": 31174
+            },
+            "median": {
+              "nettoae_DN3001": 138709,
+              "bruttoae_DA1000": 184268,
+              "realvar": 180037,
+              "finan": 12002,
+              "kturaha": 37970,
+              "luototy": 31304,
+              "asuntm": 83329
+            },
+            "debt_to_income": 112.9,
+            "wealth_index": 100.0
+          },
+          "6": {
+            "mean": {
+              "nettoae_DN3001": 191854,
+              "bruttoae_DA1000": 245655,
+              "realvar": 194253,
+              "finan": 39364,
+              "kturaha": 44123,
+              "luototy": 53802,
+              "asuntm": 41202
+            },
+            "median": {
+              "nettoae_DN3001": 128605,
+              "bruttoae_DA1000": 202312,
+              "realvar": 177000,
+              "finan": 12857,
+              "kturaha": 43000,
+              "luototy": 54489,
+              "asuntm": 86665
+            },
+            "debt_to_income": 121.9,
+            "wealth_index": 100.0
+          },
+          "7": {
+            "mean": {
+              "nettoae_DN3001": 237122,
+              "bruttoae_DA1000": 298749,
+              "realvar": 233142,
+              "finan": 49292,
+              "kturaha": 51312,
+              "luototy": 61627,
+              "asuntm": 46810
+            },
+            "median": {
+              "nettoae_DN3001": 168673,
+              "bruttoae_DA1000": 250810,
+              "realvar": 219300,
+              "finan": 16230,
+              "kturaha": 49302,
+              "luototy": 58960,
+              "asuntm": 84746
+            },
+            "debt_to_income": 120.1,
+            "wealth_index": 100.0
+          },
+          "8": {
+            "mean": {
+              "nettoae_DN3001": 270552,
+              "bruttoae_DA1000": 346252,
+              "realvar": 262545,
+              "finan": 64685,
+              "kturaha": 57341,
+              "luototy": 75699,
+              "asuntm": 56025
+            },
+            "median": {
+              "nettoae_DN3001": 195677,
+              "bruttoae_DA1000": 283405,
+              "realvar": 242603,
+              "finan": 22525,
+              "kturaha": 56047,
+              "luototy": 79772,
+              "asuntm": 95063
+            },
+            "debt_to_income": 132.0,
+            "wealth_index": 100.0
+          },
+          "9": {
+            "mean": {
+              "nettoae_DN3001": 324007,
+              "bruttoae_DA1000": 418078,
+              "realvar": 318728,
+              "finan": 79321,
+              "kturaha": 68378,
+              "luototy": 94071,
+              "asuntm": 68014
+            },
+            "median": {
+              "nettoae_DN3001": 240188,
+              "bruttoae_DA1000": 344637,
+              "realvar": 279333,
+              "finan": 31695,
+              "kturaha": 65958,
+              "luototy": 96036,
+              "asuntm": 102021
+            },
+            "debt_to_income": 137.6,
+            "wealth_index": 100.0
+          },
+          "10": {
+            "mean": {
+              "nettoae_DN3001": 827856,
+              "bruttoae_DA1000": 967306,
+              "realvar": 535342,
+              "finan": 402279,
+              "kturaha": 111931,
+              "luototy": 139450,
+              "asuntm": 84319
+            },
+            "median": {
+              "nettoae_DN3001": 490412,
+              "bruttoae_DA1000": 619184,
+              "realvar": 427244,
+              "finan": 106342,
+              "kturaha": 93038,
+              "luototy": 130227,
+              "asuntm": 138457
+            },
+            "debt_to_income": 124.6,
+            "wealth_index": 100.0
+          }
+        }
+      },
+      {
+        "year": 2019,
+        "deciles": {
+          "SS": {
+            "mean": {
+              "nettoae_DN3001": 250576,
+              "bruttoae_DA1000": 304841,
+              "realvar": 205836,
+              "finan": 84539,
+              "kturaha": 47707,
+              "luototy": 54265,
+              "asuntm": 35458
+            },
+            "median": {
+              "nettoae_DN3001": 121320,
+              "bruttoae_DA1000": 182561,
+              "realvar": 178749,
+              "finan": 15768,
+              "kturaha": 37677,
+              "luototy": 42085,
+              "asuntm": 89586
+            },
+            "debt_to_income": 113.7,
+            "wealth_index": 94.3
+          },
+          "1": {
+            "mean": {
+              "nettoae_DN3001": 79287,
+              "bruttoae_DA1000": 89878,
+              "realvar": 63980,
+              "finan": 19112,
+              "kturaha": 14795,
+              "luototy": 10591,
+              "asuntm": 4388
+            },
+            "median": {
+              "nettoae_DN3001": 12119,
+              "bruttoae_DA1000": 15900,
+              "realvar": 70366,
+              "finan": 2915,
+              "kturaha": 14025,
+              "luototy": 10542,
+              "asuntm": 69993
+            },
+            "debt_to_income": 71.6,
+            "wealth_index": 187.0
+          },
+          "2": {
+            "mean": {
+              "nettoae_DN3001": 86696,
+              "bruttoae_DA1000": 99308,
+              "realvar": 68308,
+              "finan": 23363,
+              "kturaha": 22116,
+              "luototy": 12611,
+              "asuntm": 5679
+            },
+            "median": {
+              "nettoae_DN3001": 12684,
+              "bruttoae_DA1000": 17908,
+              "realvar": 68955,
+              "finan": 4433,
+              "kturaha": 18226,
+              "luototy": 12636,
+              "asuntm": 36704
+            },
+            "debt_to_income": 57.0,
+            "wealth_index": 38.7
+          },
+          "3": {
+            "mean": {
+              "nettoae_DN3001": 118803,
+              "bruttoae_DA1000": 136488,
+              "realvar": 98986,
+              "finan": 31116,
+              "kturaha": 25822,
+              "luototy": 17685,
+              "asuntm": 11103
+            },
+            "median": {
+              "nettoae_DN3001": 42684,
+              "bruttoae_DA1000": 59087,
+              "realvar": 104956,
+              "finan": 5833,
+              "kturaha": 20859,
+              "luototy": 15130,
+              "asuntm": 74473
+            },
+            "debt_to_income": 68.5,
+            "wealth_index": 141.1
+          },
+          "4": {
+            "mean": {
+              "nettoae_DN3001": 138931,
+              "bruttoae_DA1000": 165722,
+              "realvar": 125499,
+              "finan": 30796,
+              "kturaha": 30991,
+              "luototy": 26792,
+              "asuntm": 16961
+            },
+            "median": {
+              "nettoae_DN3001": 76471,
+              "bruttoae_DA1000": 113568,
+              "realvar": 121059,
+              "finan": 9967,
+              "kturaha": 24205,
+              "luototy": 19866,
+              "asuntm": 83794
+            },
+            "debt_to_income": 86.5,
+            "wealth_index": 78.8
+          },
+          "5": {
+            "mean": {
+              "nettoae_DN3001": 165844,
+              "bruttoae_DA1000": 202895,
+              "realvar": 156276,
+              "finan": 35660,
+              "kturaha": 38937,
+              "luototy": 37050,
+              "asuntm": 24355
+            },
+            "median": {
+              "nettoae_DN3001": 107787,
+              "bruttoae_DA1000": 155467,
+              "realvar": 144297,
+              "finan": 11665,
+              "kturaha": 37853,
+              "luototy": 23778,
+              "asuntm": 70321
+            },
+            "debt_to_income": 95.2,
+            "wealth_index": 77.7
+          },
+          "6": {
+            "mean": {
+              "nettoae_DN3001": 193643,
+              "bruttoae_DA1000": 242835,
+              "realvar": 187945,
+              "finan": 41166,
+              "kturaha": 44472,
+              "luototy": 49192,
+              "asuntm": 36083
+            },
+            "median": {
+              "nettoae_DN3001": 124195,
+              "bruttoae_DA1000": 192554,
+              "realvar": 178088,
+              "finan": 15265,
+              "kturaha": 43513,
+              "luototy": 59084,
+              "asuntm": 84857
+            },
+            "debt_to_income": 110.6,
+            "wealth_index": 96.6
+          },
+          "7": {
+            "mean": {
+              "nettoae_DN3001": 218277,
+              "bruttoae_DA1000": 281714,
+              "realvar": 214222,
+              "finan": 54787,
+              "kturaha": 50589,
+              "luototy": 63437,
+              "asuntm": 46478
+            },
+            "median": {
+              "nettoae_DN3001": 147779,
+              "bruttoae_DA1000": 232095,
+              "realvar": 194333,
+              "finan": 19947,
+              "kturaha": 49572,
+              "luototy": 52693,
+              "asuntm": 86340
+            },
+            "debt_to_income": 125.4,
+            "wealth_index": 87.6
+          },
+          "8": {
+            "mean": {
+              "nettoae_DN3001": 265737,
+              "bruttoae_DA1000": 339040,
+              "realvar": 254877,
+              "finan": 65852,
+              "kturaha": 58935,
+              "luototy": 73303,
+              "asuntm": 52201
+            },
+            "median": {
+              "nettoae_DN3001": 197001,
+              "bruttoae_DA1000": 293305,
+              "realvar": 239526,
+              "finan": 25082,
+              "kturaha": 57691,
+              "luototy": 63108,
+              "asuntm": 91780
+            },
+            "debt_to_income": 124.4,
+            "wealth_index": 100.7
+          },
+          "9": {
+            "mean": {
+              "nettoae_DN3001": 322669,
+              "bruttoae_DA1000": 423729,
+              "realvar": 319315,
+              "finan": 88227,
+              "kturaha": 71309,
+              "luototy": 101059,
+              "asuntm": 72241
+            },
+            "median": {
+              "nettoae_DN3001": 240067,
+              "bruttoae_DA1000": 340988,
+              "realvar": 271963,
+              "finan": 38742,
+              "kturaha": 68456,
+              "luototy": 97424,
+              "asuntm": 114056
+            },
+            "debt_to_income": 141.7,
+            "wealth_index": 99.9
+          },
+          "10": {
+            "mean": {
+              "nettoae_DN3001": 916286,
+              "bruttoae_DA1000": 1067322,
+              "realvar": 569285,
+              "finan": 455475,
+              "kturaha": 119189,
+              "luototy": 151035,
+              "asuntm": 85174
+            },
+            "median": {
+              "nettoae_DN3001": 548562,
+              "bruttoae_DA1000": 715572,
+              "realvar": 486713,
+              "finan": 123534,
+              "kturaha": 97560,
+              "luototy": 151342,
+              "asuntm": 135741
+            },
+            "debt_to_income": 126.7,
+            "wealth_index": 111.9
+          }
+        }
+      },
+      {
+        "year": 2023,
+        "deciles": {
+          "SS": {
+            "mean": {
+              "nettoae_DN3001": 228742,
+              "bruttoae_DA1000": 277033,
+              "realvar": 179804,
+              "finan": 84911,
+              "kturaha": 44281,
+              "luototy": 48291,
+              "asuntm": 31555
+            },
+            "median": {
+              "nettoae_DN3001": 96020,
+              "bruttoae_DA1000": 150462,
+              "realvar": 155393,
+              "finan": 16793,
+              "kturaha": 35738,
+              "luototy": 37897,
+              "asuntm": 84291
+            },
+            "debt_to_income": 109.1,
+            "wealth_index": 74.6
+          },
+          "1": {
+            "mean": {
+              "nettoae_DN3001": 47822,
+              "bruttoae_DA1000": 58617,
+              "realvar": 39925,
+              "finan": 14595,
+              "kturaha": 12587,
+              "luototy": 10795,
+              "asuntm": 3986
+            },
+            "median": {
+              "nettoae_DN3001": 5007,
+              "bruttoae_DA1000": 8470,
+              "realvar": 40316,
+              "finan": 3500,
+              "kturaha": 12694,
+              "luototy": 12065,
+              "asuntm": 41932
+            },
+            "debt_to_income": 85.8,
+            "wealth_index": 77.3
+          },
+          "2": {
+            "mean": {
+              "nettoae_DN3001": 72599,
+              "bruttoae_DA1000": 83908,
+              "realvar": 61050,
+              "finan": 16762,
+              "kturaha": 19603,
+              "luototy": 11309,
+              "asuntm": 3689
+            },
+            "median": {
+              "nettoae_DN3001": 18599,
+              "bruttoae_DA1000": 26539,
+              "realvar": 61950,
+              "finan": 2700,
+              "kturaha": 17075,
+              "luototy": 13785,
+              "asuntm": 28214
+            },
+            "debt_to_income": 57.7,
+            "wealth_index": 56.7
+          },
+          "3": {
+            "mean": {
+              "nettoae_DN3001": 92589,
+              "bruttoae_DA1000": 108319,
+              "realvar": 75598,
+              "finan": 24973,
+              "kturaha": 24888,
+              "luototy": 15730,
+              "asuntm": 9608
+            },
+            "median": {
+              "nettoae_DN3001": 34897,
+              "bruttoae_DA1000": 44428,
+              "realvar": 79510,
+              "finan": 5000,
+              "kturaha": 20260,
+              "luototy": 13321,
+              "asuntm": 38865
+            },
+            "debt_to_income": 63.2,
+            "wealth_index": 115.3
+          },
+          "4": {
+            "mean": {
+              "nettoae_DN3001": 140484,
+              "bruttoae_DA1000": 164866,
+              "realvar": 112177,
+              "finan": 43058,
+              "kturaha": 30614,
+              "luototy": 24381,
+              "asuntm": 15908
+            },
+            "median": {
+              "nettoae_DN3001": 69411,
+              "bruttoae_DA1000": 103467,
+              "realvar": 112304,
+              "finan": 8000,
+              "kturaha": 23676,
+              "luototy": 21033,
+              "asuntm": 69167
+            },
+            "debt_to_income": 79.6,
+            "wealth_index": 71.6
+          },
+          "5": {
+            "mean": {
+              "nettoae_DN3001": 161771,
+              "bruttoae_DA1000": 193101,
+              "realvar": 141322,
+              "finan": 41036,
+              "kturaha": 35780,
+              "luototy": 31330,
+              "asuntm": 19791
+            },
+            "median": {
+              "nettoae_DN3001": 108865,
+              "bruttoae_DA1000": 141698,
+              "realvar": 128809,
+              "finan": 13851,
+              "kturaha": 36388,
+              "luototy": 27282,
+              "asuntm": 67363
+            },
+            "debt_to_income": 87.6,
+            "wealth_index": 78.5
+          },
+          "6": {
+            "mean": {
+              "nettoae_DN3001": 184183,
+              "bruttoae_DA1000": 231089,
+              "realvar": 171662,
+              "finan": 49608,
+              "kturaha": 42361,
+              "luototy": 46906,
+              "asuntm": 33078
+            },
+            "median": {
+              "nettoae_DN3001": 103236,
+              "bruttoae_DA1000": 170106,
+              "realvar": 149741,
+              "finan": 18110,
+              "kturaha": 41948,
+              "luototy": 53514,
+              "asuntm": 84488
+            },
+            "debt_to_income": 110.7,
+            "wealth_index": 80.3
+          },
+          "7": {
+            "mean": {
+              "nettoae_DN3001": 194827,
+              "bruttoae_DA1000": 253832,
+              "realvar": 182603,
+              "finan": 60217,
+              "kturaha": 47689,
+              "luototy": 59005,
+              "asuntm": 41549
+            },
+            "median": {
+              "nettoae_DN3001": 127101,
+              "bruttoae_DA1000": 209128,
+              "realvar": 172288,
+              "finan": 24000,
+              "kturaha": 47174,
+              "luototy": 58386,
+              "asuntm": 88236
+            },
+            "debt_to_income": 123.7,
+            "wealth_index": 75.4
+          },
+          "8": {
+            "mean": {
+              "nettoae_DN3001": 240763,
+              "bruttoae_DA1000": 312205,
+              "realvar": 225987,
+              "finan": 72147,
+              "kturaha": 55535,
+              "luototy": 71443,
+              "asuntm": 49735
+            },
+            "median": {
+              "nettoae_DN3001": 165519,
+              "bruttoae_DA1000": 244851,
+              "realvar": 203699,
+              "finan": 32529,
+              "kturaha": 54722,
+              "luototy": 76600,
+              "asuntm": 89872
+            },
+            "debt_to_income": 128.6,
+            "wealth_index": 84.6
+          },
+          "9": {
+            "mean": {
+              "nettoae_DN3001": 299859,
+              "bruttoae_DA1000": 386066,
+              "realvar": 273146,
+              "finan": 94403,
+              "kturaha": 65957,
+              "luototy": 86206,
+              "asuntm": 62359
+            },
+            "median": {
+              "nettoae_DN3001": 214039,
+              "bruttoae_DA1000": 317823,
+              "realvar": 236015,
+              "finan": 42216,
+              "kturaha": 64218,
+              "luototy": 85915,
+              "asuntm": 98020
+            },
+            "debt_to_income": 130.7,
+            "wealth_index": 89.1
+          },
+          "10": {
+            "mean": {
+              "nettoae_DN3001": 852926,
+              "bruttoae_DA1000": 978807,
+              "realvar": 514848,
+              "finan": 432496,
+              "kturaha": 107856,
+              "luototy": 125881,
+              "asuntm": 75912
+            },
+            "median": {
+              "nettoae_DN3001": 480180,
+              "bruttoae_DA1000": 602204,
+              "realvar": 387454,
+              "finan": 118003,
+              "kturaha": 88625,
+              "luototy": 122259,
+              "asuntm": 120000
+            },
+            "debt_to_income": 116.7,
+            "wealth_index": 97.9
+          }
+        }
+      }
+    ]
+  },
+  "decile_labels": {
+    "1": "I (Lowest 10%)",
+    "2": "II",
+    "3": "III",
+    "4": "IV",
+    "5": "V (Median)",
+    "6": "VI",
+    "7": "VII",
+    "8": "VIII",
+    "9": "IX",
+    "10": "X (Top 10%)",
+    "SS": "Total"
+  }
+}

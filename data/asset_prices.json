@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "source": "Statistics Finland, Nasdaq Nordic, Yahoo Finance",
+    "base_year": 2015,
+    "fetched_at": "2026-01-03T20:19:44.728820"
+  },
+  "housing_price_index": {
+    "description": "Price index of old dwellings in housing companies",
+    "base": "2015 = 100",
+    "values": {
+      "2015": 100,
+      "2016": 101.3,
+      "2017": 102.4,
+      "2018": 103.7,
+      "2019": 104.1,
+      "2020": 105.5,
+      "2021": 109.5,
+      "2022": 110.1,
+      "2023": 103,
+      "2024": 99.4
+    }
+  },
+  "omx_helsinki_25": {
+    "description": "OMX Helsinki 25 stock index (Finnish stocks)",
+    "base": "2015 = 100 (normalized)",
+    "values": {
+      "2015": 100.0,
+      "2016": 104.5,
+      "2017": 120.6,
+      "2018": 118.7,
+      "2019": 129.5,
+      "2020": 124.7,
+      "2021": 161.4,
+      "2022": 133.6,
+      "2023": 129.2,
+      "2024": 141.9
+    }
+  },
+  "sp500": {
+    "description": "S&P 500 US stock index",
+    "base": "2015 = 100 (normalized)",
+    "values": {
+      "2015": 100.0,
+      "2016": 109.5,
+      "2017": 130.8,
+      "2018": 122.7,
+      "2019": 158.1,
+      "2020": 183.8,
+      "2021": 233.3,
+      "2022": 187.9,
+      "2023": 233.4,
+      "2024": 287.9
+    }
+  },
+  "gdp_per_capita": {
+    "description": "Finnish GDP per capita volume index",
+    "base": "2015 = 100",
+    "values": {
+      "2015": 100,
+      "2016": 102.3,
+      "2017": 105.4,
+      "2018": 106.5,
+      "2019": 107.9,
+      "2020": 105,
+      "2021": 107.6,
+      "2022": 108.1,
+      "2023": 106.3,
+      "2024": 105.9
+    }
+  },
+  "wage_index_nominal": {
+    "description": "Index of wage and salary earnings (nominal)",
+    "base": "2015 = 100",
+    "values": {
+      "2015": 100,
+      "2016": 100.9,
+      "2017": 101.1,
+      "2018": 102.8,
+      "2019": 105,
+      "2020": 107,
+      "2021": 109.6,
+      "2022": 112.3,
+      "2023": 117,
+      "2024": 120.6
+    }
+  },
+  "wage_index_real": {
+    "description": "Index of real wage and salary earnings (inflation-adjusted)",
+    "base": "2015 = 100",
+    "values": {
+      "2015": 100,
+      "2016": 100.5,
+      "2017": 100,
+      "2018": 100.6,
+      "2019": 101.7,
+      "2020": 103.4,
+      "2021": 103.6,
+      "2022": 99.1,
+      "2023": 97.1,
+      "2024": 98.6
+    }
+  }
+}

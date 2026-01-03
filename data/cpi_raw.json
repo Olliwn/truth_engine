@@ -1,0 +1,214 @@
+{
+  "version": "2.0",
+  "class": "dataset",
+  "label": "Consumer Price Index (2015=100) by Year, Commodity and Information",
+  "source": "Statistics Finland, consumer price index",
+  "updated": "2025-01-14T06:00:00Z",
+  "note": [
+    "<A HREF='https://stat.fi/en/statistics/documentation/khi' TARGET=_blank>Documentation of statistics</A>",
+    ". missing\r\n. missing"
+  ],
+  "role": {
+    "time": [
+      "Vuosi"
+    ],
+    "metric": [
+      "Tiedot"
+    ]
+  },
+  "id": [
+    "Vuosi",
+    "Hy\u00f6dyke",
+    "Tiedot"
+  ],
+  "size": [
+    10,
+    6,
+    1
+  ],
+  "dimension": {
+    "Vuosi": {
+      "label": "Year",
+      "category": {
+        "index": {
+          "2015": 0,
+          "2016": 1,
+          "2017": 2,
+          "2018": 3,
+          "2019": 4,
+          "2020": 5,
+          "2021": 6,
+          "2022": 7,
+          "2023": 8,
+          "2024": 9
+        },
+        "label": {
+          "2015": "2015",
+          "2016": "2016",
+          "2017": "2017",
+          "2018": "2018",
+          "2019": "2019",
+          "2020": "2020",
+          "2021": "2021",
+          "2022": "2022",
+          "2023": "2023",
+          "2024": "2024"
+        }
+      },
+      "extension": {
+        "elimination": false,
+        "show": "value"
+      }
+    },
+    "Hy\u00f6dyke": {
+      "label": "Commodity",
+      "category": {
+        "index": {
+          "0": 0,
+          "011": 1,
+          "0411": 2,
+          "045": 3,
+          "0721": 4,
+          "0722": 5
+        },
+        "label": {
+          "0": "0 Consumer Price Index",
+          "011": "01.1 Food",
+          "0411": "04.1.1 Actual rentals paid by tenants",
+          "045": "04.5 Electricity, gas and other fuels",
+          "0721": "07.2.1 Spare parts and accessories for personal transport equipment",
+          "0722": "07.2.2 Fuels and lubricants for personal transport equipment"
+        }
+      },
+      "extension": {
+        "elimination": true,
+        "eliminationValueCode": "0",
+        "show": "value"
+      },
+      "link": {
+        "describedby": [
+          {
+            "extension": {
+              "Hy\u00f6dyke": "SCALE-TYPE=nominal"
+            }
+          }
+        ]
+      }
+    },
+    "Tiedot": {
+      "label": "Information",
+      "category": {
+        "index": {
+          "indeksipisteluku": 0
+        },
+        "label": {
+          "indeksipisteluku": "Point figure"
+        },
+        "note": {
+          "indeksipisteluku": [
+            "Point figure is a change quantity used in price indices, which expresses the price, average price or index of the reference period relative to the price, average price or index of the base period. The point figure of the base period is usually denoted by the number hundred. For example, if the point figure of the commodity is 105.3 in a certain period, it means that the price of the commodity has risen by 5.3 per cent from the base period."
+          ]
+        },
+        "unit": {
+          "indeksipisteluku": {
+            "base": "Index point",
+            "decimals": 2
+          }
+        }
+      },
+      "extension": {
+        "elimination": false,
+        "show": "value"
+      }
+    }
+  },
+  "extension": {
+    "px": {
+      "tableid": "statfin_khi_pxt_11xc",
+      "decimals": 2,
+      "official-statistics": true,
+      "aggregallowed": true,
+      "language": "fi",
+      "contents": "Consumer Price Index (2015=100)",
+      "description": "11xc -- Consumer Price Index (2015=100), yearly data, 2015-2024",
+      "descriptiondefault": false,
+      "heading": [
+        "Tiedot"
+      ],
+      "stub": [
+        "Vuosi",
+        "Hy\u00f6dyke"
+      ],
+      "matrix": "001_11xc_2024",
+      "subject-code": "KHI",
+      "subject-area": "khi"
+    },
+    "contact": [
+      {
+        "raw": "<A HREF='https://stat.fi/en/statistics/khi' TARGET=_blank>Statistics' homepage</A>"
+      }
+    ]
+  },
+  "value": [
+    100,
+    100,
+    100,
+    100,
+    100,
+    100,
+    100.35,
+    98.96,
+    102.41,
+    99.11,
+    98.94,
+    93.94,
+    101.1,
+    97.71,
+    104.6,
+    104.4,
+    97.92,
+    99.57,
+    102.2,
+    99.83,
+    106.64,
+    109.19,
+    95.6,
+    104.01,
+    103.25,
+    101.03,
+    108.84,
+    115.89,
+    95.71,
+    104.38,
+    103.55,
+    102.34,
+    110.38,
+    113.29,
+    96.08,
+    96.5,
+    105.82,
+    102.62,
+    111.34,
+    117.34,
+    97.82,
+    114.61,
+    113.36,
+    113.05,
+    112.33,
+    153.98,
+    102.19,
+    149.13,
+    120.44,
+    123.87,
+    114.27,
+    160.07,
+    105.93,
+    134.99,
+    122.33,
+    123.22,
+    116.78,
+    146.88,
+    107.16,
+    124.62
+  ]
+}

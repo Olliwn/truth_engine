@@ -1,0 +1,391 @@
+export interface MunicipalityData {
+  municipality_code: string;
+  municipality_name: string;
+  projection_year: string;
+  debt_year: string;
+  
+  // Raw values
+  total_debt_eur: number;
+  working_age_population: number;
+  total_dependents: number;
+  young_dependents_0_19: number;
+  elderly_dependents_65_plus: number;
+  total_population: number;
+  
+  // Calculated metrics
+  debt_per_worker_eur: number;
+  dependency_ratio: number;
+  elderly_ratio: number;
+  youth_ratio: number;
+  
+  // Additional debt metrics
+  loan_per_capita_eur: number;
+  relative_indebtedness_pct: number;
+  equity_ratio_pct: number;
+  
+  // The Ponzi Index
+  ponzi_index: number;
+  
+  // Risk category
+  risk_category: 'critical' | 'high' | 'elevated' | 'moderate' | 'low';
+  
+  // Ranking
+  rank: number;
+}
+
+export interface PonziStatistics {
+  total_municipalities: number;
+  ponzi_index: {
+    min: number;
+    max: number;
+    mean: number;
+    median: number;
+    stdev: number;
+  };
+  debt_per_worker: {
+    min: number;
+    max: number;
+    mean: number;
+    median: number;
+  };
+  dependency_ratio: {
+    min: number;
+    max: number;
+    mean: number;
+    median: number;
+  };
+  risk_distribution: {
+    critical: number;
+    high: number;
+    elevated: number;
+    moderate: number;
+    low: number;
+  };
+}
+
+export interface YearData {
+  municipalities: MunicipalityData[];
+  statistics: PonziStatistics;
+}
+
+export interface PonziData {
+  [year: string]: YearData;
+}
+
+export interface GeoJSONFeature {
+  type: 'Feature';
+  properties: {
+    id: number;
+    kunta: string; // municipality code
+    vuosi: number;
+    nimi: string; // Finnish name
+    namn: string; // Swedish name
+    name: string; // English name
+  };
+  geometry: {
+    type: string;
+    coordinates: number[][][] | number[][][][];
+  };
+}
+
+export interface GeoJSONData {
+  type: 'FeatureCollection';
+  features: GeoJSONFeature[];
+}
+
+export type RiskCategory = 'critical' | 'high' | 'elevated' | 'moderate' | 'low';
+
+export const RISK_COLORS: Record<RiskCategory, string> = {
+  critical: '#dc2626',
+  high: '#f97316',
+  elevated: '#eab308',
+  moderate: '#3b82f6',
+  low: '#22c55e',
+};
+
+export const RISK_LABELS: Record<RiskCategory, string> = {
+  critical: 'Critical',
+  high: 'High Risk',
+  elevated: 'Elevated',
+  moderate: 'Moderate',
+  low: 'Low Risk',
+};
+
+// ============================================
+// Maslow CPI Types (Project Gamma)
+// ============================================
+
+export interface IndexEntry {
+  index: number;
+  yoy_change: number;
+}
+
+export interface MaslowTimeSeriesEntry {
+  year: number;
+  maslow_cpi: IndexEntry;
+  official_cpi: IndexEntry;
+  asset_index: IndexEntry;
+  gdp_per_capita: IndexEntry;
+  nominal_wage: IndexEntry;
+  real_wage: IndexEntry;
+  sp500: IndexEntry;
+  omx_helsinki: IndexEntry;
+  inflation_gap: number;
+  wealth_gap: number;
+}
+
+export interface MaslowCategoryData {
+  name: string;
+  weight: number;
+  values: Array<{
+    year: number;
+    index: number;
+  }>;
+}
+
+export interface SummaryEntry {
+  start: number;
+  end: number;
+  total_change_pct: number;
+}
+
+export interface MaslowSummary {
+  period: string;
+  maslow_cpi: SummaryEntry;
+  official_cpi: SummaryEntry;
+  asset_index: SummaryEntry;
+  gdp_per_capita: SummaryEntry;
+  nominal_wage: SummaryEntry;
+  real_wage: SummaryEntry;
+  sp500: SummaryEntry;
+  key_insight: string;
+}
+
+export interface MaslowData {
+  metadata: {
+    name: string;
+    description: string;
+    methodology: string;
+    base_year: number;
+    calculated_at: string;
+  };
+  summary: MaslowSummary;
+  time_series: MaslowTimeSeriesEntry[];
+  category_breakdown: Record<string, MaslowCategoryData>;
+  weights: {
+    food: number;
+    housing: number;
+    energy: number;
+    fuel: number;
+  };
+}
+
+// ============================================
+// Purchasing Power Types (Project Delta)
+// ============================================
+
+export interface DecileIncomeData {
+  nominal_income: number | null;
+  real_income: number | null;
+  nominal_median: number | null;
+  real_median: number | null;
+  income_index: number | null;
+  real_income_index: number | null;
+}
+
+export interface IncomeYearEntry {
+  year: number;
+  deciles: Record<string, DecileIncomeData>;
+}
+
+export interface DecileWealthMeanMedian {
+  nettoae_DN3001?: number | null;  // Net wealth
+  bruttoae_DA1000?: number | null; // Total assets
+  realvar?: number | null;          // Real wealth
+  finan?: number | null;            // Financial assets
+  luototy?: number | null;          // Total debt
+  asuntm?: number | null;           // Housing loans
+  kturaha?: number | null;          // Disposable income
+}
+
+export interface DecileWealthData {
+  mean: DecileWealthMeanMedian;
+  median: DecileWealthMeanMedian;
+  debt_to_income: number | null;
+  wealth_index: number | null;
+}
+
+export interface WealthYearEntry {
+  year: number;
+  deciles: Record<string, DecileWealthData>;
+}
+
+export interface DecileChangeSummary {
+  real_income_change_pct?: number;
+  nominal_income_change_pct?: number;
+  wealth_change_pct?: number;
+}
+
+export interface PurchasingPowerSummary {
+  income_period: string;
+  wealth_period: string;
+  decile_changes: Record<string, DecileChangeSummary>;
+  gaps: {
+    income_gap_widened: number;
+    wealth_gap_widened: number;
+  };
+  key_insight: string;
+}
+
+export interface PurchasingPowerData {
+  metadata: {
+    name: string;
+    description: string;
+    calculated_at: string;
+    base_year: number;
+    maslow_adjusted: boolean;
+  };
+  summary: PurchasingPowerSummary;
+  income_time_series: IncomeYearEntry[];
+  wealth_data: {
+    years_available: number[];
+    time_series: WealthYearEntry[];
+  };
+  decile_labels: Record<string, string>;
+}
+
+export const DECILE_COLORS: Record<string, string> = {
+  '1': '#ef4444',   // Red - Bottom 10%
+  '2': '#f97316',   // Orange
+  '3': '#f59e0b',   // Amber
+  '4': '#eab308',   // Yellow
+  '5': '#84cc16',   // Lime - Median
+  '6': '#22c55e',   // Green
+  '7': '#14b8a6',   // Teal
+  '8': '#06b6d4',   // Cyan
+  '9': '#3b82f6',   // Blue
+  '10': '#8b5cf6',  // Purple - Top 10%
+};
+
+// ============================================
+// Wage Trap Types (Project Alpha)
+// ============================================
+
+export type WageTrapHouseholdProfile = 
+  | 'single'
+  | 'single_1child'
+  | 'single_2children'
+  | 'couple'
+  | 'couple_1child'
+  | 'couple_2children'
+  | 'student';
+
+export type WageTrapMunicipality = 'helsinki' | 'espoo' | 'tampere' | 'turku' | 'oulu' | 'other';
+
+export type WageTrapEmploymentStatus = 'employed' | 'unemployed' | 'student';
+
+export interface WageTrapTaxBreakdown {
+  grossMonthlyIncome: number;
+  grossAnnualIncome: number;
+  pensionContribution: number;
+  unemploymentInsurance: number;
+  healthInsurance: number;
+  totalSocialInsurance: number;
+  taxableIncome: number;
+  basicDeduction: number;
+  earnedIncomeDeduction: number;
+  workIncomeDeduction: number;
+  nationalTax: number;
+  municipalTax: number;
+  churchTax: number;
+  totalTax: number;
+  totalDeductions: number;
+  netMonthlyIncome: number;
+  effectiveTaxRate: number;
+  marginalTaxRate: number;
+}
+
+export interface WageTrapBenefitsBreakdown {
+  housingAllowance: number;
+  housingAllowanceMaxCost: number;
+  housingAllowanceAcceptedCost: number;
+  socialAssistance: number;
+  socialAssistanceBasicAmount: number;
+  socialAssistanceHousingCosts: number;
+  socialAssistanceTotalNeed: number;
+  unemploymentBenefit: number;
+  childBenefit: number;
+  studentAid: number;
+  totalMeansTestedBenefits: number;
+  totalUniversalBenefits: number;
+  totalBenefits: number;
+}
+
+export interface WageTrapDataPoint {
+  grossMonthlyIncome: number;
+  monthlyRent: number;
+  taxes: WageTrapTaxBreakdown;
+  benefits: WageTrapBenefitsBreakdown;
+  netIncomeAfterTax: number;
+  totalBenefits: number;
+  netDisposableIncome: number;
+  effectiveTaxRate: number;
+  effectiveMarginalTaxRate: number;
+  benefitClawbackRate: number;
+  keepPerEuro: number;
+}
+
+export interface WageTrapValley {
+  start: number;
+  end: number;
+  peakEMTR: number;
+  flatZone: boolean;
+}
+
+export interface WageTrapProfileSummary {
+  zeroWorkIncome: number;
+  escapeVelocity: number;
+  valley: WageTrapValley;
+  at2000Gross: WageTrapDataPoint;
+  at4000Gross: WageTrapDataPoint;
+}
+
+export const HOUSEHOLD_PROFILE_LABELS: Record<WageTrapHouseholdProfile, string> = {
+  single: 'Single, no children',
+  single_1child: 'Single parent + 1 child',
+  single_2children: 'Single parent + 2 children',
+  couple: 'Couple, no children',
+  couple_1child: 'Couple + 1 child',
+  couple_2children: 'Couple + 2 children',
+  student: 'Student',
+};
+
+export const MUNICIPALITY_LABELS: Record<WageTrapMunicipality, string> = {
+  helsinki: 'Helsinki',
+  espoo: 'Espoo',
+  tampere: 'Tampere',
+  turku: 'Turku',
+  oulu: 'Oulu',
+  other: 'Other municipality',
+};
+
+export const EMPLOYMENT_STATUS_LABELS: Record<WageTrapEmploymentStatus, string> = {
+  employed: 'Employed',
+  unemployed: 'Unemployed (seeking work)',
+  student: 'Student',
+};
+
+// EMTR color scale
+export const EMTR_COLORS = {
+  low: '#22c55e',      // <50% - Green
+  medium: '#eab308',   // 50-70% - Yellow
+  high: '#f97316',     // 70-90% - Orange
+  critical: '#dc2626', // >90% - Red
+};
+
+export function getEMTRColor(emtr: number): string {
+  if (emtr < 0.5) return EMTR_COLORS.low;
+  if (emtr < 0.7) return EMTR_COLORS.medium;
+  if (emtr < 0.9) return EMTR_COLORS.high;
+  return EMTR_COLORS.critical;
+}
