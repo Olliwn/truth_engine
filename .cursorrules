@@ -1,0 +1,174 @@
+# Truth Engine Project Rules
+
+## Project Overview
+Finnish macroeconomic data visualization project using Next.js 14 (App Router), TypeScript, Recharts, and Python data fetching scripts.
+
+---
+
+## Common Mistakes & Countermeasures
+
+### 1. Recharts Tooltip/Formatter Type Errors
+
+**Problem:** Recharts `formatter` prop has strict typing where `value` and `name` parameters can be `undefined`.
+
+**WRONG:**
+```tsx
+formatter={(value: number) => value.toFixed(2)}
+```
+
+**CORRECT:**
+```tsx
+formatter={(value: number | undefined) => 
+  value !== undefined ? value.toFixed(2) : 'N/A'
+}
+
+// With name parameter:
+formatter={(value: number | undefined, name: string | undefined) =>
+  value !== undefined ? [value.toFixed(2), name || 'Value'] : ['N/A', 'Value']
+}
+```
+
+**Rule:** Always handle `undefined` in Recharts formatter, labelFormatter, and tickFormatter props.
+
+---
+
+### 2. CSS Inline Style Errors
+
+**Problem:** Using non-standard CSS properties in React `style` prop causes TypeScript errors.
+
+**WRONG:**
+```tsx
+style={{ ringColor: '#fff' }}  // ringColor is not a CSS property
+```
+
+**CORRECT:**
+```tsx
+// Use Tailwind classes instead:
+className="ring-white/50"
+
+// Or use valid CSS properties:
+style={{ outlineColor: '#fff' }}
+```
+
+**Rule:** Never use Tailwind utility names as inline style properties. Use className for Tailwind utilities.
+
+---
+
+### 3. Statistics Finland API Issues
+
+**Problem:** Table IDs can change, APIs return 400 errors, or data structure differs from expected.
+
+**Countermeasures:**
+1. Always fetch metadata first to inspect available dimensions
+2. Include fallback/estimated data for critical metrics
+3. Log API responses during development
+4. Use try/catch with graceful degradation
+
+**Pattern:**
+```python
+def fetch_with_fallback(url, query, fallback_data):
+    try:
+        response = requests.post(url, json=query, timeout=60)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            print(f"API Error {response.status_code}, using fallback")
+            return None
+    except Exception as e:
+        print(f"Request failed: {e}, using fallback")
+        return None
+```
+
+---
+
+### 4. Data Normalization Pitfalls
+
+**Problem:** Min-max normalization (0-100) makes partial datasets misleading. A stable 80% metric over 10 years stretches to look like 0→100.
+
+**WRONG:** Min-max for trend comparison
+```python
+normalized = (value - min) / (max - min) * 100
+```
+
+**CORRECT:** Index normalization (first year = 100)
+```python
+def index_normalize(values):
+    base = next((v for v in values if v is not None), None)
+    if not base:
+        return values
+    return [(v / base * 100) if v else None for v in values]
+```
+
+**Rule:** Use index normalization for time-series trend comparison. Reserve min-max for single-point comparisons.
+
+---
+
+### 5. Type Synchronization
+
+**Problem:** Changing JSON structure in Python scripts requires updating TypeScript types and React components.
+
+**Checklist when modifying data structure:**
+1. Update Python script output
+2. Update `src/lib/types.ts` interfaces
+3. Update page component data access
+4. Run `npm run build` to catch type errors
+
+**Rule:** Always update types.ts BEFORE updating page components when JSON structure changes.
+
+---
+
+### 6. Python Virtual Environment & Sandbox
+
+**Problem:** Cursor sandbox can't access venv directory, causing Python script failures.
+
+**Solution:** Always use `required_permissions: ["all"]` for Python scripts:
+```bash
+cd /path/to/project && python scripts/fetch_data.py
+```
+
+---
+
+### 7. Build Verification
+
+**Rule:** Always run `npm run build` after TypeScript changes. Dev server may not catch all type errors that production build does.
+
+---
+
+## Project Conventions
+
+### Data Files
+- Raw API responses: `data/{name}_raw.json`
+- Processed data: `data/{name}.json` and `public/data/{name}.json`
+- Always save to both `data/` and `public/data/`
+
+### Page Structure
+- Each analysis page: `src/app/{greek_letter}/page.tsx`
+- Use 'use client' directive for interactive pages
+- Import types from `@/lib/types`
+
+### Chart Colors
+```tsx
+const COLORS = {
+  primary: '#EC4899',    // Pink for main metrics
+  positive: '#22C55E',   // Green for positive
+  negative: '#EF4444',   // Red for negative
+  neutral: '#6B7280',    // Gray for reference lines
+};
+```
+
+### Statistics Finland API
+- Base URL: `https://pxdata.stat.fi/PxWeb/api/v1/en/StatFin`
+- Always request `json-stat2` format
+- Handle dimension codes carefully (Vuosi, Sukupuoli, etc.)
+
+---
+
+## Testing Checklist
+
+Before committing:
+- [ ] `npm run build` passes
+- [ ] No TypeScript errors in edited files
+- [ ] Python scripts run successfully with `["all"]` permissions
+- [ ] Data files saved to both `data/` and `public/data/`
+- [ ] Charts render without console errors
+
