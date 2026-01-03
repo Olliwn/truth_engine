@@ -1,0 +1,250 @@
+{
+  "metadata": {
+    "source": "Statistics Finland",
+    "table": "statfin_jyev_pxt_11yv",
+    "description": "General government EDP debt by sector (quarterly, year-end values)",
+    "fetched_at": "2026-01-03T22:45:25.064326",
+    "unit": "Million EUR",
+    "sectors": {
+      "S13_C": "General government (consolidated)",
+      "S1311": "Central government",
+      "S1313": "Local government",
+      "S1314": "Social security funds"
+    }
+  },
+  "summary": {
+    "period": "2000-2024",
+    "current_debt_billion": 227.6,
+    "debt_change_billion": 166.0,
+    "debt_growth_pct": 269.7,
+    "central_debt_billion": 190.0,
+    "local_debt_billion": 38.1
+  },
+  "time_series": [
+    {
+      "year": 2000,
+      "total_debt_million": 61564,
+      "central_debt_million": 68665,
+      "local_debt_million": 6748,
+      "social_security_debt_million": 25,
+      "central_share_pct": 111.5,
+      "local_share_pct": 11.0
+    },
+    {
+      "year": 2001,
+      "total_debt_million": 62825,
+      "central_debt_million": 66215,
+      "local_debt_million": 6785,
+      "social_security_debt_million": 29,
+      "central_share_pct": 105.4,
+      "local_share_pct": 10.8
+    },
+    {
+      "year": 2002,
+      "total_debt_million": 63299,
+      "central_debt_million": 63531,
+      "local_debt_million": 7137,
+      "social_security_debt_million": 69,
+      "central_share_pct": 100.4,
+      "local_share_pct": 11.3
+    },
+    {
+      "year": 2003,
+      "total_debt_million": 68508,
+      "central_debt_million": 67517,
+      "local_debt_million": 7933,
+      "social_security_debt_million": 69,
+      "central_share_pct": 98.6,
+      "local_share_pct": 11.6
+    },
+    {
+      "year": 2004,
+      "total_debt_million": 71335,
+      "central_debt_million": 67905,
+      "local_debt_million": 8833,
+      "social_security_debt_million": 36,
+      "central_share_pct": 95.2,
+      "local_share_pct": 12.4
+    },
+    {
+      "year": 2005,
+      "total_debt_million": 69397,
+      "central_debt_million": 64530,
+      "local_debt_million": 9864,
+      "social_security_debt_million": 1,
+      "central_share_pct": 93.0,
+      "local_share_pct": 14.2
+    },
+    {
+      "year": 2006,
+      "total_debt_million": 69532,
+      "central_debt_million": 63143,
+      "local_debt_million": 10619,
+      "social_security_debt_million": 1,
+      "central_share_pct": 90.8,
+      "local_share_pct": 15.3
+    },
+    {
+      "year": 2007,
+      "total_debt_million": 67340,
+      "central_debt_million": 60711,
+      "local_debt_million": 11243,
+      "social_security_debt_million": 1,
+      "central_share_pct": 90.2,
+      "local_share_pct": 16.7
+    },
+    {
+      "year": 2008,
+      "total_debt_million": 67435,
+      "central_debt_million": 60170,
+      "local_debt_million": 11892,
+      "social_security_debt_million": 1,
+      "central_share_pct": 89.2,
+      "local_share_pct": 17.6
+    },
+    {
+      "year": 2009,
+      "total_debt_million": 80200,
+      "central_debt_million": 70887,
+      "local_debt_million": 13453,
+      "social_security_debt_million": 2,
+      "central_share_pct": 88.4,
+      "local_share_pct": 16.8
+    },
+    {
+      "year": 2010,
+      "total_debt_million": 94286,
+      "central_debt_million": 83682,
+      "local_debt_million": 14450,
+      "social_security_debt_million": 1,
+      "central_share_pct": 88.8,
+      "local_share_pct": 15.3
+    },
+    {
+      "year": 2011,
+      "total_debt_million": 102829,
+      "central_debt_million": 92490,
+      "local_debt_million": 15648,
+      "social_security_debt_million": 1,
+      "central_share_pct": 89.9,
+      "local_share_pct": 15.2
+    },
+    {
+      "year": 2012,
+      "total_debt_million": 115931,
+      "central_debt_million": 100968,
+      "local_debt_million": 17590,
+      "social_security_debt_million": 1947,
+      "central_share_pct": 87.1,
+      "local_share_pct": 15.2
+    },
+    {
+      "year": 2013,
+      "total_debt_million": 123750,
+      "central_debt_million": 106631,
+      "local_debt_million": 19783,
+      "social_security_debt_million": 1907,
+      "central_share_pct": 86.2,
+      "local_share_pct": 16.0
+    },
+    {
+      "year": 2014,
+      "total_debt_million": 133420,
+      "central_debt_million": 113287,
+      "local_debt_million": 21520,
+      "social_security_debt_million": 2192,
+      "central_share_pct": 84.9,
+      "local_share_pct": 16.1
+    },
+    {
+      "year": 2015,
+      "total_debt_million": 144537,
+      "central_debt_million": 120675,
+      "local_debt_million": 22733,
+      "social_security_debt_million": 3156,
+      "central_share_pct": 83.5,
+      "local_share_pct": 15.7
+    },
+    {
+      "year": 2016,
+      "total_debt_million": 148088,
+      "central_debt_million": 123449,
+      "local_debt_million": 23855,
+      "social_security_debt_million": 2352,
+      "central_share_pct": 83.4,
+      "local_share_pct": 16.1
+    },
+    {
+      "year": 2017,
+      "total_debt_million": 149611,
+      "central_debt_million": 124864,
+      "local_debt_million": 24194,
+      "social_security_debt_million": 2826,
+      "central_share_pct": 83.5,
+      "local_share_pct": 16.2
+    },
+    {
+      "year": 2018,
+      "total_debt_million": 151569,
+      "central_debt_million": 124025,
+      "local_debt_million": 26388,
+      "social_security_debt_million": 2283,
+      "central_share_pct": 81.8,
+      "local_share_pct": 17.4
+    },
+    {
+      "year": 2019,
+      "total_debt_million": 155819,
+      "central_debt_million": 126081,
+      "local_debt_million": 29683,
+      "social_security_debt_million": 1426,
+      "central_share_pct": 80.9,
+      "local_share_pct": 19.0
+    },
+    {
+      "year": 2020,
+      "total_debt_million": 178040,
+      "central_debt_million": 144232,
+      "local_debt_million": 31665,
+      "social_security_debt_million": 3603,
+      "central_share_pct": 81.0,
+      "local_share_pct": 17.8
+    },
+    {
+      "year": 2021,
+      "total_debt_million": 181911,
+      "central_debt_million": 148248,
+      "local_debt_million": 32678,
+      "social_security_debt_million": 2703,
+      "central_share_pct": 81.5,
+      "local_share_pct": 18.0
+    },
+    {
+      "year": 2022,
+      "total_debt_million": 196844,
+      "central_debt_million": 160668,
+      "local_debt_million": 34361,
+      "social_security_debt_million": 3882,
+      "central_share_pct": 81.6,
+      "local_share_pct": 17.5
+    },
+    {
+      "year": 2023,
+      "total_debt_million": 210338,
+      "central_debt_million": 175046,
+      "local_debt_million": 35284,
+      "social_security_debt_million": 2702,
+      "central_share_pct": 83.2,
+      "local_share_pct": 16.8
+    },
+    {
+      "year": 2024,
+      "total_debt_million": 227575,
+      "central_debt_million": 189988,
+      "local_debt_million": 38142,
+      "social_security_debt_million": 1391,
+      "central_share_pct": 83.5,
+      "local_share_pct": 16.8
+    }
+  ]
+}

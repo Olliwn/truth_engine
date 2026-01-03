@@ -1,0 +1,1101 @@
+{
+  "metadata": {
+    "source": "Statistics Finland",
+    "table": "statfin_tyokay_pxt_115v",
+    "description": "Employed persons by industry (TOL 2008)",
+    "fetched_at": "2026-01-03T22:42:26.871940",
+    "sector_classification": {
+      "public": "O: Public administration, P: Education, Q: Health and social work",
+      "manufacturing": "C: Manufacturing, B-E: Industry total",
+      "export_generating": "C: Manufacturing, J: ICT",
+      "services": "G-I: Trade/transport/hospitality, K-N: Business services, R-U: Other services"
+    }
+  },
+  "summary": {
+    "period": "2007-2023",
+    "employment_change": {
+      "total": 48299,
+      "public": 91699,
+      "private": -43400,
+      "manufacturing": -98598
+    },
+    "share_change": {
+      "public_pct": 3.25,
+      "manufacturing_pct": -4.42,
+      "ict_pct": 1.15
+    }
+  },
+  "time_series": [
+    {
+      "year": 2007,
+      "total_employed": 2369066,
+      "public_sector": 639583,
+      "private_sector": 1729483,
+      "manufacturing": 397445,
+      "construction": 158595,
+      "primary": 93297,
+      "ict": 86610,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2369066
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 93297
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 583704
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 397445
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 158595
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 86610
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 46032
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 21337
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 125427
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 162669
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 351487
+        }
+      },
+      "public_pct": 27.0,
+      "private_pct": 73.0,
+      "manufacturing_pct": 16.78,
+      "ict_pct": 3.66,
+      "construction_pct": 6.69,
+      "primary_pct": 3.94,
+      "private_per_public": 2.7
+    },
+    {
+      "year": 2008,
+      "total_employed": 2377181,
+      "public_sector": 651839,
+      "private_sector": 1725342,
+      "manufacturing": 383891,
+      "construction": 156187,
+      "primary": 88583,
+      "ict": 87724,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2377181
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 88583
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 568054
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 383891
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 156187
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 87724
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 47236
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 21182
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 125695
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 162783
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 363361
+        }
+      },
+      "public_pct": 27.42,
+      "private_pct": 72.58,
+      "manufacturing_pct": 16.15,
+      "ict_pct": 3.69,
+      "construction_pct": 6.57,
+      "primary_pct": 3.73,
+      "private_per_public": 2.65
+    },
+    {
+      "year": 2009,
+      "total_employed": 2289975,
+      "public_sector": 653479,
+      "private_sector": 1636496,
+      "manufacturing": 337270,
+      "construction": 144279,
+      "primary": 84314,
+      "ict": 85564,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2289975
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 84314
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 509335
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 337270
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 144279
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 85564
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 46633
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 20592
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 124540
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 163418
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 365521
+        }
+      },
+      "public_pct": 28.54,
+      "private_pct": 71.46,
+      "manufacturing_pct": 14.73,
+      "ict_pct": 3.74,
+      "construction_pct": 6.3,
+      "primary_pct": 3.68,
+      "private_per_public": 2.5
+    },
+    {
+      "year": 2010,
+      "total_employed": 2325679,
+      "public_sector": 658819,
+      "private_sector": 1666860,
+      "manufacturing": 335966,
+      "construction": 151051,
+      "primary": 85030,
+      "ict": 85986,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2325679
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 85030
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 514943
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 335966
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 151051
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 85986
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 46663
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 20812
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 121141
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 166803
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 370875
+        }
+      },
+      "public_pct": 28.33,
+      "private_pct": 71.67,
+      "manufacturing_pct": 14.45,
+      "ict_pct": 3.7,
+      "construction_pct": 6.49,
+      "primary_pct": 3.66,
+      "private_per_public": 2.53
+    },
+    {
+      "year": 2011,
+      "total_employed": 2354422,
+      "public_sector": 665954,
+      "private_sector": 1688468,
+      "manufacturing": 334387,
+      "construction": 156511,
+      "primary": 82571,
+      "ict": 88284,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2354422
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 82571
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 519503
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 334387
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 156511
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 88284
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 47027
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 21238
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 121023
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 168751
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 376180
+        }
+      },
+      "public_pct": 28.29,
+      "private_pct": 71.71,
+      "manufacturing_pct": 14.2,
+      "ict_pct": 3.75,
+      "construction_pct": 6.65,
+      "primary_pct": 3.51,
+      "private_per_public": 2.54
+    },
+    {
+      "year": 2012,
+      "total_employed": 2339904,
+      "public_sector": 673296,
+      "private_sector": 1666608,
+      "manufacturing": 321182,
+      "construction": 154184,
+      "primary": 80058,
+      "ict": 87866,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2339904
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 80058
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 504379
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 321182
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 154184
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 87866
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 46559
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 21259
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 121622
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 168069
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 383605
+        }
+      },
+      "public_pct": 28.77,
+      "private_pct": 71.23,
+      "manufacturing_pct": 13.73,
+      "ict_pct": 3.76,
+      "construction_pct": 6.59,
+      "primary_pct": 3.42,
+      "private_per_public": 2.48
+    },
+    {
+      "year": 2013,
+      "total_employed": 2301751,
+      "public_sector": 669789,
+      "private_sector": 1631962,
+      "manufacturing": 302753,
+      "construction": 150513,
+      "primary": 78375,
+      "ict": 87373,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2301751
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 78375
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 482197
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 302753
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 150513
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 87373
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 45430
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 21303
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 119092
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 165218
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 385479
+        }
+      },
+      "public_pct": 29.1,
+      "private_pct": 70.9,
+      "manufacturing_pct": 13.15,
+      "ict_pct": 3.8,
+      "construction_pct": 6.54,
+      "primary_pct": 3.41,
+      "private_per_public": 2.44
+    },
+    {
+      "year": 2014,
+      "total_employed": 2274076,
+      "public_sector": 665822,
+      "private_sector": 1608254,
+      "manufacturing": 294367,
+      "construction": 146429,
+      "primary": 74555,
+      "ict": 87763,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2274076
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 74555
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 468991
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 294367
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 146429
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 87763
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 44191
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 20842
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 117070
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 162776
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 385976
+        }
+      },
+      "public_pct": 29.28,
+      "private_pct": 70.72,
+      "manufacturing_pct": 12.94,
+      "ict_pct": 3.86,
+      "construction_pct": 6.44,
+      "primary_pct": 3.28,
+      "private_per_public": 2.42
+    },
+    {
+      "year": 2015,
+      "total_employed": 2256459,
+      "public_sector": 658709,
+      "private_sector": 1597750,
+      "manufacturing": 288991,
+      "construction": 146368,
+      "primary": 71867,
+      "ict": 88032,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2256459
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 71867
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 462926
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 288991
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 146368
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 88032
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 44234
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 21237
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 114062
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 159839
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 384808
+        }
+      },
+      "public_pct": 29.19,
+      "private_pct": 70.81,
+      "manufacturing_pct": 12.81,
+      "ict_pct": 3.9,
+      "construction_pct": 6.49,
+      "primary_pct": 3.18,
+      "private_per_public": 2.43
+    },
+    {
+      "year": 2016,
+      "total_employed": 2275679,
+      "public_sector": 656999,
+      "private_sector": 1618680,
+      "manufacturing": 287710,
+      "construction": 154607,
+      "primary": 68601,
+      "ict": 90420,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2275679
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 68601
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 470528
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 287710
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 154607
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 90420
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 44575
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 21395
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 113364
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 156423
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 387212
+        }
+      },
+      "public_pct": 28.87,
+      "private_pct": 71.13,
+      "manufacturing_pct": 12.64,
+      "ict_pct": 3.97,
+      "construction_pct": 6.79,
+      "primary_pct": 3.01,
+      "private_per_public": 2.46
+    },
+    {
+      "year": 2017,
+      "total_employed": 2327730,
+      "public_sector": 667332,
+      "private_sector": 1660398,
+      "manufacturing": 298183,
+      "construction": 163278,
+      "primary": 66572,
+      "ict": 94708,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2327730
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 66572
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 490258
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 298183
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 163278
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 94708
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 44865
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 21840
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 115065
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 158031
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 394236
+        }
+      },
+      "public_pct": 28.67,
+      "private_pct": 71.33,
+      "manufacturing_pct": 12.81,
+      "ict_pct": 4.07,
+      "construction_pct": 7.01,
+      "primary_pct": 2.86,
+      "private_per_public": 2.49
+    },
+    {
+      "year": 2018,
+      "total_employed": 2373668,
+      "public_sector": 676193,
+      "private_sector": 1697475,
+      "manufacturing": 304161,
+      "construction": 167861,
+      "primary": 65159,
+      "ict": 99217,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2373668
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 65159
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 501112
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 304161
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 167861
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 99217
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 44851
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 22169
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 114361
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 159081
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 402751
+        }
+      },
+      "public_pct": 28.49,
+      "private_pct": 71.51,
+      "manufacturing_pct": 12.81,
+      "ict_pct": 4.18,
+      "construction_pct": 7.07,
+      "primary_pct": 2.75,
+      "private_per_public": 2.51
+    },
+    {
+      "year": 2019,
+      "total_employed": 2373526,
+      "public_sector": 688078,
+      "private_sector": 1685448,
+      "manufacturing": 297502,
+      "construction": 165380,
+      "primary": 63657,
+      "ict": 101771,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2373526
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 63657
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 492326
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 297502
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 165380
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 101771
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 44653
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 23050
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 116442
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 164209
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 407427
+        }
+      },
+      "public_pct": 28.99,
+      "private_pct": 71.01,
+      "manufacturing_pct": 12.53,
+      "ict_pct": 4.29,
+      "construction_pct": 6.97,
+      "primary_pct": 2.68,
+      "private_per_public": 2.45
+    },
+    {
+      "year": 2020,
+      "total_employed": 2284673,
+      "public_sector": 700012,
+      "private_sector": 1584661,
+      "manufacturing": 278417,
+      "construction": 160207,
+      "primary": 60770,
+      "ict": 103146,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2284673
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 60770
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 468526
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 278417
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 160207
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 103146
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 44328
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 22695
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 119151
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 164586
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 416275
+        }
+      },
+      "public_pct": 30.64,
+      "private_pct": 69.36,
+      "manufacturing_pct": 12.19,
+      "ict_pct": 4.51,
+      "construction_pct": 7.01,
+      "primary_pct": 2.66,
+      "private_per_public": 2.26
+    },
+    {
+      "year": 2021,
+      "total_employed": 2377126,
+      "public_sector": 701919,
+      "private_sector": 1675207,
+      "manufacturing": 302923,
+      "construction": 169150,
+      "primary": 60899,
+      "ict": 109551,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2377126
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 60899
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 503134
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 302923
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 169150
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 109551
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 44560
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 24244
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 111025
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 169400
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 421494
+        }
+      },
+      "public_pct": 29.53,
+      "private_pct": 70.47,
+      "manufacturing_pct": 12.74,
+      "ict_pct": 4.61,
+      "construction_pct": 7.12,
+      "primary_pct": 2.56,
+      "private_per_public": 2.39
+    },
+    {
+      "year": 2022,
+      "total_employed": 2423548,
+      "public_sector": 715583,
+      "private_sector": 1707965,
+      "manufacturing": 306963,
+      "construction": 171354,
+      "primary": 59445,
+      "ict": 115776,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2423548
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 59445
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 509168
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 306963
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 171354
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 115776
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 46308
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 24944
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 112586
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 173141
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 429856
+        }
+      },
+      "public_pct": 29.53,
+      "private_pct": 70.47,
+      "manufacturing_pct": 12.67,
+      "ict_pct": 4.78,
+      "construction_pct": 7.07,
+      "primary_pct": 2.45,
+      "private_per_public": 2.39
+    },
+    {
+      "year": 2023,
+      "total_employed": 2417365,
+      "public_sector": 731282,
+      "private_sector": 1686083,
+      "manufacturing": 298847,
+      "construction": 159251,
+      "primary": 58884,
+      "ict": 116293,
+      "sectors": {
+        "SSS": {
+          "label": "Industries total",
+          "employed": 2417365
+        },
+        "ATA": {
+          "label": "Primary production (A) (Level 9)",
+          "employed": 58884
+        },
+        "BTF": {
+          "label": "Secondary production (B-F) (Level 9)",
+          "employed": 490270
+        },
+        "C": {
+          "label": "C Manufacturing (10-33) (Level 1)",
+          "employed": 298847
+        },
+        "F": {
+          "label": "F Construction (41-43) (Level 1)",
+          "employed": 159251
+        },
+        "J": {
+          "label": "J Information and communication (58-63) (Level 1)",
+          "employed": 116293
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66) (Level 1)",
+          "employed": 48157
+        },
+        "L": {
+          "label": "L Real estate activities (68) (Level 1)",
+          "employed": 25273
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "employed": 116676
+        },
+        "P": {
+          "label": "P Education (85) (Level 1)",
+          "employed": 176491
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88) (Level 1)",
+          "employed": 438115
+        }
+      },
+      "public_pct": 30.25,
+      "private_pct": 69.75,
+      "manufacturing_pct": 12.36,
+      "ict_pct": 4.81,
+      "construction_pct": 6.59,
+      "primary_pct": 2.44,
+      "private_per_public": 2.31
+    }
+  ]
+}

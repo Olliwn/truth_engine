@@ -46,7 +46,8 @@ export default async function Home() {
       {/* Featured Projects Grid */}
       <section className="py-8 px-6 border-t border-gray-800/50">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Priority: Wage Trap, Tax Burden, Voting Incentives */}
+          <div className="grid md:grid-cols-3 gap-4 mb-4">
             <FeaturedCard
               emoji="🧮"
               title="Wage Trap"
@@ -54,6 +55,23 @@ export default async function Home() {
               href="/alpha"
               color="amber"
             />
+            <FeaturedCard
+              emoji="🏛️"
+              title="Tax Burden"
+              subtitle="Private vs Public"
+              href="/epsilon"
+              color="blue"
+            />
+            <FeaturedCard
+              emoji="🗳️"
+              title="Voting Incentives"
+              subtitle="Democracy Dilemma"
+              href="/lambda"
+              color="purple"
+            />
+          </div>
+          {/* Other analyses */}
+          <div className="grid md:grid-cols-3 lg:grid-cols-7 gap-4">
             <FeaturedCard
               emoji="🗺️"
               title="Ponzi Map"
@@ -75,6 +93,34 @@ export default async function Home() {
               href="/delta"
               color="green"
             />
+            <FeaturedCard
+              emoji="🏭"
+              title="Deindustrialization"
+              subtitle="Employment Shift"
+              href="/zeta"
+              color="orange"
+            />
+            <FeaturedCard
+              emoji="⚖️"
+              title="Trade Reality"
+              subtitle="Exports vs Imports"
+              href="/eta"
+              color="teal"
+            />
+            <FeaturedCard
+              emoji="📊"
+              title="Balance Sheet"
+              subtitle="Government Debt"
+              href="/theta"
+              color="rose"
+            />
+            <FeaturedCard
+              emoji="👶"
+              title="Fertility"
+              subtitle="Birth Rate Crisis"
+              href="/iota"
+              color="pink"
+            />
           </div>
         </div>
       </section>
@@ -87,7 +133,7 @@ export default async function Home() {
           </h2>
           
           <div className="grid md:grid-cols-2 gap-6">
-            {/* Project Alpha - Wage Trap */}
+            {/* Priority 1: Wage Trap */}
             <ProjectCard
               title="The Wage Trap Calculator"
               emoji="🧮"
@@ -102,7 +148,37 @@ export default async function Home() {
               ]}
             />
             
-            {/* Project Beta - Ponzi Map */}
+            {/* Priority 2: Tax Burden */}
+            <ProjectCard
+              title="Tax Burden Atlas"
+              emoji="🏛️"
+              status="live"
+              description="55% of GDP is government-dependent. See how public sector, subsidies, and benefits shape the true economic split."
+              href="/epsilon"
+              highlight
+              metrics={[
+                { label: 'Govt Footprint', value: '55%' },
+                { label: 'Benefits', value: '€52B' },
+                { label: 'Period', value: '1990-2024' },
+              ]}
+            />
+            
+            {/* Priority 3: Voting Incentives */}
+            <ProjectCard
+              title="The Democracy Dilemma"
+              emoji="🗳️"
+              status="live"
+              description="What % of voters benefit from bigger government? Combining public workers, pensioners, and benefit recipients reveals structural majority for expansion."
+              href="/lambda"
+              highlight
+              metrics={[
+                { label: 'Pro-Big-Govt', value: '~68%' },
+                { label: 'Public Workers', value: '731k' },
+                { label: 'Pensioners', value: '1.5M' },
+              ]}
+            />
+            
+            {/* Ponzi Map */}
             <ProjectCard
               title="Municipal Ponzi Heatmap"
               emoji="🗺️"
@@ -116,7 +192,7 @@ export default async function Home() {
               ]}
             />
             
-            {/* Project Gamma - Inflation */}
+            {/* Hidden Inflation */}
             <ProjectCard
               title="Hidden Inflation (Maslow CPI)"
               emoji="📈"
@@ -130,7 +206,7 @@ export default async function Home() {
               ]}
             />
             
-            {/* Project Delta - Purchasing Power */}
+            {/* Purchasing Power */}
             <ProjectCard
               title="Purchasing Power by Decile"
               emoji="💰"
@@ -141,6 +217,62 @@ export default async function Home() {
                 { label: 'Bottom 10%', value: '-23%' },
                 { label: 'Top 10%', value: '-15%' },
                 { label: 'Wealth Gap', value: '↗️' },
+              ]}
+            />
+            
+            {/* Deindustrialization */}
+            <ProjectCard
+              title="Deindustrialization Map"
+              emoji="🏭"
+              status="live"
+              description="Finland's structural shift from export-generating manufacturing to domestic services and public administration."
+              href="/zeta"
+              metrics={[
+                { label: 'Mfg Jobs Lost', value: '-99k' },
+                { label: 'Public Added', value: '+92k' },
+                { label: 'Period', value: '2007-2023' },
+              ]}
+            />
+            
+            {/* Trade Reality */}
+            <ProjectCard
+              title="Trade Reality"
+              emoji="⚖️"
+              status="live"
+              description="From Nokia-era surpluses to current balance. A country that imports more than it exports is borrowing against its future."
+              href="/eta"
+              metrics={[
+                { label: 'Peak Surplus', value: '€9B' },
+                { label: 'Nokia Era', value: '2007' },
+                { label: 'Period', value: '2006-2025' },
+              ]}
+            />
+            
+            {/* Balance Sheet */}
+            <ProjectCard
+              title="Government Balance Sheet"
+              emoji="📊"
+              status="live"
+              description="Finland's government debt has nearly tripled since 2000. What's the per-worker burden and where is the money going?"
+              href="/theta"
+              metrics={[
+                { label: 'Total Debt', value: '€228B' },
+                { label: 'Growth', value: '+270%' },
+                { label: 'Per Worker', value: '€69k' },
+              ]}
+            />
+            
+            {/* Fertility */}
+            <ProjectCard
+              title="The Fertility Equation"
+              emoji="👶"
+              status="live"
+              description="Finland has generous parental leave and childcare. So why has fertility collapsed to historic lows? The data challenges assumptions."
+              href="/iota"
+              metrics={[
+                { label: 'Current TFR', value: '1.25' },
+                { label: 'Replacement', value: '2.1' },
+                { label: 'Since 1990', value: '-30%' },
               ]}
             />
           </div>
@@ -198,13 +330,18 @@ function FeaturedCard({
   title: string; 
   subtitle: string;
   href: string;
-  color?: 'red' | 'amber' | 'orange' | 'green';
+  color?: 'red' | 'amber' | 'orange' | 'green' | 'blue' | 'teal' | 'rose' | 'pink' | 'purple';
 }) {
   const colorClasses = {
     red: 'hover:border-red-500/50 hover:bg-red-950/20',
     amber: 'hover:border-amber-500/50 hover:bg-amber-950/20',
     orange: 'hover:border-orange-500/50 hover:bg-orange-950/20',
     green: 'hover:border-green-500/50 hover:bg-green-950/20',
+    blue: 'hover:border-blue-500/50 hover:bg-blue-950/20',
+    teal: 'hover:border-teal-500/50 hover:bg-teal-950/20',
+    rose: 'hover:border-rose-500/50 hover:bg-rose-950/20',
+    pink: 'hover:border-pink-500/50 hover:bg-pink-950/20',
+    purple: 'hover:border-purple-500/50 hover:bg-purple-950/20',
   };
   
   return (

@@ -1,0 +1,2326 @@
+{
+  "metadata": {
+    "source": "Statistics Finland",
+    "table": "statfin_vtp_pxt_11rr",
+    "description": "GDP by industry at current prices",
+    "fetched_at": "2026-01-03T22:41:00.189018",
+    "public_sectors": [
+      "O",
+      "P",
+      "Q"
+    ],
+    "public_sectors_description": "O: Public administration, P: Education, Q: Health and social work"
+  },
+  "time_series": [
+    {
+      "year": 1990,
+      "total_gdp": 122287,
+      "public_sector_gdp": 36910,
+      "private_sector_gdp": 85377,
+      "manufacturing_gdp": 16570,
+      "ict_gdp": 2511,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 122287
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3788
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 29995
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 20123
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 16570
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 14309
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 2511
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 5088
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 12634
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 36910
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10035
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 9019
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18173
+        }
+      },
+      "public_share_pct": 30.18,
+      "private_share_pct": 69.82,
+      "manufacturing_share_pct": 13.55,
+      "ict_share_pct": 2.05
+    },
+    {
+      "year": 1991,
+      "total_gdp": 114929,
+      "public_sector_gdp": 37299,
+      "private_sector_gdp": 77630,
+      "manufacturing_gdp": 14564,
+      "ict_gdp": 2429,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 114929
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3624
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 26848
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 17990
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 14564
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 12855
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 2429
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 4588
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 13477
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 37299
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10241
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 9093
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18247
+        }
+      },
+      "public_share_pct": 32.45,
+      "private_share_pct": 67.55,
+      "manufacturing_share_pct": 12.67,
+      "ict_share_pct": 2.11
+    },
+    {
+      "year": 1992,
+      "total_gdp": 111442,
+      "public_sector_gdp": 36672,
+      "private_sector_gdp": 74770,
+      "manufacturing_gdp": 14743,
+      "ict_gdp": 2452,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 111442
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3489
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 26482
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 18164
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 14743
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 11790
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 2452
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 4269
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 14039
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 36672
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10147
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 8983
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 17775
+        }
+      },
+      "public_share_pct": 32.91,
+      "private_share_pct": 67.09,
+      "manufacturing_share_pct": 13.23,
+      "ict_share_pct": 2.2
+    },
+    {
+      "year": 1993,
+      "total_gdp": 111215,
+      "public_sector_gdp": 35140,
+      "private_sector_gdp": 76075,
+      "manufacturing_gdp": 15546,
+      "ict_gdp": 2494,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 111215
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3783
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 26987
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 19084
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 15546
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 10511
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 2494
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 3904
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 14563
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 35140
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 9826
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 8874
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 16550
+        }
+      },
+      "public_share_pct": 31.6,
+      "private_share_pct": 68.4,
+      "manufacturing_share_pct": 13.98,
+      "ict_share_pct": 2.24
+    },
+    {
+      "year": 1994,
+      "total_gdp": 116334,
+      "public_sector_gdp": 35148,
+      "private_sector_gdp": 81186,
+      "manufacturing_gdp": 17533,
+      "ict_gdp": 2585,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 116334
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3831
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 29292
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 21366
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 17533
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 9491
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 2585
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 3935
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 15122
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 35148
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 9952
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 8854
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 16413
+        }
+      },
+      "public_share_pct": 30.21,
+      "private_share_pct": 69.79,
+      "manufacturing_share_pct": 15.07,
+      "ict_share_pct": 2.22
+    },
+    {
+      "year": 1995,
+      "total_gdp": 121276,
+      "public_sector_gdp": 35906,
+      "private_sector_gdp": 85370,
+      "manufacturing_gdp": 18780,
+      "ict_gdp": 2770,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 121276
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3768
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 30318
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 22636
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 18780
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 8510
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 2770
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 4630
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 15900
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 35906
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10016
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 9189
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 16792
+        }
+      },
+      "public_share_pct": 29.61,
+      "private_share_pct": 70.39,
+      "manufacturing_share_pct": 15.49,
+      "ict_share_pct": 2.28
+    },
+    {
+      "year": 1996,
+      "total_gdp": 125824,
+      "public_sector_gdp": 36871,
+      "private_sector_gdp": 88953,
+      "manufacturing_gdp": 19453,
+      "ict_gdp": 3008,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 125824
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3575
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 31880
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 23551
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 19453
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 9518
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 3008
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 4672
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 16441
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 36871
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10168
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 9452
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 17381
+        }
+      },
+      "public_share_pct": 29.3,
+      "private_share_pct": 70.7,
+      "manufacturing_share_pct": 15.46,
+      "ict_share_pct": 2.39
+    },
+    {
+      "year": 1997,
+      "total_gdp": 133705,
+      "public_sector_gdp": 38020,
+      "private_sector_gdp": 95685,
+      "manufacturing_gdp": 21393,
+      "ict_gdp": 3383,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 133705
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3842
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 34865
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 25730
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 21393
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 10464
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 3383
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 4785
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 16950
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 38020
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10644
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 9748
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 17706
+        }
+      },
+      "public_share_pct": 28.44,
+      "private_share_pct": 71.56,
+      "manufacturing_share_pct": 16.0,
+      "ict_share_pct": 2.53
+    },
+    {
+      "year": 1998,
+      "total_gdp": 140793,
+      "public_sector_gdp": 38529,
+      "private_sector_gdp": 102264,
+      "manufacturing_gdp": 23646,
+      "ict_gdp": 4065,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 140793
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3455
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 37871
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 28110
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 23646
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 11021
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 4065
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 4995
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 17247
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 38529
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10634
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10134
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 17839
+        }
+      },
+      "public_share_pct": 27.37,
+      "private_share_pct": 72.63,
+      "manufacturing_share_pct": 16.79,
+      "ict_share_pct": 2.89
+    },
+    {
+      "year": 1999,
+      "total_gdp": 147353,
+      "public_sector_gdp": 39041,
+      "private_sector_gdp": 108312,
+      "manufacturing_gdp": 25872,
+      "ict_gdp": 4612,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 147353
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3462
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 40445
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 30573
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 25872
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 10657
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 4612
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 5193
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 17866
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 39041
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10787
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10279
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18046
+        }
+      },
+      "public_share_pct": 26.49,
+      "private_share_pct": 73.51,
+      "manufacturing_share_pct": 17.56,
+      "ict_share_pct": 3.13
+    },
+    {
+      "year": 2000,
+      "total_gdp": 156836,
+      "public_sector_gdp": 39780,
+      "private_sector_gdp": 117056,
+      "manufacturing_gdp": 29547,
+      "ict_gdp": 5287,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 156836
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3755
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 44757
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 34471
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 29547
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 10715
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 5287
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 5322
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 18465
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 39780
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10988
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10552
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18299
+        }
+      },
+      "public_share_pct": 25.36,
+      "private_share_pct": 74.64,
+      "manufacturing_share_pct": 18.84,
+      "ict_share_pct": 3.37
+    },
+    {
+      "year": 2001,
+      "total_gdp": 161196,
+      "public_sector_gdp": 39940,
+      "private_sector_gdp": 121256,
+      "manufacturing_gdp": 30616,
+      "ict_gdp": 5997,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 161196
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3683
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 45607
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 35841
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 30616
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 9836
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 5997
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 5257
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 18864
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 39940
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 11084
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10622
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18272
+        }
+      },
+      "public_share_pct": 24.78,
+      "private_share_pct": 75.22,
+      "manufacturing_share_pct": 18.99,
+      "ict_share_pct": 3.72
+    },
+    {
+      "year": 2002,
+      "total_gdp": 163315,
+      "public_sector_gdp": 40108,
+      "private_sector_gdp": 123207,
+      "manufacturing_gdp": 31633,
+      "ict_gdp": 6141,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 163315
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3680
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 46930
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 36987
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 31633
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 9974
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 6141
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 4785
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 19284
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 40108
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 11195
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10793
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18119
+        }
+      },
+      "public_share_pct": 24.56,
+      "private_share_pct": 75.44,
+      "manufacturing_share_pct": 19.37,
+      "ict_share_pct": 3.76
+    },
+    {
+      "year": 2003,
+      "total_gdp": 165242,
+      "public_sector_gdp": 40245,
+      "private_sector_gdp": 124997,
+      "manufacturing_gdp": 32544,
+      "ict_gdp": 6093,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 165242
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3556
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 48418
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 37978
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 32544
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 10544
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 6093
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 4602
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 19515
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 40245
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 11401
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10792
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18017
+        }
+      },
+      "public_share_pct": 24.36,
+      "private_share_pct": 75.64,
+      "manufacturing_share_pct": 19.69,
+      "ict_share_pct": 3.69
+    },
+    {
+      "year": 2004,
+      "total_gdp": 171650,
+      "public_sector_gdp": 40265,
+      "private_sector_gdp": 131385,
+      "manufacturing_gdp": 34136,
+      "ict_gdp": 6885,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 171650
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3526
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 50786
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 39757
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 34136
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 11166
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 6885
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 4960
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 19867
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 40265
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 11426
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10863
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 17932
+        }
+      },
+      "public_share_pct": 23.46,
+      "private_share_pct": 76.54,
+      "manufacturing_share_pct": 19.89,
+      "ict_share_pct": 4.01
+    },
+    {
+      "year": 2005,
+      "total_gdp": 176079,
+      "public_sector_gdp": 40582,
+      "private_sector_gdp": 135497,
+      "manufacturing_gdp": 35439,
+      "ict_gdp": 6872,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 176079
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3684
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 52668
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 41123
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 35439
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 11718
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 6872
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 5415
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 20146
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 40582
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 11442
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10863
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18252
+        }
+      },
+      "public_share_pct": 23.05,
+      "private_share_pct": 76.95,
+      "manufacturing_share_pct": 20.13,
+      "ict_share_pct": 3.9
+    },
+    {
+      "year": 2006,
+      "total_gdp": 182751,
+      "public_sector_gdp": 40527,
+      "private_sector_gdp": 142224,
+      "manufacturing_gdp": 39489,
+      "ict_gdp": 7107,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 182751
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3760
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 57356
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 45354
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 39489
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 12078
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 7107
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 5666
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 20610
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 40527
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 11483
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10887
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18119
+        }
+      },
+      "public_share_pct": 22.18,
+      "private_share_pct": 77.82,
+      "manufacturing_share_pct": 21.61,
+      "ict_share_pct": 3.89
+    },
+    {
+      "year": 2007,
+      "total_gdp": 193751,
+      "public_sector_gdp": 40552,
+      "private_sector_gdp": 153199,
+      "manufacturing_gdp": 43472,
+      "ict_gdp": 7826,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 193751
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4018
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 62197
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 49687
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 43472
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 12522
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 7826
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 6089
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 21128
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 40552
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 11468
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10834
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18219
+        }
+      },
+      "public_share_pct": 20.93,
+      "private_share_pct": 79.07,
+      "manufacturing_share_pct": 22.44,
+      "ict_share_pct": 4.04
+    },
+    {
+      "year": 2008,
+      "total_gdp": 195526,
+      "public_sector_gdp": 40550,
+      "private_sector_gdp": 154976,
+      "manufacturing_gdp": 42337,
+      "ict_gdp": 7982,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 195526
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4025
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 60616
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 48406
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 42337
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 12222
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 7982
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 6111
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 22203
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 40550
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 11452
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10563
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18520
+        }
+      },
+      "public_share_pct": 20.74,
+      "private_share_pct": 79.26,
+      "manufacturing_share_pct": 21.65,
+      "ict_share_pct": 4.08
+    },
+    {
+      "year": 2009,
+      "total_gdp": 178663,
+      "public_sector_gdp": 40314,
+      "private_sector_gdp": 138349,
+      "manufacturing_gdp": 32509,
+      "ict_gdp": 7914,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 178663
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4313
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 49793
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 38501
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 32509
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 11269
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 7914
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 5866
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 21783
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 40314
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 11393
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10437
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18474
+        }
+      },
+      "public_share_pct": 22.56,
+      "private_share_pct": 77.44,
+      "manufacturing_share_pct": 18.2,
+      "ict_share_pct": 4.43
+    },
+    {
+      "year": 2010,
+      "total_gdp": 184405,
+      "public_sector_gdp": 40333,
+      "private_sector_gdp": 144072,
+      "manufacturing_gdp": 35115,
+      "ict_gdp": 8225,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 184405
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4246
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 53902
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 41307
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 35115
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 12562
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 8225
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 6019
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 21467
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 40333
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 11248
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10837
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18221
+        }
+      },
+      "public_share_pct": 21.87,
+      "private_share_pct": 78.13,
+      "manufacturing_share_pct": 19.04,
+      "ict_share_pct": 4.46
+    },
+    {
+      "year": 2011,
+      "total_gdp": 187594,
+      "public_sector_gdp": 40366,
+      "private_sector_gdp": 147228,
+      "manufacturing_gdp": 35123,
+      "ict_gdp": 8742,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 187594
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4184
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 53810
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 41105
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 35123
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 12685
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 8742
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 5870
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 22497
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 40366
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 11179
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10704
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18468
+        }
+      },
+      "public_share_pct": 21.52,
+      "private_share_pct": 78.48,
+      "manufacturing_share_pct": 18.72,
+      "ict_share_pct": 4.66
+    },
+    {
+      "year": 2012,
+      "total_gdp": 183754,
+      "public_sector_gdp": 40158,
+      "private_sector_gdp": 143596,
+      "manufacturing_gdp": 31121,
+      "ict_gdp": 9266,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 183754
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3970
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 49542
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 37643
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 31121
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 11895
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 9266
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 5751
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 22282
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 40158
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 11028
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10669
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18453
+        }
+      },
+      "public_share_pct": 21.85,
+      "private_share_pct": 78.15,
+      "manufacturing_share_pct": 16.94,
+      "ict_share_pct": 5.04
+    },
+    {
+      "year": 2013,
+      "total_gdp": 181648,
+      "public_sector_gdp": 39913,
+      "private_sector_gdp": 141735,
+      "manufacturing_gdp": 31366,
+      "ict_gdp": 9578,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 181648
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 3981
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 49234
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 37625
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 31366
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 11609
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 9578
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 5417
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 22248
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 39913
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 11111
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10532
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18255
+        }
+      },
+      "public_share_pct": 21.97,
+      "private_share_pct": 78.03,
+      "manufacturing_share_pct": 17.27,
+      "ict_share_pct": 5.27
+    },
+    {
+      "year": 2014,
+      "total_gdp": 180852,
+      "public_sector_gdp": 39455,
+      "private_sector_gdp": 141397,
+      "manufacturing_gdp": 31077,
+      "ict_gdp": 9975,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 180852
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4207
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 48673
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 37508
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 31077
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 11171
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 9975
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 5897
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 22469
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 39455
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10998
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10513
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 17927
+        }
+      },
+      "public_share_pct": 21.82,
+      "private_share_pct": 78.18,
+      "manufacturing_share_pct": 17.18,
+      "ict_share_pct": 5.52
+    },
+    {
+      "year": 2015,
+      "total_gdp": 181406,
+      "public_sector_gdp": 39471,
+      "private_sector_gdp": 141935,
+      "manufacturing_gdp": 31195,
+      "ict_gdp": 10285,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 181406
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4331
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 48983
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 37511
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 31195
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 11472
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 10285
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 5832
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 22961
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 39471
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10354
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10531
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18586
+        }
+      },
+      "public_share_pct": 21.76,
+      "private_share_pct": 78.24,
+      "manufacturing_share_pct": 17.2,
+      "ict_share_pct": 5.67
+    },
+    {
+      "year": 2016,
+      "total_gdp": 185632,
+      "public_sector_gdp": 39802,
+      "private_sector_gdp": 145830,
+      "manufacturing_gdp": 32699,
+      "ict_gdp": 10476,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 185632
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4333
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 50715
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 38820
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 32699
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 11895
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 10476
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 6141
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 23383
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 39802
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10198
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10658
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18946
+        }
+      },
+      "public_share_pct": 21.44,
+      "private_share_pct": 78.56,
+      "manufacturing_share_pct": 17.61,
+      "ict_share_pct": 5.64
+    },
+    {
+      "year": 2017,
+      "total_gdp": 192599,
+      "public_sector_gdp": 39605,
+      "private_sector_gdp": 152994,
+      "manufacturing_gdp": 35131,
+      "ict_gdp": 10941,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 192599
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4377
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 54087
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 41723
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 35131
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 12386
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 10941
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 6514
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 23838
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 39605
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10171
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10686
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18750
+        }
+      },
+      "public_share_pct": 20.56,
+      "private_share_pct": 79.44,
+      "manufacturing_share_pct": 18.24,
+      "ict_share_pct": 5.68
+    },
+    {
+      "year": 2018,
+      "total_gdp": 194132,
+      "public_sector_gdp": 40121,
+      "private_sector_gdp": 154011,
+      "manufacturing_gdp": 33699,
+      "ict_gdp": 11236,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 194132
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4315
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 52980
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 40385
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 33699
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 12568
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 11236
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 6492
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 24698
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 40121
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10273
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 10779
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 19068
+        }
+      },
+      "public_share_pct": 20.67,
+      "private_share_pct": 79.33,
+      "manufacturing_share_pct": 17.36,
+      "ict_share_pct": 5.79
+    },
+    {
+      "year": 2019,
+      "total_gdp": 197280,
+      "public_sector_gdp": 40464,
+      "private_sector_gdp": 156816,
+      "manufacturing_gdp": 35052,
+      "ict_gdp": 11612,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 197280
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4812
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 53691
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 41816
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 35052
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 11950
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 11612
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 5891
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 25222
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 40464
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10260
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 11085
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 19128
+        }
+      },
+      "public_share_pct": 20.51,
+      "private_share_pct": 79.49,
+      "manufacturing_share_pct": 17.77,
+      "ict_share_pct": 5.89
+    },
+    {
+      "year": 2020,
+      "total_gdp": 192491,
+      "public_sector_gdp": 39419,
+      "private_sector_gdp": 153072,
+      "manufacturing_gdp": 34078,
+      "ict_gdp": 12111,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 192491
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4780
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 52809
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 41077
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 34078
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 11796
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 12111
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 5843
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 25535
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 39419
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10278
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 11008
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 18166
+        }
+      },
+      "public_share_pct": 20.48,
+      "private_share_pct": 79.52,
+      "manufacturing_share_pct": 17.7,
+      "ict_share_pct": 6.29
+    },
+    {
+      "year": 2021,
+      "total_gdp": 197789,
+      "public_sector_gdp": 40878,
+      "private_sector_gdp": 156911,
+      "manufacturing_gdp": 33829,
+      "ict_gdp": 13375,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 197789
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4720
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 52454
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 40714
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 33829
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 11785
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 13375
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 6564
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 26398
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 40878
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10493
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 11212
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 19166
+        }
+      },
+      "public_share_pct": 20.67,
+      "private_share_pct": 79.33,
+      "manufacturing_share_pct": 17.1,
+      "ict_share_pct": 6.76
+    },
+    {
+      "year": 2022,
+      "total_gdp": 199916,
+      "public_sector_gdp": 41545,
+      "private_sector_gdp": 158371,
+      "manufacturing_gdp": 31660,
+      "ict_gdp": 13657,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 199916
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4912
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 50274
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 38506
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 31660
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 11749
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 13657
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 7373
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 27331
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 41545
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10720
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 11779
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 19084
+        }
+      },
+      "public_share_pct": 20.78,
+      "private_share_pct": 79.22,
+      "manufacturing_share_pct": 15.84,
+      "ict_share_pct": 6.83
+    },
+    {
+      "year": 2023,
+      "total_gdp": 199274,
+      "public_sector_gdp": 42623,
+      "private_sector_gdp": 156651,
+      "manufacturing_gdp": 30443,
+      "ict_gdp": 14326,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 199274
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4616
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 48907
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 38421
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 30443
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 10429
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 14326
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 7524
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 28029
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 42623
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10463
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 12241
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 19932
+        }
+      },
+      "public_share_pct": 21.39,
+      "private_share_pct": 78.61,
+      "manufacturing_share_pct": 15.28,
+      "ict_share_pct": 7.19
+    },
+    {
+      "year": 2024,
+      "total_gdp": 199811,
+      "public_sector_gdp": 43964,
+      "private_sector_gdp": 155847,
+      "manufacturing_gdp": 31277,
+      "ict_gdp": 14412,
+      "sectors": {
+        "SSS": {
+          "label": "Total",
+          "value_million_eur": 199811
+        },
+        "ALKUT": {
+          "label": "A Primary production",
+          "value_million_eur": 4539
+        },
+        "BTF": {
+          "label": "B-F Secondary production (05-43)",
+          "value_million_eur": 49588
+        },
+        "BTE": {
+          "label": "B-E Total industry (05-39)",
+          "value_million_eur": 39899
+        },
+        "C": {
+          "label": "C Manufacturing (10-33)",
+          "value_million_eur": 31277
+        },
+        "F": {
+          "label": "F Construction (41-43)",
+          "value_million_eur": 9731
+        },
+        "J": {
+          "label": "J Information and communication (58-63)",
+          "value_million_eur": 14412
+        },
+        "K": {
+          "label": "K Financial and insurance activities (64-66)",
+          "value_million_eur": 6945
+        },
+        "L": {
+          "label": "L Real estate activities (68)",
+          "value_million_eur": 27840
+        },
+        "OTQ": {
+          "label": "O-Q Public administration, education, human health and social work activities (84-88)",
+          "value_million_eur": 43964
+        },
+        "O": {
+          "label": "O Public administration and defence; compulsory social security (84)",
+          "value_million_eur": 10591
+        },
+        "P": {
+          "label": "P Education (85)",
+          "value_million_eur": 12816
+        },
+        "Q": {
+          "label": "Q Human health and social work activities (86-88)",
+          "value_million_eur": 20586
+        }
+      },
+      "public_share_pct": 22.0,
+      "private_share_pct": 78.0,
+      "manufacturing_share_pct": 15.65,
+      "ict_share_pct": 7.21
+    }
+  ]
+}

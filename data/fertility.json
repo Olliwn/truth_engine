@@ -1,0 +1,1519 @@
+{
+  "metadata": {
+    "source": "Statistics Finland",
+    "tables": [
+      "statfin_synt_pxt_12ds",
+      "statfin_tyti_pxt_135y"
+    ],
+    "description": "Total fertility rate and female labor force participation",
+    "fetched_at": "2026-01-03T22:45:32.221695",
+    "replacement_level": 2.1,
+    "note": "TFR below 2.1 means population decline without immigration"
+  },
+  "summary": {
+    "period": "1776-2024",
+    "current_tfr": 1.25,
+    "peak_year": 1779,
+    "peak_tfr": 5.91,
+    "trough_year": 2024,
+    "trough_tfr": 1.25,
+    "below_replacement_since": 1942,
+    "tfr_change_since_1990": -0.53
+  },
+  "time_series": [
+    {
+      "year": 1776,
+      "tfr": 5.42,
+      "female_labor_participation": null,
+      "replacement_gap": -3.32
+    },
+    {
+      "year": 1777,
+      "tfr": 5.51,
+      "female_labor_participation": null,
+      "replacement_gap": -3.41
+    },
+    {
+      "year": 1778,
+      "tfr": 5.82,
+      "female_labor_participation": null,
+      "replacement_gap": -3.72
+    },
+    {
+      "year": 1779,
+      "tfr": 5.91,
+      "female_labor_participation": null,
+      "replacement_gap": -3.81
+    },
+    {
+      "year": 1780,
+      "tfr": 5.71,
+      "female_labor_participation": null,
+      "replacement_gap": -3.61
+    },
+    {
+      "year": 1781,
+      "tfr": 5.17,
+      "female_labor_participation": null,
+      "replacement_gap": -3.07
+    },
+    {
+      "year": 1782,
+      "tfr": 5.74,
+      "female_labor_participation": null,
+      "replacement_gap": -3.64
+    },
+    {
+      "year": 1783,
+      "tfr": 5.42,
+      "female_labor_participation": null,
+      "replacement_gap": -3.32
+    },
+    {
+      "year": 1784,
+      "tfr": 5.79,
+      "female_labor_participation": null,
+      "replacement_gap": -3.69
+    },
+    {
+      "year": 1785,
+      "tfr": 5.39,
+      "female_labor_participation": null,
+      "replacement_gap": -3.29
+    },
+    {
+      "year": 1786,
+      "tfr": 5.6,
+      "female_labor_participation": null,
+      "replacement_gap": -3.5
+    },
+    {
+      "year": 1787,
+      "tfr": 5.46,
+      "female_labor_participation": null,
+      "replacement_gap": -3.36
+    },
+    {
+      "year": 1788,
+      "tfr": 4.86,
+      "female_labor_participation": null,
+      "replacement_gap": -2.76
+    },
+    {
+      "year": 1789,
+      "tfr": 4.51,
+      "female_labor_participation": null,
+      "replacement_gap": -2.41
+    },
+    {
+      "year": 1790,
+      "tfr": 4.88,
+      "female_labor_participation": null,
+      "replacement_gap": -2.78
+    },
+    {
+      "year": 1791,
+      "tfr": 4.66,
+      "female_labor_participation": null,
+      "replacement_gap": -2.56
+    },
+    {
+      "year": 1792,
+      "tfr": 5.43,
+      "female_labor_participation": null,
+      "replacement_gap": -3.33
+    },
+    {
+      "year": 1793,
+      "tfr": 5.71,
+      "female_labor_participation": null,
+      "replacement_gap": -3.61
+    },
+    {
+      "year": 1794,
+      "tfr": 5.41,
+      "female_labor_participation": null,
+      "replacement_gap": -3.31
+    },
+    {
+      "year": 1795,
+      "tfr": 5.18,
+      "female_labor_participation": null,
+      "replacement_gap": -3.08
+    },
+    {
+      "year": 1796,
+      "tfr": 5.05,
+      "female_labor_participation": null,
+      "replacement_gap": -2.95
+    },
+    {
+      "year": 1797,
+      "tfr": 5.2,
+      "female_labor_participation": null,
+      "replacement_gap": -3.1
+    },
+    {
+      "year": 1798,
+      "tfr": 5.08,
+      "female_labor_participation": null,
+      "replacement_gap": -2.98
+    },
+    {
+      "year": 1799,
+      "tfr": 5.09,
+      "female_labor_participation": null,
+      "replacement_gap": -2.99
+    },
+    {
+      "year": 1800,
+      "tfr": 4.92,
+      "female_labor_participation": null,
+      "replacement_gap": -2.82
+    },
+    {
+      "year": 1801,
+      "tfr": 5.07,
+      "female_labor_participation": null,
+      "replacement_gap": -2.97
+    },
+    {
+      "year": 1802,
+      "tfr": 5.23,
+      "female_labor_participation": null,
+      "replacement_gap": -3.13
+    },
+    {
+      "year": 1803,
+      "tfr": 4.78,
+      "female_labor_participation": null,
+      "replacement_gap": -2.68
+    },
+    {
+      "year": 1804,
+      "tfr": 5.24,
+      "female_labor_participation": null,
+      "replacement_gap": -3.14
+    },
+    {
+      "year": 1805,
+      "tfr": 5.21,
+      "female_labor_participation": null,
+      "replacement_gap": -3.11
+    },
+    {
+      "year": 1806,
+      "tfr": 4.84,
+      "female_labor_participation": null,
+      "replacement_gap": -2.74
+    },
+    {
+      "year": 1807,
+      "tfr": 4.97,
+      "female_labor_participation": null,
+      "replacement_gap": -2.87
+    },
+    {
+      "year": 1808,
+      "tfr": 4.16,
+      "female_labor_participation": null,
+      "replacement_gap": -2.06
+    },
+    {
+      "year": 1809,
+      "tfr": 3.69,
+      "female_labor_participation": null,
+      "replacement_gap": -1.59
+    },
+    {
+      "year": 1810,
+      "tfr": 5.1,
+      "female_labor_participation": null,
+      "replacement_gap": -3.0
+    },
+    {
+      "year": 1811,
+      "tfr": 4.66,
+      "female_labor_participation": null,
+      "replacement_gap": -2.56
+    },
+    {
+      "year": 1812,
+      "tfr": 4.95,
+      "female_labor_participation": null,
+      "replacement_gap": -2.85
+    },
+    {
+      "year": 1813,
+      "tfr": 4.6,
+      "female_labor_participation": null,
+      "replacement_gap": -2.5
+    },
+    {
+      "year": 1814,
+      "tfr": 4.72,
+      "female_labor_participation": null,
+      "replacement_gap": -2.62
+    },
+    {
+      "year": 1815,
+      "tfr": 4.84,
+      "female_labor_participation": null,
+      "replacement_gap": -2.74
+    },
+    {
+      "year": 1816,
+      "tfr": 4.82,
+      "female_labor_participation": null,
+      "replacement_gap": -2.72
+    },
+    {
+      "year": 1817,
+      "tfr": 4.84,
+      "female_labor_participation": null,
+      "replacement_gap": -2.74
+    },
+    {
+      "year": 1818,
+      "tfr": 4.78,
+      "female_labor_participation": null,
+      "replacement_gap": -2.68
+    },
+    {
+      "year": 1819,
+      "tfr": 4.51,
+      "female_labor_participation": null,
+      "replacement_gap": -2.41
+    },
+    {
+      "year": 1820,
+      "tfr": 4.55,
+      "female_labor_participation": null,
+      "replacement_gap": -2.45
+    },
+    {
+      "year": 1821,
+      "tfr": 5.34,
+      "female_labor_participation": null,
+      "replacement_gap": -3.24
+    },
+    {
+      "year": 1822,
+      "tfr": 4.59,
+      "female_labor_participation": null,
+      "replacement_gap": -2.49
+    },
+    {
+      "year": 1823,
+      "tfr": 5.21,
+      "female_labor_participation": null,
+      "replacement_gap": -3.11
+    },
+    {
+      "year": 1824,
+      "tfr": 4.84,
+      "female_labor_participation": null,
+      "replacement_gap": -2.74
+    },
+    {
+      "year": 1825,
+      "tfr": 4.83,
+      "female_labor_participation": null,
+      "replacement_gap": -2.73
+    },
+    {
+      "year": 1826,
+      "tfr": 4.89,
+      "female_labor_participation": null,
+      "replacement_gap": -2.79
+    },
+    {
+      "year": 1827,
+      "tfr": 4.77,
+      "female_labor_participation": null,
+      "replacement_gap": -2.67
+    },
+    {
+      "year": 1828,
+      "tfr": 5.12,
+      "female_labor_participation": null,
+      "replacement_gap": -3.02
+    },
+    {
+      "year": 1829,
+      "tfr": 4.98,
+      "female_labor_participation": null,
+      "replacement_gap": -2.88
+    },
+    {
+      "year": 1830,
+      "tfr": 4.85,
+      "female_labor_participation": null,
+      "replacement_gap": -2.75
+    },
+    {
+      "year": 1831,
+      "tfr": 4.58,
+      "female_labor_participation": null,
+      "replacement_gap": -2.48
+    },
+    {
+      "year": 1832,
+      "tfr": 4.47,
+      "female_labor_participation": null,
+      "replacement_gap": -2.37
+    },
+    {
+      "year": 1833,
+      "tfr": 3.96,
+      "female_labor_participation": null,
+      "replacement_gap": -1.86
+    },
+    {
+      "year": 1834,
+      "tfr": 4.75,
+      "female_labor_participation": null,
+      "replacement_gap": -2.65
+    },
+    {
+      "year": 1835,
+      "tfr": 4.57,
+      "female_labor_participation": null,
+      "replacement_gap": -2.47
+    },
+    {
+      "year": 1836,
+      "tfr": 4.17,
+      "female_labor_participation": null,
+      "replacement_gap": -2.07
+    },
+    {
+      "year": 1837,
+      "tfr": 4.17,
+      "female_labor_participation": null,
+      "replacement_gap": -2.07
+    },
+    {
+      "year": 1838,
+      "tfr": 4.32,
+      "female_labor_participation": null,
+      "replacement_gap": -2.22
+    },
+    {
+      "year": 1839,
+      "tfr": 4.47,
+      "female_labor_participation": null,
+      "replacement_gap": -2.37
+    },
+    {
+      "year": 1840,
+      "tfr": 4.59,
+      "female_labor_participation": null,
+      "replacement_gap": -2.49
+    },
+    {
+      "year": 1841,
+      "tfr": 4.56,
+      "female_labor_participation": null,
+      "replacement_gap": -2.46
+    },
+    {
+      "year": 1842,
+      "tfr": 4.96,
+      "female_labor_participation": null,
+      "replacement_gap": -2.86
+    },
+    {
+      "year": 1843,
+      "tfr": 4.77,
+      "female_labor_participation": null,
+      "replacement_gap": -2.67
+    },
+    {
+      "year": 1844,
+      "tfr": 4.64,
+      "female_labor_participation": null,
+      "replacement_gap": -2.54
+    },
+    {
+      "year": 1845,
+      "tfr": 4.76,
+      "female_labor_participation": null,
+      "replacement_gap": -2.66
+    },
+    {
+      "year": 1846,
+      "tfr": 4.39,
+      "female_labor_participation": null,
+      "replacement_gap": -2.29
+    },
+    {
+      "year": 1847,
+      "tfr": 4.46,
+      "female_labor_participation": null,
+      "replacement_gap": -2.36
+    },
+    {
+      "year": 1848,
+      "tfr": 4.84,
+      "female_labor_participation": null,
+      "replacement_gap": -2.74
+    },
+    {
+      "year": 1849,
+      "tfr": 4.92,
+      "female_labor_participation": null,
+      "replacement_gap": -2.82
+    },
+    {
+      "year": 1850,
+      "tfr": 4.78,
+      "female_labor_participation": null,
+      "replacement_gap": -2.68
+    },
+    {
+      "year": 1851,
+      "tfr": 5.17,
+      "female_labor_participation": null,
+      "replacement_gap": -3.07
+    },
+    {
+      "year": 1852,
+      "tfr": 4.79,
+      "female_labor_participation": null,
+      "replacement_gap": -2.69
+    },
+    {
+      "year": 1853,
+      "tfr": 4.8,
+      "female_labor_participation": null,
+      "replacement_gap": -2.7
+    },
+    {
+      "year": 1854,
+      "tfr": 5.02,
+      "female_labor_participation": null,
+      "replacement_gap": -2.92
+    },
+    {
+      "year": 1855,
+      "tfr": 4.82,
+      "female_labor_participation": null,
+      "replacement_gap": -2.72
+    },
+    {
+      "year": 1856,
+      "tfr": 4.86,
+      "female_labor_participation": null,
+      "replacement_gap": -2.76
+    },
+    {
+      "year": 1857,
+      "tfr": 4.48,
+      "female_labor_participation": null,
+      "replacement_gap": -2.38
+    },
+    {
+      "year": 1858,
+      "tfr": 4.87,
+      "female_labor_participation": null,
+      "replacement_gap": -2.77
+    },
+    {
+      "year": 1859,
+      "tfr": 4.74,
+      "female_labor_participation": null,
+      "replacement_gap": -2.64
+    },
+    {
+      "year": 1860,
+      "tfr": 4.84,
+      "female_labor_participation": null,
+      "replacement_gap": -2.74
+    },
+    {
+      "year": 1861,
+      "tfr": 5.2,
+      "female_labor_participation": null,
+      "replacement_gap": -3.1
+    },
+    {
+      "year": 1862,
+      "tfr": 5.03,
+      "female_labor_participation": null,
+      "replacement_gap": -2.93
+    },
+    {
+      "year": 1863,
+      "tfr": 4.85,
+      "female_labor_participation": null,
+      "replacement_gap": -2.75
+    },
+    {
+      "year": 1864,
+      "tfr": 5.28,
+      "female_labor_participation": null,
+      "replacement_gap": -3.18
+    },
+    {
+      "year": 1865,
+      "tfr": 4.79,
+      "female_labor_participation": null,
+      "replacement_gap": -2.69
+    },
+    {
+      "year": 1866,
+      "tfr": 4.46,
+      "female_labor_participation": null,
+      "replacement_gap": -2.36
+    },
+    {
+      "year": 1867,
+      "tfr": 4.47,
+      "female_labor_participation": null,
+      "replacement_gap": -2.37
+    },
+    {
+      "year": 1868,
+      "tfr": 3.4,
+      "female_labor_participation": null,
+      "replacement_gap": -1.3
+    },
+    {
+      "year": 1869,
+      "tfr": 4.52,
+      "female_labor_participation": null,
+      "replacement_gap": -2.42
+    },
+    {
+      "year": 1870,
+      "tfr": 4.86,
+      "female_labor_participation": null,
+      "replacement_gap": -2.76
+    },
+    {
+      "year": 1871,
+      "tfr": 4.95,
+      "female_labor_participation": null,
+      "replacement_gap": -2.85
+    },
+    {
+      "year": 1872,
+      "tfr": 4.87,
+      "female_labor_participation": null,
+      "replacement_gap": -2.77
+    },
+    {
+      "year": 1873,
+      "tfr": 4.97,
+      "female_labor_participation": null,
+      "replacement_gap": -2.87
+    },
+    {
+      "year": 1874,
+      "tfr": 5.12,
+      "female_labor_participation": null,
+      "replacement_gap": -3.02
+    },
+    {
+      "year": 1875,
+      "tfr": 4.95,
+      "female_labor_participation": null,
+      "replacement_gap": -2.85
+    },
+    {
+      "year": 1876,
+      "tfr": 4.97,
+      "female_labor_participation": null,
+      "replacement_gap": -2.87
+    },
+    {
+      "year": 1877,
+      "tfr": 5.19,
+      "female_labor_participation": null,
+      "replacement_gap": -3.09
+    },
+    {
+      "year": 1878,
+      "tfr": 4.81,
+      "female_labor_participation": null,
+      "replacement_gap": -2.71
+    },
+    {
+      "year": 1879,
+      "tfr": 5.14,
+      "female_labor_participation": null,
+      "replacement_gap": -3.04
+    },
+    {
+      "year": 1880,
+      "tfr": 5.01,
+      "female_labor_participation": null,
+      "replacement_gap": -2.91
+    },
+    {
+      "year": 1881,
+      "tfr": 4.79,
+      "female_labor_participation": null,
+      "replacement_gap": -2.69
+    },
+    {
+      "year": 1882,
+      "tfr": 4.99,
+      "female_labor_participation": null,
+      "replacement_gap": -2.89
+    },
+    {
+      "year": 1883,
+      "tfr": 4.96,
+      "female_labor_participation": null,
+      "replacement_gap": -2.86
+    },
+    {
+      "year": 1884,
+      "tfr": 5.04,
+      "female_labor_participation": null,
+      "replacement_gap": -2.94
+    },
+    {
+      "year": 1885,
+      "tfr": 4.79,
+      "female_labor_participation": null,
+      "replacement_gap": -2.69
+    },
+    {
+      "year": 1886,
+      "tfr": 4.98,
+      "female_labor_participation": null,
+      "replacement_gap": -2.88
+    },
+    {
+      "year": 1887,
+      "tfr": 5.17,
+      "female_labor_participation": null,
+      "replacement_gap": -3.07
+    },
+    {
+      "year": 1888,
+      "tfr": 5.07,
+      "female_labor_participation": null,
+      "replacement_gap": -2.97
+    },
+    {
+      "year": 1889,
+      "tfr": 4.89,
+      "female_labor_participation": null,
+      "replacement_gap": -2.79
+    },
+    {
+      "year": 1890,
+      "tfr": 4.83,
+      "female_labor_participation": null,
+      "replacement_gap": -2.73
+    },
+    {
+      "year": 1891,
+      "tfr": 5.04,
+      "female_labor_participation": null,
+      "replacement_gap": -2.94
+    },
+    {
+      "year": 1892,
+      "tfr": 4.65,
+      "female_labor_participation": null,
+      "replacement_gap": -2.55
+    },
+    {
+      "year": 1893,
+      "tfr": 4.43,
+      "female_labor_participation": null,
+      "replacement_gap": -2.33
+    },
+    {
+      "year": 1894,
+      "tfr": 4.59,
+      "female_labor_participation": null,
+      "replacement_gap": -2.49
+    },
+    {
+      "year": 1895,
+      "tfr": 4.87,
+      "female_labor_participation": null,
+      "replacement_gap": -2.77
+    },
+    {
+      "year": 1896,
+      "tfr": 4.8,
+      "female_labor_participation": null,
+      "replacement_gap": -2.7
+    },
+    {
+      "year": 1897,
+      "tfr": 4.77,
+      "female_labor_participation": null,
+      "replacement_gap": -2.67
+    },
+    {
+      "year": 1898,
+      "tfr": 5.07,
+      "female_labor_participation": null,
+      "replacement_gap": -2.97
+    },
+    {
+      "year": 1899,
+      "tfr": 4.96,
+      "female_labor_participation": null,
+      "replacement_gap": -2.86
+    },
+    {
+      "year": 1900,
+      "tfr": 4.83,
+      "female_labor_participation": null,
+      "replacement_gap": -2.73
+    },
+    {
+      "year": 1901,
+      "tfr": 4.92,
+      "female_labor_participation": null,
+      "replacement_gap": -2.82
+    },
+    {
+      "year": 1902,
+      "tfr": 4.79,
+      "female_labor_participation": null,
+      "replacement_gap": -2.69
+    },
+    {
+      "year": 1903,
+      "tfr": 4.62,
+      "female_labor_participation": null,
+      "replacement_gap": -2.52
+    },
+    {
+      "year": 1904,
+      "tfr": 4.85,
+      "female_labor_participation": null,
+      "replacement_gap": -2.75
+    },
+    {
+      "year": 1905,
+      "tfr": 4.67,
+      "female_labor_participation": null,
+      "replacement_gap": -2.57
+    },
+    {
+      "year": 1906,
+      "tfr": 4.81,
+      "female_labor_participation": null,
+      "replacement_gap": -2.71
+    },
+    {
+      "year": 1907,
+      "tfr": 4.76,
+      "female_labor_participation": null,
+      "replacement_gap": -2.66
+    },
+    {
+      "year": 1908,
+      "tfr": 4.65,
+      "female_labor_participation": null,
+      "replacement_gap": -2.55
+    },
+    {
+      "year": 1909,
+      "tfr": 4.72,
+      "female_labor_participation": null,
+      "replacement_gap": -2.62
+    },
+    {
+      "year": 1910,
+      "tfr": 4.6,
+      "female_labor_participation": null,
+      "replacement_gap": -2.5
+    },
+    {
+      "year": 1911,
+      "tfr": 4.46,
+      "female_labor_participation": null,
+      "replacement_gap": -2.36
+    },
+    {
+      "year": 1912,
+      "tfr": 4.45,
+      "female_labor_participation": null,
+      "replacement_gap": -2.35
+    },
+    {
+      "year": 1913,
+      "tfr": 4.15,
+      "female_labor_participation": null,
+      "replacement_gap": -2.05
+    },
+    {
+      "year": 1914,
+      "tfr": 4.13,
+      "female_labor_participation": null,
+      "replacement_gap": -2.03
+    },
+    {
+      "year": 1915,
+      "tfr": 3.89,
+      "female_labor_participation": null,
+      "replacement_gap": -1.79
+    },
+    {
+      "year": 1916,
+      "tfr": 3.69,
+      "female_labor_participation": null,
+      "replacement_gap": -1.59
+    },
+    {
+      "year": 1917,
+      "tfr": 3.71,
+      "female_labor_participation": null,
+      "replacement_gap": -1.61
+    },
+    {
+      "year": 1918,
+      "tfr": 3.6,
+      "female_labor_participation": null,
+      "replacement_gap": -1.5
+    },
+    {
+      "year": 1919,
+      "tfr": 2.87,
+      "female_labor_participation": null,
+      "replacement_gap": -0.77
+    },
+    {
+      "year": 1920,
+      "tfr": 3.76,
+      "female_labor_participation": null,
+      "replacement_gap": -1.66
+    },
+    {
+      "year": 1921,
+      "tfr": 3.58,
+      "female_labor_participation": null,
+      "replacement_gap": -1.48
+    },
+    {
+      "year": 1922,
+      "tfr": 3.43,
+      "female_labor_participation": null,
+      "replacement_gap": -1.33
+    },
+    {
+      "year": 1923,
+      "tfr": 3.44,
+      "female_labor_participation": null,
+      "replacement_gap": -1.34
+    },
+    {
+      "year": 1924,
+      "tfr": 3.22,
+      "female_labor_participation": null,
+      "replacement_gap": -1.12
+    },
+    {
+      "year": 1925,
+      "tfr": 3.17,
+      "female_labor_participation": null,
+      "replacement_gap": -1.07
+    },
+    {
+      "year": 1926,
+      "tfr": 3.02,
+      "female_labor_participation": null,
+      "replacement_gap": -0.92
+    },
+    {
+      "year": 1927,
+      "tfr": 2.92,
+      "female_labor_participation": null,
+      "replacement_gap": -0.82
+    },
+    {
+      "year": 1928,
+      "tfr": 2.92,
+      "female_labor_participation": null,
+      "replacement_gap": -0.82
+    },
+    {
+      "year": 1929,
+      "tfr": 2.83,
+      "female_labor_participation": null,
+      "replacement_gap": -0.73
+    },
+    {
+      "year": 1930,
+      "tfr": 2.75,
+      "female_labor_participation": null,
+      "replacement_gap": -0.65
+    },
+    {
+      "year": 1931,
+      "tfr": 2.59,
+      "female_labor_participation": null,
+      "replacement_gap": -0.49
+    },
+    {
+      "year": 1932,
+      "tfr": 2.46,
+      "female_labor_participation": null,
+      "replacement_gap": -0.36
+    },
+    {
+      "year": 1933,
+      "tfr": 2.27,
+      "female_labor_participation": null,
+      "replacement_gap": -0.17
+    },
+    {
+      "year": 1934,
+      "tfr": 2.33,
+      "female_labor_participation": null,
+      "replacement_gap": -0.23
+    },
+    {
+      "year": 1935,
+      "tfr": 2.37,
+      "female_labor_participation": null,
+      "replacement_gap": -0.27
+    },
+    {
+      "year": 1936,
+      "tfr": 2.31,
+      "female_labor_participation": null,
+      "replacement_gap": -0.21
+    },
+    {
+      "year": 1937,
+      "tfr": 2.52,
+      "female_labor_participation": null,
+      "replacement_gap": -0.42
+    },
+    {
+      "year": 1938,
+      "tfr": 2.52,
+      "female_labor_participation": null,
+      "replacement_gap": -0.42
+    },
+    {
+      "year": 1939,
+      "tfr": 2.56,
+      "female_labor_participation": null,
+      "replacement_gap": -0.46
+    },
+    {
+      "year": 1940,
+      "tfr": 2.15,
+      "female_labor_participation": null,
+      "replacement_gap": -0.05
+    },
+    {
+      "year": 1941,
+      "tfr": 2.9,
+      "female_labor_participation": null,
+      "replacement_gap": -0.8
+    },
+    {
+      "year": 1942,
+      "tfr": 2,
+      "female_labor_participation": null,
+      "replacement_gap": 0.1
+    },
+    {
+      "year": 1943,
+      "tfr": 2.46,
+      "female_labor_participation": null,
+      "replacement_gap": -0.36
+    },
+    {
+      "year": 1944,
+      "tfr": 2.56,
+      "female_labor_participation": null,
+      "replacement_gap": -0.46
+    },
+    {
+      "year": 1945,
+      "tfr": 3.07,
+      "female_labor_participation": null,
+      "replacement_gap": -0.97
+    },
+    {
+      "year": 1946,
+      "tfr": 3.41,
+      "female_labor_participation": null,
+      "replacement_gap": -1.31
+    },
+    {
+      "year": 1947,
+      "tfr": 3.47,
+      "female_labor_participation": null,
+      "replacement_gap": -1.37
+    },
+    {
+      "year": 1948,
+      "tfr": 3.47,
+      "female_labor_participation": null,
+      "replacement_gap": -1.37
+    },
+    {
+      "year": 1949,
+      "tfr": 3.33,
+      "female_labor_participation": null,
+      "replacement_gap": -1.23
+    },
+    {
+      "year": 1950,
+      "tfr": 3.16,
+      "female_labor_participation": null,
+      "replacement_gap": -1.06
+    },
+    {
+      "year": 1951,
+      "tfr": 3.01,
+      "female_labor_participation": null,
+      "replacement_gap": -0.91
+    },
+    {
+      "year": 1952,
+      "tfr": 3.06,
+      "female_labor_participation": null,
+      "replacement_gap": -0.96
+    },
+    {
+      "year": 1953,
+      "tfr": 2.96,
+      "female_labor_participation": null,
+      "replacement_gap": -0.86
+    },
+    {
+      "year": 1954,
+      "tfr": 2.93,
+      "female_labor_participation": null,
+      "replacement_gap": -0.83
+    },
+    {
+      "year": 1955,
+      "tfr": 2.93,
+      "female_labor_participation": null,
+      "replacement_gap": -0.83
+    },
+    {
+      "year": 1956,
+      "tfr": 2.91,
+      "female_labor_participation": null,
+      "replacement_gap": -0.81
+    },
+    {
+      "year": 1957,
+      "tfr": 2.86,
+      "female_labor_participation": null,
+      "replacement_gap": -0.76
+    },
+    {
+      "year": 1958,
+      "tfr": 2.68,
+      "female_labor_participation": null,
+      "replacement_gap": -0.58
+    },
+    {
+      "year": 1959,
+      "tfr": 2.75,
+      "female_labor_participation": null,
+      "replacement_gap": -0.65
+    },
+    {
+      "year": 1960,
+      "tfr": 2.71,
+      "female_labor_participation": null,
+      "replacement_gap": -0.61
+    },
+    {
+      "year": 1961,
+      "tfr": 2.65,
+      "female_labor_participation": null,
+      "replacement_gap": -0.55
+    },
+    {
+      "year": 1962,
+      "tfr": 2.66,
+      "female_labor_participation": null,
+      "replacement_gap": -0.56
+    },
+    {
+      "year": 1963,
+      "tfr": 2.66,
+      "female_labor_participation": null,
+      "replacement_gap": -0.56
+    },
+    {
+      "year": 1964,
+      "tfr": 2.58,
+      "female_labor_participation": null,
+      "replacement_gap": -0.48
+    },
+    {
+      "year": 1965,
+      "tfr": 2.46,
+      "female_labor_participation": null,
+      "replacement_gap": -0.36
+    },
+    {
+      "year": 1966,
+      "tfr": 2.41,
+      "female_labor_participation": null,
+      "replacement_gap": -0.31
+    },
+    {
+      "year": 1967,
+      "tfr": 2.32,
+      "female_labor_participation": null,
+      "replacement_gap": -0.22
+    },
+    {
+      "year": 1968,
+      "tfr": 2.15,
+      "female_labor_participation": null,
+      "replacement_gap": -0.05
+    },
+    {
+      "year": 1969,
+      "tfr": 1.94,
+      "female_labor_participation": null,
+      "replacement_gap": 0.16
+    },
+    {
+      "year": 1970,
+      "tfr": 1.83,
+      "female_labor_participation": null,
+      "replacement_gap": 0.27
+    },
+    {
+      "year": 1971,
+      "tfr": 1.7,
+      "female_labor_participation": null,
+      "replacement_gap": 0.4
+    },
+    {
+      "year": 1972,
+      "tfr": 1.59,
+      "female_labor_participation": null,
+      "replacement_gap": 0.51
+    },
+    {
+      "year": 1973,
+      "tfr": 1.5,
+      "female_labor_participation": null,
+      "replacement_gap": 0.6
+    },
+    {
+      "year": 1974,
+      "tfr": 1.62,
+      "female_labor_participation": null,
+      "replacement_gap": 0.48
+    },
+    {
+      "year": 1975,
+      "tfr": 1.69,
+      "female_labor_participation": null,
+      "replacement_gap": 0.41
+    },
+    {
+      "year": 1976,
+      "tfr": 1.72,
+      "female_labor_participation": null,
+      "replacement_gap": 0.38
+    },
+    {
+      "year": 1977,
+      "tfr": 1.69,
+      "female_labor_participation": null,
+      "replacement_gap": 0.41
+    },
+    {
+      "year": 1978,
+      "tfr": 1.65,
+      "female_labor_participation": null,
+      "replacement_gap": 0.45
+    },
+    {
+      "year": 1979,
+      "tfr": 1.64,
+      "female_labor_participation": null,
+      "replacement_gap": 0.46
+    },
+    {
+      "year": 1980,
+      "tfr": 1.63,
+      "female_labor_participation": null,
+      "replacement_gap": 0.47
+    },
+    {
+      "year": 1981,
+      "tfr": 1.65,
+      "female_labor_participation": null,
+      "replacement_gap": 0.45
+    },
+    {
+      "year": 1982,
+      "tfr": 1.72,
+      "female_labor_participation": null,
+      "replacement_gap": 0.38
+    },
+    {
+      "year": 1983,
+      "tfr": 1.74,
+      "female_labor_participation": null,
+      "replacement_gap": 0.36
+    },
+    {
+      "year": 1984,
+      "tfr": 1.7,
+      "female_labor_participation": null,
+      "replacement_gap": 0.4
+    },
+    {
+      "year": 1985,
+      "tfr": 1.64,
+      "female_labor_participation": null,
+      "replacement_gap": 0.46
+    },
+    {
+      "year": 1986,
+      "tfr": 1.6,
+      "female_labor_participation": null,
+      "replacement_gap": 0.5
+    },
+    {
+      "year": 1987,
+      "tfr": 1.59,
+      "female_labor_participation": null,
+      "replacement_gap": 0.51
+    },
+    {
+      "year": 1988,
+      "tfr": 1.7,
+      "female_labor_participation": null,
+      "replacement_gap": 0.4
+    },
+    {
+      "year": 1989,
+      "tfr": 1.71,
+      "female_labor_participation": null,
+      "replacement_gap": 0.39
+    },
+    {
+      "year": 1990,
+      "tfr": 1.78,
+      "female_labor_participation": null,
+      "replacement_gap": 0.32
+    },
+    {
+      "year": 1991,
+      "tfr": 1.79,
+      "female_labor_participation": null,
+      "replacement_gap": 0.31
+    },
+    {
+      "year": 1992,
+      "tfr": 1.85,
+      "female_labor_participation": null,
+      "replacement_gap": 0.25
+    },
+    {
+      "year": 1993,
+      "tfr": 1.81,
+      "female_labor_participation": null,
+      "replacement_gap": 0.29
+    },
+    {
+      "year": 1994,
+      "tfr": 1.85,
+      "female_labor_participation": null,
+      "replacement_gap": 0.25
+    },
+    {
+      "year": 1995,
+      "tfr": 1.81,
+      "female_labor_participation": null,
+      "replacement_gap": 0.29
+    },
+    {
+      "year": 1996,
+      "tfr": 1.76,
+      "female_labor_participation": null,
+      "replacement_gap": 0.34
+    },
+    {
+      "year": 1997,
+      "tfr": 1.75,
+      "female_labor_participation": null,
+      "replacement_gap": 0.35
+    },
+    {
+      "year": 1998,
+      "tfr": 1.7,
+      "female_labor_participation": null,
+      "replacement_gap": 0.4
+    },
+    {
+      "year": 1999,
+      "tfr": 1.73,
+      "female_labor_participation": null,
+      "replacement_gap": 0.37
+    },
+    {
+      "year": 2000,
+      "tfr": 1.73,
+      "female_labor_participation": null,
+      "replacement_gap": 0.37
+    },
+    {
+      "year": 2001,
+      "tfr": 1.73,
+      "female_labor_participation": null,
+      "replacement_gap": 0.37
+    },
+    {
+      "year": 2002,
+      "tfr": 1.72,
+      "female_labor_participation": null,
+      "replacement_gap": 0.38
+    },
+    {
+      "year": 2003,
+      "tfr": 1.76,
+      "female_labor_participation": null,
+      "replacement_gap": 0.34
+    },
+    {
+      "year": 2004,
+      "tfr": 1.8,
+      "female_labor_participation": null,
+      "replacement_gap": 0.3
+    },
+    {
+      "year": 2005,
+      "tfr": 1.8,
+      "female_labor_participation": null,
+      "replacement_gap": 0.3
+    },
+    {
+      "year": 2006,
+      "tfr": 1.84,
+      "female_labor_participation": null,
+      "replacement_gap": 0.26
+    },
+    {
+      "year": 2007,
+      "tfr": 1.83,
+      "female_labor_participation": null,
+      "replacement_gap": 0.27
+    },
+    {
+      "year": 2008,
+      "tfr": 1.85,
+      "female_labor_participation": null,
+      "replacement_gap": 0.25
+    },
+    {
+      "year": 2009,
+      "tfr": 1.86,
+      "female_labor_participation": null,
+      "replacement_gap": 0.24
+    },
+    {
+      "year": 2010,
+      "tfr": 1.87,
+      "female_labor_participation": null,
+      "replacement_gap": 0.23
+    },
+    {
+      "year": 2011,
+      "tfr": 1.83,
+      "female_labor_participation": null,
+      "replacement_gap": 0.27
+    },
+    {
+      "year": 2012,
+      "tfr": 1.8,
+      "female_labor_participation": null,
+      "replacement_gap": 0.3
+    },
+    {
+      "year": 2013,
+      "tfr": 1.75,
+      "female_labor_participation": null,
+      "replacement_gap": 0.35
+    },
+    {
+      "year": 2014,
+      "tfr": 1.71,
+      "female_labor_participation": null,
+      "replacement_gap": 0.39
+    },
+    {
+      "year": 2015,
+      "tfr": 1.65,
+      "female_labor_participation": null,
+      "replacement_gap": 0.45
+    },
+    {
+      "year": 2016,
+      "tfr": 1.57,
+      "female_labor_participation": null,
+      "replacement_gap": 0.53
+    },
+    {
+      "year": 2017,
+      "tfr": 1.49,
+      "female_labor_participation": null,
+      "replacement_gap": 0.61
+    },
+    {
+      "year": 2018,
+      "tfr": 1.41,
+      "female_labor_participation": null,
+      "replacement_gap": 0.69
+    },
+    {
+      "year": 2019,
+      "tfr": 1.35,
+      "female_labor_participation": null,
+      "replacement_gap": 0.75
+    },
+    {
+      "year": 2020,
+      "tfr": 1.37,
+      "female_labor_participation": null,
+      "replacement_gap": 0.73
+    },
+    {
+      "year": 2021,
+      "tfr": 1.46,
+      "female_labor_participation": null,
+      "replacement_gap": 0.64
+    },
+    {
+      "year": 2022,
+      "tfr": 1.32,
+      "female_labor_participation": null,
+      "replacement_gap": 0.78
+    },
+    {
+      "year": 2023,
+      "tfr": 1.26,
+      "female_labor_participation": null,
+      "replacement_gap": 0.84
+    },
+    {
+      "year": 2024,
+      "tfr": 1.25,
+      "female_labor_participation": null,
+      "replacement_gap": 0.85
+    }
+  ]
+}

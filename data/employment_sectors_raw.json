@@ -1,0 +1,420 @@
+{
+  "version": "2.0",
+  "class": "dataset",
+  "label": "Employed by Area, Industry, Sex, Year and Information",
+  "source": "Statistics Finland, employment",
+  "updated": "2024-12-17T06:00:00Z",
+  "note": [
+    "<A HREF='https://stat.fi/en/statistics/documentation/tyokay' TARGET=_blank>Documentation of statistics</A>",
+    "The reference period of the statistics is the last week of the year (25 to 31 December).",
+    "The latest valid regional division is used in the statistics.\r\n \r\nThe figures in the tables are final.\r\n \r\nDue to the employment pension reform, the lower age limit for employed persons rose in 2005 from 15 to 18 years in the employment statistics. The change is visible as a fall in employment by young people and a rise in the number of students. \r\n"
+  ],
+  "role": {
+    "time": [
+      "Vuosi"
+    ],
+    "geo": [
+      "Alue"
+    ],
+    "metric": [
+      "Tiedot"
+    ]
+  },
+  "id": [
+    "Alue",
+    "Toimiala",
+    "Sukupuoli",
+    "Vuosi",
+    "Tiedot"
+  ],
+  "size": [
+    1,
+    11,
+    1,
+    17,
+    1
+  ],
+  "dimension": {
+    "Alue": {
+      "label": "Area",
+      "category": {
+        "index": {
+          "SSS": 0
+        },
+        "label": {
+          "SSS": "WHOLE COUNTRY"
+        }
+      },
+      "extension": {
+        "elimination": true,
+        "eliminationValueCode": "SSS",
+        "show": "value"
+      },
+      "link": {
+        "describedby": [
+          {
+            "extension": {
+              "Alue": "SCALE-TYPE=nominal"
+            }
+          }
+        ]
+      }
+    },
+    "Toimiala": {
+      "label": "Industry",
+      "category": {
+        "index": {
+          "SSS": 0,
+          "ATA": 1,
+          "BTF": 2,
+          "C": 3,
+          "F": 4,
+          "J": 5,
+          "K": 6,
+          "L": 7,
+          "O": 8,
+          "P": 9,
+          "Q": 10
+        },
+        "label": {
+          "SSS": "Industries total",
+          "ATA": "Primary production (A) (Level 9)",
+          "BTF": "Secondary production (B-F) (Level 9)",
+          "C": "C Manufacturing (10-33) (Level 1)",
+          "F": "F Construction (41-43) (Level 1)",
+          "J": "J Information and communication (58-63) (Level 1)",
+          "K": "K Financial and insurance activities (64-66) (Level 1)",
+          "L": "L Real estate activities (68) (Level 1)",
+          "O": "O Public administration and defence; compulsory social security (84) (Level 1)",
+          "P": "P Education (85) (Level 1)",
+          "Q": "Q Human health and social work activities (86-88) (Level 1)"
+        }
+      },
+      "extension": {
+        "elimination": true,
+        "eliminationValueCode": "SSS",
+        "show": "value"
+      },
+      "link": {
+        "describedby": [
+          {
+            "extension": {
+              "Toimiala": "SCALE-TYPE=nominal"
+            }
+          }
+        ]
+      }
+    },
+    "Sukupuoli": {
+      "label": "Sex",
+      "category": {
+        "index": {
+          "SSS": 0
+        },
+        "label": {
+          "SSS": "Total"
+        }
+      },
+      "extension": {
+        "elimination": true,
+        "eliminationValueCode": "SSS",
+        "show": "value"
+      },
+      "link": {
+        "describedby": [
+          {
+            "extension": {
+              "Sukupuoli": "SCALE-TYPE=nominal"
+            }
+          }
+        ]
+      }
+    },
+    "Vuosi": {
+      "label": "Year",
+      "category": {
+        "index": {
+          "2007": 0,
+          "2008": 1,
+          "2009": 2,
+          "2010": 3,
+          "2011": 4,
+          "2012": 5,
+          "2013": 6,
+          "2014": 7,
+          "2015": 8,
+          "2016": 9,
+          "2017": 10,
+          "2018": 11,
+          "2019": 12,
+          "2020": 13,
+          "2021": 14,
+          "2022": 15,
+          "2023": 16
+        },
+        "label": {
+          "2007": "2007",
+          "2008": "2008",
+          "2009": "2009",
+          "2010": "2010",
+          "2011": "2011",
+          "2012": "2012",
+          "2013": "2013",
+          "2014": "2014",
+          "2015": "2015",
+          "2016": "2016",
+          "2017": "2017",
+          "2018": "2018",
+          "2019": "2019",
+          "2020": "2020",
+          "2021": "2021",
+          "2022": "2022",
+          "2023": "2023"
+        }
+      },
+      "extension": {
+        "elimination": false,
+        "show": "value"
+      }
+    },
+    "Tiedot": {
+      "label": "Information",
+      "category": {
+        "index": {
+          "tyolliset2": 0
+        },
+        "label": {
+          "tyolliset2": "Employed"
+        },
+        "unit": {
+          "tyolliset2": {
+            "base": "Number",
+            "decimals": 0
+          }
+        }
+      },
+      "extension": {
+        "elimination": false,
+        "show": "value"
+      }
+    }
+  },
+  "extension": {
+    "px": {
+      "tableid": "statfin_tyokay_pxt_115i",
+      "decimals": 0,
+      "official-statistics": true,
+      "aggregallowed": true,
+      "language": "fi",
+      "contents": "Employed",
+      "description": "115i -- Employed labour force by area, industry (TOL 2008), sex and year, 2007-2023",
+      "descriptiondefault": false,
+      "heading": [
+        "Sukupuoli",
+        "Vuosi",
+        "Tiedot"
+      ],
+      "stub": [
+        "Alue",
+        "Toimiala"
+      ],
+      "matrix": "001_115i_2023",
+      "subject-code": "TYOKAY",
+      "subject-area": "tyokay"
+    },
+    "contact": [
+      {
+        "raw": "<A HREF='https://stat.fi/en/statistics/tyokay' TARGET=_blank>Statistics' homepage</A>"
+      }
+    ]
+  },
+  "value": [
+    2369066,
+    2377181,
+    2289975,
+    2325679,
+    2354422,
+    2339904,
+    2301751,
+    2274076,
+    2256459,
+    2275679,
+    2327730,
+    2373668,
+    2373526,
+    2284673,
+    2377126,
+    2423548,
+    2417365,
+    93297,
+    88583,
+    84314,
+    85030,
+    82571,
+    80058,
+    78375,
+    74555,
+    71867,
+    68601,
+    66572,
+    65159,
+    63657,
+    60770,
+    60899,
+    59445,
+    58884,
+    583704,
+    568054,
+    509335,
+    514943,
+    519503,
+    504379,
+    482197,
+    468991,
+    462926,
+    470528,
+    490258,
+    501112,
+    492326,
+    468526,
+    503134,
+    509168,
+    490270,
+    397445,
+    383891,
+    337270,
+    335966,
+    334387,
+    321182,
+    302753,
+    294367,
+    288991,
+    287710,
+    298183,
+    304161,
+    297502,
+    278417,
+    302923,
+    306963,
+    298847,
+    158595,
+    156187,
+    144279,
+    151051,
+    156511,
+    154184,
+    150513,
+    146429,
+    146368,
+    154607,
+    163278,
+    167861,
+    165380,
+    160207,
+    169150,
+    171354,
+    159251,
+    86610,
+    87724,
+    85564,
+    85986,
+    88284,
+    87866,
+    87373,
+    87763,
+    88032,
+    90420,
+    94708,
+    99217,
+    101771,
+    103146,
+    109551,
+    115776,
+    116293,
+    46032,
+    47236,
+    46633,
+    46663,
+    47027,
+    46559,
+    45430,
+    44191,
+    44234,
+    44575,
+    44865,
+    44851,
+    44653,
+    44328,
+    44560,
+    46308,
+    48157,
+    21337,
+    21182,
+    20592,
+    20812,
+    21238,
+    21259,
+    21303,
+    20842,
+    21237,
+    21395,
+    21840,
+    22169,
+    23050,
+    22695,
+    24244,
+    24944,
+    25273,
+    125427,
+    125695,
+    124540,
+    121141,
+    121023,
+    121622,
+    119092,
+    117070,
+    114062,
+    113364,
+    115065,
+    114361,
+    116442,
+    119151,
+    111025,
+    112586,
+    116676,
+    162669,
+    162783,
+    163418,
+    166803,
+    168751,
+    168069,
+    165218,
+    162776,
+    159839,
+    156423,
+    158031,
+    159081,
+    164209,
+    164586,
+    169400,
+    173141,
+    176491,
+    351487,
+    363361,
+    365521,
+    370875,
+    376180,
+    383605,
+    385479,
+    385976,
+    384808,
+    387212,
+    394236,
+    402751,
+    407427,
+    416275,
+    421494,
+    429856,
+    438115
+  ]
+}

@@ -389,3 +389,252 @@ export function getEMTRColor(emtr: number): string {
   if (emtr < 0.9) return EMTR_COLORS.high;
   return EMTR_COLORS.critical;
 }
+
+// ============================================
+// GDP Sectors Types (Project Epsilon)
+// ============================================
+
+export interface GDPSectorEntry {
+  year: number;
+  total_gdp: number;
+  public_sector_gdp: number;
+  private_sector_gdp: number;
+  manufacturing_gdp: number;
+  ict_gdp: number;
+  public_share_pct: number;
+  private_share_pct: number;
+  manufacturing_share_pct: number;
+  ict_share_pct: number;
+  sectors: Record<string, { label: string; value_million_eur: number }>;
+}
+
+export interface GDPSectorsData {
+  metadata: {
+    source: string;
+    table: string;
+    description: string;
+    fetched_at: string;
+    public_sectors: string[];
+    public_sectors_description: string;
+  };
+  time_series: GDPSectorEntry[];
+}
+
+// ============================================
+// Employment Sectors Types (Project Zeta)
+// ============================================
+
+export interface EmploymentSectorEntry {
+  year: number;
+  total_employed: number;
+  public_sector: number;
+  private_sector: number;
+  manufacturing: number;
+  construction: number;
+  primary: number;
+  ict: number;
+  public_pct: number;
+  private_pct: number;
+  manufacturing_pct: number;
+  ict_pct: number;
+  construction_pct: number;
+  primary_pct: number;
+  private_per_public: number | null;
+  sectors: Record<string, { label: string; employed: number }>;
+}
+
+export interface EmploymentSectorsData {
+  metadata: {
+    source: string;
+    table: string;
+    description: string;
+    fetched_at: string;
+    sector_classification: Record<string, string>;
+  };
+  summary: {
+    period: string;
+    employment_change: {
+      total: number;
+      public: number;
+      private: number;
+      manufacturing: number;
+    };
+    share_change: {
+      public_pct: number;
+      manufacturing_pct: number;
+      ict_pct: number;
+    };
+  };
+  time_series: EmploymentSectorEntry[];
+}
+
+// ============================================
+// Trade Balance Types (Project Eta)
+// ============================================
+
+export interface TradeBalanceEntry {
+  year: number;
+  exports_total: number;
+  imports_total: number;
+  trade_balance: number;
+  goods_balance: number;
+  services_balance: number;
+  goods_exports: number;
+  goods_imports: number;
+  services_exports: number;
+  services_imports: number;
+  current_account: number;
+  export_coverage_pct?: number;
+  services_share_pct?: number;
+}
+
+export interface TradeBalanceData {
+  metadata: {
+    source: string;
+    table: string;
+    description: string;
+    fetched_at: string;
+    unit: string;
+  };
+  summary: {
+    period: string;
+    current_balance_billion: number;
+    peak_year: number;
+    peak_balance_billion: number;
+    surplus_years: number;
+    deficit_years: number;
+    services_share_change: number;
+    key_insight: string;
+  };
+  time_series: TradeBalanceEntry[];
+}
+
+// ============================================
+// Government Debt Types (Project Theta)
+// ============================================
+
+export interface GovernmentDebtEntry {
+  year: number;
+  total_debt_million: number;
+  central_debt_million: number;
+  local_debt_million: number;
+  social_security_debt_million: number;
+  central_share_pct?: number;
+  local_share_pct?: number;
+}
+
+export interface GovernmentDebtData {
+  metadata: {
+    source: string;
+    table: string;
+    description: string;
+    fetched_at: string;
+    unit: string;
+    sectors: Record<string, string>;
+  };
+  summary: {
+    period: string;
+    current_debt_billion: number;
+    debt_change_billion: number;
+    debt_growth_pct: number | null;
+    central_debt_billion: number;
+    local_debt_billion: number;
+  };
+  time_series: GovernmentDebtEntry[];
+}
+
+// ============================================
+// Fertility Types (Project Iota)
+// ============================================
+
+export interface FertilityEntry {
+  year: number;
+  tfr: number | null;
+  female_labor_participation: number | null;
+  replacement_gap?: number;
+}
+
+export interface FertilityData {
+  metadata: {
+    source: string;
+    tables: string[];
+    description: string;
+    fetched_at: string;
+    replacement_level: number;
+    note: string;
+  };
+  summary: {
+    period: string;
+    current_tfr: number;
+    peak_year: number;
+    peak_tfr: number;
+    trough_year: number;
+    trough_tfr: number;
+    below_replacement_since: number | null;
+    tfr_change_since_1990: number | null;
+  };
+  time_series: FertilityEntry[];
+}
+
+// ============================================
+// Public Subsidies Types (Project Epsilon Enhanced)
+// ============================================
+
+export interface PublicSubsidiesEntry {
+  year: number;
+  // D3K Subsidies breakdown (EUR millions)
+  subsidies_total_million: number;
+  subsidies_economic_million: number;  // G04 - Business subsidies
+  subsidies_agriculture_million: number;  // G0402 - Agricultural subsidies
+  subsidies_housing_million: number;  // G06 - Housing subsidies
+  subsidies_other_million: number;
+  // D62K Social benefits (EUR millions) - pensions, unemployment, child benefits
+  benefits_total_million: number;
+  benefits_social_protection_million: number;  // G10 - Main category
+  // D632K Purchased market production (EUR millions)
+  purchased_total_million: number;
+  purchased_health_million: number;  // G07 - Kela reimbursements, private healthcare
+  purchased_social_million: number;  // G10 - Private care homes, outsourced services
+  purchased_education_million: number;  // G09 - Private education services
+  // Combined totals
+  direct_public_to_private_million: number;  // D3K + D632K
+  total_public_funding_million: number;  // D3K + D62K + D632K
+}
+
+export interface PublicSubsidiesData {
+  metadata: {
+    source: string;
+    table: string;
+    description: string;
+    fetched_at: string;
+    categories: {
+      D3K: string;
+      D62K: string;
+      D632K: string;
+    };
+  };
+  summary: {
+    period: string;
+    start_year: number;
+    end_year: number;
+    // Total public funding (all three categories)
+    current_total_billion: number;
+    total_pct_of_gdp: number;
+    // Individual categories
+    current_subsidies_billion: number;
+    current_benefits_billion: number;
+    current_purchased_billion: number;
+    // Direct flows (D3K + D632K) - for backward compatibility
+    direct_public_to_private_billion: number;
+    direct_pct_of_gdp: number;
+    // Benefits as % of GDP
+    benefits_pct_of_gdp: number;
+    // Growth
+    growth_since_start_pct: number;
+    // Categories
+    largest_category: string;
+    largest_category_billion: number;
+    key_insight: string;
+  };
+  time_series: PublicSubsidiesEntry[];
+}
