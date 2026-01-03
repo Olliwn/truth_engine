@@ -1,0 +1,658 @@
+{
+  "metadata": {
+    "name": "Maslow CPI - Working Class Inflation Index",
+    "description": "A weighted index of essential goods compared to official CPI and asset prices",
+    "methodology": "Weights: Food 35%, Housing 40%, Energy 15%, Fuel 10%",
+    "base_year": 2015,
+    "calculated_at": "2026-01-03T20:20:40.046693"
+  },
+  "summary": {
+    "period": "2015-2024",
+    "maslow_cpi": {
+      "start": 100.0,
+      "end": 124.33,
+      "total_change_pct": 24.3
+    },
+    "official_cpi": {
+      "start": 100,
+      "end": 122.33,
+      "total_change_pct": 22.3
+    },
+    "asset_index": {
+      "start": 100.0,
+      "end": 120.65,
+      "total_change_pct": 20.7
+    },
+    "gdp_per_capita": {
+      "start": 100,
+      "end": 105.9,
+      "total_change_pct": 5.9
+    },
+    "nominal_wage": {
+      "start": 100,
+      "end": 120.6,
+      "total_change_pct": 20.6
+    },
+    "real_wage": {
+      "start": 100,
+      "end": 98.6,
+      "total_change_pct": -1.4
+    },
+    "sp500": {
+      "start": 100.0,
+      "end": 287.9,
+      "total_change_pct": 187.9
+    },
+    "key_insight": "Since 2015, working-class essentials rose 24.3% while real wages fell 1.4%. Meanwhile, the S&P 500 gained 187.9% \u2014 the gap between workers and capital owners has never been wider."
+  },
+  "time_series": [
+    {
+      "year": 2015,
+      "maslow_cpi": {
+        "index": 100.0,
+        "yoy_change": 0
+      },
+      "official_cpi": {
+        "index": 100,
+        "yoy_change": 0
+      },
+      "asset_index": {
+        "index": 100.0,
+        "yoy_change": 0
+      },
+      "gdp_per_capita": {
+        "index": 100,
+        "yoy_change": 0
+      },
+      "nominal_wage": {
+        "index": 100,
+        "yoy_change": 0
+      },
+      "real_wage": {
+        "index": 100,
+        "yoy_change": 0
+      },
+      "sp500": {
+        "index": 100.0,
+        "yoy_change": 0
+      },
+      "omx_helsinki": {
+        "index": 100.0,
+        "yoy_change": 0
+      },
+      "inflation_gap": 0.0,
+      "wealth_gap": 0.0
+    },
+    {
+      "year": 2016,
+      "maslow_cpi": {
+        "index": 99.86,
+        "yoy_change": -0.14
+      },
+      "official_cpi": {
+        "index": 100.35,
+        "yoy_change": 0.35
+      },
+      "asset_index": {
+        "index": 102.9,
+        "yoy_change": 2.9
+      },
+      "gdp_per_capita": {
+        "index": 102.3,
+        "yoy_change": 2.3
+      },
+      "nominal_wage": {
+        "index": 100.9,
+        "yoy_change": 0.9
+      },
+      "real_wage": {
+        "index": 100.5,
+        "yoy_change": 0.5
+      },
+      "sp500": {
+        "index": 109.5,
+        "yoy_change": 9.5
+      },
+      "omx_helsinki": {
+        "index": 104.5,
+        "yoy_change": 0
+      },
+      "inflation_gap": -0.49,
+      "wealth_gap": 3.04
+    },
+    {
+      "year": 2017,
+      "maslow_cpi": {
+        "index": 101.66,
+        "yoy_change": 1.8
+      },
+      "official_cpi": {
+        "index": 101.1,
+        "yoy_change": 0.75
+      },
+      "asset_index": {
+        "index": 111.5,
+        "yoy_change": 8.36
+      },
+      "gdp_per_capita": {
+        "index": 105.4,
+        "yoy_change": 3.03
+      },
+      "nominal_wage": {
+        "index": 101.1,
+        "yoy_change": 0.2
+      },
+      "real_wage": {
+        "index": 100,
+        "yoy_change": -0.5
+      },
+      "sp500": {
+        "index": 130.8,
+        "yoy_change": 19.45
+      },
+      "omx_helsinki": {
+        "index": 120.6,
+        "yoy_change": 0
+      },
+      "inflation_gap": 0.56,
+      "wealth_gap": 9.84
+    },
+    {
+      "year": 2018,
+      "maslow_cpi": {
+        "index": 104.38,
+        "yoy_change": 2.68
+      },
+      "official_cpi": {
+        "index": 102.2,
+        "yoy_change": 1.09
+      },
+      "asset_index": {
+        "index": 111.2,
+        "yoy_change": -0.27
+      },
+      "gdp_per_capita": {
+        "index": 106.5,
+        "yoy_change": 1.04
+      },
+      "nominal_wage": {
+        "index": 102.8,
+        "yoy_change": 1.68
+      },
+      "real_wage": {
+        "index": 100.6,
+        "yoy_change": 0.6
+      },
+      "sp500": {
+        "index": 122.7,
+        "yoy_change": -6.19
+      },
+      "omx_helsinki": {
+        "index": 118.7,
+        "yoy_change": 0
+      },
+      "inflation_gap": 2.18,
+      "wealth_gap": 6.82
+    },
+    {
+      "year": 2019,
+      "maslow_cpi": {
+        "index": 106.72,
+        "yoy_change": 2.24
+      },
+      "official_cpi": {
+        "index": 103.25,
+        "yoy_change": 1.03
+      },
+      "asset_index": {
+        "index": 116.8,
+        "yoy_change": 5.04
+      },
+      "gdp_per_capita": {
+        "index": 107.9,
+        "yoy_change": 1.31
+      },
+      "nominal_wage": {
+        "index": 105,
+        "yoy_change": 2.14
+      },
+      "real_wage": {
+        "index": 101.7,
+        "yoy_change": 1.09
+      },
+      "sp500": {
+        "index": 158.1,
+        "yoy_change": 28.85
+      },
+      "omx_helsinki": {
+        "index": 129.5,
+        "yoy_change": 0
+      },
+      "inflation_gap": 3.47,
+      "wealth_gap": 10.08
+    },
+    {
+      "year": 2020,
+      "maslow_cpi": {
+        "index": 106.61,
+        "yoy_change": -0.1
+      },
+      "official_cpi": {
+        "index": 103.55,
+        "yoy_change": 0.29
+      },
+      "asset_index": {
+        "index": 115.1,
+        "yoy_change": -1.46
+      },
+      "gdp_per_capita": {
+        "index": 105,
+        "yoy_change": -2.69
+      },
+      "nominal_wage": {
+        "index": 107,
+        "yoy_change": 1.9
+      },
+      "real_wage": {
+        "index": 103.4,
+        "yoy_change": 1.67
+      },
+      "sp500": {
+        "index": 183.8,
+        "yoy_change": 16.26
+      },
+      "omx_helsinki": {
+        "index": 124.7,
+        "yoy_change": 0
+      },
+      "inflation_gap": 3.06,
+      "wealth_gap": 8.49
+    },
+    {
+      "year": 2021,
+      "maslow_cpi": {
+        "index": 109.52,
+        "yoy_change": 2.73
+      },
+      "official_cpi": {
+        "index": 105.82,
+        "yoy_change": 2.19
+      },
+      "asset_index": {
+        "index": 135.45,
+        "yoy_change": 17.68
+      },
+      "gdp_per_capita": {
+        "index": 107.6,
+        "yoy_change": 2.48
+      },
+      "nominal_wage": {
+        "index": 109.6,
+        "yoy_change": 2.43
+      },
+      "real_wage": {
+        "index": 103.6,
+        "yoy_change": 0.19
+      },
+      "sp500": {
+        "index": 233.3,
+        "yoy_change": 26.93
+      },
+      "omx_helsinki": {
+        "index": 161.4,
+        "yoy_change": 0
+      },
+      "inflation_gap": 3.7,
+      "wealth_gap": 25.93
+    },
+    {
+      "year": 2022,
+      "maslow_cpi": {
+        "index": 122.51,
+        "yoy_change": 11.86
+      },
+      "official_cpi": {
+        "index": 113.36,
+        "yoy_change": 7.13
+      },
+      "asset_index": {
+        "index": 121.85,
+        "yoy_change": -10.04
+      },
+      "gdp_per_capita": {
+        "index": 108.1,
+        "yoy_change": 0.46
+      },
+      "nominal_wage": {
+        "index": 112.3,
+        "yoy_change": 2.46
+      },
+      "real_wage": {
+        "index": 99.1,
+        "yoy_change": -4.34
+      },
+      "sp500": {
+        "index": 187.9,
+        "yoy_change": -19.46
+      },
+      "omx_helsinki": {
+        "index": 133.6,
+        "yoy_change": 0
+      },
+      "inflation_gap": 9.15,
+      "wealth_gap": -0.66
+    },
+    {
+      "year": 2023,
+      "maslow_cpi": {
+        "index": 126.57,
+        "yoy_change": 3.31
+      },
+      "official_cpi": {
+        "index": 120.44,
+        "yoy_change": 6.25
+      },
+      "asset_index": {
+        "index": 116.1,
+        "yoy_change": -4.72
+      },
+      "gdp_per_capita": {
+        "index": 106.3,
+        "yoy_change": -1.67
+      },
+      "nominal_wage": {
+        "index": 117,
+        "yoy_change": 4.19
+      },
+      "real_wage": {
+        "index": 97.1,
+        "yoy_change": -2.02
+      },
+      "sp500": {
+        "index": 233.4,
+        "yoy_change": 24.22
+      },
+      "omx_helsinki": {
+        "index": 129.2,
+        "yoy_change": 0
+      },
+      "inflation_gap": 6.13,
+      "wealth_gap": -10.47
+    },
+    {
+      "year": 2024,
+      "maslow_cpi": {
+        "index": 124.33,
+        "yoy_change": -1.77
+      },
+      "official_cpi": {
+        "index": 122.33,
+        "yoy_change": 1.57
+      },
+      "asset_index": {
+        "index": 120.65,
+        "yoy_change": 3.92
+      },
+      "gdp_per_capita": {
+        "index": 105.9,
+        "yoy_change": -0.38
+      },
+      "nominal_wage": {
+        "index": 120.6,
+        "yoy_change": 3.08
+      },
+      "real_wage": {
+        "index": 98.6,
+        "yoy_change": 1.54
+      },
+      "sp500": {
+        "index": 287.9,
+        "yoy_change": 23.35
+      },
+      "omx_helsinki": {
+        "index": 141.9,
+        "yoy_change": 0
+      },
+      "inflation_gap": 2.0,
+      "wealth_gap": -3.68
+    }
+  ],
+  "category_breakdown": {
+    "0": {
+      "name": "Official CPI",
+      "weight": 0,
+      "values": [
+        {
+          "year": 2015,
+          "index": 100
+        },
+        {
+          "year": 2016,
+          "index": 100.35
+        },
+        {
+          "year": 2017,
+          "index": 101.1
+        },
+        {
+          "year": 2018,
+          "index": 102.2
+        },
+        {
+          "year": 2019,
+          "index": 103.25
+        },
+        {
+          "year": 2020,
+          "index": 103.55
+        },
+        {
+          "year": 2021,
+          "index": 105.82
+        },
+        {
+          "year": 2022,
+          "index": 113.36
+        },
+        {
+          "year": 2023,
+          "index": 120.44
+        },
+        {
+          "year": 2024,
+          "index": 122.33
+        }
+      ]
+    },
+    "011": {
+      "name": "Food",
+      "weight": 0.35,
+      "values": [
+        {
+          "year": 2015,
+          "index": 100
+        },
+        {
+          "year": 2016,
+          "index": 98.96
+        },
+        {
+          "year": 2017,
+          "index": 97.71
+        },
+        {
+          "year": 2018,
+          "index": 99.83
+        },
+        {
+          "year": 2019,
+          "index": 101.03
+        },
+        {
+          "year": 2020,
+          "index": 102.34
+        },
+        {
+          "year": 2021,
+          "index": 102.62
+        },
+        {
+          "year": 2022,
+          "index": 113.05
+        },
+        {
+          "year": 2023,
+          "index": 123.87
+        },
+        {
+          "year": 2024,
+          "index": 123.22
+        }
+      ]
+    },
+    "0411": {
+      "name": "Housing (Rent)",
+      "weight": 0.4,
+      "values": [
+        {
+          "year": 2015,
+          "index": 100
+        },
+        {
+          "year": 2016,
+          "index": 102.41
+        },
+        {
+          "year": 2017,
+          "index": 104.6
+        },
+        {
+          "year": 2018,
+          "index": 106.64
+        },
+        {
+          "year": 2019,
+          "index": 108.84
+        },
+        {
+          "year": 2020,
+          "index": 110.38
+        },
+        {
+          "year": 2021,
+          "index": 111.34
+        },
+        {
+          "year": 2022,
+          "index": 112.33
+        },
+        {
+          "year": 2023,
+          "index": 114.27
+        },
+        {
+          "year": 2024,
+          "index": 116.78
+        }
+      ]
+    },
+    "045": {
+      "name": "Energy",
+      "weight": 0.15,
+      "values": [
+        {
+          "year": 2015,
+          "index": 100
+        },
+        {
+          "year": 2016,
+          "index": 99.11
+        },
+        {
+          "year": 2017,
+          "index": 104.4
+        },
+        {
+          "year": 2018,
+          "index": 109.19
+        },
+        {
+          "year": 2019,
+          "index": 115.89
+        },
+        {
+          "year": 2020,
+          "index": 113.29
+        },
+        {
+          "year": 2021,
+          "index": 117.34
+        },
+        {
+          "year": 2022,
+          "index": 153.98
+        },
+        {
+          "year": 2023,
+          "index": 160.07
+        },
+        {
+          "year": 2024,
+          "index": 146.88
+        }
+      ]
+    },
+    "0722": {
+      "name": "Fuel (Transport)",
+      "weight": 0.1,
+      "values": [
+        {
+          "year": 2015,
+          "index": 100
+        },
+        {
+          "year": 2016,
+          "index": 93.94
+        },
+        {
+          "year": 2017,
+          "index": 99.57
+        },
+        {
+          "year": 2018,
+          "index": 104.01
+        },
+        {
+          "year": 2019,
+          "index": 104.38
+        },
+        {
+          "year": 2020,
+          "index": 96.5
+        },
+        {
+          "year": 2021,
+          "index": 114.61
+        },
+        {
+          "year": 2022,
+          "index": 149.13
+        },
+        {
+          "year": 2023,
+          "index": 134.99
+        },
+        {
+          "year": 2024,
+          "index": 124.62
+        }
+      ]
+    }
+  },
+  "weights": {
+    "food": 0.35,
+    "housing": 0.4,
+    "energy": 0.15,
+    "fuel": 0.1
+  }
+}

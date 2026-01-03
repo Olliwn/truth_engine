@@ -20,8 +20,9 @@ export default function BetaPage() {
   useEffect(() => {
     async function loadData() {
       try {
-        // Load Ponzi data
-        const ponziRes = await fetch('/api/ponzi-data');
+        // Load Ponzi data from public folder (works on GitHub Pages and Vercel)
+        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+        const ponziRes = await fetch(`${basePath}/data/ponzi_index.json`);
         if (ponziRes.ok) {
           const ponziData = await ponziRes.json();
           const yearData = ponziData[activeYear];
@@ -32,7 +33,7 @@ export default function BetaPage() {
         }
         
         // Load GeoJSON (WGS84 converted)
-        const geoRes = await fetch('/finland_municipalities_wgs84.geojson');
+        const geoRes = await fetch(`${basePath}/finland_municipalities_wgs84.geojson`);
         if (geoRes.ok) {
           const geo = await geoRes.json();
           setGeoJson(geo);

@@ -13,7 +13,8 @@ export default function GammaPage() {
   useEffect(() => {
     async function loadData() {
       try {
-        const response = await fetch('/api/maslow-data');
+        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+        const response = await fetch(`${basePath}/data/maslow_cpi.json`);
         if (response.ok) {
           const maslowData = await response.json();
           setData(maslowData);

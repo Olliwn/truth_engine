@@ -1,0 +1,1071 @@
+{
+  "metadata": {
+    "source": "Statistics Finland, Table 128c",
+    "description": "Income and income structure of household-dwelling units by income decile",
+    "fetched_at": "2026-01-03T20:37:24.459925",
+    "base_year": 2015
+  },
+  "metric_labels": {
+    "palk": "1. EARNED INCOME, mean",
+    "omtu": "3. PROPERTY INCOME TOTAL, mean",
+    "saatusi": "5. CURRENT TRANSFERS TOTAL, mean",
+    "makstu": "7. CURRENT TRANSFERS PAID TOTAL, mean",
+    "kturaha": "8. DISPOSABLE CASH INCOME, mean",
+    "kturaha_med": "Disposable cash income,  median"
+  },
+  "decile_labels": {
+    "SS": "Total",
+    "1": "I (Lowest-income 10 %)",
+    "2": "II",
+    "3": "III",
+    "4": "IV",
+    "5": "V",
+    "6": "VI",
+    "7": "VII",
+    "8": "VIII",
+    "9": "IX",
+    "10": "X (Highest-income 10 %)"
+  },
+  "time_series": [
+    {
+      "year": 2015,
+      "deciles": {
+        "SS": {
+          "palk": 37658,
+          "omtu": 4910,
+          "saatusi": 18417,
+          "makstu": 15940,
+          "kturaha": 47684,
+          "kturaha_med": 38647,
+          "income_index": 100.0
+        },
+        "1": {
+          "palk": 3195,
+          "omtu": 262,
+          "saatusi": 12963,
+          "makstu": 1465,
+          "kturaha": 15432,
+          "kturaha_med": 14747,
+          "income_index": 100.0
+        },
+        "2": {
+          "palk": 6898,
+          "omtu": 345,
+          "saatusi": 19183,
+          "makstu": 3214,
+          "kturaha": 23838,
+          "kturaha_med": 19309,
+          "income_index": 100.0
+        },
+        "3": {
+          "palk": 13660,
+          "omtu": 597,
+          "saatusi": 20797,
+          "makstu": 5764,
+          "kturaha": 30296,
+          "kturaha_med": 23292,
+          "income_index": 100.0
+        },
+        "4": {
+          "palk": 21961,
+          "omtu": 873,
+          "saatusi": 21198,
+          "makstu": 8618,
+          "kturaha": 36815,
+          "kturaha_med": 36120,
+          "income_index": 100.0
+        },
+        "5": {
+          "palk": 30718,
+          "omtu": 1129,
+          "saatusi": 19986,
+          "makstu": 11360,
+          "kturaha": 42214,
+          "kturaha_med": 41095,
+          "income_index": 100.0
+        },
+        "6": {
+          "palk": 39474,
+          "omtu": 1441,
+          "saatusi": 19037,
+          "makstu": 14338,
+          "kturaha": 47736,
+          "kturaha_med": 46200,
+          "income_index": 100.0
+        },
+        "7": {
+          "palk": 48991,
+          "omtu": 1965,
+          "saatusi": 18172,
+          "makstu": 17781,
+          "kturaha": 53980,
+          "kturaha_med": 51964,
+          "income_index": 100.0
+        },
+        "8": {
+          "palk": 60168,
+          "omtu": 2825,
+          "saatusi": 17251,
+          "makstu": 22157,
+          "kturaha": 61374,
+          "kturaha_med": 58975,
+          "income_index": 100.0
+        },
+        "9": {
+          "palk": 74917,
+          "omtu": 4809,
+          "saatusi": 16812,
+          "makstu": 29094,
+          "kturaha": 72017,
+          "kturaha_med": 69276,
+          "income_index": 100.0
+        },
+        "10": {
+          "palk": 108635,
+          "omtu": 39471,
+          "saatusi": 20465,
+          "makstu": 58986,
+          "kturaha": 120161,
+          "kturaha_med": 97539,
+          "income_index": 100.0
+        }
+      }
+    },
+    {
+      "year": 2016,
+      "deciles": {
+        "SS": {
+          "palk": 37833,
+          "omtu": 4844,
+          "saatusi": 18489,
+          "makstu": 15954,
+          "kturaha": 47872,
+          "kturaha_med": 38795,
+          "income_index": 100.4
+        },
+        "1": {
+          "palk": 3042,
+          "omtu": 256,
+          "saatusi": 13155,
+          "makstu": 1398,
+          "kturaha": 15477,
+          "kturaha_med": 14866,
+          "income_index": 100.3
+        },
+        "2": {
+          "palk": 6563,
+          "omtu": 364,
+          "saatusi": 19527,
+          "makstu": 3125,
+          "kturaha": 23909,
+          "kturaha_med": 19461,
+          "income_index": 100.3
+        },
+        "3": {
+          "palk": 13600,
+          "omtu": 627,
+          "saatusi": 21113,
+          "makstu": 5739,
+          "kturaha": 30564,
+          "kturaha_med": 23522,
+          "income_index": 100.9
+        },
+        "4": {
+          "palk": 22026,
+          "omtu": 906,
+          "saatusi": 21258,
+          "makstu": 8558,
+          "kturaha": 36994,
+          "kturaha_med": 36414,
+          "income_index": 100.5
+        },
+        "5": {
+          "palk": 30925,
+          "omtu": 1178,
+          "saatusi": 20054,
+          "makstu": 11361,
+          "kturaha": 42503,
+          "kturaha_med": 41441,
+          "income_index": 100.7
+        },
+        "6": {
+          "palk": 39769,
+          "omtu": 1521,
+          "saatusi": 18963,
+          "makstu": 14353,
+          "kturaha": 48002,
+          "kturaha_med": 46574,
+          "income_index": 100.6
+        },
+        "7": {
+          "palk": 49472,
+          "omtu": 2050,
+          "saatusi": 18105,
+          "makstu": 17870,
+          "kturaha": 54414,
+          "kturaha_med": 52471,
+          "income_index": 100.8
+        },
+        "8": {
+          "palk": 60834,
+          "omtu": 2934,
+          "saatusi": 17155,
+          "makstu": 22348,
+          "kturaha": 61992,
+          "kturaha_med": 59603,
+          "income_index": 101.0
+        },
+        "9": {
+          "palk": 75761,
+          "omtu": 4922,
+          "saatusi": 16715,
+          "makstu": 29402,
+          "kturaha": 72747,
+          "kturaha_med": 69971,
+          "income_index": 101.0
+        },
+        "10": {
+          "palk": 110182,
+          "omtu": 38543,
+          "saatusi": 20381,
+          "makstu": 59523,
+          "kturaha": 120465,
+          "kturaha_med": 98511,
+          "income_index": 100.3
+        }
+      }
+    },
+    {
+      "year": 2017,
+      "deciles": {
+        "SS": {
+          "palk": 38035,
+          "omtu": 5346,
+          "saatusi": 18372,
+          "makstu": 15840,
+          "kturaha": 48550,
+          "kturaha_med": 38900,
+          "income_index": 101.8
+        },
+        "1": {
+          "palk": 3045,
+          "omtu": 265,
+          "saatusi": 13306,
+          "makstu": 1355,
+          "kturaha": 15642,
+          "kturaha_med": 15017,
+          "income_index": 101.4
+        },
+        "2": {
+          "palk": 6708,
+          "omtu": 384,
+          "saatusi": 19530,
+          "makstu": 3071,
+          "kturaha": 24053,
+          "kturaha_med": 19622,
+          "income_index": 100.9
+        },
+        "3": {
+          "palk": 13847,
+          "omtu": 663,
+          "saatusi": 20947,
+          "makstu": 5641,
+          "kturaha": 30677,
+          "kturaha_med": 23691,
+          "income_index": 101.3
+        },
+        "4": {
+          "palk": 22355,
+          "omtu": 954,
+          "saatusi": 20906,
+          "makstu": 8394,
+          "kturaha": 37061,
+          "kturaha_med": 36575,
+          "income_index": 100.7
+        },
+        "5": {
+          "palk": 31325,
+          "omtu": 1206,
+          "saatusi": 19794,
+          "makstu": 11157,
+          "kturaha": 42730,
+          "kturaha_med": 41796,
+          "income_index": 101.2
+        },
+        "6": {
+          "palk": 40320,
+          "omtu": 1580,
+          "saatusi": 18722,
+          "makstu": 14142,
+          "kturaha": 48449,
+          "kturaha_med": 47085,
+          "income_index": 101.5
+        },
+        "7": {
+          "palk": 50153,
+          "omtu": 2097,
+          "saatusi": 17813,
+          "makstu": 17637,
+          "kturaha": 54947,
+          "kturaha_med": 53052,
+          "income_index": 101.8
+        },
+        "8": {
+          "palk": 61514,
+          "omtu": 3013,
+          "saatusi": 16914,
+          "makstu": 22035,
+          "kturaha": 62694,
+          "kturaha_med": 60348,
+          "income_index": 102.2
+        },
+        "9": {
+          "palk": 76213,
+          "omtu": 5109,
+          "saatusi": 16602,
+          "makstu": 29058,
+          "kturaha": 73721,
+          "kturaha_med": 70980,
+          "income_index": 102.4
+        },
+        "10": {
+          "palk": 110145,
+          "omtu": 43870,
+          "saatusi": 20648,
+          "makstu": 60596,
+          "kturaha": 125669,
+          "kturaha_med": 100609,
+          "income_index": 104.6
+        }
+      }
+    },
+    {
+      "year": 2018,
+      "deciles": {
+        "SS": {
+          "palk": 38847,
+          "omtu": 5558,
+          "saatusi": 18100,
+          "makstu": 16122,
+          "kturaha": 49141,
+          "kturaha_med": 38991,
+          "income_index": 103.1
+        },
+        "1": {
+          "palk": 3063,
+          "omtu": 249,
+          "saatusi": 13333,
+          "makstu": 1292,
+          "kturaha": 15710,
+          "kturaha_med": 15141,
+          "income_index": 101.8
+        },
+        "2": {
+          "palk": 6836,
+          "omtu": 364,
+          "saatusi": 19464,
+          "makstu": 3092,
+          "kturaha": 24066,
+          "kturaha_med": 19733,
+          "income_index": 101.0
+        },
+        "3": {
+          "palk": 14219,
+          "omtu": 635,
+          "saatusi": 20784,
+          "makstu": 5760,
+          "kturaha": 30743,
+          "kturaha_med": 23895,
+          "income_index": 101.5
+        },
+        "4": {
+          "palk": 23062,
+          "omtu": 952,
+          "saatusi": 20685,
+          "makstu": 8609,
+          "kturaha": 37357,
+          "kturaha_med": 36924,
+          "income_index": 101.5
+        },
+        "5": {
+          "palk": 32106,
+          "omtu": 1214,
+          "saatusi": 19417,
+          "makstu": 11411,
+          "kturaha": 42924,
+          "kturaha_med": 42157,
+          "income_index": 101.7
+        },
+        "6": {
+          "palk": 41473,
+          "omtu": 1589,
+          "saatusi": 18227,
+          "makstu": 14489,
+          "kturaha": 48833,
+          "kturaha_med": 47606,
+          "income_index": 102.3
+        },
+        "7": {
+          "palk": 51526,
+          "omtu": 2148,
+          "saatusi": 17330,
+          "makstu": 18063,
+          "kturaha": 55577,
+          "kturaha_med": 53811,
+          "income_index": 103.0
+        },
+        "8": {
+          "palk": 63041,
+          "omtu": 3026,
+          "saatusi": 16468,
+          "makstu": 22539,
+          "kturaha": 63471,
+          "kturaha_med": 61209,
+          "income_index": 103.4
+        },
+        "9": {
+          "palk": 78182,
+          "omtu": 5179,
+          "saatusi": 16150,
+          "makstu": 29738,
+          "kturaha": 74863,
+          "kturaha_med": 72076,
+          "income_index": 104.0
+        },
+        "10": {
+          "palk": 112239,
+          "omtu": 46529,
+          "saatusi": 20367,
+          "makstu": 61826,
+          "kturaha": 129751,
+          "kturaha_med": 102511,
+          "income_index": 108.0
+        }
+      }
+    },
+    {
+      "year": 2019,
+      "deciles": {
+        "SS": {
+          "palk": 39442,
+          "omtu": 5490,
+          "saatusi": 18011,
+          "makstu": 16236,
+          "kturaha": 49390,
+          "kturaha_med": 39207,
+          "income_index": 103.6
+        },
+        "1": {
+          "palk": 3101,
+          "omtu": 251,
+          "saatusi": 13243,
+          "makstu": 1249,
+          "kturaha": 15691,
+          "kturaha_med": 15200,
+          "income_index": 101.7
+        },
+        "2": {
+          "palk": 6951,
+          "omtu": 391,
+          "saatusi": 19424,
+          "makstu": 3108,
+          "kturaha": 24147,
+          "kturaha_med": 19899,
+          "income_index": 101.3
+        },
+        "3": {
+          "palk": 14541,
+          "omtu": 691,
+          "saatusi": 20723,
+          "makstu": 5867,
+          "kturaha": 30944,
+          "kturaha_med": 24153,
+          "income_index": 102.1
+        },
+        "4": {
+          "palk": 23540,
+          "omtu": 1008,
+          "saatusi": 20645,
+          "makstu": 8756,
+          "kturaha": 37681,
+          "kturaha_med": 37329,
+          "income_index": 102.4
+        },
+        "5": {
+          "palk": 32647,
+          "omtu": 1296,
+          "saatusi": 19356,
+          "makstu": 11605,
+          "kturaha": 43316,
+          "kturaha_med": 42666,
+          "income_index": 102.6
+        },
+        "6": {
+          "palk": 42249,
+          "omtu": 1675,
+          "saatusi": 18096,
+          "makstu": 14757,
+          "kturaha": 49289,
+          "kturaha_med": 48233,
+          "income_index": 103.3
+        },
+        "7": {
+          "palk": 52638,
+          "omtu": 2273,
+          "saatusi": 17121,
+          "makstu": 18420,
+          "kturaha": 56206,
+          "kturaha_med": 54554,
+          "income_index": 104.1
+        },
+        "8": {
+          "palk": 64317,
+          "omtu": 3194,
+          "saatusi": 16225,
+          "makstu": 22964,
+          "kturaha": 64220,
+          "kturaha_med": 62115,
+          "income_index": 104.6
+        },
+        "9": {
+          "palk": 79801,
+          "omtu": 5379,
+          "saatusi": 16037,
+          "makstu": 30303,
+          "kturaha": 75880,
+          "kturaha_med": 73133,
+          "income_index": 105.4
+        },
+        "10": {
+          "palk": 113315,
+          "omtu": 45077,
+          "saatusi": 20445,
+          "makstu": 61405,
+          "kturaha": 129325,
+          "kturaha_med": 103539,
+          "income_index": 107.6
+        }
+      }
+    },
+    {
+      "year": 2020,
+      "deciles": {
+        "SS": {
+          "palk": 38729,
+          "omtu": 5454,
+          "saatusi": 18931,
+          "makstu": 16356,
+          "kturaha": 49206,
+          "kturaha_med": 39089,
+          "income_index": 103.2
+        },
+        "1": {
+          "palk": 3006,
+          "omtu": 237,
+          "saatusi": 13543,
+          "makstu": 1292,
+          "kturaha": 15804,
+          "kturaha_med": 15482,
+          "income_index": 102.4
+        },
+        "2": {
+          "palk": 6481,
+          "omtu": 349,
+          "saatusi": 20222,
+          "makstu": 3132,
+          "kturaha": 24364,
+          "kturaha_med": 20130,
+          "income_index": 102.2
+        },
+        "3": {
+          "palk": 13593,
+          "omtu": 620,
+          "saatusi": 21788,
+          "makstu": 5815,
+          "kturaha": 30969,
+          "kturaha_med": 24241,
+          "income_index": 102.2
+        },
+        "4": {
+          "palk": 22600,
+          "omtu": 936,
+          "saatusi": 21752,
+          "makstu": 8746,
+          "kturaha": 37700,
+          "kturaha_med": 37489,
+          "income_index": 102.4
+        },
+        "5": {
+          "palk": 31545,
+          "omtu": 1232,
+          "saatusi": 20644,
+          "makstu": 11621,
+          "kturaha": 43283,
+          "kturaha_med": 42752,
+          "income_index": 102.5
+        },
+        "6": {
+          "palk": 41281,
+          "omtu": 1596,
+          "saatusi": 19246,
+          "makstu": 14817,
+          "kturaha": 49141,
+          "kturaha_med": 48202,
+          "income_index": 102.9
+        },
+        "7": {
+          "palk": 51591,
+          "omtu": 2178,
+          "saatusi": 18241,
+          "makstu": 18527,
+          "kturaha": 55932,
+          "kturaha_med": 54441,
+          "income_index": 103.6
+        },
+        "8": {
+          "palk": 63519,
+          "omtu": 3104,
+          "saatusi": 17312,
+          "makstu": 23165,
+          "kturaha": 63873,
+          "kturaha_med": 61974,
+          "income_index": 104.1
+        },
+        "9": {
+          "palk": 79292,
+          "omtu": 5282,
+          "saatusi": 16928,
+          "makstu": 30652,
+          "kturaha": 75431,
+          "kturaha_med": 72895,
+          "income_index": 104.7
+        },
+        "10": {
+          "palk": 114031,
+          "omtu": 45682,
+          "saatusi": 21222,
+          "makstu": 62602,
+          "kturaha": 129175,
+          "kturaha_med": 102921,
+          "income_index": 107.5
+        }
+      }
+    },
+    {
+      "year": 2021,
+      "deciles": {
+        "SS": {
+          "palk": 39608,
+          "omtu": 6815,
+          "saatusi": 18515,
+          "makstu": 17191,
+          "kturaha": 50313,
+          "kturaha_med": 39138,
+          "income_index": 105.5
+        },
+        "1": {
+          "palk": 3016,
+          "omtu": 251,
+          "saatusi": 13509,
+          "makstu": 1298,
+          "kturaha": 15757,
+          "kturaha_med": 15396,
+          "income_index": 102.1
+        },
+        "2": {
+          "palk": 6548,
+          "omtu": 383,
+          "saatusi": 19928,
+          "makstu": 3183,
+          "kturaha": 24090,
+          "kturaha_med": 20076,
+          "income_index": 101.1
+        },
+        "3": {
+          "palk": 14020,
+          "omtu": 688,
+          "saatusi": 21480,
+          "makstu": 6000,
+          "kturaha": 30961,
+          "kturaha_med": 24360,
+          "income_index": 102.2
+        },
+        "4": {
+          "palk": 23273,
+          "omtu": 1010,
+          "saatusi": 21359,
+          "makstu": 8997,
+          "kturaha": 37816,
+          "kturaha_med": 37648,
+          "income_index": 102.7
+        },
+        "5": {
+          "palk": 32580,
+          "omtu": 1326,
+          "saatusi": 20103,
+          "makstu": 11989,
+          "kturaha": 43532,
+          "kturaha_med": 43067,
+          "income_index": 103.1
+        },
+        "6": {
+          "palk": 42670,
+          "omtu": 1755,
+          "saatusi": 18600,
+          "makstu": 15320,
+          "kturaha": 49624,
+          "kturaha_med": 48715,
+          "income_index": 104.0
+        },
+        "7": {
+          "palk": 53292,
+          "omtu": 2418,
+          "saatusi": 17643,
+          "makstu": 19204,
+          "kturaha": 56693,
+          "kturaha_med": 55206,
+          "income_index": 105.0
+        },
+        "8": {
+          "palk": 65396,
+          "omtu": 3478,
+          "saatusi": 16656,
+          "makstu": 24046,
+          "kturaha": 64831,
+          "kturaha_med": 62901,
+          "income_index": 105.6
+        },
+        "9": {
+          "palk": 81548,
+          "omtu": 6098,
+          "saatusi": 16419,
+          "makstu": 32012,
+          "kturaha": 76972,
+          "kturaha_med": 74345,
+          "income_index": 106.9
+        },
+        "10": {
+          "palk": 115978,
+          "omtu": 59557,
+          "saatusi": 20716,
+          "makstu": 68422,
+          "kturaha": 139434,
+          "kturaha_med": 106720,
+          "income_index": 116.0
+        }
+      }
+    },
+    {
+      "year": 2022,
+      "deciles": {
+        "SS": {
+          "palk": 38984,
+          "omtu": 5789,
+          "saatusi": 17283,
+          "makstu": 16276,
+          "kturaha": 48276,
+          "kturaha_med": 37672,
+          "income_index": 101.2
+        },
+        "1": {
+          "palk": 3182,
+          "omtu": 227,
+          "saatusi": 12594,
+          "makstu": 1194,
+          "kturaha": 15093,
+          "kturaha_med": 14844,
+          "income_index": 97.8
+        },
+        "2": {
+          "palk": 6746,
+          "omtu": 343,
+          "saatusi": 18695,
+          "makstu": 3012,
+          "kturaha": 23195,
+          "kturaha_med": 19416,
+          "income_index": 97.3
+        },
+        "3": {
+          "palk": 14159,
+          "omtu": 619,
+          "saatusi": 20145,
+          "makstu": 5745,
+          "kturaha": 29932,
+          "kturaha_med": 23615,
+          "income_index": 98.8
+        },
+        "4": {
+          "palk": 23157,
+          "omtu": 906,
+          "saatusi": 19916,
+          "makstu": 8613,
+          "kturaha": 36496,
+          "kturaha_med": 36408,
+          "income_index": 99.1
+        },
+        "5": {
+          "palk": 32206,
+          "omtu": 1192,
+          "saatusi": 18750,
+          "makstu": 11491,
+          "kturaha": 42100,
+          "kturaha_med": 41725,
+          "income_index": 99.7
+        },
+        "6": {
+          "palk": 41944,
+          "omtu": 1570,
+          "saatusi": 17370,
+          "makstu": 14707,
+          "kturaha": 48102,
+          "kturaha_med": 47250,
+          "income_index": 100.8
+        },
+        "7": {
+          "palk": 52345,
+          "omtu": 2156,
+          "saatusi": 16493,
+          "makstu": 18435,
+          "kturaha": 55001,
+          "kturaha_med": 53565,
+          "income_index": 101.9
+        },
+        "8": {
+          "palk": 64199,
+          "omtu": 3063,
+          "saatusi": 15424,
+          "makstu": 23083,
+          "kturaha": 62845,
+          "kturaha_med": 60991,
+          "income_index": 102.4
+        },
+        "9": {
+          "palk": 79863,
+          "omtu": 5317,
+          "saatusi": 15330,
+          "makstu": 30679,
+          "kturaha": 74576,
+          "kturaha_med": 72020,
+          "income_index": 103.6
+        },
+        "10": {
+          "palk": 114679,
+          "omtu": 50327,
+          "saatusi": 19221,
+          "makstu": 64022,
+          "kturaha": 131615,
+          "kturaha_med": 102502,
+          "income_index": 109.5
+        }
+      }
+    },
+    {
+      "year": 2023,
+      "deciles": {
+        "SS": {
+          "palk": 38111,
+          "omtu": 4827,
+          "saatusi": 17173,
+          "makstu": 15683,
+          "kturaha": 46772,
+          "kturaha_med": 36975,
+          "income_index": 98.1
+        },
+        "1": {
+          "palk": 3307,
+          "omtu": 219,
+          "saatusi": 11916,
+          "makstu": 1149,
+          "kturaha": 14595,
+          "kturaha_med": 14456,
+          "income_index": 94.6
+        },
+        "2": {
+          "palk": 7012,
+          "omtu": 311,
+          "saatusi": 18015,
+          "makstu": 2915,
+          "kturaha": 22856,
+          "kturaha_med": 19092,
+          "income_index": 95.9
+        },
+        "3": {
+          "palk": 14402,
+          "omtu": 555,
+          "saatusi": 19260,
+          "makstu": 5548,
+          "kturaha": 29407,
+          "kturaha_med": 23208,
+          "income_index": 97.1
+        },
+        "4": {
+          "palk": 22890,
+          "omtu": 789,
+          "saatusi": 19087,
+          "makstu": 8312,
+          "kturaha": 35513,
+          "kturaha_med": 35503,
+          "income_index": 96.5
+        },
+        "5": {
+          "palk": 31277,
+          "omtu": 1070,
+          "saatusi": 18638,
+          "makstu": 11160,
+          "kturaha": 41180,
+          "kturaha_med": 40946,
+          "income_index": 97.6
+        },
+        "6": {
+          "palk": 40651,
+          "omtu": 1408,
+          "saatusi": 17471,
+          "makstu": 14297,
+          "kturaha": 46961,
+          "kturaha_med": 46326,
+          "income_index": 98.4
+        },
+        "7": {
+          "palk": 50385,
+          "omtu": 1926,
+          "saatusi": 16923,
+          "makstu": 17937,
+          "kturaha": 53537,
+          "kturaha_med": 52362,
+          "income_index": 99.2
+        },
+        "8": {
+          "palk": 62141,
+          "omtu": 2759,
+          "saatusi": 15942,
+          "makstu": 22573,
+          "kturaha": 61283,
+          "kturaha_med": 59600,
+          "income_index": 99.9
+        },
+        "9": {
+          "palk": 77454,
+          "omtu": 4818,
+          "saatusi": 15951,
+          "makstu": 29986,
+          "kturaha": 72610,
+          "kturaha_med": 70202,
+          "income_index": 100.8
+        },
+        "10": {
+          "palk": 111092,
+          "omtu": 40766,
+          "saatusi": 20224,
+          "makstu": 59819,
+          "kturaha": 123003,
+          "kturaha_med": 99028,
+          "income_index": 102.4
+        }
+      }
+    },
+    {
+      "year": 2024,
+      "deciles": {
+        "SS": {
+          "palk": 38351,
+          "omtu": 5102,
+          "saatusi": 17811,
+          "makstu": 15721,
+          "kturaha": 47886,
+          "kturaha_med": 37777,
+          "income_index": 100.4
+        },
+        "1": {
+          "palk": 3402,
+          "omtu": 221,
+          "saatusi": 11858,
+          "makstu": 1090,
+          "kturaha": 14721,
+          "kturaha_med": 14405,
+          "income_index": 95.4
+        },
+        "2": {
+          "palk": 7168,
+          "omtu": 301,
+          "saatusi": 17863,
+          "makstu": 2783,
+          "kturaha": 23008,
+          "kturaha_med": 19244,
+          "income_index": 96.5
+        },
+        "3": {
+          "palk": 14452,
+          "omtu": 547,
+          "saatusi": 19353,
+          "makstu": 5438,
+          "kturaha": 29685,
+          "kturaha_med": 23518,
+          "income_index": 98.0
+        },
+        "4": {
+          "palk": 22916,
+          "omtu": 806,
+          "saatusi": 19462,
+          "makstu": 8212,
+          "kturaha": 36063,
+          "kturaha_med": 35008,
+          "income_index": 98.0
+        },
+        "5": {
+          "palk": 31172,
+          "omtu": 1084,
+          "saatusi": 19315,
+          "makstu": 11043,
+          "kturaha": 41883,
+          "kturaha_med": 41700,
+          "income_index": 99.2
+        },
+        "6": {
+          "palk": 40356,
+          "omtu": 1437,
+          "saatusi": 18474,
+          "makstu": 14179,
+          "kturaha": 47797,
+          "kturaha_med": 47245,
+          "income_index": 100.1
+        },
+        "7": {
+          "palk": 50112,
+          "omtu": 2013,
+          "saatusi": 18015,
+          "makstu": 17827,
+          "kturaha": 54524,
+          "kturaha_med": 53440,
+          "income_index": 101.0
+        },
+        "8": {
+          "palk": 61958,
+          "omtu": 2929,
+          "saatusi": 17243,
+          "makstu": 22525,
+          "kturaha": 62544,
+          "kturaha_med": 60921,
+          "income_index": 101.9
+        },
+        "9": {
+          "palk": 77544,
+          "omtu": 5120,
+          "saatusi": 17175,
+          "makstu": 29993,
+          "kturaha": 74171,
+          "kturaha_med": 71873,
+          "income_index": 103.0
+        },
+        "10": {
+          "palk": 112297,
+          "omtu": 43201,
+          "saatusi": 21525,
+          "makstu": 60472,
+          "kturaha": 127203,
+          "kturaha_med": 101856,
+          "income_index": 105.9
+        }
+      }
+    }
+  ]
+}

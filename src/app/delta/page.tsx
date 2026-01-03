@@ -13,7 +13,8 @@ export default function DeltaPage() {
   useEffect(() => {
     async function loadData() {
       try {
-        const response = await fetch('/api/purchasing-power');
+        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+        const response = await fetch(`${basePath}/data/purchasing_power.json`);
         if (response.ok) {
           const ppData = await response.json();
           setData(ppData);

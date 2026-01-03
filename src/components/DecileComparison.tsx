@@ -138,7 +138,7 @@ export default function DecileComparison({ summary, decileLabels }: DecileCompar
                 borderRadius: '8px',
               }}
               labelStyle={{ color: '#fff', fontWeight: 'bold' }}
-              formatter={(value: number) => [`${value.toFixed(1)}%`, 'Change']}
+              formatter={(value: number | undefined) => [value != null ? `${value.toFixed(1)}%` : '', 'Change']}
               labelFormatter={(label) => {
                 const item = incomeChangeData.find(d => d.shortLabel === label);
                 return item?.label || label;
@@ -189,7 +189,7 @@ export default function DecileComparison({ summary, decileLabels }: DecileCompar
                 borderRadius: '8px',
               }}
               labelStyle={{ color: '#fff', fontWeight: 'bold' }}
-              formatter={(value: number) => [`${value.toFixed(1)}%`, 'Change']}
+              formatter={(value: number | undefined) => [value != null ? `${value.toFixed(1)}%` : '', 'Change']}
               labelFormatter={(label) => {
                 const item = wealthChangeData.find(d => d.shortLabel === label);
                 return item?.label || label;
