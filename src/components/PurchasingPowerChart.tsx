@@ -74,8 +74,8 @@ export default function PurchasingPowerChart({
     }
   }, [incomeData, wealthData, viewMode]);
 
-  const formatValue = (value: number | null) => {
-    if (value === null) return 'N/A';
+  const formatValue = (value: number | null | undefined) => {
+    if (value == null) return 'N/A';
     if (viewMode === 'index') return `${value.toFixed(1)}`;
     return `€${value.toLocaleString('fi-FI', { maximumFractionDigits: 0 })}`;
   };
@@ -169,10 +169,10 @@ export default function PurchasingPowerChart({
               borderRadius: '8px',
             }}
             labelStyle={{ color: '#fff', fontWeight: 'bold' }}
-            formatter={(value: number | null, name: string) => {
-              const decile = name.replace('d', '');
+            formatter={(value, name) => {
+              const decile = String(name).replace('d', '');
               const label = decileLabels[decile] || `Decile ${decile}`;
-              return [formatValue(value), label];
+              return [formatValue(value as number | null | undefined), label];
             }}
           />
           <Legend 
