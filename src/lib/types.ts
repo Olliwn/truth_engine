@@ -795,3 +795,80 @@ export interface PublicSpendingData {
   time_series: SpendingTimeSeriesEntry[];
   cofog_names: Record<string, string>;
 }
+
+// ============================================
+// Spending Efficiency Types (Project Xi)
+// ============================================
+
+export interface EfficiencySubcategory {
+  code: string;
+  name: string;
+  total_million: number;
+  benefits_million: number;
+  bureaucracy_million: number;
+  overhead_million: number;
+  subsidies_million: number;
+  investment_million: number;
+  other_million: number;
+  efficiency_pct: number;
+  bureaucracy_pct: number;
+  overhead_pct: number;
+}
+
+export interface EfficiencyCategory {
+  code: string;
+  name: string;
+  total_million: number;
+  benefits_million: number;
+  bureaucracy_million: number;
+  overhead_million: number;
+  subsidies_million: number;
+  investment_million: number;
+  other_million: number;
+  efficiency_pct: number;
+  bureaucracy_pct: number;
+  overhead_pct: number;
+  subcategories: EfficiencySubcategory[];
+}
+
+export interface EfficiencyHighlight {
+  code: string;
+  name: string;
+  parent: string;
+  efficiency_pct: number;
+  bureaucracy_pct: number;
+  total_million: number;
+}
+
+export interface EfficiencyTimeSeriesEntry {
+  year: number;
+  [categoryCode: string]: {
+    efficiency_pct: number;
+    bureaucracy_pct: number;
+    total_million: number;
+  } | number;
+}
+
+export interface SpendingEfficiencyData {
+  metadata: {
+    source: string;
+    table: string;
+    description: string;
+    fetched_at: string;
+    methodology: string;
+    transaction_types: Record<string, { name: string; category: string }>;
+  };
+  summary: {
+    year: number;
+    total_analyzed_billion: number;
+    total_benefits_billion: number;
+    total_bureaucracy_billion: number;
+    overall_efficiency_pct: number;
+    overall_bureaucracy_pct: number;
+    most_efficient: EfficiencyHighlight | null;
+    least_efficient: EfficiencyHighlight | null;
+    most_bureaucratic: EfficiencyHighlight | null;
+  };
+  categories: EfficiencyCategory[];
+  time_series: EfficiencyTimeSeriesEntry[];
+}

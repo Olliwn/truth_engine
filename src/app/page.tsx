@@ -119,7 +119,7 @@ export default async function Home() {
             />
           </div>
           {/* Row 4: Balance Sheet, Fertility, Public Spending */}
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-3 gap-4 mb-4">
             <FeaturedCard
               emoji="📊"
               title="Balance Sheet"
@@ -140,6 +140,16 @@ export default async function Home() {
               subtitle="COFOG Breakdown"
               href="/nu"
               color="indigo"
+            />
+          </div>
+          {/* Row 5: Spending Efficiency */}
+          <div className="grid md:grid-cols-3 gap-4">
+            <FeaturedCard
+              emoji="⚡"
+              title="Spending Efficiency"
+              subtitle="Beneficiaries vs Bureaucracy"
+              href="/xi"
+              color="emerald"
             />
           </div>
         </div>
@@ -322,6 +332,19 @@ export default async function Home() {
                 { label: 'Per Capita', value: '€28k' },
               ]}
             />
+            
+            <ProjectCard
+              title="Spending Efficiency Analysis"
+              emoji="⚡"
+              status="live"
+              description="What % of government spending reaches citizens vs bureaucracy? Pensions deliver 87% directly, while family programs only 48%. Deep dive into transaction types."
+              href="/xi"
+              metrics={[
+                { label: 'To Citizens', value: '54%' },
+                { label: 'Bureaucracy', value: '14%' },
+                { label: 'Programs', value: '3' },
+              ]}
+            />
           </div>
         </div>
       </section>
@@ -377,7 +400,7 @@ function FeaturedCard({
   title: string; 
   subtitle: string;
   href: string;
-  color?: 'red' | 'amber' | 'orange' | 'green' | 'blue' | 'teal' | 'rose' | 'pink' | 'purple' | 'indigo';
+  color?: 'red' | 'amber' | 'orange' | 'green' | 'blue' | 'teal' | 'rose' | 'pink' | 'purple' | 'indigo' | 'emerald';
 }) {
   const colorClasses = {
     red: 'hover:border-red-500/50 hover:bg-red-950/20',
@@ -390,6 +413,7 @@ function FeaturedCard({
     pink: 'hover:border-pink-500/50 hover:bg-pink-950/20',
     purple: 'hover:border-purple-500/50 hover:bg-purple-950/20',
     indigo: 'hover:border-indigo-500/50 hover:bg-indigo-950/20',
+    emerald: 'hover:border-emerald-500/50 hover:bg-emerald-950/20',
   };
   
   return (

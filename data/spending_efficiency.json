@@ -1,0 +1,1055 @@
+{
+  "metadata": {
+    "source": "Statistics Finland",
+    "table": "statfin_jmete_pxt_12a6",
+    "description": "Government expenditure efficiency analysis by transaction type",
+    "fetched_at": "2026-01-04T11:39:13.656825",
+    "methodology": "Efficiency = (D62K cash benefits + D632K in-kind benefits) / Total expenditure. Bureaucracy = D1K employee compensation.",
+    "transaction_types": {
+      "D62K": {
+        "name": "Cash benefits to citizens",
+        "category": "benefits"
+      },
+      "D632K": {
+        "name": "In-kind benefits (via private)",
+        "category": "benefits"
+      },
+      "D1K": {
+        "name": "Employee compensation",
+        "category": "bureaucracy"
+      },
+      "P2K": {
+        "name": "Intermediate consumption",
+        "category": "overhead"
+      },
+      "D3K": {
+        "name": "Subsidies",
+        "category": "subsidies"
+      },
+      "P5K": {
+        "name": "Capital formation",
+        "category": "investment"
+      },
+      "D4KS": {
+        "name": "Property income",
+        "category": "other"
+      },
+      "D7KS": {
+        "name": "Other transfers",
+        "category": "other"
+      },
+      "OTES": {
+        "name": "Total expenditure",
+        "category": "total"
+      }
+    }
+  },
+  "summary": {
+    "year": 2024,
+    "total_analyzed_billion": 106.2,
+    "total_benefits_billion": 57.7,
+    "total_bureaucracy_billion": 14.6,
+    "overall_efficiency_pct": 54.4,
+    "overall_bureaucracy_pct": 13.8,
+    "most_efficient": {
+      "code": "G1006",
+      "name": "Housing assistance",
+      "parent": "Social protection",
+      "efficiency_pct": 100.0,
+      "bureaucracy_pct": 0.0,
+      "total_million": 1677
+    },
+    "least_efficient": {
+      "code": "G0103",
+      "name": "General services",
+      "parent": "General public services",
+      "efficiency_pct": 0.0,
+      "bureaucracy_pct": 26.6,
+      "total_million": 8120
+    },
+    "most_bureaucratic": {
+      "code": "G0404",
+      "name": "Mining, manufacturing",
+      "parent": "Economic affairs",
+      "efficiency_pct": 0.0,
+      "bureaucracy_pct": 63.8,
+      "total_million": 127
+    }
+  },
+  "categories": [
+    {
+      "code": "G10",
+      "name": "Social protection",
+      "total_million": 73006,
+      "benefits_million": 57739,
+      "bureaucracy_million": 8690,
+      "overhead_million": 5458,
+      "subsidies_million": 10,
+      "investment_million": 497,
+      "other_million": 612,
+      "efficiency_pct": 79.1,
+      "bureaucracy_pct": 11.9,
+      "overhead_pct": 7.5,
+      "subcategories": [
+        {
+          "code": "G1002",
+          "name": "Old age (pensions)",
+          "total_million": 42720,
+          "benefits_million": 37204,
+          "bureaucracy_million": 3242,
+          "overhead_million": 2192,
+          "subsidies_million": 0,
+          "investment_million": 39,
+          "other_million": 43,
+          "efficiency_pct": 87.1,
+          "bureaucracy_pct": 7.6,
+          "overhead_pct": 5.1
+        },
+        {
+          "code": "G1004",
+          "name": "Family and children",
+          "total_million": 9660,
+          "benefits_million": 4633,
+          "bureaucracy_million": 3282,
+          "overhead_million": 1273,
+          "subsidies_million": 1,
+          "investment_million": 334,
+          "other_million": 137,
+          "efficiency_pct": 48.0,
+          "bureaucracy_pct": 34.0,
+          "overhead_pct": 13.2
+        },
+        {
+          "code": "G1001",
+          "name": "Sickness and disability",
+          "total_million": 9062,
+          "benefits_million": 6719,
+          "bureaucracy_million": 1309,
+          "overhead_million": 983,
+          "subsidies_million": 0,
+          "investment_million": 19,
+          "other_million": 32,
+          "efficiency_pct": 74.1,
+          "bureaucracy_pct": 14.4,
+          "overhead_pct": 10.8
+        },
+        {
+          "code": "G1005",
+          "name": "Unemployment",
+          "total_million": 4482,
+          "benefits_million": 4249,
+          "bureaucracy_million": 135,
+          "overhead_million": 98,
+          "subsidies_million": 0,
+          "investment_million": 0,
+          "other_million": 0,
+          "efficiency_pct": 94.8,
+          "bureaucracy_pct": 3.0,
+          "overhead_pct": 2.2
+        },
+        {
+          "code": "G1007",
+          "name": "Social exclusion",
+          "total_million": 2564,
+          "benefits_million": 1365,
+          "bureaucracy_million": 492,
+          "overhead_million": 600,
+          "subsidies_million": 8,
+          "investment_million": 88,
+          "other_million": 11,
+          "efficiency_pct": 53.2,
+          "bureaucracy_pct": 19.2,
+          "overhead_pct": 23.4
+        },
+        {
+          "code": "G1003",
+          "name": "Survivors",
+          "total_million": 1956,
+          "benefits_million": 1892,
+          "bureaucracy_million": 14,
+          "overhead_million": 46,
+          "subsidies_million": 0,
+          "investment_million": 1,
+          "other_million": 3,
+          "efficiency_pct": 96.7,
+          "bureaucracy_pct": 0.7,
+          "overhead_pct": 2.4
+        },
+        {
+          "code": "G1006",
+          "name": "Housing assistance",
+          "total_million": 1677,
+          "benefits_million": 1677,
+          "bureaucracy_million": 0,
+          "overhead_million": 0,
+          "subsidies_million": 0,
+          "investment_million": 0,
+          "other_million": 0,
+          "efficiency_pct": 100.0,
+          "bureaucracy_pct": 0.0,
+          "overhead_pct": 0.0
+        }
+      ]
+    },
+    {
+      "code": "G01",
+      "name": "General public services",
+      "total_million": 19744,
+      "benefits_million": 0,
+      "bureaucracy_million": 3874,
+      "overhead_million": 5286,
+      "subsidies_million": 25,
+      "investment_million": 3092,
+      "other_million": 7467,
+      "efficiency_pct": 0.0,
+      "bureaucracy_pct": 19.6,
+      "overhead_pct": 26.8,
+      "subcategories": [
+        {
+          "code": "G0103",
+          "name": "General services",
+          "total_million": 8120,
+          "benefits_million": 0,
+          "bureaucracy_million": 2162,
+          "overhead_million": 3833,
+          "subsidies_million": 0,
+          "investment_million": 1864,
+          "other_million": 261,
+          "efficiency_pct": 0.0,
+          "bureaucracy_pct": 26.6,
+          "overhead_pct": 47.2
+        },
+        {
+          "code": "G0107",
+          "name": "Public debt transactions",
+          "total_million": 4552,
+          "benefits_million": 0,
+          "bureaucracy_million": 0,
+          "overhead_million": 210,
+          "subsidies_million": 0,
+          "investment_million": 0,
+          "other_million": 4342,
+          "efficiency_pct": 0.0,
+          "bureaucracy_pct": 0.0,
+          "overhead_pct": 4.6
+        },
+        {
+          "code": "G0101",
+          "name": "Executive and legislative",
+          "total_million": 3780,
+          "benefits_million": 0,
+          "bureaucracy_million": 860,
+          "overhead_million": 649,
+          "subsidies_million": 0,
+          "investment_million": 72,
+          "other_million": 2199,
+          "efficiency_pct": 0.0,
+          "bureaucracy_pct": 22.8,
+          "overhead_pct": 17.2
+        },
+        {
+          "code": "G0104",
+          "name": "Basic research",
+          "total_million": 2472,
+          "benefits_million": 0,
+          "bureaucracy_million": 778,
+          "overhead_million": 473,
+          "subsidies_million": 19,
+          "investment_million": 1127,
+          "other_million": 75,
+          "efficiency_pct": 0.0,
+          "bureaucracy_pct": 31.5,
+          "overhead_pct": 19.1
+        },
+        {
+          "code": "G0102",
+          "name": "Foreign economic aid",
+          "total_million": 645,
+          "benefits_million": 0,
+          "bureaucracy_million": 13,
+          "overhead_million": 39,
+          "subsidies_million": 6,
+          "investment_million": 0,
+          "other_million": 587,
+          "efficiency_pct": 0.0,
+          "bureaucracy_pct": 2.0,
+          "overhead_pct": 6.0
+        },
+        {
+          "code": "G0105",
+          "name": "R&D public services",
+          "total_million": 93,
+          "benefits_million": 0,
+          "bureaucracy_million": 15,
+          "overhead_million": 49,
+          "subsidies_million": 0,
+          "investment_million": 29,
+          "other_million": 0,
+          "efficiency_pct": 0.0,
+          "bureaucracy_pct": 16.1,
+          "overhead_pct": 52.7
+        },
+        {
+          "code": "G0106",
+          "name": "Other public services",
+          "total_million": 82,
+          "benefits_million": 0,
+          "bureaucracy_million": 46,
+          "overhead_million": 33,
+          "subsidies_million": 0,
+          "investment_million": 0,
+          "other_million": 3,
+          "efficiency_pct": 0.0,
+          "bureaucracy_pct": 56.1,
+          "overhead_pct": 40.2
+        }
+      ]
+    },
+    {
+      "code": "G04",
+      "name": "Economic affairs",
+      "total_million": 13472,
+      "benefits_million": 0,
+      "bureaucracy_million": 2067,
+      "overhead_million": 3997,
+      "subsidies_million": 2797,
+      "investment_million": 3730,
+      "other_million": 881,
+      "efficiency_pct": 0.0,
+      "bureaucracy_pct": 15.3,
+      "overhead_pct": 29.7,
+      "subcategories": [
+        {
+          "code": "G0405",
+          "name": "Transport",
+          "total_million": 7698,
+          "benefits_million": 0,
+          "bureaucracy_million": 676,
+          "overhead_million": 2948,
+          "subsidies_million": 784,
+          "investment_million": 3177,
+          "other_million": 113,
+          "efficiency_pct": 0.0,
+          "bureaucracy_pct": 8.8,
+          "overhead_pct": 38.3
+        },
+        {
+          "code": "G0401",
+          "name": "Economic and labour affairs",
+          "total_million": 2047,
+          "benefits_million": 0,
+          "bureaucracy_million": 785,
+          "overhead_million": 538,
+          "subsidies_million": 321,
+          "investment_million": 51,
+          "other_million": 352,
+          "efficiency_pct": 0.0,
+          "bureaucracy_pct": 38.3,
+          "overhead_pct": 26.3
+        },
+        {
+          "code": "G0402",
+          "name": "Agriculture, forestry, fishing",
+          "total_million": 1709,
+          "benefits_million": 0,
+          "bureaucracy_million": 104,
+          "overhead_million": 146,
+          "subsidies_million": 1243,
+          "investment_million": 11,
+          "other_million": 205,
+          "efficiency_pct": 0.0,
+          "bureaucracy_pct": 6.1,
+          "overhead_pct": 8.5
+        },
+        {
+          "code": "G0408",
+          "name": "R&D economic affairs",
+          "total_million": 1640,
+          "benefits_million": 0,
+          "bureaucracy_million": 412,
+          "overhead_million": 365,
+          "subsidies_million": 324,
+          "investment_million": 451,
+          "other_million": 88,
+          "efficiency_pct": 0.0,
+          "bureaucracy_pct": 25.1,
+          "overhead_pct": 22.3
+        },
+        {
+          "code": "G0403",
+          "name": "Fuel and energy",
+          "total_million": 252,
+          "benefits_million": 0,
+          "bureaucracy_million": 9,
+          "overhead_million": -31,
+          "subsidies_million": 126,
+          "investment_million": 39,
+          "other_million": 109,
+          "efficiency_pct": 0.0,
+          "bureaucracy_pct": 3.6,
+          "overhead_pct": -12.3
+        },
+        {
+          "code": "G0404",
+          "name": "Mining, manufacturing",
+          "total_million": 127,
+          "benefits_million": 0,
+          "bureaucracy_million": 81,
+          "overhead_million": 30,
+          "subsidies_million": 0,
+          "investment_million": 1,
+          "other_million": 15,
+          "efficiency_pct": 0.0,
+          "bureaucracy_pct": 63.8,
+          "overhead_pct": 23.6
+        },
+        {
+          "code": "G0406",
+          "name": "Communications",
+          "total_million": 1,
+          "benefits_million": 0,
+          "bureaucracy_million": 0,
+          "overhead_million": 1,
+          "subsidies_million": 0,
+          "investment_million": 0,
+          "other_million": 0,
+          "efficiency_pct": 0.0,
+          "bureaucracy_pct": 0.0,
+          "overhead_pct": 100.0
+        }
+      ]
+    }
+  ],
+  "time_series": [
+    {
+      "year": 1990,
+      "G10": {
+        "efficiency_pct": 77.0,
+        "bureaucracy_pct": 13.2,
+        "total_million": 16957
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 28.9,
+        "total_million": 5114
+      },
+      "G04": {
+        "efficiency_pct": 0.1,
+        "bureaucracy_pct": 16.3,
+        "total_million": 5815
+      }
+    },
+    {
+      "year": 1991,
+      "G10": {
+        "efficiency_pct": 78.3,
+        "bureaucracy_pct": 12.6,
+        "total_million": 19830
+      },
+      "G01": {
+        "efficiency_pct": 0.1,
+        "bureaucracy_pct": 28.0,
+        "total_million": 5851
+      },
+      "G04": {
+        "efficiency_pct": 0.1,
+        "bureaucracy_pct": 16.3,
+        "total_million": 6415
+      }
+    },
+    {
+      "year": 1992,
+      "G10": {
+        "efficiency_pct": 80.4,
+        "bureaucracy_pct": 11.0,
+        "total_million": 22626
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 26.9,
+        "total_million": 6092
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 16.6,
+        "total_million": 6388
+      }
+    },
+    {
+      "year": 1993,
+      "G10": {
+        "efficiency_pct": 83.2,
+        "bureaucracy_pct": 9.8,
+        "total_million": 23529
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 19.4,
+        "total_million": 7344
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 13.2,
+        "total_million": 7268
+      }
+    },
+    {
+      "year": 1994,
+      "G10": {
+        "efficiency_pct": 83.9,
+        "bureaucracy_pct": 9.5,
+        "total_million": 24494
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 19.7,
+        "total_million": 7496
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 12.0,
+        "total_million": 7735
+      }
+    },
+    {
+      "year": 1995,
+      "G10": {
+        "efficiency_pct": 83.7,
+        "bureaucracy_pct": 10.4,
+        "total_million": 24723
+      },
+      "G01": {
+        "efficiency_pct": 0.2,
+        "bureaucracy_pct": 17.0,
+        "total_million": 8263
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 10.7,
+        "total_million": 8771
+      }
+    },
+    {
+      "year": 1996,
+      "G10": {
+        "efficiency_pct": 82.5,
+        "bureaucracy_pct": 10.9,
+        "total_million": 25360
+      },
+      "G01": {
+        "efficiency_pct": 0.1,
+        "bureaucracy_pct": 15.9,
+        "total_million": 9067
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 14.4,
+        "total_million": 6895
+      }
+    },
+    {
+      "year": 1997,
+      "G10": {
+        "efficiency_pct": 81.5,
+        "bureaucracy_pct": 11.0,
+        "total_million": 25802
+      },
+      "G01": {
+        "efficiency_pct": 0.1,
+        "bureaucracy_pct": 16.7,
+        "total_million": 10101
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 17.5,
+        "total_million": 6194
+      }
+    },
+    {
+      "year": 1998,
+      "G10": {
+        "efficiency_pct": 81.9,
+        "bureaucracy_pct": 11.3,
+        "total_million": 26041
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 18.1,
+        "total_million": 10029
+      },
+      "G04": {
+        "efficiency_pct": 0.1,
+        "bureaucracy_pct": 16.8,
+        "total_million": 6480
+      }
+    },
+    {
+      "year": 1999,
+      "G10": {
+        "efficiency_pct": 81.3,
+        "bureaucracy_pct": 11.3,
+        "total_million": 26805
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 19.0,
+        "total_million": 9991
+      },
+      "G04": {
+        "efficiency_pct": 0.1,
+        "bureaucracy_pct": 15.2,
+        "total_million": 7028
+      }
+    },
+    {
+      "year": 2000,
+      "G10": {
+        "efficiency_pct": 80.9,
+        "bureaucracy_pct": 11.7,
+        "total_million": 26623
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 19.6,
+        "total_million": 10231
+      },
+      "G04": {
+        "efficiency_pct": 0.1,
+        "bureaucracy_pct": 16.5,
+        "total_million": 6536
+      }
+    },
+    {
+      "year": 2001,
+      "G10": {
+        "efficiency_pct": 80.4,
+        "bureaucracy_pct": 11.8,
+        "total_million": 27746
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 19.8,
+        "total_million": 10707
+      },
+      "G04": {
+        "efficiency_pct": 0.1,
+        "bureaucracy_pct": 14.7,
+        "total_million": 6643
+      }
+    },
+    {
+      "year": 2002,
+      "G10": {
+        "efficiency_pct": 80.0,
+        "bureaucracy_pct": 11.6,
+        "total_million": 29592
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 21.5,
+        "total_million": 10385
+      },
+      "G04": {
+        "efficiency_pct": 0.1,
+        "bureaucracy_pct": 14.5,
+        "total_million": 7294
+      }
+    },
+    {
+      "year": 2003,
+      "G10": {
+        "efficiency_pct": 80.2,
+        "bureaucracy_pct": 11.5,
+        "total_million": 30860
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 22.0,
+        "total_million": 10794
+      },
+      "G04": {
+        "efficiency_pct": 0.1,
+        "bureaucracy_pct": 14.9,
+        "total_million": 7188
+      }
+    },
+    {
+      "year": 2004,
+      "G10": {
+        "efficiency_pct": 80.0,
+        "bureaucracy_pct": 11.5,
+        "total_million": 32202
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 23.2,
+        "total_million": 11123
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 14.4,
+        "total_million": 7471
+      }
+    },
+    {
+      "year": 2005,
+      "G10": {
+        "efficiency_pct": 80.4,
+        "bureaucracy_pct": 11.8,
+        "total_million": 33051
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 23.3,
+        "total_million": 11592
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 14.2,
+        "total_million": 7728
+      }
+    },
+    {
+      "year": 2006,
+      "G10": {
+        "efficiency_pct": 80.5,
+        "bureaucracy_pct": 12.0,
+        "total_million": 33910
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 23.8,
+        "total_million": 11868
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 13.9,
+        "total_million": 8043
+      }
+    },
+    {
+      "year": 2007,
+      "G10": {
+        "efficiency_pct": 78.8,
+        "bureaucracy_pct": 12.2,
+        "total_million": 35611
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 24.5,
+        "total_million": 12446
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 13.2,
+        "total_million": 8276
+      }
+    },
+    {
+      "year": 2008,
+      "G10": {
+        "efficiency_pct": 79.1,
+        "bureaucracy_pct": 12.5,
+        "total_million": 37475
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 24.2,
+        "total_million": 13524
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 13.0,
+        "total_million": 9007
+      }
+    },
+    {
+      "year": 2009,
+      "G10": {
+        "efficiency_pct": 79.5,
+        "bureaucracy_pct": 12.0,
+        "total_million": 40939
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 24.6,
+        "total_million": 14045
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 13.6,
+        "total_million": 9003
+      }
+    },
+    {
+      "year": 2010,
+      "G10": {
+        "efficiency_pct": 80.0,
+        "bureaucracy_pct": 12.1,
+        "total_million": 42503
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 24.4,
+        "total_million": 14540
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 13.9,
+        "total_million": 9132
+      }
+    },
+    {
+      "year": 2011,
+      "G10": {
+        "efficiency_pct": 79.5,
+        "bureaucracy_pct": 12.1,
+        "total_million": 44517
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 23.2,
+        "total_million": 15956
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 13.6,
+        "total_million": 9449
+      }
+    },
+    {
+      "year": 2012,
+      "G10": {
+        "efficiency_pct": 79.5,
+        "bureaucracy_pct": 12.0,
+        "total_million": 47426
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 23.3,
+        "total_million": 16562
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 13.6,
+        "total_million": 9779
+      }
+    },
+    {
+      "year": 2013,
+      "G10": {
+        "efficiency_pct": 80.0,
+        "bureaucracy_pct": 11.6,
+        "total_million": 50256
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 22.8,
+        "total_million": 17026
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 13.8,
+        "total_million": 9849
+      }
+    },
+    {
+      "year": 2014,
+      "G10": {
+        "efficiency_pct": 80.8,
+        "bureaucracy_pct": 11.3,
+        "total_million": 52147
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 22.5,
+        "total_million": 17207
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 13.2,
+        "total_million": 10131
+      }
+    },
+    {
+      "year": 2015,
+      "G10": {
+        "efficiency_pct": 81.4,
+        "bureaucracy_pct": 11.8,
+        "total_million": 53488
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 22.4,
+        "total_million": 15193
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 12.4,
+        "total_million": 9905
+      }
+    },
+    {
+      "year": 2016,
+      "G10": {
+        "efficiency_pct": 79.9,
+        "bureaucracy_pct": 11.4,
+        "total_million": 55639
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 22.6,
+        "total_million": 14765
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 11.9,
+        "total_million": 9667
+      }
+    },
+    {
+      "year": 2017,
+      "G10": {
+        "efficiency_pct": 81.1,
+        "bureaucracy_pct": 11.3,
+        "total_million": 55754
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 21.7,
+        "total_million": 14564
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 12.2,
+        "total_million": 9622
+      }
+    },
+    {
+      "year": 2018,
+      "G10": {
+        "efficiency_pct": 80.7,
+        "bureaucracy_pct": 11.4,
+        "total_million": 56898
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 20.7,
+        "total_million": 15502
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 14.0,
+        "total_million": 9713
+      }
+    },
+    {
+      "year": 2019,
+      "G10": {
+        "efficiency_pct": 80.8,
+        "bureaucracy_pct": 11.5,
+        "total_million": 57986
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 21.0,
+        "total_million": 15808
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 14.9,
+        "total_million": 10020
+      }
+    },
+    {
+      "year": 2020,
+      "G10": {
+        "efficiency_pct": 81.3,
+        "bureaucracy_pct": 11.1,
+        "total_million": 61168
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 20.6,
+        "total_million": 16343
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 12.1,
+        "total_million": 12290
+      }
+    },
+    {
+      "year": 2021,
+      "G10": {
+        "efficiency_pct": 80.7,
+        "bureaucracy_pct": 11.4,
+        "total_million": 62375
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 21.9,
+        "total_million": 16680
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 12.5,
+        "total_million": 12617
+      }
+    },
+    {
+      "year": 2022,
+      "G10": {
+        "efficiency_pct": 80.3,
+        "bureaucracy_pct": 11.6,
+        "total_million": 63410
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 22.0,
+        "total_million": 17393
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 14.4,
+        "total_million": 11960
+      }
+    },
+    {
+      "year": 2023,
+      "G10": {
+        "efficiency_pct": 78.2,
+        "bureaucracy_pct": 11.9,
+        "total_million": 69973
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 19.9,
+        "total_million": 18826
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 15.9,
+        "total_million": 12709
+      }
+    },
+    {
+      "year": 2024,
+      "G10": {
+        "efficiency_pct": 79.1,
+        "bureaucracy_pct": 11.9,
+        "total_million": 73006
+      },
+      "G01": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 19.6,
+        "total_million": 19744
+      },
+      "G04": {
+        "efficiency_pct": 0.0,
+        "bureaucracy_pct": 15.3,
+        "total_million": 13472
+      }
+    }
+  ]
+}
