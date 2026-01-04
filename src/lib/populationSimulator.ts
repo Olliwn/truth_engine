@@ -5,6 +5,7 @@
  * 1. Tracking all birth cohorts over time
  * 2. Applying decile-based income/cost distributions
  * 3. Summing contributions and state costs across the entire population
+ * 4. Supporting demographic scenarios (birth rate, immigration)
  * 
  * This provides a macro view of fiscal sustainability that accounts for
  * demographic transitions (baby boom → baby bust).
@@ -29,6 +30,16 @@ import {
   PENSION_SYSTEM,
   VAT_RATES,
 } from './constants/lifecycleCosts';
+
+import {
+  DemographicScenario,
+  DEFAULT_SCENARIO,
+  calculateTFR,
+  tfrToAnnualBirths,
+  IMMIGRATION_PROFILES,
+  estimateAnnualFiscalImpact,
+  getHistoricalTFR,
+} from './constants/demographicScenarios';
 
 import { calculateTaxes } from './finnishTaxCalculator';
 
@@ -68,6 +79,18 @@ export interface AnnualPopulationResult {
   incomeTaxRevenue: number;
   socialInsuranceRevenue: number;
   vatRevenue: number;
+  
+  // Demographic scenario data
+  tfr: number;                    // Total Fertility Rate for this year
+  annualBirths: number;           // Projected/actual births
+  
+  // Immigration breakdown (in millions EUR)
+  immigrationFiscalImpact: number;
+  immigrationByType: {
+    workBased: { count: number; fiscalImpact: number };
+    family: { count: number; fiscalImpact: number };
+    humanitarian: { count: number; fiscalImpact: number };
+  };
 }
 
 export interface PopulationSimulationResult {
@@ -221,10 +244,129 @@ function calculatePersonYearFiscal(
   return { contributions, stateCosts, breakdown };
 }
 
+// ===========================================
+// Scenario-Based Calculations
+// ===========================================
+
+// Cache for immigrant cohorts (arrival year -> count by type)
+const immigrantCohorts: Map<number, {
+  workBased: number;
+  family: number;
+  humanitarian: number;
+}> = new Map();
+
+/**
+ * Get births for a specific year based on scenario
+ */
+function getBirthsForYear(
+  year: number,
+  scenario: DemographicScenario,
+  totalPopulation: number
+): { births: number; tfr: number } {
+  // Historical data (before 2025)
+  if (year <= 2024 && FINNISH_BIRTHS_BY_YEAR[year]) {
+    return {
+      births: FINNISH_BIRTHS_BY_YEAR[year],
+      tfr: getHistoricalTFR(year),
+    };
+  }
+  
+  // Calculate TFR based on scenario
+  const tfr = calculateTFR(
+    year,
+    scenario.birthRate.customTFR,
+    scenario.birthRate.transitionYear
+  );
+  
+  // Convert TFR to births
+  const births = tfrToAnnualBirths(tfr, totalPopulation);
+  
+  return { births, tfr };
+}
+
+/**
+ * Calculate immigration fiscal impact for a year
+ */
+function calculateImmigrationImpact(
+  year: number,
+  scenario: DemographicScenario,
+  simulationStartYear: number
+): {
+  totalImpact: number;
+  byType: {
+    workBased: { count: number; fiscalImpact: number };
+    family: { count: number; fiscalImpact: number };
+    humanitarian: { count: number; fiscalImpact: number };
+  };
+  populationAddition: number;
+} {
+  let totalImpact = 0;
+  let populationAddition = 0;
+  
+  const byType = {
+    workBased: { count: 0, fiscalImpact: 0 },
+    family: { count: 0, fiscalImpact: 0 },
+    humanitarian: { count: 0, fiscalImpact: 0 },
+  };
+  
+  // Only add new immigrants from simulation start year onwards
+  if (year >= simulationStartYear) {
+    // Store this year's arrivals
+    immigrantCohorts.set(year, {
+      workBased: scenario.immigration.workBased,
+      family: scenario.immigration.family,
+      humanitarian: scenario.immigration.humanitarian,
+    });
+  }
+  
+  // Calculate fiscal impact of all immigrant cohorts still in country
+  for (const [arrivalYear, cohort] of immigrantCohorts.entries()) {
+    if (arrivalYear > year) continue;
+    
+    const yearsInCountry = year - arrivalYear;
+    
+    // Assume ~2% emigration per year
+    const retentionRate = Math.pow(0.98, yearsInCountry);
+    
+    // Work-based immigrants
+    const workBasedRemaining = Math.round(cohort.workBased * retentionRate);
+    const workBasedImpact = workBasedRemaining * 
+      estimateAnnualFiscalImpact(IMMIGRATION_PROFILES.work_based, yearsInCountry);
+    byType.workBased.count += workBasedRemaining;
+    byType.workBased.fiscalImpact += workBasedImpact;
+    
+    // Family immigrants
+    const familyRemaining = Math.round(cohort.family * retentionRate);
+    const familyImpact = familyRemaining * 
+      estimateAnnualFiscalImpact(IMMIGRATION_PROFILES.family, yearsInCountry);
+    byType.family.count += familyRemaining;
+    byType.family.fiscalImpact += familyImpact;
+    
+    // Humanitarian immigrants
+    const humanitarianRemaining = Math.round(cohort.humanitarian * retentionRate);
+    const humanitarianImpact = humanitarianRemaining * 
+      estimateAnnualFiscalImpact(IMMIGRATION_PROFILES.humanitarian, yearsInCountry);
+    byType.humanitarian.count += humanitarianRemaining;
+    byType.humanitarian.fiscalImpact += humanitarianImpact;
+    
+    populationAddition += workBasedRemaining + familyRemaining + humanitarianRemaining;
+  }
+  
+  totalImpact = byType.workBased.fiscalImpact + 
+    byType.family.fiscalImpact + 
+    byType.humanitarian.fiscalImpact;
+  
+  return { totalImpact, byType, populationAddition };
+}
+
 /**
  * Simulate the entire Finnish population for a single year
  */
-export function simulatePopulationYear(year: number): AnnualPopulationResult {
+export function simulatePopulationYear(
+  year: number,
+  scenario: DemographicScenario = DEFAULT_SCENARIO,
+  simulationStartYear: number = 1990
+): AnnualPopulationResult {
   let totalContributions = 0;
   let totalStateCosts = 0;
   
@@ -245,7 +387,25 @@ export function simulatePopulationYear(year: number): AnnualPopulationResult {
   // Iterate through all ages (0-100)
   for (let age = 0; age <= 100; age++) {
     const birthYear = year - age;
-    const cohortSize = getCohortSizeAtAge(birthYear, age);
+    
+    // Get cohort size - use scenario-based births for future years
+    let cohortSize: number;
+    if (birthYear > 2024) {
+      // Future birth year - use scenario projection
+      // For simplicity, estimate based on TFR trajectory
+      const futureTFR = calculateTFR(
+        birthYear,
+        scenario.birthRate.customTFR,
+        scenario.birthRate.transitionYear
+      );
+      // Estimate births based on projected population at that time
+      const estimatedPopulation = 5500000; // Simplified
+      cohortSize = tfrToAnnualBirths(futureTFR, estimatedPopulation);
+      // Apply survival to current age
+      cohortSize = Math.round(cohortSize * getSurvivalProbability(age));
+    } else {
+      cohortSize = getCohortSizeAtAge(birthYear, age);
+    }
     
     if (cohortSize <= 0) continue;
     
@@ -280,11 +440,22 @@ export function simulatePopulationYear(year: number): AnnualPopulationResult {
     }
   }
   
+  // Calculate immigration impact
+  const immigrationResult = calculateImmigrationImpact(year, scenario, simulationStartYear);
+  
+  // Add immigration to totals
+  totalPopulation += immigrationResult.populationAddition;
+  totalContributions += Math.max(0, immigrationResult.totalImpact);
+  totalStateCosts += Math.abs(Math.min(0, immigrationResult.totalImpact));
+  
+  // Get birth rate data for this year
+  const birthData = getBirthsForYear(year, scenario, totalPopulation);
+  
   // Convert to millions EUR
   const toMillions = (x: number) => x / 1_000_000;
   
-  const dependencyRatio = (children + elderly) / workingAge * 100;
-  const oldAgeDependencyRatio = elderly / workingAge * 100;
+  const dependencyRatio = workingAge > 0 ? (children + elderly) / workingAge * 100 : 100;
+  const oldAgeDependencyRatio = workingAge > 0 ? elderly / workingAge * 100 : 100;
   
   return {
     year,
@@ -306,7 +477,32 @@ export function simulatePopulationYear(year: number): AnnualPopulationResult {
     incomeTaxRevenue: toMillions(incomeTaxRevenue),
     socialInsuranceRevenue: toMillions(socialInsuranceRevenue),
     vatRevenue: toMillions(vatRevenue),
+    // New demographic data
+    tfr: birthData.tfr,
+    annualBirths: birthData.births,
+    immigrationFiscalImpact: toMillions(immigrationResult.totalImpact),
+    immigrationByType: {
+      workBased: {
+        count: immigrationResult.byType.workBased.count,
+        fiscalImpact: toMillions(immigrationResult.byType.workBased.fiscalImpact),
+      },
+      family: {
+        count: immigrationResult.byType.family.count,
+        fiscalImpact: toMillions(immigrationResult.byType.family.fiscalImpact),
+      },
+      humanitarian: {
+        count: immigrationResult.byType.humanitarian.count,
+        fiscalImpact: toMillions(immigrationResult.byType.humanitarian.fiscalImpact),
+      },
+    },
   };
+}
+
+/**
+ * Reset immigrant cohorts cache (call before new simulation)
+ */
+export function resetImmigrantCohorts(): void {
+  immigrantCohorts.clear();
 }
 
 /**
@@ -314,12 +510,16 @@ export function simulatePopulationYear(year: number): AnnualPopulationResult {
  */
 export function simulatePopulationRange(
   startYear: number = 1990,
-  endYear: number = 2060
+  endYear: number = 2060,
+  scenario: DemographicScenario = DEFAULT_SCENARIO
 ): PopulationSimulationResult {
+  // Reset immigrant cohorts for fresh simulation
+  resetImmigrantCohorts();
+  
   const annualResults: AnnualPopulationResult[] = [];
   
   for (let year = startYear; year <= endYear; year++) {
-    annualResults.push(simulatePopulationYear(year));
+    annualResults.push(simulatePopulationYear(year, scenario, startYear));
   }
   
   // Calculate summary statistics
@@ -414,4 +614,15 @@ export function compareDemographics(year1: number, year2: number): {
 
 // Re-export demographic helpers
 export { getPopulationPyramid, getWorkingAgePopulation, getElderlyPopulation };
+
+// Re-export scenario types and utilities
+export { 
+  DemographicScenario, 
+  DEFAULT_SCENARIO,
+  BIRTH_RATE_PRESETS,
+  IMMIGRATION_PROFILES,
+  DEFAULT_IMMIGRATION,
+} from './constants/demographicScenarios';
+
+export type { BirthRatePreset, ImmigrationProfile } from './constants/demographicScenarios';
 

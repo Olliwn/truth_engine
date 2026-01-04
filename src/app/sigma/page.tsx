@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import {
   AreaChart,
@@ -23,6 +23,11 @@ import {
   simulatePopulationYear,
   getPopulationPyramidData,
   AnnualPopulationResult,
+  DemographicScenario,
+  DEFAULT_SCENARIO,
+  BIRTH_RATE_PRESETS,
+  IMMIGRATION_PROFILES,
+  DEFAULT_IMMIGRATION,
 } from '@/lib/populationSimulator';
 
 // ===========================================
@@ -45,6 +50,12 @@ const formatMillions = (n: number) => {
 const formatPercent = (n: number) => 
   `${n.toFixed(1)}%`;
 
+const formatCompact = (n: number) => {
+  if (n >= 1000000) return `${(n / 1000000).toFixed(1)}M`;
+  if (n >= 1000) return `${(n / 1000).toFixed(0)}k`;
+  return n.toString();
+};
+
 // ===========================================
 // Main Component
 // ===========================================
@@ -53,13 +64,42 @@ export default function SigmaPage() {
   const [selectedYear, setSelectedYear] = useState(2024);
   const [isPlaying, setIsPlaying] = useState(false);
   
-  // Run simulation once on mount
+  // Scenario state
+  const [birthRatePreset, setBirthRatePreset] = useState<string>('current_trend');
+  const [customTFR, setCustomTFR] = useState(1.3);
+  const [transitionYear, setTransitionYear] = useState(2040);
+  const [useCustomBirthRate, setUseCustomBirthRate] = useState(false);
+  
+  const [workBasedImmigration, setWorkBasedImmigration] = useState(DEFAULT_IMMIGRATION.workBased);
+  const [familyImmigration, setFamilyImmigration] = useState(DEFAULT_IMMIGRATION.family);
+  const [humanitarianImmigration, setHumanitarianImmigration] = useState(DEFAULT_IMMIGRATION.humanitarian);
+  const [showImmigrationPanel, setShowImmigrationPanel] = useState(true);
+  
+  // Build scenario from state
+  const scenario: DemographicScenario = useMemo(() => {
+    const preset = BIRTH_RATE_PRESETS[birthRatePreset];
+    return {
+      birthRate: {
+        presetId: useCustomBirthRate ? null : birthRatePreset,
+        customTFR: useCustomBirthRate ? customTFR : preset?.targetTFR || 1.3,
+        transitionYear: useCustomBirthRate ? transitionYear : preset?.transitionYear || 2060,
+      },
+      immigration: {
+        workBased: workBasedImmigration,
+        family: familyImmigration,
+        humanitarian: humanitarianImmigration,
+      },
+    };
+  }, [birthRatePreset, customTFR, transitionYear, useCustomBirthRate, 
+      workBasedImmigration, familyImmigration, humanitarianImmigration]);
+  
+  // Run simulation with scenario
   const simulationResult = useMemo(() => 
-    simulatePopulationRange(1990, 2060), []
+    simulatePopulationRange(1990, 2060, scenario), [scenario]
   );
   
   const currentYearData = useMemo(() => 
-    simulatePopulationYear(selectedYear), [selectedYear]
+    simulatePopulationYear(selectedYear, scenario, 1990), [selectedYear, scenario]
   );
   
   const pyramidData = useMemo(() => 
@@ -83,6 +123,17 @@ export default function SigmaPage() {
     return () => clearInterval(interval);
   }, [isPlaying]);
   
+  // Handle preset selection
+  const handlePresetSelect = useCallback((presetId: string) => {
+    setBirthRatePreset(presetId);
+    setUseCustomBirthRate(false);
+    const preset = BIRTH_RATE_PRESETS[presetId];
+    if (preset) {
+      setCustomTFR(preset.targetTFR);
+      setTransitionYear(preset.transitionYear);
+    }
+  }, []);
+  
   const { annualResults, summary } = simulationResult;
   
   // Prepare chart data
@@ -92,6 +143,7 @@ export default function SigmaPage() {
     costs: r.totalStateCosts,
     balance: r.netFiscalBalance,
     dependencyRatio: r.oldAgeDependencyRatio,
+    tfr: r.tfr,
   }));
   
   const demographicChartData = annualResults.map(r => ({
@@ -110,6 +162,20 @@ export default function SigmaPage() {
     benefits: r.benefitCosts,
   }));
   
+  const birthRateChartData = annualResults.map(r => ({
+    year: r.year,
+    tfr: r.tfr,
+    births: r.annualBirths / 1000,
+  }));
+  
+  const immigrationChartData = annualResults.map(r => ({
+    year: r.year,
+    workBased: r.immigrationByType.workBased.fiscalImpact,
+    family: r.immigrationByType.family.fiscalImpact,
+    humanitarian: r.immigrationByType.humanitarian.fiscalImpact,
+    total: r.immigrationFiscalImpact,
+  }));
+  
   // Pyramid chart data (horizontal bar chart style)
   const pyramidChartData = pyramidData
     .filter((_, i) => i % 5 === 0) // Every 5 years for readability
@@ -118,6 +184,12 @@ export default function SigmaPage() {
       male: -d.male / 1000, // Negative for left side
       female: d.female / 1000,
     }));
+  
+  // Calculate estimated fiscal impact per type
+  const workBasedAnnualImpact = currentYearData.immigrationByType.workBased.fiscalImpact;
+  const familyAnnualImpact = currentYearData.immigrationByType.family.fiscalImpact;
+  const humanitarianAnnualImpact = currentYearData.immigrationByType.humanitarian.fiscalImpact;
+  const totalImmigrationImpact = currentYearData.immigrationFiscalImpact;
   
   return (
     <main className="min-h-screen">
@@ -159,12 +231,18 @@ export default function SigmaPage() {
             Finland&apos;s <span className="text-amber-400">Demographic Destiny</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
-            The baby boom generation is retiring. Watch how Finland&apos;s population structure 
-            transforms from 1990 to 2060 — and what it means for fiscal sustainability.
+            Explore how birth rate and immigration scenarios affect Finland&apos;s 
+            fiscal sustainability from 1990 to 2060.
           </p>
 
           {/* Key Metrics */}
-          <div className="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-5 gap-4 max-w-6xl mx-auto">
+            <MetricCard
+              label="Birth Rate (TFR)"
+              value={currentYearData.tfr.toFixed(2)}
+              sublabel={`in ${selectedYear}`}
+              color={currentYearData.tfr >= 1.6 ? 'green' : currentYearData.tfr >= 1.3 ? 'amber' : 'red'}
+            />
             <MetricCard
               label="Old-Age Dependency"
               value={formatPercent(currentYearData.oldAgeDependencyRatio)}
@@ -184,17 +262,17 @@ export default function SigmaPage() {
               color={currentYearData.netFiscalBalance >= 0 ? 'green' : 'red'}
             />
             <MetricCard
-              label="Retirees"
-              value={`${(currentYearData.elderly / 1000000).toFixed(2)}M`}
-              sublabel={`age 65+ in ${selectedYear}`}
-              color="purple"
+              label="Immigration Impact"
+              value={formatMillions(totalImmigrationImpact)}
+              sublabel={`net ${totalImmigrationImpact >= 0 ? '+' : ''}`}
+              color={totalImmigrationImpact >= 0 ? 'green' : 'red'}
             />
           </div>
         </div>
       </section>
 
       {/* Year Slider */}
-      <section className="py-8 px-6 bg-gray-900/50">
+      <section className="py-6 px-6 bg-gray-900/50 border-b border-gray-800">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-6">
             <button
@@ -223,6 +301,204 @@ export default function SigmaPage() {
                 <span>2060</span>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Scenario Controls */}
+      <section className="py-6 px-6 bg-gray-900/30 border-b border-gray-800">
+        <div className="max-w-6xl mx-auto">
+          {/* Birth Rate Scenario */}
+          <div className="card p-6 mb-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <span className="text-2xl">👶</span>
+                Birth Rate Scenario
+              </h3>
+              <label className="flex items-center gap-2 text-sm text-gray-400">
+                <input
+                  type="checkbox"
+                  checked={useCustomBirthRate}
+                  onChange={(e) => setUseCustomBirthRate(e.target.checked)}
+                  className="rounded bg-gray-800 border-gray-700"
+                />
+                Custom
+              </label>
+            </div>
+            
+            {/* Preset Buttons */}
+            <div className="flex flex-wrap gap-2 mb-4">
+              {Object.values(BIRTH_RATE_PRESETS).map((preset) => (
+                <button
+                  key={preset.id}
+                  onClick={() => handlePresetSelect(preset.id)}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    birthRatePreset === preset.id && !useCustomBirthRate
+                      ? 'bg-amber-600 text-white'
+                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                  }`}
+                  style={{ 
+                    borderLeft: `4px solid ${preset.color}` 
+                  }}
+                >
+                  {preset.name}
+                  <span className="ml-2 text-xs opacity-70">TFR {preset.targetTFR}</span>
+                </button>
+              ))}
+            </div>
+            
+            {/* Custom Sliders */}
+            {useCustomBirthRate && (
+              <div className="grid md:grid-cols-2 gap-6 mt-4 pt-4 border-t border-gray-800">
+                <div>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-gray-400">Target TFR</span>
+                    <span className="text-amber-400 font-semibold">{customTFR.toFixed(2)}</span>
+                  </div>
+                  <input
+                    type="range"
+                    min={0.8}
+                    max={2.5}
+                    step={0.05}
+                    value={customTFR}
+                    onChange={(e) => setCustomTFR(Number(e.target.value))}
+                    className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-amber-500"
+                  />
+                  <div className="flex justify-between text-xs text-gray-600 mt-1">
+                    <span>0.8 (Korea)</span>
+                    <span>2.1 (Replacement)</span>
+                    <span>2.5</span>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-gray-400">Target Year</span>
+                    <span className="text-amber-400 font-semibold">{transitionYear}</span>
+                  </div>
+                  <input
+                    type="range"
+                    min={2025}
+                    max={2060}
+                    step={1}
+                    value={transitionYear}
+                    onChange={(e) => setTransitionYear(Number(e.target.value))}
+                    className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-amber-500"
+                  />
+                  <div className="flex justify-between text-xs text-gray-600 mt-1">
+                    <span>2025</span>
+                    <span>2060</span>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {/* Birth Rate Mini Chart */}
+            <div className="mt-4 h-32 bg-gray-900/50 rounded-lg p-2">
+              <ResponsiveContainer width="100%" height="100%">
+                <ComposedChart data={birthRateChartData}>
+                  <XAxis dataKey="year" tick={{ fontSize: 10 }} stroke="#6B7280" />
+                  <YAxis 
+                    yAxisId="left" 
+                    tick={{ fontSize: 10 }} 
+                    stroke="#6B7280"
+                    domain={[0, 3]}
+                  />
+                  <YAxis 
+                    yAxisId="right" 
+                    orientation="right"
+                    tick={{ fontSize: 10 }} 
+                    stroke="#6B7280"
+                    tickFormatter={(v) => `${v}k`}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: '#1F2937',
+                      border: '1px solid #374151',
+                      borderRadius: '8px',
+                      fontSize: '12px',
+                    }}
+                  />
+                  <ReferenceLine yAxisId="left" y={2.1} stroke="#22C55E" strokeDasharray="3 3" label={{ value: 'Replacement', fontSize: 10, fill: '#22C55E' }} />
+                  <ReferenceLine x={selectedYear} stroke="#F59E0B" strokeWidth={2} />
+                  <Line 
+                    yAxisId="left"
+                    type="monotone" 
+                    dataKey="tfr" 
+                    stroke="#F59E0B" 
+                    strokeWidth={2}
+                    dot={false}
+                    name="TFR"
+                  />
+                  <Area
+                    yAxisId="right"
+                    type="monotone"
+                    dataKey="births"
+                    fill="#3B82F6"
+                    fillOpacity={0.3}
+                    stroke="#3B82F6"
+                    name="Births (k)"
+                  />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Immigration Scenario */}
+          <div className="card p-6">
+            <button
+              onClick={() => setShowImmigrationPanel(!showImmigrationPanel)}
+              className="w-full flex items-center justify-between mb-4"
+            >
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <span className="text-2xl">✈️</span>
+                Immigration Scenario
+              </h3>
+              <span className="text-gray-500">{showImmigrationPanel ? '▼' : '▶'}</span>
+            </button>
+            
+            {showImmigrationPanel && (
+              <div className="space-y-6">
+                {/* Work-based */}
+                <ImmigrationSlider
+                  profile={IMMIGRATION_PROFILES.work_based}
+                  value={workBasedImmigration}
+                  onChange={setWorkBasedImmigration}
+                  max={30000}
+                  fiscalImpact={workBasedAnnualImpact}
+                />
+                
+                {/* Family */}
+                <ImmigrationSlider
+                  profile={IMMIGRATION_PROFILES.family}
+                  value={familyImmigration}
+                  onChange={setFamilyImmigration}
+                  max={20000}
+                  fiscalImpact={familyAnnualImpact}
+                />
+                
+                {/* Humanitarian */}
+                <ImmigrationSlider
+                  profile={IMMIGRATION_PROFILES.humanitarian}
+                  value={humanitarianImmigration}
+                  onChange={setHumanitarianImmigration}
+                  max={15000}
+                  fiscalImpact={humanitarianAnnualImpact}
+                />
+                
+                {/* Total */}
+                <div className="pt-4 border-t border-gray-800 flex justify-between items-center">
+                  <div>
+                    <span className="text-gray-400">Total Immigration: </span>
+                    <span className="text-white font-semibold">
+                      {formatCompact(workBasedImmigration + familyImmigration + humanitarianImmigration)}/year
+                    </span>
+                  </div>
+                  <div className={`font-bold ${totalImmigrationImpact >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                    Net: {formatMillions(totalImmigrationImpact)}/year
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -318,12 +594,13 @@ export default function SigmaPage() {
               </div>
               
               <div className="card p-6 bg-gradient-to-br from-amber-950/30 to-transparent">
-                <h4 className="text-lg font-semibold mb-2 text-amber-400">Key Cohort</h4>
+                <h4 className="text-lg font-semibold mb-2 text-amber-400">Birth Rate: {currentYearData.tfr.toFixed(2)}</h4>
                 <p className="text-gray-400 text-sm">
-                  The <span className="text-white font-semibold">1947 baby boom cohort</span> (108,000 births) 
-                  turns <span className="text-amber-400 font-semibold">{selectedYear - 1947}</span> in {selectedYear}.
-                  {selectedYear >= 2012 && selectedYear < 2030 && " They're now retired and drawing pensions."}
-                  {selectedYear >= 2030 && " Most have passed, but the fiscal legacy remains."}
+                  {currentYearData.tfr >= 2.1 && "At or above replacement level — population can grow naturally."}
+                  {currentYearData.tfr >= 1.6 && currentYearData.tfr < 2.1 && "Moderate fertility — slow population decline without immigration."}
+                  {currentYearData.tfr >= 1.3 && currentYearData.tfr < 1.6 && "Low fertility — significant population decline ahead."}
+                  {currentYearData.tfr < 1.3 && "Very low fertility — rapid population decline and aging."}
+                  {' '}Projected {formatCompact(currentYearData.annualBirths)} births this year.
                 </p>
               </div>
             </div>
@@ -355,8 +632,9 @@ export default function SigmaPage() {
                   yAxisId="right"
                   orientation="right"
                   stroke="#F59E0B"
-                  tickFormatter={(v) => `${v}%`}
-                  domain={[0, 80]}
+                  tickFormatter={(v) => `${v.toFixed(1)}`}
+                  domain={[0, 3]}
+                  label={{ value: 'TFR', angle: 90, position: 'insideRight', fill: '#F59E0B' }}
                 />
                 <Tooltip
                   contentStyle={{
@@ -365,12 +643,14 @@ export default function SigmaPage() {
                     borderRadius: '8px',
                   }}
                   formatter={(value, name) => {
+                    if (name === 'tfr') return [(value as number).toFixed(2), 'Birth Rate (TFR)'];
                     if (name === 'dependencyRatio') return [`${(value as number).toFixed(1)}%`, 'Dependency Ratio'];
                     return [`€${((value as number)/1000).toFixed(1)}B`, name];
                   }}
                 />
                 <Legend />
                 <ReferenceLine yAxisId="left" y={0} stroke="#6B7280" strokeDasharray="3 3" />
+                <ReferenceLine yAxisId="right" y={2.1} stroke="#22C55E" strokeDasharray="3 3" />
                 <ReferenceLine x={selectedYear} stroke="#F59E0B" strokeWidth={2} />
                 <Area
                   yAxisId="left"
@@ -402,8 +682,8 @@ export default function SigmaPage() {
                 <Line
                   yAxisId="right"
                   type="monotone"
-                  dataKey="dependencyRatio"
-                  name="Dependency Ratio"
+                  dataKey="tfr"
+                  name="Birth Rate (TFR)"
                   stroke="#F59E0B"
                   strokeWidth={2}
                   strokeDasharray="5 5"
@@ -431,6 +711,81 @@ export default function SigmaPage() {
               </div>
               <div className="text-sm text-gray-400">total balance</div>
             </div>
+          </div>
+        </section>
+
+        {/* Immigration Fiscal Impact */}
+        <section className="mb-12">
+          <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+            <span className="text-3xl">✈️</span>
+            Immigration Fiscal Impact
+          </h3>
+          
+          <div className="card p-6 h-[350px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={immigrationChartData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                <XAxis dataKey="year" stroke="#9CA3AF" />
+                <YAxis 
+                  stroke="#9CA3AF"
+                  tickFormatter={(v) => `€${(v/1000).toFixed(1)}B`}
+                />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#1F2937',
+                    border: '1px solid #374151',
+                    borderRadius: '8px',
+                  }}
+                  formatter={(value) => formatMillions(value as number)}
+                />
+                <Legend />
+                <ReferenceLine y={0} stroke="#6B7280" strokeDasharray="3 3" />
+                <ReferenceLine x={selectedYear} stroke="#F59E0B" strokeWidth={2} />
+                <Area
+                  type="monotone"
+                  dataKey="workBased"
+                  name="Work-based"
+                  stackId="1"
+                  fill="#22C55E"
+                  stroke="#22C55E"
+                />
+                <Area
+                  type="monotone"
+                  dataKey="family"
+                  name="Family"
+                  stackId="1"
+                  fill="#F59E0B"
+                  stroke="#F59E0B"
+                />
+                <Area
+                  type="monotone"
+                  dataKey="humanitarian"
+                  name="Humanitarian"
+                  stackId="1"
+                  fill="#EF4444"
+                  stroke="#EF4444"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="total"
+                  name="Net Impact"
+                  stroke="#A855F7"
+                  strokeWidth={2}
+                  dot={false}
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+          
+          <div className="mt-4 p-4 bg-gray-900/50 rounded-lg border border-gray-800">
+            <p className="text-sm text-gray-400">
+              <span className="text-green-400 font-semibold">Work-based</span> immigration typically yields 
+              positive fiscal returns due to high employment and income. 
+              <span className="text-amber-400 font-semibold"> Family</span> reunification is mixed — 
+              includes working-age spouses but also children and elderly.
+              <span className="text-red-400 font-semibold"> Humanitarian</span> immigration shows initial 
+              fiscal costs but improves over integration years (7-10 years to employment convergence).
+            </p>
           </div>
         </section>
 
@@ -495,15 +850,6 @@ export default function SigmaPage() {
               </AreaChart>
             </ResponsiveContainer>
           </div>
-          
-          <div className="mt-6 p-4 bg-amber-950/30 rounded-lg border border-amber-800/50">
-            <h4 className="font-semibold text-amber-400 mb-2">📈 The Pension Tsunami</h4>
-            <p className="text-gray-400 text-sm">
-              Watch the orange (pensions) area grow as baby boomers retire. By 2040, pension costs 
-              dominate the budget, while education costs (blue) shrink due to fewer children. 
-              Healthcare (green) also rises as the population ages.
-            </p>
-          </div>
         </section>
 
         {/* Demographic Timeline */}
@@ -567,22 +913,22 @@ export default function SigmaPage() {
           
           <div className="grid md:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-lg font-semibold text-amber-400 mb-3">📊 Demographics</h3>
+              <h3 className="text-lg font-semibold text-amber-400 mb-3">📊 Birth Rate Model</h3>
               <ul className="text-gray-400 text-sm space-y-2">
-                <li>• Birth cohorts from Finnish statistics (1945-2025)</li>
-                <li>• Mortality tables applied to age each cohort</li>
-                <li>• No migration adjustment (simplification)</li>
-                <li>• Future births projected at ~43,000/year</li>
+                <li>• Historical TFR from Statistics Finland</li>
+                <li>• Linear interpolation to target year</li>
+                <li>• TFR converted to births via women 15-49</li>
+                <li>• Presets based on international comparisons</li>
               </ul>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold text-amber-400 mb-3">💶 Fiscal Model</h3>
+              <h3 className="text-lg font-semibold text-amber-400 mb-3">✈️ Immigration Model</h3>
               <ul className="text-gray-400 text-sm space-y-2">
-                <li>• 10 income deciles (each = 10% of population)</li>
-                <li>• Age-based income curves per decile</li>
-                <li>• Real Finnish tax calculator</li>
-                <li>• Education/healthcare costs from official data</li>
+                <li>• Three types: work, family, humanitarian</li>
+                <li>• Different age/income distributions</li>
+                <li>• Integration curves over 7-10 years</li>
+                <li>• ~2% annual emigration rate</li>
               </ul>
             </div>
 
@@ -591,20 +937,10 @@ export default function SigmaPage() {
               <ul className="text-gray-400 text-sm space-y-2">
                 <li>• No productivity growth assumed</li>
                 <li>• Constant tax/benefit rules (2024)</li>
-                <li>• Ignores debt interest costs</li>
                 <li>• Simplified pension calculation</li>
+                <li>• Immigration cohorts start from 1990</li>
               </ul>
             </div>
-          </div>
-
-          <div className="mt-8 p-4 bg-gray-900/50 rounded-lg border border-gray-800">
-            <h4 className="text-sm font-semibold text-gray-300 mb-2">Data Sources</h4>
-            <p className="text-sm text-gray-500">
-              Population data from Statistics Finland. Fiscal calculations use the same models as 
-              the individual lifetime simulator (Rho). This macro view shows why the micro view 
-              (&quot;most people are net recipients&quot;) has worked historically — but won&apos;t continue to work
-              as demographics invert.
-            </p>
           </div>
         </section>
       </div>
@@ -636,10 +972,10 @@ function MetricCard({
   };
   
   return (
-    <div className="card p-6">
-      <div className="text-sm text-gray-500 uppercase tracking-wide mb-2">{label}</div>
-      <div className={`text-4xl font-bold mono-data ${colorClasses[color]}`}>{value}</div>
-      <div className="text-sm text-gray-500 mt-1">{sublabel}</div>
+    <div className="card p-4">
+      <div className="text-xs text-gray-500 uppercase tracking-wide mb-1">{label}</div>
+      <div className={`text-2xl font-bold mono-data ${colorClasses[color]}`}>{value}</div>
+      <div className="text-xs text-gray-500">{sublabel}</div>
     </div>
   );
 }
@@ -675,3 +1011,46 @@ function StatBar({
   );
 }
 
+function ImmigrationSlider({
+  profile,
+  value,
+  onChange,
+  max,
+  fiscalImpact,
+}: {
+  profile: { name: string; emoji: string; color: string; description: string };
+  value: number;
+  onChange: (value: number) => void;
+  max: number;
+  fiscalImpact: number;
+}) {
+  return (
+    <div>
+      <div className="flex justify-between items-center mb-2">
+        <div className="flex items-center gap-2">
+          <span>{profile.emoji}</span>
+          <span className="text-gray-300 font-medium">{profile.name}</span>
+          <span className="text-xs text-gray-600">({profile.description})</span>
+        </div>
+        <div className="flex items-center gap-4">
+          <span className="text-white font-semibold">{formatCompact(value)}/yr</span>
+          <span 
+            className={`text-sm font-semibold ${fiscalImpact >= 0 ? 'text-green-400' : 'text-red-400'}`}
+          >
+            {fiscalImpact >= 0 ? '+' : ''}{formatMillions(fiscalImpact)}
+          </span>
+        </div>
+      </div>
+      <input
+        type="range"
+        min={0}
+        max={max}
+        step={1000}
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
+        className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+        style={{ accentColor: profile.color }}
+      />
+    </div>
+  );
+}
