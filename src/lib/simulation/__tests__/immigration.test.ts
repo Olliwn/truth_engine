@@ -239,9 +239,10 @@ describe('Immigration Module', () => {
         ]),
       };
 
+      // Use a future year (2030) to use scenario values instead of historical data
       const result = executeImmigrationStep(
         state,
-        2024,
+        2030,
         1000,
         500,
         300

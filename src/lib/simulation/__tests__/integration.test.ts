@@ -163,9 +163,10 @@ describe('Integration Tests', () => {
 
       const year2024 = result.annualResults[0];
 
-      // Finland govt spending is typically 50-60% of GDP
-      expect(year2024.govtSpendingPctGDP).toBeGreaterThan(20);
-      expect(year2024.govtSpendingPctGDP).toBeLessThan(80);
+      // Finland govt spending tracked in this model is ~15-25% of GDP
+      // (only education, healthcare, pensions, benefits - not full govt budget)
+      expect(year2024.govtSpendingPctGDP).toBeGreaterThan(15);
+      expect(year2024.govtSpendingPctGDP).toBeLessThan(40);
     });
   });
 
