@@ -165,6 +165,13 @@ export default async function Home() {
               href="/sigma"
               color="amber"
             />
+            <FeaturedCard
+              emoji="Σ²"
+              title="Population Fiscal v2"
+              subtitle="Redesigned Interface"
+              href="/sigma2"
+              color="purple"
+            />
           </div>
         </div>
       </section>
@@ -383,6 +390,19 @@ export default async function Home() {
                 { label: 'Years', value: '1990-2060' },
                 { label: 'Dependency', value: '22%→45%' },
                 { label: 'Cohorts', value: '80+' },
+              ]}
+            />
+            
+            <ProjectCard
+              title="Population Fiscal v2"
+              emoji="Σ²"
+              status="live"
+              description="Redesigned population fiscal simulator with sidebar controls, tabbed results, and improved UX. Configure scenarios on the left, explore results on the right."
+              href="/sigma2"
+              metrics={[
+                { label: 'Layout', value: 'Sidebar' },
+                { label: 'Tabs', value: '4' },
+                { label: 'Components', value: '10+' },
               ]}
             />
           </div>
