@@ -718,11 +718,14 @@ export function simulatePopulationRange(
     }
     
     // Calculate effective GDP growth rate (productivity + workforce change)
-    if (year > baseYear && gdpScenario.adjustForWorkforce && !scenario.gdp?.customGrowthRate) {
+    // ALWAYS calculate for workforce-adjusted scenarios to avoid display discontinuity
+    // But only APPLY via cumulativeGdpMultiplier for years after baseYear
+    if (gdpScenario.adjustForWorkforce && !scenario.gdp?.customGrowthRate) {
       effectiveGrowthRate = calculateEffectiveGDPGrowth(gdpScenario, workforceChangeRate);
     }
     
     // Update cumulative multiplier for years after base year
+    // (this is what actually affects fiscal calculations)
     if (year > baseYear) {
       cumulativeGdpMultiplier *= (1 + effectiveGrowthRate);
     }
