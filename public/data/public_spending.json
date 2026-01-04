@@ -1,0 +1,2067 @@
+{
+  "metadata": {
+    "source": "Statistics Finland",
+    "table": "statfin_jmete_pxt_12a6",
+    "description": "General government expenditure by COFOG function",
+    "fetched_at": "2026-01-04T11:13:56.676185",
+    "classification": "COFOG (Classification of Functions of Government)",
+    "note": "Expenditure = consolidated total (OTES). Includes central govt, local govt, and social security funds."
+  },
+  "summary": {
+    "year": 2024,
+    "comparison_year": 2014,
+    "total_spending_billion": 159.4,
+    "pct_of_gdp": 57.7,
+    "per_capita": 28354,
+    "largest_category": "Social protection",
+    "largest_category_billion": 73.0,
+    "largest_category_pct": 45.8,
+    "fastest_growing": "Housing and community",
+    "fastest_growing_pct": 78.4
+  },
+  "by_function": [
+    {
+      "code": "G10",
+      "name": "Social protection",
+      "amount_million": 73006,
+      "pct_of_gdp": 26.4,
+      "per_capita": 12988,
+      "subcategories": []
+    },
+    {
+      "code": "G07",
+      "name": "Health",
+      "amount_million": 21330,
+      "pct_of_gdp": 7.7,
+      "per_capita": 3795,
+      "subcategories": [
+        {
+          "code": "G0702",
+          "name": "Outpatient services",
+          "amount_million": 9672,
+          "pct_of_gdp": 3.5,
+          "per_capita": 1721
+        },
+        {
+          "code": "G0703",
+          "name": "Hospital services",
+          "amount_million": 8752,
+          "pct_of_gdp": 3.2,
+          "per_capita": 1557
+        },
+        {
+          "code": "G0701",
+          "name": "Medical products",
+          "amount_million": 1963,
+          "pct_of_gdp": 0.7,
+          "per_capita": 349
+        },
+        {
+          "code": "G0704",
+          "name": "Public health services",
+          "amount_million": 420,
+          "pct_of_gdp": 0.2,
+          "per_capita": 75
+        }
+      ]
+    },
+    {
+      "code": "G01",
+      "name": "General public services",
+      "amount_million": 19744,
+      "pct_of_gdp": 7.2,
+      "per_capita": 3513,
+      "subcategories": [
+        {
+          "code": "G0103",
+          "name": "General services",
+          "amount_million": 8120,
+          "pct_of_gdp": 2.9,
+          "per_capita": 1445
+        },
+        {
+          "code": "G0107",
+          "name": "Public debt transactions",
+          "amount_million": 4552,
+          "pct_of_gdp": 1.6,
+          "per_capita": 810
+        },
+        {
+          "code": "G0101",
+          "name": "Executive and legislative",
+          "amount_million": 3780,
+          "pct_of_gdp": 1.4,
+          "per_capita": 672
+        },
+        {
+          "code": "G0104",
+          "name": "Basic research",
+          "amount_million": 2472,
+          "pct_of_gdp": 0.9,
+          "per_capita": 440
+        },
+        {
+          "code": "G0102",
+          "name": "Foreign economic aid",
+          "amount_million": 645,
+          "pct_of_gdp": 0.2,
+          "per_capita": 115
+        },
+        {
+          "code": "G0105",
+          "name": "R&D public services",
+          "amount_million": 93,
+          "pct_of_gdp": 0,
+          "per_capita": 17
+        },
+        {
+          "code": "G0106",
+          "name": "Other public services",
+          "amount_million": 82,
+          "pct_of_gdp": 0,
+          "per_capita": 15
+        }
+      ]
+    },
+    {
+      "code": "G09",
+      "name": "Education",
+      "amount_million": 17270,
+      "pct_of_gdp": 6.3,
+      "per_capita": 3072,
+      "subcategories": []
+    },
+    {
+      "code": "G04",
+      "name": "Economic affairs",
+      "amount_million": 13472,
+      "pct_of_gdp": 4.9,
+      "per_capita": 2397,
+      "subcategories": [
+        {
+          "code": "G0405",
+          "name": "Transport",
+          "amount_million": 7698,
+          "pct_of_gdp": 2.8,
+          "per_capita": 1370
+        },
+        {
+          "code": "G0401",
+          "name": "Economic and labour affairs",
+          "amount_million": 2047,
+          "pct_of_gdp": 0.7,
+          "per_capita": 364
+        },
+        {
+          "code": "G0402",
+          "name": "Agriculture, forestry, fishing",
+          "amount_million": 1709,
+          "pct_of_gdp": 0.6,
+          "per_capita": 304
+        },
+        {
+          "code": "G0408",
+          "name": "R&D economic affairs",
+          "amount_million": 1640,
+          "pct_of_gdp": 0.6,
+          "per_capita": 292
+        },
+        {
+          "code": "G0403",
+          "name": "Fuel and energy",
+          "amount_million": 252,
+          "pct_of_gdp": 0.1,
+          "per_capita": 45
+        },
+        {
+          "code": "G0404",
+          "name": "Mining, manufacturing",
+          "amount_million": 127,
+          "pct_of_gdp": 0,
+          "per_capita": 23
+        },
+        {
+          "code": "G0406",
+          "name": "Communications",
+          "amount_million": 1,
+          "pct_of_gdp": 0,
+          "per_capita": 0
+        }
+      ]
+    },
+    {
+      "code": "G08",
+      "name": "Recreation, culture, religion",
+      "amount_million": 4581,
+      "pct_of_gdp": 1.7,
+      "per_capita": 815,
+      "subcategories": [
+        {
+          "code": "G0801",
+          "name": "Recreation and sports",
+          "amount_million": 1735,
+          "pct_of_gdp": 0.6,
+          "per_capita": 309
+        },
+        {
+          "code": "G0802",
+          "name": "Cultural services",
+          "amount_million": 1656,
+          "pct_of_gdp": 0.6,
+          "per_capita": 295
+        },
+        {
+          "code": "G0803",
+          "name": "Broadcasting",
+          "amount_million": 676,
+          "pct_of_gdp": 0.2,
+          "per_capita": 120
+        },
+        {
+          "code": "G0804",
+          "name": "Religious services",
+          "amount_million": 505,
+          "pct_of_gdp": 0.2,
+          "per_capita": 90
+        }
+      ]
+    },
+    {
+      "code": "G02",
+      "name": "Defence",
+      "amount_million": 4277,
+      "pct_of_gdp": 1.5,
+      "per_capita": 761,
+      "subcategories": [
+        {
+          "code": "G0201",
+          "name": "Military defence",
+          "amount_million": 3503,
+          "pct_of_gdp": 1.3,
+          "per_capita": 623
+        },
+        {
+          "code": "G0202",
+          "name": "Civil defence",
+          "amount_million": 164,
+          "pct_of_gdp": 0.1,
+          "per_capita": 29
+        }
+      ]
+    },
+    {
+      "code": "G03",
+      "name": "Public order and safety",
+      "amount_million": 3643,
+      "pct_of_gdp": 1.3,
+      "per_capita": 648,
+      "subcategories": [
+        {
+          "code": "G0301",
+          "name": "Police services",
+          "amount_million": 1762,
+          "pct_of_gdp": 0.6,
+          "per_capita": 313
+        },
+        {
+          "code": "G0302",
+          "name": "Fire protection",
+          "amount_million": 770,
+          "pct_of_gdp": 0.3,
+          "per_capita": 137
+        },
+        {
+          "code": "G0303",
+          "name": "Law courts",
+          "amount_million": 660,
+          "pct_of_gdp": 0.2,
+          "per_capita": 117
+        },
+        {
+          "code": "G0304",
+          "name": "Prisons",
+          "amount_million": 288,
+          "pct_of_gdp": 0.1,
+          "per_capita": 51
+        }
+      ]
+    },
+    {
+      "code": "G06",
+      "name": "Housing and community",
+      "amount_million": 1450,
+      "pct_of_gdp": 0.5,
+      "per_capita": 258,
+      "subcategories": [
+        {
+          "code": "G0602",
+          "name": "Community development",
+          "amount_million": 727,
+          "pct_of_gdp": 0.3,
+          "per_capita": 129
+        },
+        {
+          "code": "G0601",
+          "name": "Housing development",
+          "amount_million": 697,
+          "pct_of_gdp": 0.3,
+          "per_capita": 124
+        },
+        {
+          "code": "G0603",
+          "name": "Water supply",
+          "amount_million": 26,
+          "pct_of_gdp": 0,
+          "per_capita": 5
+        }
+      ]
+    },
+    {
+      "code": "G05",
+      "name": "Environmental protection",
+      "amount_million": 600,
+      "pct_of_gdp": 0.2,
+      "per_capita": 107,
+      "subcategories": [
+        {
+          "code": "G0503",
+          "name": "Pollution abatement",
+          "amount_million": 179,
+          "pct_of_gdp": 0.1,
+          "per_capita": 32
+        },
+        {
+          "code": "G0504",
+          "name": "Biodiversity protection",
+          "amount_million": 129,
+          "pct_of_gdp": 0,
+          "per_capita": 23
+        },
+        {
+          "code": "G0501",
+          "name": "Waste management",
+          "amount_million": 59,
+          "pct_of_gdp": 0,
+          "per_capita": 11
+        }
+      ]
+    }
+  ],
+  "by_sector": {
+    "central": {
+      "code": "S1311",
+      "name": "Central government",
+      "amount_million": 42173,
+      "pct_of_gdp": 15.3,
+      "per_capita": 7503
+    },
+    "local": {
+      "code": "S1313",
+      "name": "Local government",
+      "amount_million": 64473,
+      "pct_of_gdp": 23.4,
+      "per_capita": 11470
+    },
+    "social_security": {
+      "code": "S1314",
+      "name": "Social security funds",
+      "amount_million": 52727,
+      "pct_of_gdp": 19.1,
+      "per_capita": 9381
+    }
+  },
+  "time_series": [
+    {
+      "year": 1990,
+      "categories": {
+        "G01": {
+          "amount_million": 5114,
+          "pct_of_gdp": 5.6
+        },
+        "G02": {
+          "amount_million": 1383,
+          "pct_of_gdp": 1.5
+        },
+        "G03": {
+          "amount_million": 1137,
+          "pct_of_gdp": 1.3
+        },
+        "G04": {
+          "amount_million": 5815,
+          "pct_of_gdp": 6.4
+        },
+        "G05": {
+          "amount_million": 219,
+          "pct_of_gdp": 0.2
+        },
+        "G06": {
+          "amount_million": 618,
+          "pct_of_gdp": 0.7
+        },
+        "G07": {
+          "amount_million": 5321,
+          "pct_of_gdp": 5.9
+        },
+        "G08": {
+          "amount_million": 1304,
+          "pct_of_gdp": 1.4
+        },
+        "G09": {
+          "amount_million": 5686,
+          "pct_of_gdp": 6.3
+        },
+        "G10": {
+          "amount_million": 16957,
+          "pct_of_gdp": 18.6
+        }
+      },
+      "total_million": 43554,
+      "total_pct_gdp": 47.9,
+      "total_per_capita": 8735
+    },
+    {
+      "year": 1991,
+      "categories": {
+        "G01": {
+          "amount_million": 5851,
+          "pct_of_gdp": 6.7
+        },
+        "G02": {
+          "amount_million": 1568,
+          "pct_of_gdp": 1.8
+        },
+        "G03": {
+          "amount_million": 1277,
+          "pct_of_gdp": 1.5
+        },
+        "G04": {
+          "amount_million": 6415,
+          "pct_of_gdp": 7.4
+        },
+        "G05": {
+          "amount_million": 257,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 672,
+          "pct_of_gdp": 0.8
+        },
+        "G07": {
+          "amount_million": 5823,
+          "pct_of_gdp": 6.7
+        },
+        "G08": {
+          "amount_million": 1314,
+          "pct_of_gdp": 1.5
+        },
+        "G09": {
+          "amount_million": 6260,
+          "pct_of_gdp": 7.2
+        },
+        "G10": {
+          "amount_million": 19830,
+          "pct_of_gdp": 22.8
+        }
+      },
+      "total_million": 49267,
+      "total_pct_gdp": 56.7,
+      "total_per_capita": 9826
+    },
+    {
+      "year": 1992,
+      "categories": {
+        "G01": {
+          "amount_million": 6092,
+          "pct_of_gdp": 7.2
+        },
+        "G02": {
+          "amount_million": 1758,
+          "pct_of_gdp": 2.1
+        },
+        "G03": {
+          "amount_million": 1300,
+          "pct_of_gdp": 1.5
+        },
+        "G04": {
+          "amount_million": 6388,
+          "pct_of_gdp": 7.5
+        },
+        "G05": {
+          "amount_million": 284,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 641,
+          "pct_of_gdp": 0.8
+        },
+        "G07": {
+          "amount_million": 5772,
+          "pct_of_gdp": 6.8
+        },
+        "G08": {
+          "amount_million": 1258,
+          "pct_of_gdp": 1.5
+        },
+        "G09": {
+          "amount_million": 6286,
+          "pct_of_gdp": 7.4
+        },
+        "G10": {
+          "amount_million": 22626,
+          "pct_of_gdp": 26.7
+        }
+      },
+      "total_million": 52405,
+      "total_pct_gdp": 61.8,
+      "total_per_capita": 10394
+    },
+    {
+      "year": 1993,
+      "categories": {
+        "G01": {
+          "amount_million": 7344,
+          "pct_of_gdp": 8.6
+        },
+        "G02": {
+          "amount_million": 1675,
+          "pct_of_gdp": 2
+        },
+        "G03": {
+          "amount_million": 1238,
+          "pct_of_gdp": 1.4
+        },
+        "G04": {
+          "amount_million": 7268,
+          "pct_of_gdp": 8.5
+        },
+        "G05": {
+          "amount_million": 268,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 560,
+          "pct_of_gdp": 0.7
+        },
+        "G07": {
+          "amount_million": 5735,
+          "pct_of_gdp": 6.7
+        },
+        "G08": {
+          "amount_million": 1062,
+          "pct_of_gdp": 1.2
+        },
+        "G09": {
+          "amount_million": 6219,
+          "pct_of_gdp": 7.3
+        },
+        "G10": {
+          "amount_million": 23529,
+          "pct_of_gdp": 27.5
+        }
+      },
+      "total_million": 54898,
+      "total_pct_gdp": 64.1,
+      "total_per_capita": 10836
+    },
+    {
+      "year": 1994,
+      "categories": {
+        "G01": {
+          "amount_million": 7496,
+          "pct_of_gdp": 8.3
+        },
+        "G02": {
+          "amount_million": 1793,
+          "pct_of_gdp": 2
+        },
+        "G03": {
+          "amount_million": 1279,
+          "pct_of_gdp": 1.4
+        },
+        "G04": {
+          "amount_million": 7735,
+          "pct_of_gdp": 8.5
+        },
+        "G05": {
+          "amount_million": 303,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 553,
+          "pct_of_gdp": 0.6
+        },
+        "G07": {
+          "amount_million": 5620,
+          "pct_of_gdp": 6.2
+        },
+        "G08": {
+          "amount_million": 1056,
+          "pct_of_gdp": 1.2
+        },
+        "G09": {
+          "amount_million": 6367,
+          "pct_of_gdp": 7
+        },
+        "G10": {
+          "amount_million": 24494,
+          "pct_of_gdp": 27
+        }
+      },
+      "total_million": 56696,
+      "total_pct_gdp": 62.5,
+      "total_per_capita": 11142
+    },
+    {
+      "year": 1995,
+      "categories": {
+        "G01": {
+          "amount_million": 8263,
+          "pct_of_gdp": 8.4
+        },
+        "G02": {
+          "amount_million": 1819,
+          "pct_of_gdp": 1.8
+        },
+        "G03": {
+          "amount_million": 1372,
+          "pct_of_gdp": 1.4
+        },
+        "G04": {
+          "amount_million": 8771,
+          "pct_of_gdp": 8.9
+        },
+        "G05": {
+          "amount_million": 301,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 730,
+          "pct_of_gdp": 0.7
+        },
+        "G07": {
+          "amount_million": 6091,
+          "pct_of_gdp": 6.2
+        },
+        "G08": {
+          "amount_million": 1214,
+          "pct_of_gdp": 1.2
+        },
+        "G09": {
+          "amount_million": 6790,
+          "pct_of_gdp": 6.9
+        },
+        "G10": {
+          "amount_million": 24723,
+          "pct_of_gdp": 25.1
+        }
+      },
+      "total_million": 60074,
+      "total_pct_gdp": 61,
+      "total_per_capita": 11761
+    },
+    {
+      "year": 1996,
+      "categories": {
+        "G01": {
+          "amount_million": 9067,
+          "pct_of_gdp": 8.9
+        },
+        "G02": {
+          "amount_million": 1936,
+          "pct_of_gdp": 1.9
+        },
+        "G03": {
+          "amount_million": 1456,
+          "pct_of_gdp": 1.4
+        },
+        "G04": {
+          "amount_million": 6895,
+          "pct_of_gdp": 6.8
+        },
+        "G05": {
+          "amount_million": 335,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 790,
+          "pct_of_gdp": 0.8
+        },
+        "G07": {
+          "amount_million": 6500,
+          "pct_of_gdp": 6.4
+        },
+        "G08": {
+          "amount_million": 1345,
+          "pct_of_gdp": 1.3
+        },
+        "G09": {
+          "amount_million": 6950,
+          "pct_of_gdp": 6.8
+        },
+        "G10": {
+          "amount_million": 25360,
+          "pct_of_gdp": 24.9
+        }
+      },
+      "total_million": 60634,
+      "total_pct_gdp": 59.5,
+      "total_per_capita": 11832
+    },
+    {
+      "year": 1997,
+      "categories": {
+        "G01": {
+          "amount_million": 10101,
+          "pct_of_gdp": 9.1
+        },
+        "G02": {
+          "amount_million": 1999,
+          "pct_of_gdp": 1.8
+        },
+        "G03": {
+          "amount_million": 1465,
+          "pct_of_gdp": 1.3
+        },
+        "G04": {
+          "amount_million": 6194,
+          "pct_of_gdp": 5.6
+        },
+        "G05": {
+          "amount_million": 368,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 676,
+          "pct_of_gdp": 0.6
+        },
+        "G07": {
+          "amount_million": 6885,
+          "pct_of_gdp": 6.2
+        },
+        "G08": {
+          "amount_million": 1486,
+          "pct_of_gdp": 1.3
+        },
+        "G09": {
+          "amount_million": 7111,
+          "pct_of_gdp": 6.4
+        },
+        "G10": {
+          "amount_million": 25802,
+          "pct_of_gdp": 23.3
+        }
+      },
+      "total_million": 62087,
+      "total_pct_gdp": 56.1,
+      "total_per_capita": 12080
+    },
+    {
+      "year": 1998,
+      "categories": {
+        "G01": {
+          "amount_million": 10029,
+          "pct_of_gdp": 8.3
+        },
+        "G02": {
+          "amount_million": 1984,
+          "pct_of_gdp": 1.6
+        },
+        "G03": {
+          "amount_million": 1572,
+          "pct_of_gdp": 1.3
+        },
+        "G04": {
+          "amount_million": 6480,
+          "pct_of_gdp": 5.4
+        },
+        "G05": {
+          "amount_million": 401,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 591,
+          "pct_of_gdp": 0.5
+        },
+        "G07": {
+          "amount_million": 7016,
+          "pct_of_gdp": 5.8
+        },
+        "G08": {
+          "amount_million": 1494,
+          "pct_of_gdp": 1.2
+        },
+        "G09": {
+          "amount_million": 7390,
+          "pct_of_gdp": 6.1
+        },
+        "G10": {
+          "amount_million": 26041,
+          "pct_of_gdp": 21.6
+        }
+      },
+      "total_million": 62998,
+      "total_pct_gdp": 52.3,
+      "total_per_capita": 12224
+    },
+    {
+      "year": 1999,
+      "categories": {
+        "G01": {
+          "amount_million": 9991,
+          "pct_of_gdp": 7.9
+        },
+        "G02": {
+          "amount_million": 1918,
+          "pct_of_gdp": 1.5
+        },
+        "G03": {
+          "amount_million": 1661,
+          "pct_of_gdp": 1.3
+        },
+        "G04": {
+          "amount_million": 7028,
+          "pct_of_gdp": 5.5
+        },
+        "G05": {
+          "amount_million": 393,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 508,
+          "pct_of_gdp": 0.4
+        },
+        "G07": {
+          "amount_million": 7328,
+          "pct_of_gdp": 5.8
+        },
+        "G08": {
+          "amount_million": 1488,
+          "pct_of_gdp": 1.2
+        },
+        "G09": {
+          "amount_million": 7561,
+          "pct_of_gdp": 6
+        },
+        "G10": {
+          "amount_million": 26805,
+          "pct_of_gdp": 21.1
+        }
+      },
+      "total_million": 64681,
+      "total_pct_gdp": 51,
+      "total_per_capita": 12522
+    },
+    {
+      "year": 2000,
+      "categories": {
+        "G01": {
+          "amount_million": 10231,
+          "pct_of_gdp": 7.5
+        },
+        "G02": {
+          "amount_million": 1896,
+          "pct_of_gdp": 1.4
+        },
+        "G03": {
+          "amount_million": 1758,
+          "pct_of_gdp": 1.3
+        },
+        "G04": {
+          "amount_million": 6536,
+          "pct_of_gdp": 4.8
+        },
+        "G05": {
+          "amount_million": 427,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 584,
+          "pct_of_gdp": 0.4
+        },
+        "G07": {
+          "amount_million": 7801,
+          "pct_of_gdp": 5.7
+        },
+        "G08": {
+          "amount_million": 1535,
+          "pct_of_gdp": 1.1
+        },
+        "G09": {
+          "amount_million": 7982,
+          "pct_of_gdp": 5.9
+        },
+        "G10": {
+          "amount_million": 26623,
+          "pct_of_gdp": 19.5
+        }
+      },
+      "total_million": 65373,
+      "total_pct_gdp": 47.9,
+      "total_per_capita": 12630
+    },
+    {
+      "year": 2001,
+      "categories": {
+        "G01": {
+          "amount_million": 10707,
+          "pct_of_gdp": 7.4
+        },
+        "G02": {
+          "amount_million": 1868,
+          "pct_of_gdp": 1.3
+        },
+        "G03": {
+          "amount_million": 1853,
+          "pct_of_gdp": 1.3
+        },
+        "G04": {
+          "amount_million": 6643,
+          "pct_of_gdp": 4.6
+        },
+        "G05": {
+          "amount_million": 434,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 604,
+          "pct_of_gdp": 0.4
+        },
+        "G07": {
+          "amount_million": 8454,
+          "pct_of_gdp": 5.8
+        },
+        "G08": {
+          "amount_million": 1538,
+          "pct_of_gdp": 1.1
+        },
+        "G09": {
+          "amount_million": 8525,
+          "pct_of_gdp": 5.9
+        },
+        "G10": {
+          "amount_million": 27746,
+          "pct_of_gdp": 19.2
+        }
+      },
+      "total_million": 68372,
+      "total_pct_gdp": 47.3,
+      "total_per_capita": 13179
+    },
+    {
+      "year": 2002,
+      "categories": {
+        "G01": {
+          "amount_million": 10385,
+          "pct_of_gdp": 7
+        },
+        "G02": {
+          "amount_million": 1930,
+          "pct_of_gdp": 1.3
+        },
+        "G03": {
+          "amount_million": 1852,
+          "pct_of_gdp": 1.2
+        },
+        "G04": {
+          "amount_million": 7294,
+          "pct_of_gdp": 4.9
+        },
+        "G05": {
+          "amount_million": 442,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 576,
+          "pct_of_gdp": 0.4
+        },
+        "G07": {
+          "amount_million": 9189,
+          "pct_of_gdp": 6.2
+        },
+        "G08": {
+          "amount_million": 1613,
+          "pct_of_gdp": 1.1
+        },
+        "G09": {
+          "amount_million": 9060,
+          "pct_of_gdp": 6.1
+        },
+        "G10": {
+          "amount_million": 29592,
+          "pct_of_gdp": 19.9
+        }
+      },
+      "total_million": 71933,
+      "total_pct_gdp": 48.5,
+      "total_per_capita": 13832
+    },
+    {
+      "year": 2003,
+      "categories": {
+        "G01": {
+          "amount_million": 10794,
+          "pct_of_gdp": 7.1
+        },
+        "G02": {
+          "amount_million": 2122,
+          "pct_of_gdp": 1.4
+        },
+        "G03": {
+          "amount_million": 1969,
+          "pct_of_gdp": 1.3
+        },
+        "G04": {
+          "amount_million": 7188,
+          "pct_of_gdp": 4.7
+        },
+        "G05": {
+          "amount_million": 459,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 505,
+          "pct_of_gdp": 0.3
+        },
+        "G07": {
+          "amount_million": 9733,
+          "pct_of_gdp": 6.4
+        },
+        "G08": {
+          "amount_million": 1677,
+          "pct_of_gdp": 1.1
+        },
+        "G09": {
+          "amount_million": 9541,
+          "pct_of_gdp": 6.3
+        },
+        "G10": {
+          "amount_million": 30860,
+          "pct_of_gdp": 20.3
+        }
+      },
+      "total_million": 74848,
+      "total_pct_gdp": 49.3,
+      "total_per_capita": 14358
+    },
+    {
+      "year": 2004,
+      "categories": {
+        "G01": {
+          "amount_million": 11123,
+          "pct_of_gdp": 7
+        },
+        "G02": {
+          "amount_million": 2350,
+          "pct_of_gdp": 1.5
+        },
+        "G03": {
+          "amount_million": 1987,
+          "pct_of_gdp": 1.3
+        },
+        "G04": {
+          "amount_million": 7471,
+          "pct_of_gdp": 4.7
+        },
+        "G05": {
+          "amount_million": 452,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 484,
+          "pct_of_gdp": 0.3
+        },
+        "G07": {
+          "amount_million": 10284,
+          "pct_of_gdp": 6.5
+        },
+        "G08": {
+          "amount_million": 1755,
+          "pct_of_gdp": 1.1
+        },
+        "G09": {
+          "amount_million": 9871,
+          "pct_of_gdp": 6.2
+        },
+        "G10": {
+          "amount_million": 32202,
+          "pct_of_gdp": 20.3
+        }
+      },
+      "total_million": 77979,
+      "total_pct_gdp": 49.1,
+      "total_per_capita": 14915
+    },
+    {
+      "year": 2005,
+      "categories": {
+        "G01": {
+          "amount_million": 11592,
+          "pct_of_gdp": 7
+        },
+        "G02": {
+          "amount_million": 2509,
+          "pct_of_gdp": 1.5
+        },
+        "G03": {
+          "amount_million": 2105,
+          "pct_of_gdp": 1.3
+        },
+        "G04": {
+          "amount_million": 7728,
+          "pct_of_gdp": 4.7
+        },
+        "G05": {
+          "amount_million": 517,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 447,
+          "pct_of_gdp": 0.3
+        },
+        "G07": {
+          "amount_million": 10965,
+          "pct_of_gdp": 6.7
+        },
+        "G08": {
+          "amount_million": 1755,
+          "pct_of_gdp": 1.1
+        },
+        "G09": {
+          "amount_million": 10048,
+          "pct_of_gdp": 6.1
+        },
+        "G10": {
+          "amount_million": 33051,
+          "pct_of_gdp": 20.1
+        }
+      },
+      "total_million": 80717,
+      "total_pct_gdp": 49,
+      "total_per_capita": 15386
+    },
+    {
+      "year": 2006,
+      "categories": {
+        "G01": {
+          "amount_million": 11868,
+          "pct_of_gdp": 6.9
+        },
+        "G02": {
+          "amount_million": 2458,
+          "pct_of_gdp": 1.4
+        },
+        "G03": {
+          "amount_million": 2121,
+          "pct_of_gdp": 1.2
+        },
+        "G04": {
+          "amount_million": 8043,
+          "pct_of_gdp": 4.7
+        },
+        "G05": {
+          "amount_million": 543,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 485,
+          "pct_of_gdp": 0.3
+        },
+        "G07": {
+          "amount_million": 11530,
+          "pct_of_gdp": 6.7
+        },
+        "G08": {
+          "amount_million": 1808,
+          "pct_of_gdp": 1
+        },
+        "G09": {
+          "amount_million": 10317,
+          "pct_of_gdp": 6
+        },
+        "G10": {
+          "amount_million": 33910,
+          "pct_of_gdp": 19.6
+        }
+      },
+      "total_million": 83083,
+      "total_pct_gdp": 48.1,
+      "total_per_capita": 15776
+    },
+    {
+      "year": 2007,
+      "categories": {
+        "G01": {
+          "amount_million": 12446,
+          "pct_of_gdp": 6.7
+        },
+        "G02": {
+          "amount_million": 2528,
+          "pct_of_gdp": 1.4
+        },
+        "G03": {
+          "amount_million": 2208,
+          "pct_of_gdp": 1.2
+        },
+        "G04": {
+          "amount_million": 8276,
+          "pct_of_gdp": 4.4
+        },
+        "G05": {
+          "amount_million": 597,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 606,
+          "pct_of_gdp": 0.3
+        },
+        "G07": {
+          "amount_million": 12093,
+          "pct_of_gdp": 6.5
+        },
+        "G08": {
+          "amount_million": 1959,
+          "pct_of_gdp": 1
+        },
+        "G09": {
+          "amount_million": 10789,
+          "pct_of_gdp": 5.8
+        },
+        "G10": {
+          "amount_million": 35611,
+          "pct_of_gdp": 19
+        }
+      },
+      "total_million": 87113,
+      "total_pct_gdp": 46.6,
+      "total_per_capita": 16472
+    },
+    {
+      "year": 2008,
+      "categories": {
+        "G01": {
+          "amount_million": 13524,
+          "pct_of_gdp": 7
+        },
+        "G02": {
+          "amount_million": 2790,
+          "pct_of_gdp": 1.4
+        },
+        "G03": {
+          "amount_million": 2415,
+          "pct_of_gdp": 1.2
+        },
+        "G04": {
+          "amount_million": 9007,
+          "pct_of_gdp": 4.6
+        },
+        "G05": {
+          "amount_million": 594,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 774,
+          "pct_of_gdp": 0.4
+        },
+        "G07": {
+          "amount_million": 13014,
+          "pct_of_gdp": 6.7
+        },
+        "G08": {
+          "amount_million": 2100,
+          "pct_of_gdp": 1.1
+        },
+        "G09": {
+          "amount_million": 11308,
+          "pct_of_gdp": 5.8
+        },
+        "G10": {
+          "amount_million": 37475,
+          "pct_of_gdp": 19.3
+        }
+      },
+      "total_million": 93001,
+      "total_pct_gdp": 47.9,
+      "total_per_capita": 17503
+    },
+    {
+      "year": 2009,
+      "categories": {
+        "G01": {
+          "amount_million": 14045,
+          "pct_of_gdp": 7.7
+        },
+        "G02": {
+          "amount_million": 2883,
+          "pct_of_gdp": 1.6
+        },
+        "G03": {
+          "amount_million": 2534,
+          "pct_of_gdp": 1.4
+        },
+        "G04": {
+          "amount_million": 9003,
+          "pct_of_gdp": 5
+        },
+        "G05": {
+          "amount_million": 619,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 889,
+          "pct_of_gdp": 0.5
+        },
+        "G07": {
+          "amount_million": 13461,
+          "pct_of_gdp": 7.4
+        },
+        "G08": {
+          "amount_million": 2154,
+          "pct_of_gdp": 1.2
+        },
+        "G09": {
+          "amount_million": 11778,
+          "pct_of_gdp": 6.5
+        },
+        "G10": {
+          "amount_million": 40939,
+          "pct_of_gdp": 22.5
+        }
+      },
+      "total_million": 98305,
+      "total_pct_gdp": 54.1,
+      "total_per_capita": 18413
+    },
+    {
+      "year": 2010,
+      "categories": {
+        "G01": {
+          "amount_million": 14540,
+          "pct_of_gdp": 7.7
+        },
+        "G02": {
+          "amount_million": 2905,
+          "pct_of_gdp": 1.5
+        },
+        "G03": {
+          "amount_million": 2730,
+          "pct_of_gdp": 1.5
+        },
+        "G04": {
+          "amount_million": 9132,
+          "pct_of_gdp": 4.9
+        },
+        "G05": {
+          "amount_million": 520,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 916,
+          "pct_of_gdp": 0.5
+        },
+        "G07": {
+          "amount_million": 13788,
+          "pct_of_gdp": 7.3
+        },
+        "G08": {
+          "amount_million": 2297,
+          "pct_of_gdp": 1.2
+        },
+        "G09": {
+          "amount_million": 12302,
+          "pct_of_gdp": 6.5
+        },
+        "G10": {
+          "amount_million": 42503,
+          "pct_of_gdp": 22.6
+        }
+      },
+      "total_million": 101633,
+      "total_pct_gdp": 54,
+      "total_per_capita": 18949
+    },
+    {
+      "year": 2011,
+      "categories": {
+        "G01": {
+          "amount_million": 15956,
+          "pct_of_gdp": 8.1
+        },
+        "G02": {
+          "amount_million": 2681,
+          "pct_of_gdp": 1.4
+        },
+        "G03": {
+          "amount_million": 2649,
+          "pct_of_gdp": 1.3
+        },
+        "G04": {
+          "amount_million": 9449,
+          "pct_of_gdp": 4.8
+        },
+        "G05": {
+          "amount_million": 480,
+          "pct_of_gdp": 0.2
+        },
+        "G06": {
+          "amount_million": 1007,
+          "pct_of_gdp": 0.5
+        },
+        "G07": {
+          "amount_million": 14578,
+          "pct_of_gdp": 7.4
+        },
+        "G08": {
+          "amount_million": 2366,
+          "pct_of_gdp": 1.2
+        },
+        "G09": {
+          "amount_million": 12719,
+          "pct_of_gdp": 6.4
+        },
+        "G10": {
+          "amount_million": 44517,
+          "pct_of_gdp": 22.5
+        }
+      },
+      "total_million": 106402,
+      "total_pct_gdp": 53.8,
+      "total_per_capita": 19747
+    },
+    {
+      "year": 2012,
+      "categories": {
+        "G01": {
+          "amount_million": 16562,
+          "pct_of_gdp": 8.3
+        },
+        "G02": {
+          "amount_million": 2966,
+          "pct_of_gdp": 1.5
+        },
+        "G03": {
+          "amount_million": 2734,
+          "pct_of_gdp": 1.4
+        },
+        "G04": {
+          "amount_million": 9779,
+          "pct_of_gdp": 4.9
+        },
+        "G05": {
+          "amount_million": 496,
+          "pct_of_gdp": 0.2
+        },
+        "G06": {
+          "amount_million": 868,
+          "pct_of_gdp": 0.4
+        },
+        "G07": {
+          "amount_million": 15502,
+          "pct_of_gdp": 7.7
+        },
+        "G08": {
+          "amount_million": 2404,
+          "pct_of_gdp": 1.2
+        },
+        "G09": {
+          "amount_million": 12868,
+          "pct_of_gdp": 6.4
+        },
+        "G10": {
+          "amount_million": 47426,
+          "pct_of_gdp": 23.7
+        }
+      },
+      "total_million": 111605,
+      "total_pct_gdp": 55.7,
+      "total_per_capita": 20614
+    },
+    {
+      "year": 2013,
+      "categories": {
+        "G01": {
+          "amount_million": 17026,
+          "pct_of_gdp": 8.4
+        },
+        "G02": {
+          "amount_million": 2981,
+          "pct_of_gdp": 1.5
+        },
+        "G03": {
+          "amount_million": 2754,
+          "pct_of_gdp": 1.4
+        },
+        "G04": {
+          "amount_million": 9849,
+          "pct_of_gdp": 4.8
+        },
+        "G05": {
+          "amount_million": 522,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 809,
+          "pct_of_gdp": 0.4
+        },
+        "G07": {
+          "amount_million": 15995,
+          "pct_of_gdp": 7.9
+        },
+        "G08": {
+          "amount_million": 3015,
+          "pct_of_gdp": 1.5
+        },
+        "G09": {
+          "amount_million": 13003,
+          "pct_of_gdp": 6.4
+        },
+        "G10": {
+          "amount_million": 50256,
+          "pct_of_gdp": 24.7
+        }
+      },
+      "total_million": 116210,
+      "total_pct_gdp": 57.1,
+      "total_per_capita": 21366
+    },
+    {
+      "year": 2014,
+      "categories": {
+        "G01": {
+          "amount_million": 17207,
+          "pct_of_gdp": 8.4
+        },
+        "G02": {
+          "amount_million": 2890,
+          "pct_of_gdp": 1.4
+        },
+        "G03": {
+          "amount_million": 2658,
+          "pct_of_gdp": 1.3
+        },
+        "G04": {
+          "amount_million": 10131,
+          "pct_of_gdp": 4.9
+        },
+        "G05": {
+          "amount_million": 521,
+          "pct_of_gdp": 0.3
+        },
+        "G06": {
+          "amount_million": 813,
+          "pct_of_gdp": 0.4
+        },
+        "G07": {
+          "amount_million": 16163,
+          "pct_of_gdp": 7.9
+        },
+        "G08": {
+          "amount_million": 2977,
+          "pct_of_gdp": 1.4
+        },
+        "G09": {
+          "amount_million": 13117,
+          "pct_of_gdp": 6.4
+        },
+        "G10": {
+          "amount_million": 52147,
+          "pct_of_gdp": 25.3
+        }
+      },
+      "total_million": 118624,
+      "total_pct_gdp": 57.6,
+      "total_per_capita": 21716
+    },
+    {
+      "year": 2015,
+      "categories": {
+        "G01": {
+          "amount_million": 15193,
+          "pct_of_gdp": 7.2
+        },
+        "G02": {
+          "amount_million": 2807,
+          "pct_of_gdp": 1.3
+        },
+        "G03": {
+          "amount_million": 2607,
+          "pct_of_gdp": 1.2
+        },
+        "G04": {
+          "amount_million": 9905,
+          "pct_of_gdp": 4.7
+        },
+        "G05": {
+          "amount_million": 494,
+          "pct_of_gdp": 0.2
+        },
+        "G06": {
+          "amount_million": 848,
+          "pct_of_gdp": 0.4
+        },
+        "G07": {
+          "amount_million": 15337,
+          "pct_of_gdp": 7.3
+        },
+        "G08": {
+          "amount_million": 3115,
+          "pct_of_gdp": 1.5
+        },
+        "G09": {
+          "amount_million": 13374,
+          "pct_of_gdp": 6.4
+        },
+        "G10": {
+          "amount_million": 53488,
+          "pct_of_gdp": 25.4
+        }
+      },
+      "total_million": 117168,
+      "total_pct_gdp": 55.7,
+      "total_per_capita": 21379
+    },
+    {
+      "year": 2016,
+      "categories": {
+        "G01": {
+          "amount_million": 14765,
+          "pct_of_gdp": 6.8
+        },
+        "G02": {
+          "amount_million": 2823,
+          "pct_of_gdp": 1.3
+        },
+        "G03": {
+          "amount_million": 2563,
+          "pct_of_gdp": 1.2
+        },
+        "G04": {
+          "amount_million": 9667,
+          "pct_of_gdp": 4.5
+        },
+        "G05": {
+          "amount_million": 490,
+          "pct_of_gdp": 0.2
+        },
+        "G06": {
+          "amount_million": 667,
+          "pct_of_gdp": 0.3
+        },
+        "G07": {
+          "amount_million": 15575,
+          "pct_of_gdp": 7.2
+        },
+        "G08": {
+          "amount_million": 3211,
+          "pct_of_gdp": 1.5
+        },
+        "G09": {
+          "amount_million": 13468,
+          "pct_of_gdp": 6.2
+        },
+        "G10": {
+          "amount_million": 55639,
+          "pct_of_gdp": 25.8
+        }
+      },
+      "total_million": 118868,
+      "total_pct_gdp": 55.1,
+      "total_per_capita": 21631
+    },
+    {
+      "year": 2017,
+      "categories": {
+        "G01": {
+          "amount_million": 14564,
+          "pct_of_gdp": 6.5
+        },
+        "G02": {
+          "amount_million": 2810,
+          "pct_of_gdp": 1.3
+        },
+        "G03": {
+          "amount_million": 2545,
+          "pct_of_gdp": 1.1
+        },
+        "G04": {
+          "amount_million": 9622,
+          "pct_of_gdp": 4.3
+        },
+        "G05": {
+          "amount_million": 451,
+          "pct_of_gdp": 0.2
+        },
+        "G06": {
+          "amount_million": 721,
+          "pct_of_gdp": 0.3
+        },
+        "G07": {
+          "amount_million": 15871,
+          "pct_of_gdp": 7.1
+        },
+        "G08": {
+          "amount_million": 3360,
+          "pct_of_gdp": 1.5
+        },
+        "G09": {
+          "amount_million": 13058,
+          "pct_of_gdp": 5.8
+        },
+        "G10": {
+          "amount_million": 55754,
+          "pct_of_gdp": 24.8
+        }
+      },
+      "total_million": 118756,
+      "total_pct_gdp": 52.9,
+      "total_per_capita": 21560
+    },
+    {
+      "year": 2018,
+      "categories": {
+        "G01": {
+          "amount_million": 15502,
+          "pct_of_gdp": 6.7
+        },
+        "G02": {
+          "amount_million": 2745,
+          "pct_of_gdp": 1.2
+        },
+        "G03": {
+          "amount_million": 2586,
+          "pct_of_gdp": 1.1
+        },
+        "G04": {
+          "amount_million": 9713,
+          "pct_of_gdp": 4.2
+        },
+        "G05": {
+          "amount_million": 457,
+          "pct_of_gdp": 0.2
+        },
+        "G06": {
+          "amount_million": 695,
+          "pct_of_gdp": 0.3
+        },
+        "G07": {
+          "amount_million": 16576,
+          "pct_of_gdp": 7.1
+        },
+        "G08": {
+          "amount_million": 3614,
+          "pct_of_gdp": 1.6
+        },
+        "G09": {
+          "amount_million": 13349,
+          "pct_of_gdp": 5.8
+        },
+        "G10": {
+          "amount_million": 56898,
+          "pct_of_gdp": 24.5
+        }
+      },
+      "total_million": 122135,
+      "total_pct_gdp": 52.7,
+      "total_per_capita": 22141
+    },
+    {
+      "year": 2019,
+      "categories": {
+        "G01": {
+          "amount_million": 15808,
+          "pct_of_gdp": 6.6
+        },
+        "G02": {
+          "amount_million": 2808,
+          "pct_of_gdp": 1.2
+        },
+        "G03": {
+          "amount_million": 2813,
+          "pct_of_gdp": 1.2
+        },
+        "G04": {
+          "amount_million": 10020,
+          "pct_of_gdp": 4.2
+        },
+        "G05": {
+          "amount_million": 463,
+          "pct_of_gdp": 0.2
+        },
+        "G06": {
+          "amount_million": 755,
+          "pct_of_gdp": 0.3
+        },
+        "G07": {
+          "amount_million": 17195,
+          "pct_of_gdp": 7.2
+        },
+        "G08": {
+          "amount_million": 3652,
+          "pct_of_gdp": 1.5
+        },
+        "G09": {
+          "amount_million": 13959,
+          "pct_of_gdp": 5.9
+        },
+        "G10": {
+          "amount_million": 57986,
+          "pct_of_gdp": 24.3
+        }
+      },
+      "total_million": 125459,
+      "total_pct_gdp": 52.6,
+      "total_per_capita": 22721
+    },
+    {
+      "year": 2020,
+      "categories": {
+        "G01": {
+          "amount_million": 16343,
+          "pct_of_gdp": 6.9
+        },
+        "G02": {
+          "amount_million": 3166,
+          "pct_of_gdp": 1.3
+        },
+        "G03": {
+          "amount_million": 2754,
+          "pct_of_gdp": 1.2
+        },
+        "G04": {
+          "amount_million": 12290,
+          "pct_of_gdp": 5.2
+        },
+        "G05": {
+          "amount_million": 541,
+          "pct_of_gdp": 0.2
+        },
+        "G06": {
+          "amount_million": 769,
+          "pct_of_gdp": 0.3
+        },
+        "G07": {
+          "amount_million": 18280,
+          "pct_of_gdp": 7.7
+        },
+        "G08": {
+          "amount_million": 3672,
+          "pct_of_gdp": 1.6
+        },
+        "G09": {
+          "amount_million": 14464,
+          "pct_of_gdp": 6.1
+        },
+        "G10": {
+          "amount_million": 61168,
+          "pct_of_gdp": 25.9
+        }
+      },
+      "total_million": 133447,
+      "total_pct_gdp": 56.5,
+      "total_per_capita": 24128
+    },
+    {
+      "year": 2021,
+      "categories": {
+        "G01": {
+          "amount_million": 16680,
+          "pct_of_gdp": 6.7
+        },
+        "G02": {
+          "amount_million": 2895,
+          "pct_of_gdp": 1.2
+        },
+        "G03": {
+          "amount_million": 2904,
+          "pct_of_gdp": 1.2
+        },
+        "G04": {
+          "amount_million": 12617,
+          "pct_of_gdp": 5.1
+        },
+        "G05": {
+          "amount_million": 577,
+          "pct_of_gdp": 0.2
+        },
+        "G06": {
+          "amount_million": 995,
+          "pct_of_gdp": 0.4
+        },
+        "G07": {
+          "amount_million": 19498,
+          "pct_of_gdp": 7.8
+        },
+        "G08": {
+          "amount_million": 3813,
+          "pct_of_gdp": 1.5
+        },
+        "G09": {
+          "amount_million": 14749,
+          "pct_of_gdp": 5.9
+        },
+        "G10": {
+          "amount_million": 62375,
+          "pct_of_gdp": 25.1
+        }
+      },
+      "total_million": 137103,
+      "total_pct_gdp": 55.1,
+      "total_per_capita": 24741
+    },
+    {
+      "year": 2022,
+      "categories": {
+        "G01": {
+          "amount_million": 17393,
+          "pct_of_gdp": 6.5
+        },
+        "G02": {
+          "amount_million": 3269,
+          "pct_of_gdp": 1.2
+        },
+        "G03": {
+          "amount_million": 3077,
+          "pct_of_gdp": 1.2
+        },
+        "G04": {
+          "amount_million": 11960,
+          "pct_of_gdp": 4.5
+        },
+        "G05": {
+          "amount_million": 600,
+          "pct_of_gdp": 0.2
+        },
+        "G06": {
+          "amount_million": 1068,
+          "pct_of_gdp": 0.4
+        },
+        "G07": {
+          "amount_million": 20077,
+          "pct_of_gdp": 7.5
+        },
+        "G08": {
+          "amount_million": 3820,
+          "pct_of_gdp": 1.4
+        },
+        "G09": {
+          "amount_million": 15411,
+          "pct_of_gdp": 5.8
+        },
+        "G10": {
+          "amount_million": 63410,
+          "pct_of_gdp": 23.8
+        }
+      },
+      "total_million": 140085,
+      "total_pct_gdp": 52.6,
+      "total_per_capita": 25209
+    },
+    {
+      "year": 2023,
+      "categories": {
+        "G01": {
+          "amount_million": 18826,
+          "pct_of_gdp": 6.9
+        },
+        "G02": {
+          "amount_million": 3883,
+          "pct_of_gdp": 1.4
+        },
+        "G03": {
+          "amount_million": 3375,
+          "pct_of_gdp": 1.2
+        },
+        "G04": {
+          "amount_million": 12709,
+          "pct_of_gdp": 4.7
+        },
+        "G05": {
+          "amount_million": 592,
+          "pct_of_gdp": 0.2
+        },
+        "G06": {
+          "amount_million": 1329,
+          "pct_of_gdp": 0.5
+        },
+        "G07": {
+          "amount_million": 20793,
+          "pct_of_gdp": 7.6
+        },
+        "G08": {
+          "amount_million": 4441,
+          "pct_of_gdp": 1.6
+        },
+        "G09": {
+          "amount_million": 16698,
+          "pct_of_gdp": 6.1
+        },
+        "G10": {
+          "amount_million": 69973,
+          "pct_of_gdp": 25.6
+        }
+      },
+      "total_million": 152619,
+      "total_pct_gdp": 55.9,
+      "total_per_capita": 27364
+    },
+    {
+      "year": 2024,
+      "categories": {
+        "G01": {
+          "amount_million": 19744,
+          "pct_of_gdp": 7.2
+        },
+        "G02": {
+          "amount_million": 4277,
+          "pct_of_gdp": 1.5
+        },
+        "G03": {
+          "amount_million": 3643,
+          "pct_of_gdp": 1.3
+        },
+        "G04": {
+          "amount_million": 13472,
+          "pct_of_gdp": 4.9
+        },
+        "G05": {
+          "amount_million": 600,
+          "pct_of_gdp": 0.2
+        },
+        "G06": {
+          "amount_million": 1450,
+          "pct_of_gdp": 0.5
+        },
+        "G07": {
+          "amount_million": 21330,
+          "pct_of_gdp": 7.7
+        },
+        "G08": {
+          "amount_million": 4581,
+          "pct_of_gdp": 1.7
+        },
+        "G09": {
+          "amount_million": 17270,
+          "pct_of_gdp": 6.3
+        },
+        "G10": {
+          "amount_million": 73006,
+          "pct_of_gdp": 26.4
+        }
+      },
+      "total_million": 159373,
+      "total_pct_gdp": 57.7,
+      "total_per_capita": 28354
+    }
+  ],
+  "cofog_names": {
+    "G01": "General public services",
+    "G02": "Defence",
+    "G03": "Public order and safety",
+    "G04": "Economic affairs",
+    "G05": "Environmental protection",
+    "G06": "Housing and community",
+    "G07": "Health",
+    "G08": "Recreation, culture, religion",
+    "G09": "Education",
+    "G10": "Social protection"
+  }
+}

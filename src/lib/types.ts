@@ -724,3 +724,74 @@ export interface WorkforceProjectionData {
   };
   time_series: WorkforceProjectionEntry[];
 }
+
+// ============================================
+// Public Spending Types (Project Nu)
+// ============================================
+
+export interface SpendingSubcategory {
+  code: string;
+  name: string;
+  amount_million: number;
+  pct_of_gdp: number;
+  per_capita: number;
+}
+
+export interface SpendingCategory {
+  code: string;           // G01, G02, etc.
+  name: string;           // "Health", "Education", etc.
+  amount_million: number;
+  pct_of_gdp: number;
+  per_capita: number;
+  subcategories?: SpendingSubcategory[];
+}
+
+export interface SectorSpending {
+  code: string;
+  name: string;
+  amount_million: number;
+  pct_of_gdp: number;
+  per_capita: number;
+}
+
+export interface SpendingTimeSeriesEntry {
+  year: number;
+  total_million: number;
+  total_pct_gdp: number;
+  total_per_capita: number;
+  categories: Record<string, {
+    amount_million: number;
+    pct_of_gdp: number;
+  }>;
+}
+
+export interface PublicSpendingData {
+  metadata: {
+    source: string;
+    table: string;
+    description: string;
+    fetched_at: string;
+    classification: string;
+    note: string;
+  };
+  summary: {
+    year: number;
+    comparison_year: number;
+    total_spending_billion: number;
+    pct_of_gdp: number;
+    per_capita: number;
+    largest_category: string;
+    largest_category_billion: number;
+    largest_category_pct: number;
+    fastest_growing: string;
+    fastest_growing_pct: number;
+  };
+  by_function: SpendingCategory[];
+  by_sector: {
+    central: SectorSpending;
+    local: SectorSpending;
+    social_security: SectorSpending;
+  };
+  time_series: SpendingTimeSeriesEntry[];
+  cofog_names: Record<string, string>;
+}

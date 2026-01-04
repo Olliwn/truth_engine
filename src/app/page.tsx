@@ -118,7 +118,7 @@ export default async function Home() {
               color="teal"
             />
           </div>
-          {/* Row 4: Balance Sheet, Fertility */}
+          {/* Row 4: Balance Sheet, Fertility, Public Spending */}
           <div className="grid md:grid-cols-3 gap-4">
             <FeaturedCard
               emoji="📊"
@@ -133,6 +133,13 @@ export default async function Home() {
               subtitle="Birth Rate Crisis"
               href="/iota"
               color="pink"
+            />
+            <FeaturedCard
+              emoji="🏛️"
+              title="Spending Structure"
+              subtitle="COFOG Breakdown"
+              href="/nu"
+              color="indigo"
             />
           </div>
         </div>
@@ -302,6 +309,19 @@ export default async function Home() {
                 { label: 'Since 1990', value: '-30%' },
               ]}
             />
+            
+            <ProjectCard
+              title="Public Spending Structure"
+              emoji="🏛️"
+              status="live"
+              description="Where does €159B of government spending go? COFOG classification breakdown showing Social Protection dominates at 46%, plus sector-by-sector analysis."
+              href="/nu"
+              metrics={[
+                { label: 'Total', value: '€159B' },
+                { label: '% of GDP', value: '58%' },
+                { label: 'Per Capita', value: '€28k' },
+              ]}
+            />
           </div>
         </div>
       </section>
@@ -357,7 +377,7 @@ function FeaturedCard({
   title: string; 
   subtitle: string;
   href: string;
-  color?: 'red' | 'amber' | 'orange' | 'green' | 'blue' | 'teal' | 'rose' | 'pink' | 'purple';
+  color?: 'red' | 'amber' | 'orange' | 'green' | 'blue' | 'teal' | 'rose' | 'pink' | 'purple' | 'indigo';
 }) {
   const colorClasses = {
     red: 'hover:border-red-500/50 hover:bg-red-950/20',
@@ -369,6 +389,7 @@ function FeaturedCard({
     rose: 'hover:border-rose-500/50 hover:bg-rose-950/20',
     pink: 'hover:border-pink-500/50 hover:bg-pink-950/20',
     purple: 'hover:border-purple-500/50 hover:bg-purple-950/20',
+    indigo: 'hover:border-indigo-500/50 hover:bg-indigo-950/20',
   };
   
   return (
