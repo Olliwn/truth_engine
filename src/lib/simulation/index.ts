@@ -22,6 +22,23 @@ export * from './SimulationState';
 export { DEFAULT_SCENARIO } from './initialization';
 export { validateState, validateYearResult } from './timestep';
 
+// Re-export spending engine
+export {
+  loadHistoricalSpendingData,
+  getHistoricalSpending,
+  getHistoricalYears,
+  projectSpending,
+  convertToLegacyBreakdown,
+  generateSpendingTimeline,
+  calculateSpendingChange,
+  type COFOGSpending,
+  type YearlySpending,
+  type DemographicContext,
+  type EconomicContext,
+  type ProjectionContext,
+  type LegacySpendingBreakdown,
+} from './spending';
+
 // ===========================================
 // Main Simulation Function
 // ===========================================

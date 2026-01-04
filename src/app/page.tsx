@@ -172,6 +172,13 @@ export default async function Home() {
               href="/sigma2"
               color="purple"
             />
+            <FeaturedCard
+              emoji="Σ³"
+              title="Fiscal Future"
+              subtitle="COFOG Spending Model"
+              href="/sigma3"
+              color="emerald"
+            />
           </div>
         </div>
       </section>
@@ -403,6 +410,20 @@ export default async function Home() {
                 { label: 'Layout', value: 'Sidebar' },
                 { label: 'Tabs', value: '4' },
                 { label: 'Components', value: '10+' },
+              ]}
+            />
+            
+            <ProjectCard
+              title="Fiscal Future (COFOG)"
+              emoji="Σ³"
+              status="live"
+              description="Full COFOG government spending model. Historical data (1990-2024) + scenario projections (2025-2060). Control spending by group: healthcare, education, security, infrastructure, government, culture."
+              href="/sigma3"
+              highlight
+              metrics={[
+                { label: 'COFOG Categories', value: '10' },
+                { label: 'Scenario Groups', value: '6' },
+                { label: 'Base Year', value: '2024' },
               ]}
             />
           </div>

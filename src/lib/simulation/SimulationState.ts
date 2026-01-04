@@ -7,6 +7,53 @@
  */
 
 // ===========================================
+// COFOG Spending Types
+// ===========================================
+
+/**
+ * COFOG category codes (Classification of Functions of Government)
+ */
+export type COFOGCode = 'G01' | 'G02' | 'G03' | 'G04' | 'G05' | 'G06' | 'G07' | 'G08' | 'G09' | 'G10';
+
+/**
+ * Detailed spending breakdown by COFOG category.
+ */
+export interface COFOGSpendingBreakdown {
+  /** Whether this is historical data or projected */
+  isHistorical: boolean;
+  
+  /** Total spending in millions EUR */
+  totalMillion: number;
+  
+  /** Total spending as % of GDP */
+  totalPctGDP: number;
+  
+  /** Spending by COFOG category (millions EUR) */
+  byCategory: {
+    G01: number;  // General public services
+    G02: number;  // Defence
+    G03: number;  // Public order and safety
+    G04: number;  // Economic affairs
+    G05: number;  // Environmental protection
+    G06: number;  // Housing and community
+    G07: number;  // Health
+    G08: number;  // Recreation, culture, religion
+    G09: number;  // Education
+    G10: number;  // Social protection
+  };
+  
+  /** Spending by scenario group (millions EUR) */
+  byGroup: {
+    healthcareAging: number;    // G07 + G10
+    educationYouth: number;     // G09
+    security: number;           // G02 + G03
+    infrastructure: number;     // G04 + G05 + G06
+    government: number;         // G01
+    culture: number;            // G08
+  };
+}
+
+// ===========================================
 // Immigration Types
 // ===========================================
 
@@ -269,6 +316,9 @@ export interface YearResult {
   // Government spending metrics
   govtSpendingPctGDP: number;
   deficitPctGDP: number;
+  
+  // COFOG detailed spending (millions EUR) - optional for backward compatibility
+  cofogSpending?: COFOGSpendingBreakdown;
   
   // Immigration breakdown
   immigrationByType: {
