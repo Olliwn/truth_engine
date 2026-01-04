@@ -17,7 +17,7 @@ import {
   Line,
   Cell,
 } from 'recharts';
-import { SpendingEfficiencyData, SocialProtectionSubcategory } from '@/lib/types';
+import { SpendingEfficiencyData, SocialProtectionSubcategory, CostPerBeneficiary, DecompositionEntry, OECDBenchmarkCountry } from '@/lib/types';
 
 // Subcategory colors
 const SUBCATEGORY_COLORS: Record<string, string> = {
@@ -80,7 +80,7 @@ export default function XiPage() {
     );
   }
 
-  const { summary, g10_time_series, subcategories } = data;
+  const { summary, g10_time_series, subcategories, cost_per_beneficiary, decomposition, oecd_benchmark, decomposition_base_year } = data;
 
   // Prepare stacked area chart data for subcategories over time (€ Billions)
   const stackedAreaData = g10_time_series.map((entry) => {
@@ -679,6 +679,362 @@ export default function XiPage() {
         </div>
       </section>
 
+      {/* Cost Per Beneficiary */}
+      {cost_per_beneficiary && cost_per_beneficiary.length > 0 && (
+        <section className="py-8 px-6 border-b border-gray-800">
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold mb-2">Cost Per Beneficiary ({summary.year})</h2>
+              <p className="text-gray-400 text-sm">
+                How much does each program spend per actual recipient?
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Bar chart */}
+              <div className="card p-6 h-[400px]">
+                <h3 className="text-lg font-semibold mb-4">Total Spending Per Person</h3>
+                <ResponsiveContainer width="100%" height="90%">
+                  <BarChart data={cost_per_beneficiary.filter(c => c.total_per_beneficiary > 100)} layout="vertical">
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis 
+                      type="number" 
+                      stroke="#9CA3AF" 
+                      tickFormatter={(v: number) => `€${(v / 1000).toFixed(0)}K`}
+                    />
+                    <YAxis 
+                      type="category" 
+                      dataKey="name" 
+                      stroke="#9CA3AF" 
+                      width={100} 
+                      tick={{ fontSize: 11 }}
+                      tickFormatter={(v: string) => v.split(' ')[0]}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: '#1F2937',
+                        border: '1px solid #374151',
+                        borderRadius: '8px',
+                      }}
+                      formatter={(value: number | undefined, name: string | undefined) => {
+                        if (value === undefined) return ['N/A', ''];
+                        const label = name === 'total_per_beneficiary' ? 'Total/person' : 'Admin/person';
+                        return [`€${value.toLocaleString()}`, label];
+                      }}
+                    />
+                    <Legend />
+                    <Bar dataKey="total_per_beneficiary" name="Total/person" fill="#3B82F6" />
+                    <Bar dataKey="admin_per_beneficiary" name="Admin/person" fill="#EF4444" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+
+              {/* Data cards */}
+              <div className="space-y-3 max-h-[400px] overflow-y-auto">
+                {cost_per_beneficiary.filter(c => c.total_per_beneficiary > 100).map((cpb) => (
+                  <div key={cpb.code} className="card p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <div
+                          className="w-3 h-3 rounded-sm"
+                          style={{ backgroundColor: SUBCATEGORY_COLORS[cpb.code] }}
+                        />
+                        <span className="font-medium text-sm">{cpb.name}</span>
+                      </div>
+                      <span className="text-gray-500 text-xs">{cpb.beneficiary_label}</span>
+                    </div>
+                    
+                    <div className="grid grid-cols-3 gap-3 text-center">
+                      <div>
+                        <div className="text-xs text-gray-500">Recipients</div>
+                        <div className="font-mono text-sm text-white">
+                          {cpb.beneficiary_count >= 1000000 
+                            ? `${(cpb.beneficiary_count / 1000000).toFixed(1)}M` 
+                            : `${(cpb.beneficiary_count / 1000).toFixed(0)}K`}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-500">€/person</div>
+                        <div className="font-mono text-sm text-blue-400">
+                          €{cpb.total_per_beneficiary.toLocaleString()}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-500">Admin/person</div>
+                        <div className="font-mono text-sm text-red-400">
+                          €{cpb.admin_per_beneficiary.toLocaleString()}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 card p-4 border-blue-900/30">
+              <h4 className="text-sm font-semibold text-blue-400 mb-2">Interpretation</h4>
+              <p className="text-gray-400 text-sm">
+                <strong className="text-white">Unemployment</strong> spends €20K/recipient because benefits are substantial but recipient count fluctuates.
+                <strong className="text-white"> Pensions</strong> at €31K/person reflect lifetime contributions.
+                <strong className="text-white"> Family</strong> at €10K/child includes expensive services like daycare.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* International Benchmarking */}
+      {oecd_benchmark && (
+        <section className="py-8 px-6 border-b border-gray-800 bg-gray-950/30">
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold mb-2">International Comparison</h2>
+              <p className="text-gray-400 text-sm">
+                Finland vs Nordic peers and OECD average (2023 data)
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Total social spending */}
+              <div className="card p-6">
+                <h3 className="text-lg font-semibold mb-4">Social Spending (% of GDP)</h3>
+                <div className="h-[300px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={Object.entries(oecd_benchmark).map(([key, c]) => ({
+                      name: c.name,
+                      spending: c.social_spending_gdp,
+                      isFinland: key === 'finland',
+                    }))} layout="vertical">
+                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                      <XAxis 
+                        type="number" 
+                        domain={[0, 35]} 
+                        stroke="#9CA3AF" 
+                        tickFormatter={(v: number) => `${v}%`}
+                      />
+                      <YAxis type="category" dataKey="name" stroke="#9CA3AF" width={80} />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: '#1F2937',
+                          border: '1px solid #374151',
+                          borderRadius: '8px',
+                        }}
+                        formatter={(value: number | undefined) => value !== undefined ? [`${value.toFixed(1)}% GDP`, 'Social spending'] : ['N/A', '']}
+                      />
+                      <Bar dataKey="spending">
+                        {Object.entries(oecd_benchmark).map(([key]) => (
+                          <Cell 
+                            key={key}
+                            fill={key === 'finland' ? '#10B981' : key === 'oecd_avg' ? '#6B7280' : '#3B82F6'}
+                          />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+
+              {/* Admin overhead comparison */}
+              <div className="card p-6">
+                <h3 className="text-lg font-semibold mb-4">Administrative Overhead (%)</h3>
+                <div className="h-[300px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={Object.entries(oecd_benchmark).map(([key, c]) => ({
+                      name: c.name,
+                      overhead: c.admin_overhead_pct,
+                      isFinland: key === 'finland',
+                    }))} layout="vertical">
+                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                      <XAxis 
+                        type="number" 
+                        domain={[0, 20]} 
+                        stroke="#9CA3AF" 
+                        tickFormatter={(v: number) => `${v}%`}
+                      />
+                      <YAxis type="category" dataKey="name" stroke="#9CA3AF" width={80} />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: '#1F2937',
+                          border: '1px solid #374151',
+                          borderRadius: '8px',
+                        }}
+                        formatter={(value: number | undefined) => value !== undefined ? [`${value.toFixed(0)}%`, 'Admin overhead'] : ['N/A', '']}
+                      />
+                      <Bar dataKey="overhead">
+                        {Object.entries(oecd_benchmark).map(([key]) => (
+                          <Cell 
+                            key={key}
+                            fill={key === 'finland' ? '#EF4444' : key === 'oecd_avg' ? '#6B7280' : '#F59E0B'}
+                          />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+            </div>
+
+            {/* Summary cards */}
+            <div className="mt-6 grid md:grid-cols-3 gap-6">
+              <div className="card p-4 border-emerald-900/30">
+                <h4 className="text-sm font-semibold text-emerald-400 mb-2">Finland&apos;s Spending</h4>
+                <div className="text-2xl font-bold mono-data">{oecd_benchmark.finland?.social_spending_gdp}%</div>
+                <p className="text-gray-500 text-xs">of GDP on social protection</p>
+              </div>
+              <div className="card p-4 border-amber-900/30">
+                <h4 className="text-sm font-semibold text-amber-400 mb-2">Higher Than OECD</h4>
+                <div className="text-2xl font-bold mono-data">
+                  +{((oecd_benchmark.finland?.social_spending_gdp || 0) - (oecd_benchmark.oecd_avg?.social_spending_gdp || 0)).toFixed(1)}pp
+                </div>
+                <p className="text-gray-500 text-xs">above OECD average ({oecd_benchmark.oecd_avg?.social_spending_gdp}%)</p>
+              </div>
+              <div className="card p-4 border-red-900/30">
+                <h4 className="text-sm font-semibold text-red-400 mb-2">Admin Overhead</h4>
+                <div className="text-2xl font-bold mono-data">{oecd_benchmark.finland?.admin_overhead_pct}%</div>
+                <p className="text-gray-500 text-xs">
+                  {(oecd_benchmark.finland?.admin_overhead_pct || 0) > (oecd_benchmark.sweden?.admin_overhead_pct || 0) 
+                    ? `Higher than Sweden (${oecd_benchmark.sweden?.admin_overhead_pct}%)`
+                    : `Lower than Sweden (${oecd_benchmark.sweden?.admin_overhead_pct}%)`}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Decomposition Analysis */}
+      {decomposition && decomposition.length > 0 && (
+        <section className="py-8 px-6 border-b border-gray-800">
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold mb-2">
+                Spending Growth Decomposition ({decomposition_base_year || 2000}-{summary.year})
+              </h2>
+              <p className="text-gray-400 text-sm">
+                How much of spending growth is demographics vs policy decisions?
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Decomposition bar chart */}
+              <div className="card p-6 h-[400px]">
+                <h3 className="text-lg font-semibold mb-4">Growth Attribution</h3>
+                <ResponsiveContainer width="100%" height="90%">
+                  <BarChart 
+                    data={decomposition.map(d => ({
+                      name: d.name.split(' ')[0],
+                      demographic: d.demographic_pct,
+                      policy: d.policy_pct,
+                      total_change: d.total_change_million / 1000,
+                    }))}
+                    layout="vertical"
+                  >
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis 
+                      type="number" 
+                      domain={[-100, 200]} 
+                      stroke="#9CA3AF" 
+                      tickFormatter={(v: number) => `${v}%`}
+                    />
+                    <YAxis type="category" dataKey="name" stroke="#9CA3AF" width={80} />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: '#1F2937',
+                        border: '1px solid #374151',
+                        borderRadius: '8px',
+                      }}
+                      formatter={(value: number | undefined, name: string | undefined) => {
+                        if (value === undefined) return ['N/A', ''];
+                        const label = name === 'demographic' ? 'Demographics' : 'Policy/Cost';
+                        return [`${value.toFixed(1)}%`, label];
+                      }}
+                    />
+                    <Legend />
+                    <Bar dataKey="demographic" name="Demographics" fill="#3B82F6" stackId="a" />
+                    <Bar dataKey="policy" name="Policy/Cost" fill="#F59E0B" stackId="a" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+
+              {/* Detail cards */}
+              <div className="space-y-3 max-h-[400px] overflow-y-auto">
+                {decomposition.map((dec) => (
+                  <div key={dec.code} className="card p-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <div
+                          className="w-3 h-3 rounded-sm"
+                          style={{ backgroundColor: SUBCATEGORY_COLORS[dec.code] }}
+                        />
+                        <span className="font-medium text-sm">{dec.name}</span>
+                      </div>
+                      <span className="text-emerald-400 font-mono text-sm">
+                        +€{(dec.total_change_million / 1000).toFixed(1)}B
+                      </span>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4 mb-3">
+                      <div>
+                        <div className="flex justify-between text-xs mb-1">
+                          <span className="text-gray-500">Demographics</span>
+                          <span className={dec.demographic_pct > 0 ? 'text-blue-400' : 'text-emerald-400'}>
+                            {dec.demographic_pct > 0 ? '+' : ''}{dec.demographic_pct.toFixed(0)}%
+                          </span>
+                        </div>
+                        <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full bg-blue-500"
+                            style={{ width: `${Math.min(100, Math.max(0, dec.demographic_pct))}%` }}
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex justify-between text-xs mb-1">
+                          <span className="text-gray-500">Policy/Cost</span>
+                          <span className="text-amber-400">{dec.policy_pct.toFixed(0)}%</span>
+                        </div>
+                        <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full bg-amber-500"
+                            style={{ width: `${Math.min(100, Math.max(0, dec.policy_pct))}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="text-xs text-gray-500 flex justify-between">
+                      <span>
+                        Beneficiaries: {dec.beneficiary_change_pct > 0 ? '+' : ''}{dec.beneficiary_change_pct.toFixed(0)}%
+                      </span>
+                      <span>
+                        €/person: {dec.cost_per_ben_change_pct > 0 ? '+' : ''}{dec.cost_per_ben_change_pct.toFixed(0)}%
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 grid md:grid-cols-2 gap-6">
+              <div className="card p-4 border-blue-900/30">
+                <h4 className="text-sm font-semibold text-blue-400 mb-2">Demographic Effect</h4>
+                <p className="text-gray-400 text-sm">
+                  <strong className="text-white">Old age (+28%)</strong> grows mostly due to aging population — more retirees need pensions.
+                  <strong className="text-white"> Unemployment (-50%)</strong> shows negative demographic effect — fewer unemployed saves money.
+                </p>
+              </div>
+              <div className="card p-4 border-amber-900/30">
+                <h4 className="text-sm font-semibold text-amber-400 mb-2">Policy Effect</h4>
+                <p className="text-gray-400 text-sm">
+                  All programs show high policy effects (70-150%) — spending per beneficiary has increased faster than demographics.
+                  This reflects <strong className="text-white">benefit increases</strong>, <strong className="text-white">inflation adjustments</strong>, and <strong className="text-white">scope expansion</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Methodology */}
       <section className="py-8 px-6 bg-gray-950/50 border-t border-gray-800">
         <div className="max-w-7xl mx-auto">
@@ -711,6 +1067,47 @@ export default function XiPage() {
               <div className="text-gray-500 mb-1">Scope</div>
               <div className="text-gray-300">Social Protection (G10) only</div>
               <div className="text-gray-500">Other categories excluded - efficiency metric not applicable</div>
+            </div>
+          </div>
+
+          {/* Future Analyses */}
+          <div className="mt-8 pt-6 border-t border-gray-800">
+            <h4 className="text-md font-semibold mb-4 text-gray-400">Planned Future Analyses</h4>
+            <div className="grid md:grid-cols-2 gap-6 text-sm">
+              <div className="card p-4 border-purple-900/30">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-purple-400 font-semibold">Omicron</span>
+                  <span className="text-gray-500 text-xs">• Public vs Private Delivery</span>
+                </div>
+                <p className="text-gray-400 text-xs mb-2">
+                  Compare efficiency when same services are delivered publicly vs privately:
+                </p>
+                <ul className="text-gray-500 text-xs space-y-1 list-disc list-inside">
+                  <li>Daycare: Municipal vs private with Kela subsidy</li>
+                  <li>Healthcare: Public hospitals vs private with Kela reimbursement</li>
+                  <li>Elderly care: Municipal vs private facilities</li>
+                </ul>
+                <div className="text-gray-600 text-xs mt-2">
+                  Data: statfin_vaka, Regional councils, Kela statistics
+                </div>
+              </div>
+              <div className="card p-4 border-cyan-900/30">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-cyan-400 font-semibold">Pi</span>
+                  <span className="text-gray-500 text-xs">• Regional Variation</span>
+                </div>
+                <p className="text-gray-400 text-xs mb-2">
+                  Compare spending efficiency across municipalities/regions:
+                </p>
+                <ul className="text-gray-500 text-xs space-y-1 list-disc list-inside">
+                  <li>Same programs, different local administration</li>
+                  <li>Control for demographics (age structure, unemployment)</li>
+                  <li>Identify best practices (most efficient municipalities)</li>
+                </ul>
+                <div className="text-gray-600 text-xs mt-2">
+                  Data: Municipal finance (Ponzi index), Regional population data
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -835,6 +835,45 @@ export interface EfficiencyHighlight {
   total_billion: number;
 }
 
+export interface CostPerBeneficiary {
+  code: string;
+  name: string;
+  total_million: number;
+  admin_million: number;
+  beneficiary_count: number;
+  beneficiary_label: string;
+  total_per_beneficiary: number;
+  admin_per_beneficiary: number;
+}
+
+export interface DecompositionEntry {
+  code: string;
+  name: string;
+  base_year: number;
+  latest_year: number;
+  base_spending_million: number;
+  latest_spending_million: number;
+  total_change_million: number;
+  demographic_effect_million: number;
+  policy_effect_million: number;
+  demographic_pct: number;
+  policy_pct: number;
+  beneficiary_change_pct: number;
+  cost_per_ben_base: number;
+  cost_per_ben_latest: number;
+  cost_per_ben_change_pct: number;
+}
+
+export interface OECDBenchmarkCountry {
+  name: string;
+  social_spending_gdp: number;
+  pensions_gdp: number;
+  family_gdp: number;
+  unemployment_gdp: number;
+  health_gdp: number;
+  admin_overhead_pct: number;
+}
+
 export interface SpendingEfficiencyData {
   metadata: {
     source: string;
@@ -858,4 +897,8 @@ export interface SpendingEfficiencyData {
   };
   g10_time_series: SubcategoryTimeSeriesEntry[];
   subcategories: SocialProtectionSubcategory[];
+  cost_per_beneficiary?: CostPerBeneficiary[];
+  decomposition?: DecompositionEntry[];
+  decomposition_base_year?: number;
+  oecd_benchmark?: Record<string, OECDBenchmarkCountry>;
 }

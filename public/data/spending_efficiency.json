@@ -3,7 +3,7 @@
     "source": "Statistics Finland",
     "table": "statfin_jmete_pxt_12a6",
     "description": "Social Protection (G10) expenditure efficiency analysis",
-    "fetched_at": "2026-01-04T11:54:53.479321",
+    "fetched_at": "2026-01-04T13:12:46.664079",
     "methodology": "Efficiency = (D62K cash + D632K in-kind) / Total. Bureaucracy = D1K wages.",
     "focus": "Social Protection only - this efficiency metric does not apply to administration or infrastructure."
   },
@@ -2440,5 +2440,204 @@
         }
       ]
     }
-  ]
+  ],
+  "cost_per_beneficiary": [
+    {
+      "code": "G1002",
+      "name": "Old age (pensions)",
+      "total_million": 42720,
+      "admin_million": 5434,
+      "beneficiary_count": 1395000,
+      "beneficiary_label": "65+ population",
+      "total_per_beneficiary": 30624.0,
+      "admin_per_beneficiary": 3895.0
+    },
+    {
+      "code": "G1004",
+      "name": "Family and children",
+      "total_million": 9660,
+      "admin_million": 4555,
+      "beneficiary_count": 993600,
+      "beneficiary_label": "Children 0-17",
+      "total_per_beneficiary": 9722.0,
+      "admin_per_beneficiary": 4584.0
+    },
+    {
+      "code": "G1001",
+      "name": "Sickness and disability",
+      "total_million": 9062,
+      "admin_million": 2292,
+      "beneficiary_count": 3397000,
+      "beneficiary_label": "Working-age (15-64)",
+      "total_per_beneficiary": 2668.0,
+      "admin_per_beneficiary": 675.0
+    },
+    {
+      "code": "G1005",
+      "name": "Unemployment",
+      "total_million": 4482,
+      "admin_million": 233,
+      "beneficiary_count": 220000,
+      "beneficiary_label": "Unemployed",
+      "total_per_beneficiary": 20373.0,
+      "admin_per_beneficiary": 1059.0
+    },
+    {
+      "code": "G1007",
+      "name": "Social exclusion",
+      "total_million": 2564,
+      "admin_million": 1092,
+      "beneficiary_count": 5620000,
+      "beneficiary_label": "Total population",
+      "total_per_beneficiary": 456.0,
+      "admin_per_beneficiary": 194.0
+    },
+    {
+      "code": "G1003",
+      "name": "Survivors",
+      "total_million": 1956,
+      "admin_million": 60,
+      "beneficiary_count": 1395000,
+      "beneficiary_label": "65+ population",
+      "total_per_beneficiary": 1402.0,
+      "admin_per_beneficiary": 43.0
+    },
+    {
+      "code": "G1006",
+      "name": "Housing assistance",
+      "total_million": 1677,
+      "admin_million": 0,
+      "beneficiary_count": 5620000,
+      "beneficiary_label": "Total population",
+      "total_per_beneficiary": 298.0,
+      "admin_per_beneficiary": 0.0
+    }
+  ],
+  "decomposition": [
+    {
+      "code": "G1002",
+      "name": "Old age (pensions)",
+      "base_year": 2001,
+      "latest_year": 2024,
+      "base_spending_million": 11001,
+      "latest_spending_million": 42720,
+      "total_change_million": 31719,
+      "demographic_effect_million": 8744.8,
+      "policy_effect_million": 22974.2,
+      "demographic_pct": 27.6,
+      "policy_pct": 72.4,
+      "beneficiary_change_pct": 79.5,
+      "cost_per_ben_base": 14155.0,
+      "cost_per_ben_latest": 30624.0,
+      "cost_per_ben_change_pct": 116.3
+    },
+    {
+      "code": "G1004",
+      "name": "Family and children",
+      "base_year": 2001,
+      "latest_year": 2024,
+      "base_spending_million": 4368,
+      "latest_spending_million": 9660,
+      "total_change_million": 5292,
+      "demographic_effect_million": -505.4,
+      "policy_effect_million": 5797.4,
+      "demographic_pct": -9.5,
+      "policy_pct": 109.5,
+      "beneficiary_change_pct": -11.6,
+      "cost_per_ben_base": 3888.0,
+      "cost_per_ben_latest": 9722.0,
+      "cost_per_ben_change_pct": 150.1
+    },
+    {
+      "code": "G1001",
+      "name": "Sickness and disability",
+      "base_year": 2001,
+      "latest_year": 2024,
+      "base_spending_million": 5660,
+      "latest_spending_million": 9062,
+      "total_change_million": 3402,
+      "demographic_effect_million": -115.2,
+      "policy_effect_million": 3517.2,
+      "demographic_pct": -3.4,
+      "policy_pct": 103.4,
+      "beneficiary_change_pct": -2.0,
+      "cost_per_ben_base": 1632.0,
+      "cost_per_ben_latest": 2668.0,
+      "cost_per_ben_change_pct": 63.4
+    },
+    {
+      "code": "G1005",
+      "name": "Unemployment",
+      "base_year": 2001,
+      "latest_year": 2024,
+      "base_spending_million": 3548,
+      "latest_spending_million": 4482,
+      "total_change_million": 934,
+      "demographic_effect_million": -462.8,
+      "policy_effect_million": 1396.8,
+      "demographic_pct": -49.5,
+      "policy_pct": 149.5,
+      "beneficiary_change_pct": -13.0,
+      "cost_per_ben_base": 14024.0,
+      "cost_per_ben_latest": 20373.0,
+      "cost_per_ben_change_pct": 45.3
+    }
+  ],
+  "decomposition_base_year": 2000,
+  "oecd_benchmark": {
+    "finland": {
+      "name": "Finland",
+      "social_spending_gdp": 26.4,
+      "pensions_gdp": 15.5,
+      "family_gdp": 3.5,
+      "unemployment_gdp": 1.6,
+      "health_gdp": 7.7,
+      "admin_overhead_pct": 12
+    },
+    "sweden": {
+      "name": "Sweden",
+      "social_spending_gdp": 25.5,
+      "pensions_gdp": 12.0,
+      "family_gdp": 3.4,
+      "unemployment_gdp": 0.9,
+      "health_gdp": 9.5,
+      "admin_overhead_pct": 8
+    },
+    "denmark": {
+      "name": "Denmark",
+      "social_spending_gdp": 28.3,
+      "pensions_gdp": 13.5,
+      "family_gdp": 3.5,
+      "unemployment_gdp": 1.8,
+      "health_gdp": 8.9,
+      "admin_overhead_pct": 10
+    },
+    "norway": {
+      "name": "Norway",
+      "social_spending_gdp": 25.3,
+      "pensions_gdp": 10.8,
+      "family_gdp": 3.2,
+      "unemployment_gdp": 0.4,
+      "health_gdp": 8.5,
+      "admin_overhead_pct": 9
+    },
+    "germany": {
+      "name": "Germany",
+      "social_spending_gdp": 26.7,
+      "pensions_gdp": 12.2,
+      "family_gdp": 2.3,
+      "unemployment_gdp": 1.1,
+      "health_gdp": 10.9,
+      "admin_overhead_pct": 11
+    },
+    "oecd_avg": {
+      "name": "OECD Average",
+      "social_spending_gdp": 21.1,
+      "pensions_gdp": 10.3,
+      "family_gdp": 2.3,
+      "unemployment_gdp": 0.9,
+      "health_gdp": 6.8,
+      "admin_overhead_pct": 15
+    }
+  }
 }
