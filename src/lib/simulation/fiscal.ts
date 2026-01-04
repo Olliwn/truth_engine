@@ -34,6 +34,39 @@ import { DECILE_CHARACTERISTICS } from '../constants/finnishDemographics';
 import { calculateTaxes } from '../finnishTaxCalculator';
 
 // ===========================================
+// Performance Cache
+// ===========================================
+
+// Cache for person-year fiscal calculations
+// Key: "age:decile:gdpMultiplier" (rounded to 2 decimals)
+const fiscalCache = new Map<string, PersonYearFiscal>();
+const MAX_CACHE_SIZE = 50000;
+
+function getCacheKey(
+  age: number,
+  decile: number,
+  gdpMultiplier: number,
+  employmentRate?: number,
+  welfareMultiplier?: number
+): string {
+  // Round GDP multiplier to avoid cache misses from floating point differences
+  const gdpRounded = Math.round(gdpMultiplier * 100) / 100;
+  const empRounded = employmentRate ? Math.round(employmentRate * 100) : 'x';
+  const welRounded = welfareMultiplier ? Math.round(welfareMultiplier * 100) : 'x';
+  return `${age}:${decile}:${gdpRounded}:${empRounded}:${welRounded}`;
+}
+
+/** Clear the fiscal calculation cache */
+export function clearFiscalCache(): void {
+  fiscalCache.clear();
+}
+
+/** Get cache statistics for debugging */
+export function getFiscalCacheStats(): { size: number; maxSize: number } {
+  return { size: fiscalCache.size, maxSize: MAX_CACHE_SIZE };
+}
+
+// ===========================================
 // Person-Year Fiscal Calculation
 // ===========================================
 
@@ -55,6 +88,8 @@ export interface FiscalCalculationOptions {
  * Calculate fiscal flows for a single person-year.
  * This is the core calculation that determines contributions and costs
  * for a person of a given age and income decile.
+ * 
+ * Results are cached for performance (same inputs = same outputs).
  */
 export function calculatePersonYearFiscal(
   age: number,
@@ -69,6 +104,13 @@ export function calculatePersonYearFiscal(
   } = options;
   
   const incomeDecile = incomeDecileOverride ?? baseIncomeDecile;
+  
+  // Check cache first
+  const cacheKey = getCacheKey(age, incomeDecile, gdpIncomeMultiplier, employmentRate, welfareMultiplier);
+  const cached = fiscalCache.get(cacheKey);
+  if (cached) {
+    return cached;
+  }
   const decileChar = DECILE_CHARACTERISTICS[incomeDecile] || DECILE_CHARACTERISTICS[5];
   const workStartAge = 19;  // Simplified average
   const retirementAge = decileChar?.avgRetirementAge ?? 65;
@@ -194,6 +236,11 @@ export function calculatePersonYearFiscal(
   if (!isFinite(result.totalCosts)) result.totalCosts = 0;
   
   result.netFlow = result.totalContributions - result.totalCosts;
+  
+  // Store in cache (with size limit)
+  if (fiscalCache.size < MAX_CACHE_SIZE) {
+    fiscalCache.set(cacheKey, result);
+  }
   
   return result;
 }

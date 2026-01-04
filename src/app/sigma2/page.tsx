@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect, useCallback } from 'react';
+import { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 
 // Use the new time-step simulation engine via the adapter
@@ -89,7 +89,7 @@ export default function Sigma2Page() {
   const [useCustomInterestRate, setUseCustomInterestRate] = useState(false);
   const [customInterestRate, setCustomInterestRate] = useState(0.025);
 
-  // Build scenario from state
+  // Build scenario from state (current editing state)
   const scenario: DemographicScenario = useMemo(() => {
     const preset = BIRTH_RATE_PRESETS[birthRatePreset];
     return {
@@ -119,9 +119,37 @@ export default function Sigma2Page() {
     interestRateScenarioId, useCustomInterestRate, customInterestRate
   ]);
 
-  // Run simulation with scenario
+  // Track committed scenario (what the simulation actually runs with)
+  const [committedScenario, setCommittedScenario] = useState<DemographicScenario>(scenario);
+  const [isSimulating, setIsSimulating] = useState(false);
+  const initialRender = useRef(true);
+
+  // Detect if there are uncommitted changes
+  const hasUncommittedChanges = useMemo(() => {
+    return JSON.stringify(scenario) !== JSON.stringify(committedScenario);
+  }, [scenario, committedScenario]);
+
+  // Handle "Run Simulation" button click
+  const handleRunSimulation = useCallback(() => {
+    setIsSimulating(true);
+    // Use setTimeout to allow UI to update before expensive computation
+    setTimeout(() => {
+      setCommittedScenario(scenario);
+      setIsSimulating(false);
+    }, 50);
+  }, [scenario]);
+
+  // Auto-run on initial render
+  useEffect(() => {
+    if (initialRender.current) {
+      initialRender.current = false;
+      setCommittedScenario(scenario);
+    }
+  }, [scenario]);
+
+  // Run simulation with COMMITTED scenario (not editing scenario)
   const simulationResult = useMemo(() =>
-    simulatePopulationRange(1990, 2060, scenario), [scenario]
+    simulatePopulationRange(1990, 2060, committedScenario), [committedScenario]
   );
 
   // Get current year data from simulation results
@@ -239,7 +267,38 @@ export default function Sigma2Page() {
             <span className="text-gray-300">Finland&apos;s Demographic Destiny</span>
           </h1>
 
-          <div className="w-16" />
+          {/* Run Simulation Button */}
+          <div className="flex items-center gap-3">
+            {hasUncommittedChanges && (
+              <span className="text-xs text-amber-400 animate-pulse">
+                Settings changed
+              </span>
+            )}
+            <button
+              onClick={handleRunSimulation}
+              disabled={isSimulating || !hasUncommittedChanges}
+              className={`
+                px-4 py-1.5 rounded-lg font-medium text-sm flex items-center gap-2 transition-all
+                ${hasUncommittedChanges 
+                  ? 'bg-green-600 hover:bg-green-500 text-white shadow-lg shadow-green-600/30' 
+                  : 'bg-gray-700 text-gray-400 cursor-not-allowed'
+                }
+                ${isSimulating ? 'opacity-75' : ''}
+              `}
+            >
+              {isSimulating ? (
+                <>
+                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                  Running...
+                </>
+              ) : (
+                <>▶ Run Simulation</>
+              )}
+            </button>
+          </div>
         </div>
       </header>
 
