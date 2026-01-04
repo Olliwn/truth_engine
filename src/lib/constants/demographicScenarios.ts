@@ -384,6 +384,10 @@ export interface DemographicScenario {
     scenarioId: string;
     customGrowthRate: number | null;  // If set, overrides scenario
   };
+  interestRate: {
+    scenarioId: string;
+    customRate: number | null;  // If set, overrides scenario
+  };
 }
 
 export const DEFAULT_SCENARIO: DemographicScenario = {
@@ -396,6 +400,10 @@ export const DEFAULT_SCENARIO: DemographicScenario = {
   gdp: {
     scenarioId: 'slow_growth',  // DEFAULT_GDP_SCENARIO value
     customGrowthRate: null,
+  },
+  interestRate: {
+    scenarioId: 'low',  // DEFAULT_INTEREST_RATE_SCENARIO value
+    customRate: null,
   },
 };
 
@@ -468,6 +476,92 @@ export const GDP_SCENARIOS: Record<string, GDPScenario> = {
 };
 
 export const DEFAULT_GDP_SCENARIO = 'slow_growth';
+
+// ===========================================
+// Interest Rate Scenarios
+// ===========================================
+
+export interface InterestRateScenario {
+  id: string;
+  name: string;
+  description: string;
+  rate: number;  // Annual interest rate (e.g., 0.03 = 3%)
+  color: string;
+}
+
+export const INTEREST_RATE_SCENARIOS: Record<string, InterestRateScenario> = {
+  ultra_low: {
+    id: 'ultra_low',
+    name: 'Ultra Low',
+    description: 'Post-2008 QE era rates (1.5%)',
+    rate: 0.015,
+    color: '#22C55E',
+  },
+  low: {
+    id: 'low',
+    name: 'Low',
+    description: 'Current low-rate environment (2.5%)',
+    rate: 0.025,
+    color: '#3B82F6',
+  },
+  moderate: {
+    id: 'moderate',
+    name: 'Moderate',
+    description: 'Normalized rates (3.5%)',
+    rate: 0.035,
+    color: '#F59E0B',
+  },
+  high: {
+    id: 'high',
+    name: 'High',
+    description: 'Historical average (5%)',
+    rate: 0.05,
+    color: '#EF4444',
+  },
+  crisis: {
+    id: 'crisis',
+    name: 'Crisis',
+    description: 'Sovereign debt stress (7%+)',
+    rate: 0.07,
+    color: '#991B1B',
+  },
+};
+
+export const DEFAULT_INTEREST_RATE_SCENARIO = 'low';
+
+// Historical Finnish government debt data (billions EUR)
+export const HISTORICAL_DEBT: Record<number, number> = {
+  1990: 11.0,
+  1995: 52.0,   // Post-recession peak
+  2000: 61.0,
+  2005: 57.0,
+  2010: 75.0,
+  2015: 100.0,
+  2018: 105.0,
+  2019: 106.0,
+  2020: 125.0,  // COVID spike
+  2021: 132.0,
+  2022: 143.0,
+  2023: 155.0,
+  2024: 165.0,  // Estimate
+};
+
+// Get debt for a specific year (with interpolation)
+export function getHistoricalDebt(year: number): number {
+  const years = Object.keys(HISTORICAL_DEBT).map(Number).sort((a, b) => a - b);
+  
+  if (year <= years[0]) return HISTORICAL_DEBT[years[0]];
+  if (year >= years[years.length - 1]) return HISTORICAL_DEBT[years[years.length - 1]];
+  
+  for (let i = 0; i < years.length - 1; i++) {
+    if (year >= years[i] && year < years[i + 1]) {
+      const ratio = (year - years[i]) / (years[i + 1] - years[i]);
+      return HISTORICAL_DEBT[years[i]] + 
+        (HISTORICAL_DEBT[years[i + 1]] - HISTORICAL_DEBT[years[i]]) * ratio;
+    }
+  }
+  return HISTORICAL_DEBT[2024];
+}
 
 // Historical Finnish GDP data (billions EUR, current prices)
 export const HISTORICAL_GDP: Record<number, number> = {

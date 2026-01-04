@@ -20,7 +20,6 @@ import {
 } from 'recharts';
 import {
   simulatePopulationRange,
-  simulatePopulationYear,
   getPopulationPyramidData,
   DEFAULT_SCENARIO,
   BIRTH_RATE_PRESETS,
@@ -28,9 +27,11 @@ import {
   DEFAULT_IMMIGRATION,
   GDP_SCENARIOS,
   DEFAULT_GDP_SCENARIO,
-  HISTORICAL_GDP,
+  INTEREST_RATE_SCENARIOS,
+  DEFAULT_INTEREST_RATE_SCENARIO,
+  HISTORICAL_DEBT,
 } from '@/lib/populationSimulator';
-import type { AnnualPopulationResult, DemographicScenario, GDPScenario } from '@/lib/populationSimulator';
+import type { DemographicScenario } from '@/lib/populationSimulator';
 import {
   IMMIGRATION_REFERENCE_PERIODS,
   HISTORICAL_IMMIGRATION,
@@ -88,6 +89,12 @@ export default function SigmaPage() {
   const [customGrowthRate, setCustomGrowthRate] = useState(0.015);
   const [showGdpPanel, setShowGdpPanel] = useState(true);
   
+  // Interest rate scenario state
+  const [interestRateScenarioId, setInterestRateScenarioId] = useState<string>(DEFAULT_INTEREST_RATE_SCENARIO);
+  const [useCustomInterestRate, setUseCustomInterestRate] = useState(false);
+  const [customInterestRate, setCustomInterestRate] = useState(0.025);
+  const [showDebtPanel, setShowDebtPanel] = useState(true);
+  
   // Build scenario from state
   const scenario: DemographicScenario = useMemo(() => {
     const preset = BIRTH_RATE_PRESETS[birthRatePreset];
@@ -106,19 +113,27 @@ export default function SigmaPage() {
         scenarioId: gdpScenarioId,
         customGrowthRate: useCustomGrowth ? customGrowthRate : null,
       },
+      interestRate: {
+        scenarioId: interestRateScenarioId,
+        customRate: useCustomInterestRate ? customInterestRate : null,
+      },
     };
   }, [birthRatePreset, customTFR, transitionYear, useCustomBirthRate, 
       workBasedImmigration, familyImmigration, humanitarianImmigration,
-      gdpScenarioId, useCustomGrowth, customGrowthRate]);
+      gdpScenarioId, useCustomGrowth, customGrowthRate,
+      interestRateScenarioId, useCustomInterestRate, customInterestRate]);
   
   // Run simulation with scenario
   const simulationResult = useMemo(() => 
     simulatePopulationRange(1990, 2060, scenario), [scenario]
   );
   
-  const currentYearData = useMemo(() => 
-    simulatePopulationYear(selectedYear, scenario, 1990), [selectedYear, scenario]
-  );
+  // Get current year data from simulation results (ensures GDP growth multiplier is correctly applied)
+  const currentYearData = useMemo(() => {
+    const result = simulationResult.annualResults.find(r => r.year === selectedYear);
+    // Fallback if year not in range (shouldn't happen)
+    return result || simulationResult.annualResults[simulationResult.annualResults.length - 1];
+  }, [simulationResult, selectedYear]);
   
   const pyramidData = useMemo(() => 
     getPopulationPyramidData(selectedYear), [selectedYear]
@@ -180,6 +195,20 @@ export default function SigmaPage() {
     deficitPctGDP: r.deficitPctGDP,
     govtSpendingPct: r.govtSpendingPctGDP,
   }));
+  
+  // Debt chart data
+  const debtChartData = annualResults.map(r => ({
+    year: r.year,
+    debtToGDP: r.debtToGDP,
+    debtStock: r.debtStock,
+    interestExpense: r.interestExpense,
+    primaryBalance: r.primaryBalance,
+    gdp: r.gdp,
+  }));
+  
+  // Get effective interest rate for display
+  const activeInterestScenario = INTEREST_RATE_SCENARIOS[interestRateScenarioId];
+  const effectiveInterestRate = useCustomInterestRate ? customInterestRate : activeInterestScenario?.rate || 0.025;
   
   const demographicChartData = annualResults.map(r => ({
     year: r.year,
@@ -271,7 +300,7 @@ export default function SigmaPage() {
           </p>
 
           {/* Key Metrics */}
-          <div className="grid md:grid-cols-6 gap-4 max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 max-w-7xl mx-auto">
             <MetricCard
               label="Birth Rate (TFR)"
               value={currentYearData.tfr.toFixed(2)}
@@ -291,22 +320,28 @@ export default function SigmaPage() {
               color="blue"
             />
             <MetricCard
-              label="Fiscal Balance (base)"
+              label="Fiscal Balance"
               value={formatMillions(currentYearData.netFiscalBalance)}
               sublabel={currentYearData.netFiscalBalance >= 0 ? 'surplus' : 'deficit'}
               color={currentYearData.netFiscalBalance >= 0 ? 'green' : 'red'}
             />
             <MetricCard
-              label="With GDP Growth"
-              value={formatMillions(currentYearData.gdpAdjustedBalance)}
-              sublabel={`${(effectiveGrowthRate * 100).toFixed(1)}%/yr`}
-              color={currentYearData.gdpAdjustedBalance >= 0 ? 'green' : 'amber'}
+              label="Interest Expense"
+              value={formatMillions(currentYearData.interestExpense)}
+              sublabel={`${(effectiveInterestRate * 100).toFixed(1)}% rate`}
+              color="red"
             />
             <MetricCard
-              label="Deficit % GDP"
-              value={`${currentYearData.deficitPctGDP.toFixed(1)}%`}
-              sublabel={`€${currentYearData.gdp.toFixed(0)}B GDP`}
-              color={currentYearData.deficitPctGDP >= 0 ? 'green' : currentYearData.deficitPctGDP >= -3 ? 'amber' : 'red'}
+              label="Debt/GDP"
+              value={`${currentYearData.debtToGDP.toFixed(0)}%`}
+              sublabel={`€${currentYearData.debtStock.toFixed(0)}B`}
+              color={currentYearData.debtToGDP < 60 ? 'green' : currentYearData.debtToGDP < 100 ? 'amber' : 'red'}
+            />
+            <MetricCard
+              label="GDP"
+              value={`€${currentYearData.gdp.toFixed(0)}B`}
+              sublabel={`${(effectiveGrowthRate * 100).toFixed(1)}%/yr growth`}
+              color="purple"
             />
           </div>
         </div>
@@ -513,7 +548,7 @@ export default function SigmaPage() {
                   profile={IMMIGRATION_PROFILES.family}
                   value={familyImmigration}
                   onChange={setFamilyImmigration}
-                  max={20000}
+                  max={30000}
                   fiscalImpact={familyAnnualImpact}
                 />
                 
@@ -522,7 +557,7 @@ export default function SigmaPage() {
                   profile={IMMIGRATION_PROFILES.humanitarian}
                   value={humanitarianImmigration}
                   onChange={setHumanitarianImmigration}
-                  max={15000}
+                  max={30000}
                   fiscalImpact={humanitarianAnnualImpact}
                 />
                 
@@ -803,6 +838,180 @@ export default function SigmaPage() {
               </div>
             )}
           </div>
+          
+          {/* Debt & Interest Rate Scenario */}
+          <div className="card p-6">
+            <button
+              onClick={() => setShowDebtPanel(!showDebtPanel)}
+              className="w-full flex items-center justify-between mb-4"
+            >
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <span className="text-2xl">💳</span>
+                Debt & Interest Rate
+              </h3>
+              <span className="text-gray-500">{showDebtPanel ? '▼' : '▶'}</span>
+            </button>
+            
+            {showDebtPanel && (
+              <div className="space-y-4">
+                {/* Interest Rate Preset Buttons */}
+                <div className="flex flex-wrap gap-2">
+                  {Object.values(INTEREST_RATE_SCENARIOS).map((irScenario) => (
+                    <button
+                      key={irScenario.id}
+                      onClick={() => {
+                        setInterestRateScenarioId(irScenario.id);
+                        setUseCustomInterestRate(false);
+                        setCustomInterestRate(irScenario.rate);
+                      }}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        interestRateScenarioId === irScenario.id && !useCustomInterestRate
+                          ? 'bg-rose-600 text-white'
+                          : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                      }`}
+                      style={{ borderLeft: `4px solid ${irScenario.color}` }}
+                    >
+                      {irScenario.name}
+                      <span className="ml-2 text-xs opacity-70">{(irScenario.rate * 100).toFixed(1)}%</span>
+                    </button>
+                  ))}
+                </div>
+                
+                {/* Custom Interest Rate */}
+                <div className="flex items-center gap-2 mt-4">
+                  <input
+                    type="checkbox"
+                    checked={useCustomInterestRate}
+                    onChange={(e) => setUseCustomInterestRate(e.target.checked)}
+                    className="rounded bg-gray-800 border-gray-700"
+                  />
+                  <span className="text-sm text-gray-400">Custom interest rate</span>
+                </div>
+                
+                {useCustomInterestRate && (
+                  <div className="mt-2">
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="text-gray-400">Annual Interest Rate</span>
+                      <span className="text-rose-400 font-semibold">{(customInterestRate * 100).toFixed(1)}%</span>
+                    </div>
+                    <input
+                      type="range"
+                      min={0.005}
+                      max={0.10}
+                      step={0.005}
+                      value={customInterestRate}
+                      onChange={(e) => setCustomInterestRate(Number(e.target.value))}
+                      className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-rose-500"
+                    />
+                    <div className="flex justify-between text-xs text-gray-600 mt-1">
+                      <span>0.5% (QE era)</span>
+                      <span>3.5% (normal)</span>
+                      <span>10% (crisis)</span>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Interest Rate Description */}
+                <div className="mt-4 p-3 bg-gray-900/50 rounded-lg">
+                  <p className="text-sm text-gray-400">
+                    {useCustomInterestRate ? (
+                      `Custom interest rate: ${(customInterestRate * 100).toFixed(1)}% annual rate on government debt.`
+                    ) : (
+                      activeInterestScenario?.description || 'Select an interest rate scenario.'
+                    )}
+                  </p>
+                </div>
+                
+                {/* Debt Summary Stats */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+                  <div className="p-3 bg-gray-900/50 rounded-lg">
+                    <div className="text-xs text-gray-500">Current Debt (2024)</div>
+                    <div className="text-lg font-bold text-gray-300">€{HISTORICAL_DEBT[2024]}B</div>
+                    <div className="text-xs text-gray-600">~60% of GDP</div>
+                  </div>
+                  <div className="p-3 bg-gray-900/50 rounded-lg">
+                    <div className="text-xs text-gray-500">End Debt ({2060})</div>
+                    <div className="text-lg font-bold text-rose-400">€{summary.finalDebtStock.toFixed(0)}B</div>
+                    <div className="text-xs text-gray-600">{summary.finalDebtToGDP.toFixed(0)}% of GDP</div>
+                  </div>
+                  <div className="p-3 bg-gray-900/50 rounded-lg">
+                    <div className="text-xs text-gray-500">Peak Debt/GDP</div>
+                    <div className="text-lg font-bold text-amber-400">{summary.peakDebtToGDP.toFixed(0)}%</div>
+                    <div className="text-xs text-gray-600">in {summary.peakDebtYear}</div>
+                  </div>
+                  <div className="p-3 bg-gray-900/50 rounded-lg">
+                    <div className="text-xs text-gray-500">Total Interest (1990-2060)</div>
+                    <div className="text-lg font-bold text-red-400">{formatMillions(summary.totalInterestPaid)}</div>
+                    <div className="text-xs text-gray-600">cumulative</div>
+                  </div>
+                </div>
+                
+                {/* Debt/GDP Mini Chart */}
+                <div className="mt-4 h-40 bg-gray-900/50 rounded-lg p-2">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <ComposedChart data={debtChartData.filter(d => d.year >= 1990)}>
+                      <XAxis dataKey="year" tick={{ fontSize: 10 }} stroke="#6B7280" />
+                      <YAxis 
+                        yAxisId="pct"
+                        tick={{ fontSize: 10 }} 
+                        stroke="#6B7280"
+                        tickFormatter={(v) => `${v.toFixed(0)}%`}
+                        domain={[0, 'auto']}
+                      />
+                      <YAxis 
+                        yAxisId="eur"
+                        orientation="right"
+                        tick={{ fontSize: 10 }} 
+                        stroke="#6B7280"
+                        tickFormatter={(v) => `€${v}B`}
+                      />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: '#1F2937',
+                          border: '1px solid #374151',
+                          borderRadius: '8px',
+                          fontSize: '12px',
+                        }}
+                        formatter={(value, name) => {
+                          if (name === 'Debt/GDP') return [`${(value as number).toFixed(1)}%`, name];
+                          if (name === 'Debt Stock') return [`€${(value as number).toFixed(0)}B`, name];
+                          if (name === 'Interest (€M)') return [`€${(value as number / 1000).toFixed(1)}B`, name];
+                          return [value, name];
+                        }}
+                      />
+                      <Legend />
+                      <ReferenceLine yAxisId="pct" y={60} stroke="#F59E0B" strokeDasharray="3 3" label={{ value: 'Maastricht 60%', fontSize: 9, fill: '#F59E0B' }} />
+                      <ReferenceLine yAxisId="pct" y={100} stroke="#EF4444" strokeDasharray="3 3" label={{ value: '100%', fontSize: 9, fill: '#EF4444' }} />
+                      <ReferenceLine x={selectedYear} stroke="#F59E0B" strokeWidth={2} />
+                      <ReferenceLine x={2024} stroke="#A855F7" strokeDasharray="3 3" />
+                      <Area 
+                        yAxisId="pct"
+                        type="monotone" 
+                        dataKey="debtToGDP" 
+                        fill="#DC2626"
+                        fillOpacity={0.3}
+                        stroke="#DC2626" 
+                        strokeWidth={2}
+                        name="Debt/GDP"
+                      />
+                      <Line
+                        yAxisId="eur"
+                        type="monotone"
+                        dataKey="debtStock"
+                        stroke="#F59E0B"
+                        strokeWidth={2}
+                        dot={false}
+                        name="Debt Stock"
+                      />
+                    </ComposedChart>
+                  </ResponsiveContainer>
+                </div>
+                <p className="text-[10px] text-gray-600 text-center">
+                  Government debt as % of GDP and total debt stock (1990-2060)
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
@@ -1078,6 +1287,109 @@ export default function SigmaPage() {
               <strong>Note:</strong> The fiscal multiplier effect means that cutting government spending (to balance the budget) 
               would itself reduce GDP. This creates a &quot;moving target&quot; — the more you cut, the more the economy shrinks, 
               requiring even higher private sector growth to compensate. Finland&apos;s historical real GDP growth averaged ~1.5%/year.
+            </p>
+          </div>
+        </section>
+
+        {/* Debt Sustainability */}
+        <section className="mb-12">
+          <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+            <span className="text-3xl">💳</span>
+            Debt Sustainability
+          </h3>
+          
+          <div className="card p-6 h-[400px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={debtChartData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                <XAxis dataKey="year" stroke="#9CA3AF" />
+                <YAxis 
+                  yAxisId="pct"
+                  stroke="#9CA3AF"
+                  tickFormatter={(v) => `${v.toFixed(0)}%`}
+                  label={{ value: 'Debt/GDP %', angle: -90, position: 'insideLeft', fill: '#9CA3AF' }}
+                />
+                <YAxis 
+                  yAxisId="eur"
+                  orientation="right"
+                  stroke="#F59E0B"
+                  tickFormatter={(v) => `€${(v/1000).toFixed(1)}B`}
+                  label={{ value: 'Interest (€B)', angle: 90, position: 'insideRight', fill: '#F59E0B' }}
+                />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#1F2937',
+                    border: '1px solid #374151',
+                    borderRadius: '8px',
+                  }}
+                  formatter={(value, name) => {
+                    if (name === 'Debt/GDP %') return [`${(value as number).toFixed(1)}%`, name];
+                    if (name === 'Interest Expense') return [`€${((value as number)/1000).toFixed(2)}B/year`, name];
+                    if (name === 'Primary Balance') return [`€${((value as number)/1000).toFixed(2)}B`, name];
+                    return [value, name];
+                  }}
+                />
+                <Legend />
+                <ReferenceLine yAxisId="pct" y={60} stroke="#F59E0B" strokeDasharray="3 3" label={{ value: 'Maastricht 60%', fontSize: 10, fill: '#F59E0B' }} />
+                <ReferenceLine yAxisId="pct" y={100} stroke="#EF4444" strokeDasharray="3 3" label={{ value: '100%', fontSize: 10, fill: '#EF4444' }} />
+                <ReferenceLine x={selectedYear} stroke="#F59E0B" strokeWidth={2} />
+                <ReferenceLine x={2024} stroke="#A855F7" strokeDasharray="3 3" />
+                <Area
+                  yAxisId="pct"
+                  type="monotone"
+                  dataKey="debtToGDP"
+                  name="Debt/GDP %"
+                  fill="#DC2626"
+                  fillOpacity={0.4}
+                  stroke="#DC2626"
+                  strokeWidth={2}
+                />
+                <Line
+                  yAxisId="eur"
+                  type="monotone"
+                  dataKey="interestExpense"
+                  name="Interest Expense"
+                  stroke="#F59E0B"
+                  strokeWidth={3}
+                  dot={false}
+                />
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+          
+          <div className="grid md:grid-cols-4 gap-4 mt-6">
+            <div className="card p-4 text-center">
+              <div className="text-sm text-gray-500 uppercase tracking-wide">Current Debt (2024)</div>
+              <div className="text-2xl font-bold text-gray-300">€{HISTORICAL_DEBT[2024]}B</div>
+              <div className="text-sm text-gray-400">~60% of GDP</div>
+            </div>
+            <div className="card p-4 text-center bg-red-950/20">
+              <div className="text-sm text-gray-500 uppercase tracking-wide">Projected Debt (2060)</div>
+              <div className="text-2xl font-bold text-red-400">€{summary.finalDebtStock.toFixed(0)}B</div>
+              <div className="text-sm text-gray-400">{summary.finalDebtToGDP.toFixed(0)}% of GDP</div>
+            </div>
+            <div className="card p-4 text-center">
+              <div className="text-sm text-gray-500 uppercase tracking-wide">Peak Debt/GDP</div>
+              <div className="text-2xl font-bold text-amber-400">{summary.peakDebtToGDP.toFixed(0)}%</div>
+              <div className="text-sm text-gray-400">in {summary.peakDebtYear}</div>
+            </div>
+            <div className="card p-4 text-center bg-rose-950/20">
+              <div className="text-sm text-gray-500 uppercase tracking-wide">Total Interest (1990-2060)</div>
+              <div className="text-2xl font-bold text-rose-400">{formatMillions(summary.totalInterestPaid)}</div>
+              <div className="text-sm text-gray-400">at {(effectiveInterestRate * 100).toFixed(1)}% rate</div>
+            </div>
+          </div>
+          
+          <div className="mt-4 p-4 bg-gray-900/50 rounded-lg border border-gray-800">
+            <p className="text-sm text-gray-400">
+              <span className="text-rose-400 font-semibold">Interest expense</span> compounds over time as debt accumulates.
+              At {(effectiveInterestRate * 100).toFixed(1)}% interest rate, the annual interest burden reaches 
+              <span className="text-amber-400 font-semibold"> €{(currentYearData.interestExpense / 1000).toFixed(1)}B </span>
+              in {selectedYear}. The <span className="text-red-400 font-semibold">Maastricht criterion</span> (60% debt/GDP) 
+              is a benchmark for EU fiscal sustainability.
+              {currentYearData.debtToGDP > 100 && (
+                <span className="text-red-400"> ⚠️ Debt exceeds 100% of GDP — potential debt sustainability risk.</span>
+              )}
             </p>
           </div>
         </section>

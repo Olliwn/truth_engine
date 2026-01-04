@@ -46,6 +46,9 @@ import {
   calculateBreakevenGrowthRate,
   calculateSecondOrderEffects,
   SecondOrderEffects,
+  INTEREST_RATE_SCENARIOS,
+  InterestRateScenario,
+  getHistoricalDebt,
 } from './constants/demographicScenarios';
 
 import { calculateTaxes } from './finnishTaxCalculator';
@@ -109,6 +112,13 @@ export interface AnnualPopulationResult {
   gdpGrowthRate: number;           // Applied growth rate this year
   govtSpendingPctGDP: number;      // Government spending as % of GDP
   deficitPctGDP: number;           // Deficit as % of GDP (negative = deficit)
+  
+  // Debt data
+  debtStock: number;               // Cumulative debt in billions EUR
+  debtToGDP: number;               // Debt as % of GDP
+  interestExpense: number;         // Annual interest payment in millions EUR
+  interestRate: number;            // Applied interest rate this year
+  primaryBalance: number;          // Fiscal balance before interest (millions EUR)
 }
 
 export interface PopulationSimulationResult {
@@ -129,6 +139,12 @@ export interface PopulationSimulationResult {
     firstGdpAdjustedSurplusYear: number | null;  // Year budget becomes balanced with GDP growth
     breakevenGrowthRate: number | null;          // Growth rate needed to balance by 2060
     secondOrderEffects: SecondOrderEffects | null;
+    // Debt summaries
+    finalDebtStock: number;          // Debt in billions EUR at end year
+    finalDebtToGDP: number;          // Debt/GDP ratio at end year
+    peakDebtToGDP: number;           // Maximum debt/GDP ratio
+    peakDebtYear: number;            // Year of maximum debt/GDP
+    totalInterestPaid: number;       // Cumulative interest in millions EUR
   };
 }
 
@@ -389,7 +405,8 @@ export function simulatePopulationYear(
   year: number,
   scenario: DemographicScenario = DEFAULT_SCENARIO,
   simulationStartYear: number = 1990,
-  cumulativeGdpMultiplier: number = 1.0  // Passed from range simulation for compounding
+  cumulativeGdpMultiplier: number = 1.0,  // Passed from range simulation for compounding
+  previousDebtStock: number = 0  // Previous year's debt in billions EUR
 ): AnnualPopulationResult {
   let totalContributions = 0;
   let totalStateCosts = 0;
@@ -412,6 +429,11 @@ export function simulatePopulationYear(
   const gdpScenarioId = scenario.gdp?.scenarioId || 'slow_growth';
   const gdpScenario = GDP_SCENARIOS[gdpScenarioId] || GDP_SCENARIOS['slow_growth'];
   const growthRate = scenario.gdp?.customGrowthRate ?? gdpScenario.realGrowthRate;
+  
+  // Get interest rate scenario
+  const interestRateScenarioId = scenario.interestRate?.scenarioId || 'low';
+  const interestRateScenario = INTEREST_RATE_SCENARIOS[interestRateScenarioId] || INTEREST_RATE_SCENARIOS['low'];
+  const interestRate = scenario.interestRate?.customRate ?? interestRateScenario.rate;
   
   // Iterate through all ages (0-100)
   for (let age = 0; age <= 100; age++) {
@@ -541,9 +563,35 @@ export function simulatePopulationYear(
   const totalStateCostsInBillions = toMillions(totalStateCosts) / 1000;  // Convert to billions
   const govtSpendingPctGDP = (totalStateCostsInBillions / currentGDP) * 100;
   
-  // Deficit as % of GDP
-  const netBalanceInBillions = toMillions(totalContributions - totalStateCosts) / 1000;
-  const deficitPctGDP = (netBalanceInBillions / currentGDP) * 100;
+  // Primary balance (before interest) as % of GDP
+  const primaryBalanceInBillions = toMillions(totalContributions - totalStateCosts) / 1000;
+  const deficitPctGDP = (primaryBalanceInBillions / currentGDP) * 100;
+  
+  // Debt calculations
+  // For historical years, use actual debt data; for future years, accumulate
+  const baseDebtYear = 2024;
+  let debtStock: number;
+  let interestExpenseMillions: number;
+  
+  if (year <= baseDebtYear) {
+    // Historical debt
+    debtStock = getHistoricalDebt(year);
+    // Approximate historical interest expense (~2% average rate historically)
+    interestExpenseMillions = debtStock * 0.02 * 1000;  // billions * rate * 1000 = millions EUR
+  } else {
+    // Future interest expense on previous debt stock
+    interestExpenseMillions = previousDebtStock * interestRate * 1000;  // billions * rate * 1000 = millions EUR
+    
+    // Total balance including interest
+    // Primary balance is already calculated (contributions - costs before interest)
+    // Total deficit = primary deficit + interest expense
+    const totalDeficitBillions = -primaryBalanceInBillions + (interestExpenseMillions / 1000);
+    
+    // Debt grows by total deficit (if positive = we're borrowing more)
+    debtStock = previousDebtStock + totalDeficitBillions;
+  }
+  
+  const debtToGDP = (debtStock / currentGDP) * 100;
   
   return {
     year,
@@ -591,6 +639,12 @@ export function simulatePopulationYear(
     gdpGrowthRate: growthRate,
     govtSpendingPctGDP,
     deficitPctGDP,
+    // Debt data
+    debtStock,
+    debtToGDP,
+    interestExpense: interestExpenseMillions,  // Already in millions EUR
+    interestRate,
+    primaryBalance: toMillions(totalContributions - totalStateCosts),
   };
 }
 
@@ -621,6 +675,7 @@ export function simulatePopulationRange(
   
   const baseYear = 2024;
   let cumulativeGdpMultiplier = 1.0;
+  let previousDebtStock = getHistoricalDebt(startYear - 1);  // Start with debt from year before simulation
   
   for (let year = startYear; year <= endYear; year++) {
     // Update cumulative multiplier for years after base year
@@ -628,7 +683,11 @@ export function simulatePopulationRange(
       cumulativeGdpMultiplier *= (1 + growthRate);
     }
     
-    annualResults.push(simulatePopulationYear(year, scenario, startYear, cumulativeGdpMultiplier));
+    const yearResult = simulatePopulationYear(year, scenario, startYear, cumulativeGdpMultiplier, previousDebtStock);
+    annualResults.push(yearResult);
+    
+    // Update debt stock for next year
+    previousDebtStock = yearResult.debtStock;
   }
   
   // Calculate summary statistics
@@ -639,11 +698,15 @@ export function simulatePopulationRange(
   let gdpAdjustedCumulativeBalance = 0;
   let firstGdpAdjustedSurplusYear: number | null = null;
   let totalDependencyRatio = 0;
+  let peakDebtToGDP = 0;
+  let peakDebtYear = startYear;
+  let totalInterestPaid = 0;
   
   for (const result of annualResults) {
     cumulativeBalance += result.netFiscalBalance;
     gdpAdjustedCumulativeBalance += result.gdpAdjustedBalance;
     totalDependencyRatio += result.dependencyRatio;
+    totalInterestPaid += result.interestExpense;
     
     if (result.netFiscalBalance > peakSurplusAmount) {
       peakSurplusAmount = result.netFiscalBalance;
@@ -658,11 +721,21 @@ export function simulatePopulationRange(
     if (result.gdpAdjustedBalance > 0 && result.year > baseYear && firstGdpAdjustedSurplusYear === null) {
       firstGdpAdjustedSurplusYear = result.year;
     }
+    
+    // Track peak debt/GDP
+    if (result.debtToGDP > peakDebtToGDP) {
+      peakDebtToGDP = result.debtToGDP;
+      peakDebtYear = result.year;
+    }
   }
   
   const populationChange = annualResults.length > 1
     ? annualResults[annualResults.length - 1].totalPopulation - annualResults[0].totalPopulation
     : 0;
+  
+  const lastResult = annualResults[annualResults.length - 1];
+  const finalDebtStock = lastResult?.debtStock ?? 0;
+  const finalDebtToGDP = lastResult?.debtToGDP ?? 0;
   
   // Calculate breakeven growth rate needed to balance by 2060
   // Use the current (2024) deficit as the baseline
@@ -707,6 +780,12 @@ export function simulatePopulationRange(
       firstGdpAdjustedSurplusYear,
       breakevenGrowthRate,
       secondOrderEffects,
+      // Debt summaries
+      finalDebtStock,
+      finalDebtToGDP,
+      peakDebtToGDP,
+      peakDebtYear,
+      totalInterestPaid,
     },
   };
 }
@@ -777,6 +856,10 @@ export {
   projectGDP,
   calculateBreakevenGrowthRate,
   calculateSecondOrderEffects,
+  INTEREST_RATE_SCENARIOS,
+  DEFAULT_INTEREST_RATE_SCENARIO,
+  HISTORICAL_DEBT,
+  getHistoricalDebt,
 } from './constants/demographicScenarios';
 
 export type { 
@@ -785,5 +868,6 @@ export type {
   ImmigrationProfile,
   GDPScenario,
   SecondOrderEffects,
+  InterestRateScenario,
 } from './constants/demographicScenarios';
 
