@@ -195,6 +195,11 @@ export interface EconomyStepResult {
   newState: EconomicState;
   gdpResult: GDPProjectionResult;
   debtResult: DebtCalculationResult;
+  /**
+   * Government metrics calculated with BASE fiscal values (before interest).
+   * Note: These should be recalculated in timestep.ts using post-interest
+   * fiscal values for accurate deficitPctGDP reporting.
+   */
   govtMetrics: GovernmentMetrics;
 }
 

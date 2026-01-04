@@ -39,6 +39,7 @@ import {
   executeEconomyStep,
   isHistoricalYear,
   getHistoricalEconomicState,
+  calculateGovernmentMetrics,
   EconomyStepResult,
 } from './economy';
 
@@ -171,7 +172,19 @@ export function advanceYear(input: TimeStepInput): TimeStepOutput {
   );
   
   // ========================================
-  // Step 5: Build Year Result
+  // Step 5: Recalculate Government Metrics with Interest
+  // ========================================
+  // The economyResult.govtMetrics were calculated with BASE fiscal values (no interest).
+  // We need to recalculate using the FINAL values that include interest expense.
+  const finalGovtMetrics = calculateGovernmentMetrics(
+    fiscalFlowsWithInterest.totalStateCosts,   // Includes interest
+    fiscalFlowsWithInterest.netFiscalBalance,  // After subtracting interest
+    fiscalFlowsWithInterest.primaryBalance,    // Before interest (unchanged)
+    economyResult.newState.gdpBillions
+  );
+  
+  // ========================================
+  // Step 6: Build Year Result
   // ========================================
   
   const immigrantByType = getImmigrantPopulationByType(populationState);
@@ -221,14 +234,9 @@ export function advanceYear(input: TimeStepInput): TimeStepOutput {
     interestExpense: economyResult.debtResult.interestExpense,
     interestRate: economyResult.debtResult.interestRate,
     
-    // Government metrics - recalculate with interest included
-    // economyResult.govtMetrics uses base balance (no interest), so we recalculate here
-    govtSpendingPctGDP: economyResult.newState.gdpBillions > 0 
-      ? (fiscalFlowsWithInterest.totalStateCosts / (economyResult.newState.gdpBillions * 1000)) * 100 
-      : 0,
-    deficitPctGDP: economyResult.newState.gdpBillions > 0 
-      ? (fiscalFlowsWithInterest.netFiscalBalance / (economyResult.newState.gdpBillions * 1000)) * 100 
-      : 0,
+    // Government metrics (using final values including interest)
+    govtSpendingPctGDP: finalGovtMetrics.govtSpendingPctGDP,
+    deficitPctGDP: finalGovtMetrics.deficitPctGDP,
     
     // Immigration breakdown
     immigrationByType: {
