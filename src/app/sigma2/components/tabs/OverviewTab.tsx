@@ -110,7 +110,7 @@ export function OverviewTab({
           color={summary.cumulativeBalance >= 0 ? 'green' : 'red'}
         />
         <SummaryCard
-          label="With GDP Growth"
+          label="Realistic (Cost Growth)"
           value={formatMillions(summary.gdpAdjustedCumulativeBalance)}
           sublabel={`${(effectiveGrowthRate * 100).toFixed(1)}%/yr`}
           color={summary.gdpAdjustedCumulativeBalance >= 0 ? 'green' : 'amber'}
@@ -182,7 +182,7 @@ export function OverviewTab({
                 yAxisId="left"
                 type="monotone"
                 dataKey="balance"
-                name="Net Balance"
+                name="Optimistic (Costs Frozen)"
                 stroke="#A855F7"
                 strokeWidth={2}
                 dot={false}
@@ -191,7 +191,7 @@ export function OverviewTab({
                 yAxisId="left"
                 type="monotone"
                 dataKey="gdpAdjustedBalance"
-                name={`With GDP Growth`}
+                name="Realistic (Cost Growth)"
                 stroke="#8B5CF6"
                 strokeWidth={2}
                 strokeDasharray="5 5"
@@ -293,13 +293,13 @@ export function OverviewTab({
               <span className="text-red-400">{formatMillions(currentYearData.totalStateCosts)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-500">Net Balance</span>
+              <span className="text-gray-500" title="Wages grow with GDP, costs frozen at 2024 levels">Optimistic</span>
               <span className={currentYearData.netFiscalBalance >= 0 ? 'text-green-400' : 'text-red-400'}>
                 {formatMillions(currentYearData.netFiscalBalance)}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-500">With GDP Growth</span>
+              <span className="text-gray-500" title="Includes healthcare/pension cost growth above GDP">Realistic</span>
               <span className={currentYearData.gdpAdjustedBalance >= 0 ? 'text-green-400' : 'text-amber-400'}>
                 {formatMillions(currentYearData.gdpAdjustedBalance)}
               </span>

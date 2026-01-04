@@ -119,7 +119,7 @@ const DEBUG_PARAMETERS: Record<string, DebugParameter[]> = {
     },
     {
       id: 'netFiscalBalance',
-      label: 'Net Balance',
+      label: 'Optimistic Balance',
       accessor: r => r.netFiscalBalance,
       format: v => `€${(v / 1000).toFixed(1)}B`,
       unit: '€B',

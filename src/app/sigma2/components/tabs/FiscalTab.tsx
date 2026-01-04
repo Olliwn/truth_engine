@@ -120,14 +120,14 @@ export function FiscalTab({
           <div className="text-xs text-gray-600">in {selectedYear}</div>
         </div>
         <div className="bg-gray-900/50 rounded-lg p-4 text-center border border-gray-800">
-          <div className="text-xs text-gray-500 uppercase tracking-wide">Net Balance</div>
+          <div className="text-xs text-gray-500 uppercase tracking-wide" title="Wages grow with GDP, costs frozen at 2024 levels">Optimistic</div>
           <div className={`text-xl font-bold ${currentYearData.netFiscalBalance >= 0 ? 'text-green-400' : 'text-red-400'}`}>
             {formatMillions(currentYearData.netFiscalBalance)}
           </div>
           <div className="text-xs text-gray-600">primary balance</div>
         </div>
         <div className="bg-purple-950/30 rounded-lg p-4 text-center border border-purple-800/30">
-          <div className="text-xs text-gray-500 uppercase tracking-wide">With GDP Growth</div>
+          <div className="text-xs text-gray-500 uppercase tracking-wide" title="Includes healthcare/pension cost growth above GDP">Realistic</div>
           <div className={`text-xl font-bold ${currentYearData.gdpAdjustedBalance >= 0 ? 'text-green-400' : 'text-amber-400'}`}>
             {formatMillions(currentYearData.gdpAdjustedBalance)}
           </div>
@@ -199,7 +199,7 @@ export function FiscalTab({
                 yAxisId="left"
                 type="monotone"
                 dataKey="balance"
-                name="Net Balance"
+                name="Optimistic (Costs Frozen)"
                 stroke="#A855F7"
                 strokeWidth={2}
                 dot={false}
@@ -208,7 +208,7 @@ export function FiscalTab({
                 yAxisId="left"
                 type="monotone"
                 dataKey="gdpAdjustedBalance"
-                name={`With GDP Growth`}
+                name="Realistic (Cost Growth)"
                 stroke="#8B5CF6"
                 strokeWidth={2}
                 strokeDasharray="5 5"
