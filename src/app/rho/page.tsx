@@ -697,7 +697,7 @@ function CumulativeChart({
             border: '1px solid #374151',
             borderRadius: '8px',
           }}
-          formatter={(value: number) => formatEuro(value)}
+          formatter={(value) => formatEuro(value as number)}
           labelFormatter={(age) => `Age ${age}`}
         />
         <Legend />
@@ -846,7 +846,7 @@ function CategoryBreakdownChart({ data }: { data: ChartDataPoint[] }) {
             border: '1px solid #374151',
             borderRadius: '8px',
           }}
-          formatter={(value: number, name: string) => [formatEuro(Math.abs(value)), name]}
+          formatter={(value, name) => [formatEuro(Math.abs(value as number)), name]}
           labelFormatter={(age) => `Age ${age}`}
         />
         <Legend />
