@@ -732,9 +732,16 @@ function CumulativeChart({
 }
 
 function AnnualFlowChart({ data }: { data: ChartDataPoint[] }) {
+  // Transform data for colored net flow bars
+  const chartData = data.map(d => ({
+    ...d,
+    positiveFlow: d.netFlow > 0 ? d.netFlow : 0,
+    negativeFlow: d.netFlow < 0 ? d.netFlow : 0,
+  }));
+
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <ComposedChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+      <ComposedChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
         <XAxis 
           dataKey="age" 
@@ -751,21 +758,39 @@ function AnnualFlowChart({ data }: { data: ChartDataPoint[] }) {
             border: '1px solid #374151',
             borderRadius: '8px',
           }}
-          formatter={(value: number) => formatEuro(Math.abs(value))}
-          labelFormatter={(age) => `Age ${age}`}
+          content={({ active, payload, label }) => {
+            if (!active || !payload?.length) return null;
+            const d = payload[0]?.payload;
+            return (
+              <div className="bg-gray-800 border border-gray-700 rounded-lg p-3 text-sm">
+                <div className="font-semibold mb-2">Age {label}</div>
+                <div className="space-y-1">
+                  <div className="flex justify-between gap-4">
+                    <span className="text-green-400">Contributions:</span>
+                    <span className="font-mono">{formatEuro(d.contributions)}</span>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <span className="text-red-400">State Costs:</span>
+                    <span className="font-mono">{formatEuro(Math.abs(d.stateCosts))}</span>
+                  </div>
+                  <div className="border-t border-gray-600 pt-1 mt-1 flex justify-between gap-4">
+                    <span className={d.netFlow >= 0 ? 'text-green-400' : 'text-red-400'}>Net Flow:</span>
+                    <span className="font-mono">{d.netFlow >= 0 ? '+' : ''}{formatEuro(d.netFlow)}</span>
+                  </div>
+                </div>
+              </div>
+            );
+          }}
         />
-        <Legend />
-        <ReferenceLine y={0} stroke="#6B7280" strokeDasharray="3 3" />
-        <Bar dataKey="stateCosts" fill="#EF4444" name="State Costs" stackId="stack" />
-        <Bar dataKey="contributions" fill="#22C55E" name="Contributions" stackId="stack" />
-        <Line
-          type="monotone"
-          dataKey="netFlow"
-          stroke="#F59E0B"
-          strokeWidth={2}
-          dot={false}
-          name="Net Flow"
+        <Legend 
+          payload={[
+            { value: 'Net Contributor', type: 'square', color: '#22C55E' },
+            { value: 'Net Recipient', type: 'square', color: '#EF4444' },
+          ]}
         />
+        <ReferenceLine y={0} stroke="#6B7280" strokeWidth={2} />
+        <Bar dataKey="positiveFlow" fill="#22C55E" name="Net Contributor" />
+        <Bar dataKey="negativeFlow" fill="#EF4444" name="Net Recipient" />
       </ComposedChart>
     </ResponsiveContainer>
   );
@@ -775,6 +800,36 @@ function CategoryBreakdownChart({ data }: { data: ChartDataPoint[] }) {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <AreaChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+        <defs>
+          <linearGradient id="colorEducation" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#F97316" stopOpacity={0.8}/>
+            <stop offset="95%" stopColor="#F97316" stopOpacity={0.2}/>
+          </linearGradient>
+          <linearGradient id="colorHealthcare" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#EF4444" stopOpacity={0.8}/>
+            <stop offset="95%" stopColor="#EF4444" stopOpacity={0.2}/>
+          </linearGradient>
+          <linearGradient id="colorBenefits" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#F59E0B" stopOpacity={0.8}/>
+            <stop offset="95%" stopColor="#F59E0B" stopOpacity={0.2}/>
+          </linearGradient>
+          <linearGradient id="colorPension" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.8}/>
+            <stop offset="95%" stopColor="#3B82F6" stopOpacity={0.2}/>
+          </linearGradient>
+          <linearGradient id="colorTax" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="5%" stopColor="#22C55E" stopOpacity={0.8}/>
+            <stop offset="95%" stopColor="#22C55E" stopOpacity={0.2}/>
+          </linearGradient>
+          <linearGradient id="colorSocial" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="5%" stopColor="#10B981" stopOpacity={0.8}/>
+            <stop offset="95%" stopColor="#10B981" stopOpacity={0.2}/>
+          </linearGradient>
+          <linearGradient id="colorVat" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="5%" stopColor="#14B8A6" stopOpacity={0.8}/>
+            <stop offset="95%" stopColor="#14B8A6" stopOpacity={0.2}/>
+          </linearGradient>
+        </defs>
         <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
         <XAxis 
           dataKey="age" 
@@ -791,20 +846,20 @@ function CategoryBreakdownChart({ data }: { data: ChartDataPoint[] }) {
             border: '1px solid #374151',
             borderRadius: '8px',
           }}
-          formatter={(value: number) => formatEuro(Math.abs(value))}
+          formatter={(value: number, name: string) => [formatEuro(Math.abs(value)), name]}
           labelFormatter={(age) => `Age ${age}`}
         />
         <Legend />
-        <ReferenceLine y={0} stroke="#6B7280" strokeDasharray="3 3" />
-        {/* Costs (negative) */}
-        <Area type="monotone" dataKey="pension" stackId="costs" stroke="#3B82F6" fill="#3B82F6" fillOpacity={0.7} name="Pension Received" />
-        <Area type="monotone" dataKey="benefits" stackId="costs" stroke="#F59E0B" fill="#F59E0B" fillOpacity={0.7} name="Benefits" />
-        <Area type="monotone" dataKey="healthcare" stackId="costs" stroke="#EF4444" fill="#EF4444" fillOpacity={0.7} name="Healthcare" />
-        <Area type="monotone" dataKey="education" stackId="costs" stroke="#F97316" fill="#F97316" fillOpacity={0.7} name="Education" />
-        {/* Contributions (positive) */}
-        <Area type="monotone" dataKey="incomeTax" stackId="contrib" stroke="#22C55E" fill="#22C55E" fillOpacity={0.7} name="Income Tax" />
-        <Area type="monotone" dataKey="socialInsurance" stackId="contrib" stroke="#10B981" fill="#10B981" fillOpacity={0.7} name="Social Insurance" />
-        <Area type="monotone" dataKey="vat" stackId="contrib" stroke="#14B8A6" fill="#14B8A6" fillOpacity={0.7} name="VAT" />
+        <ReferenceLine y={0} stroke="#6B7280" strokeWidth={2} />
+        {/* State Costs (negative values - stack below zero) */}
+        <Area type="monotone" dataKey="education" stackId="costs" stroke="#F97316" fill="url(#colorEducation)" name="Education" />
+        <Area type="monotone" dataKey="healthcare" stackId="costs" stroke="#EF4444" fill="url(#colorHealthcare)" name="Healthcare" />
+        <Area type="monotone" dataKey="benefits" stackId="costs" stroke="#F59E0B" fill="url(#colorBenefits)" name="Benefits" />
+        <Area type="monotone" dataKey="pension" stackId="costs" stroke="#3B82F6" fill="url(#colorPension)" name="Pension" />
+        {/* Contributions (positive values - stack above zero) */}
+        <Area type="monotone" dataKey="incomeTax" stackId="contrib" stroke="#22C55E" fill="url(#colorTax)" name="Income Tax" />
+        <Area type="monotone" dataKey="socialInsurance" stackId="contrib" stroke="#10B981" fill="url(#colorSocial)" name="Social Insurance" />
+        <Area type="monotone" dataKey="vat" stackId="contrib" stroke="#14B8A6" fill="url(#colorVat)" name="VAT" />
       </AreaChart>
     </ResponsiveContainer>
   );
