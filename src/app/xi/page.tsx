@@ -916,12 +916,13 @@ export default function XiPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Decomposition bar chart - showing absolute € billions */}
-              <div className="card p-6 h-[450px]">
-                <h3 className="text-lg font-semibold mb-2">Growth Attribution (€ Billions)</h3>
+            {/* Two charts side by side: Absolute € and Relative % */}
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              {/* Absolute € chart */}
+              <div className="card p-6 h-[400px]">
+                <h3 className="text-lg font-semibold mb-2">Absolute Growth (€ Billions)</h3>
                 <p className="text-xs text-gray-500 mb-4">
-                  Starting from {decomposition_base_year || 2001} baseline, how much did each factor add to spending?
+                  € added to spending from {decomposition_base_year || 2001} baseline
                 </p>
                 <ResponsiveContainer width="100%" height="85%">
                   <BarChart 
@@ -929,7 +930,6 @@ export default function XiPage() {
                       name: d.name.split(' ')[0],
                       beneficiary_effect: d.demographic_effect_million / 1000,
                       cost_effect: d.policy_effect_million / 1000,
-                      total: d.total_change_million / 1000,
                     }))}
                     layout="vertical"
                   >
@@ -939,7 +939,7 @@ export default function XiPage() {
                       stroke="#9CA3AF" 
                       tickFormatter={(v: number) => `€${v.toFixed(0)}B`}
                     />
-                    <YAxis type="category" dataKey="name" stroke="#9CA3AF" width={80} />
+                    <YAxis type="category" dataKey="name" stroke="#9CA3AF" width={90} />
                     <Tooltip
                       contentStyle={{
                         backgroundColor: '#1F2937',
@@ -948,73 +948,136 @@ export default function XiPage() {
                       }}
                       formatter={(value: number | undefined, name: string | undefined) => {
                         if (value === undefined) return ['N/A', ''];
-                        const label = name === 'beneficiary_effect' ? 'Δ Beneficiaries' : 
-                                      name === 'cost_effect' ? 'Δ Cost/Person' : 'Total';
+                        const label = name === 'beneficiary_effect' ? 'Δ Beneficiaries' : 'Δ Cost/Person';
                         const sign = value >= 0 ? '+' : '';
                         return [`${sign}€${value.toFixed(1)}B`, label];
                       }}
                     />
                     <Legend />
-                    <Bar dataKey="beneficiary_effect" name="Δ Beneficiaries" fill="#3B82F6" stackId="a" />
-                    <Bar dataKey="cost_effect" name="Δ Cost/Person" fill="#F59E0B" stackId="a" />
+                    {/* Use separate bars, not stacked, to show negative values properly */}
+                    <Bar dataKey="beneficiary_effect" name="Δ Beneficiaries" fill="#3B82F6" />
+                    <Bar dataKey="cost_effect" name="Δ Cost/Person" fill="#F59E0B" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
 
-              {/* Detail cards */}
-              <div className="space-y-3 max-h-[450px] overflow-y-auto">
-                {decomposition.map((dec) => (
-                  <div key={dec.code} className="card p-4">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-2">
-                        <div
-                          className="w-3 h-3 rounded-sm"
-                          style={{ backgroundColor: SUBCATEGORY_COLORS[dec.code] }}
-                        />
-                        <span className="font-medium text-sm">{dec.name}</span>
-                      </div>
-                      <span className="text-emerald-400 font-mono text-sm">
-                        +€{(dec.total_change_million / 1000).toFixed(1)}B total
-                      </span>
-                    </div>
-                    
-                    {/* Absolute € contributions */}
-                    <div className="grid grid-cols-2 gap-4 mb-3">
-                      <div className="bg-gray-800/50 rounded p-2">
-                        <div className="text-xs text-gray-500 mb-1">Δ Beneficiaries</div>
-                        <div className={`font-mono text-sm ${dec.demographic_effect_million >= 0 ? 'text-blue-400' : 'text-emerald-400'}`}>
-                          {dec.demographic_effect_million >= 0 ? '+' : ''}€{(dec.demographic_effect_million / 1000).toFixed(1)}B
-                        </div>
-                        <div className="text-xs text-gray-600 mt-1">
-                          ({dec.beneficiary_change_pct >= 0 ? '+' : ''}{dec.beneficiary_change_pct.toFixed(0)}% recipients)
-                        </div>
-                      </div>
-                      <div className="bg-gray-800/50 rounded p-2">
-                        <div className="text-xs text-gray-500 mb-1">Δ Cost/Person</div>
-                        <div className="font-mono text-sm text-amber-400">
-                          +€{(dec.policy_effect_million / 1000).toFixed(1)}B
-                        </div>
-                        <div className="text-xs text-gray-600 mt-1">
-                          (+{dec.cost_per_ben_change_pct.toFixed(0)}% per person)
-                        </div>
-                      </div>
-                    </div>
+              {/* Relative % chart */}
+              <div className="card p-6 h-[400px]">
+                <h3 className="text-lg font-semibold mb-2">Relative Growth (% of Total Change)</h3>
+                <p className="text-xs text-gray-500 mb-4">
+                  What share of each program&apos;s growth came from each factor?
+                </p>
+                <ResponsiveContainer width="100%" height="85%">
+                  <BarChart 
+                    data={decomposition.map(d => ({
+                      name: d.name.split(' ')[0],
+                      beneficiary_pct: d.demographic_pct,
+                      cost_pct: d.policy_pct,
+                    }))}
+                    layout="vertical"
+                  >
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis 
+                      type="number" 
+                      domain={[-100, 200]}
+                      stroke="#9CA3AF" 
+                      tickFormatter={(v: number) => `${v}%`}
+                    />
+                    <YAxis type="category" dataKey="name" stroke="#9CA3AF" width={90} />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: '#1F2937',
+                        border: '1px solid #374151',
+                        borderRadius: '8px',
+                      }}
+                      formatter={(value: number | undefined, name: string | undefined) => {
+                        if (value === undefined) return ['N/A', ''];
+                        const label = name === 'beneficiary_pct' ? 'Δ Beneficiaries' : 'Δ Cost/Person';
+                        const sign = value >= 0 ? '+' : '';
+                        return [`${sign}${value.toFixed(0)}%`, label];
+                      }}
+                    />
+                    <Legend />
+                    <Bar dataKey="beneficiary_pct" name="Δ Beneficiaries" fill="#3B82F6" />
+                    <Bar dataKey="cost_pct" name="Δ Cost/Person" fill="#F59E0B" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
 
-                    {/* Cost per beneficiary comparison */}
-                    <div className="text-xs text-gray-500 flex justify-between border-t border-gray-800 pt-2">
-                      <span>
-                        {dec.base_year}: €{dec.cost_per_ben_base.toLocaleString()}/person
-                      </span>
-                      <span className="text-white">
-                        →
-                      </span>
-                      <span>
-                        {dec.latest_year}: €{dec.cost_per_ben_latest.toLocaleString()}/person
-                      </span>
+            {/* Detail cards with €/person focus */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {decomposition.map((dec) => (
+                <div key={dec.code} className="card p-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div
+                      className="w-3 h-3 rounded-sm"
+                      style={{ backgroundColor: SUBCATEGORY_COLORS[dec.code] }}
+                    />
+                    <span className="font-medium text-sm">{dec.name}</span>
+                  </div>
+                  
+                  {/* Cost per person visualization */}
+                  <div className="bg-gray-800/50 rounded p-3 mb-3">
+                    <div className="text-xs text-gray-500 mb-2">Cost per Beneficiary</div>
+                    <div className="flex items-center justify-between">
+                      <div className="text-center">
+                        <div className="text-xs text-gray-600">{dec.base_year}</div>
+                        <div className="font-mono text-sm text-gray-400">
+                          €{(dec.cost_per_ben_base / 1000).toFixed(1)}K
+                        </div>
+                      </div>
+                      <div className="flex-1 mx-3">
+                        <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-gradient-to-r from-gray-500 to-amber-500 rounded-full"
+                            style={{ width: '100%' }}
+                          />
+                        </div>
+                        <div className="text-center text-xs text-amber-400 mt-1">
+                          +{dec.cost_per_ben_change_pct.toFixed(0)}%
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-xs text-gray-600">{dec.latest_year}</div>
+                        <div className="font-mono text-sm text-amber-400">
+                          €{(dec.cost_per_ben_latest / 1000).toFixed(1)}K
+                        </div>
+                      </div>
                     </div>
                   </div>
-                ))}
-              </div>
+
+                  {/* Growth breakdown */}
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div className={`rounded p-2 ${dec.demographic_effect_million >= 0 ? 'bg-blue-900/20' : 'bg-emerald-900/20'}`}>
+                      <div className="text-gray-500">Δ Beneficiaries</div>
+                      <div className={`font-mono ${dec.demographic_effect_million >= 0 ? 'text-blue-400' : 'text-emerald-400'}`}>
+                        {dec.demographic_effect_million >= 0 ? '+' : ''}€{(dec.demographic_effect_million / 1000).toFixed(1)}B
+                      </div>
+                      <div className="text-gray-600">
+                        ({dec.beneficiary_change_pct >= 0 ? '+' : ''}{dec.beneficiary_change_pct.toFixed(0)}%)
+                      </div>
+                    </div>
+                    <div className="bg-amber-900/20 rounded p-2">
+                      <div className="text-gray-500">Δ Cost/Person</div>
+                      <div className="font-mono text-amber-400">
+                        +€{(dec.policy_effect_million / 1000).toFixed(1)}B
+                      </div>
+                      <div className="text-gray-600">
+                        (+{dec.cost_per_ben_change_pct.toFixed(0)}%)
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Total */}
+                  <div className="mt-2 pt-2 border-t border-gray-800 text-center">
+                    <span className="text-xs text-gray-500">Total growth: </span>
+                    <span className="font-mono text-sm text-emerald-400">
+                      +€{(dec.total_change_million / 1000).toFixed(1)}B
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Methodology explanation */}
