@@ -36,7 +36,7 @@ export default function XiPage() {
   const [data, setData] = useState<SpendingEfficiencyData | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedSub, setSelectedSub] = useState<SocialProtectionSubcategory | null>(null);
-  const [chartMode, setChartMode] = useState<'absolute' | 'efficiency'>('efficiency');
+  const [chartMode, setChartMode] = useState<'gdp' | 'absolute' | 'efficiency'>('gdp');
 
   useEffect(() => {
     async function loadData() {
@@ -82,7 +82,7 @@ export default function XiPage() {
 
   const { summary, g10_time_series, subcategories } = data;
 
-  // Prepare stacked area chart data for subcategories over time
+  // Prepare stacked area chart data for subcategories over time (€ Billions)
   const stackedAreaData = g10_time_series.map((entry) => {
     const row: Record<string, number> = { year: entry.year };
     // Add subcategory data for this year
@@ -90,6 +90,19 @@ export default function XiPage() {
       const subEntry = sub.time_series.find((ts) => ts.year === entry.year);
       if (subEntry) {
         row[sub.code] = subEntry.total_million / 1000; // billions
+      }
+    });
+    return row;
+  });
+
+  // Prepare stacked area chart data for subcategories over time (% of GDP)
+  const stackedAreaDataGdp = g10_time_series.map((entry) => {
+    const row: Record<string, number> = { year: entry.year, total: entry.total_gdp_pct };
+    // Add subcategory data for this year
+    subcategories.forEach((sub) => {
+      const subEntry = sub.time_series.find((ts) => ts.year === entry.year);
+      if (subEntry) {
+        row[sub.code] = subEntry.total_gdp_pct;
       }
     });
     return row;
@@ -179,7 +192,7 @@ export default function XiPage() {
               <div className="text-3xl font-bold text-white mono-data">
                 €{summary.total_billion}B
               </div>
-              <div className="text-sm text-gray-500 mt-1">Social Protection</div>
+              <div className="text-sm text-gray-500 mt-1">{summary.total_gdp_pct}% of GDP</div>
             </div>
 
             <div className="card p-6 border-emerald-900/30">
@@ -229,6 +242,14 @@ export default function XiPage() {
             </div>
             <div className="flex gap-2">
               <button
+                onClick={() => setChartMode('gdp')}
+                className={`px-3 py-1 rounded text-sm ${
+                  chartMode === 'gdp' ? 'bg-emerald-600 text-white' : 'bg-gray-800 text-gray-400'
+                }`}
+              >
+                % of GDP
+              </button>
+              <button
                 onClick={() => setChartMode('absolute')}
                 className={`px-3 py-1 rounded text-sm ${
                   chartMode === 'absolute' ? 'bg-emerald-600 text-white' : 'bg-gray-800 text-gray-400'
@@ -249,7 +270,50 @@ export default function XiPage() {
 
           <div className="card p-6 h-[450px]">
             <ResponsiveContainer width="100%" height="100%">
-              {chartMode === 'absolute' ? (
+              {chartMode === 'gdp' ? (
+                <AreaChart data={stackedAreaDataGdp}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                  <XAxis
+                    dataKey="year"
+                    stroke="#9CA3AF"
+                    tickFormatter={(v) => String(v)}
+                    interval="preserveStartEnd"
+                    minTickGap={40}
+                  />
+                  <YAxis
+                    stroke="#9CA3AF"
+                    domain={[0, 30]}
+                    tickFormatter={(v: number) => `${v}%`}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: '#1F2937',
+                      border: '1px solid #374151',
+                      borderRadius: '8px',
+                    }}
+                    formatter={(value: number | undefined, name: string | undefined) => {
+                      const sub = subcategories.find(s => s.code === name);
+                      return value !== undefined ? [`${value.toFixed(1)}% GDP`, sub?.name || name || ''] : ['N/A', ''];
+                    }}
+                  />
+                  <Legend
+                    formatter={(value: string) => {
+                      const sub = subcategories.find(s => s.code === value);
+                      return sub?.name.split(' ')[0] || value;
+                    }}
+                  />
+                  {subcategories.slice(0, 7).map((sub) => (
+                    <Area
+                      key={sub.code}
+                      type="monotone"
+                      dataKey={sub.code}
+                      stackId="1"
+                      fill={SUBCATEGORY_COLORS[sub.code] || '#6B7280'}
+                      stroke={SUBCATEGORY_COLORS[sub.code] || '#6B7280'}
+                    />
+                  ))}
+                </AreaChart>
+              ) : chartMode === 'absolute' ? (
                 <AreaChart data={stackedAreaData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                   <XAxis

@@ -126,7 +126,7 @@ def fetch_social_protection_data():
             {"code": "Taloustoimi", "selection": {"filter": "item", "values": transaction_codes}},
             {"code": "Tehtävä", "selection": {"filter": "item", "values": functions}},
             {"code": "Vuosi", "selection": {"filter": "all", "values": ["*"]}},
-            {"code": "Tiedot", "selection": {"filter": "item", "values": ["cp"]}},
+            {"code": "Tiedot", "selection": {"filter": "item", "values": ["cp", "bkt_suhde"]}},  # Current prices + GDP ratio
         ],
         "response": {"format": "json-stat2"}
     }
@@ -137,13 +137,15 @@ def fetch_social_protection_data():
 def transform_data(records):
     """Transform records into social protection efficiency analysis."""
     
-    # Organize by year, function, transaction
-    by_year_func_trans = {}
+    # Organize by year, function, transaction, and info type (cp or bkt_suhde)
+    by_year_func_trans_cp = {}  # Current prices (millions EUR)
+    by_year_func_trans_gdp = {}  # GDP ratio (%)
     
     for rec in records:
         year = rec.get('Vuosi_code', '')
         func = rec.get('Tehtävä_code', '')
         trans = rec.get('Taloustoimi_code', '')
+        info = rec.get('Tiedot_code', '')
         value = rec.get('value')
         
         if not year or not func or not trans or value is None:
@@ -155,7 +157,13 @@ def transform_data(records):
             continue
         
         key = (year_int, func, trans)
-        by_year_func_trans[key] = value
+        if info == 'cp':
+            by_year_func_trans_cp[key] = value
+        elif info == 'bkt_suhde':
+            by_year_func_trans_gdp[key] = value
+    
+    # Alias for backward compatibility
+    by_year_func_trans = by_year_func_trans_cp
     
     all_years = sorted(set(k[0] for k in by_year_func_trans.keys()))
     latest_year = all_years[-1] if all_years else 2024
@@ -198,9 +206,12 @@ def transform_data(records):
         for year in all_years:
             eff = calc_efficiency(sub_code, year)
             if eff:
+                # Get GDP ratio for total spending
+                total_gdp_pct = by_year_func_trans_gdp.get((year, sub_code, 'OTES'), 0)
                 time_series.append({
                     'year': year,
                     'total_million': eff['total_million'],
+                    'total_gdp_pct': round(total_gdp_pct, 2),
                     'benefits_million': eff['benefits_million'],
                     'bureaucracy_million': eff['bureaucracy_million'],
                     'efficiency_pct': eff['efficiency_pct'],
@@ -222,9 +233,11 @@ def transform_data(records):
     for year in all_years:
         eff = calc_efficiency('G10', year)
         if eff:
+            total_gdp_pct = by_year_func_trans_gdp.get((year, 'G10', 'OTES'), 0)
             g10_time_series.append({
                 'year': year,
                 'total_million': eff['total_million'],
+                'total_gdp_pct': round(total_gdp_pct, 2),
                 'benefits_million': eff['benefits_million'],
                 'bureaucracy_million': eff['bureaucracy_million'],
                 'efficiency_pct': eff['efficiency_pct'],
@@ -233,6 +246,7 @@ def transform_data(records):
     
     # Calculate G10 totals for latest year
     g10_latest = calc_efficiency('G10', latest_year)
+    g10_gdp_pct = by_year_func_trans_gdp.get((latest_year, 'G10', 'OTES'), 0)
     
     # Find most and least efficient subcategories
     significant_subs = [s for s in subcategories if s['total_million'] > 500]
@@ -243,6 +257,7 @@ def transform_data(records):
     summary = {
         'year': latest_year,
         'total_billion': round(g10_latest['total_million'] / 1000, 1) if g10_latest else 0,
+        'total_gdp_pct': round(g10_gdp_pct, 1),
         'benefits_billion': round(g10_latest['benefits_million'] / 1000, 1) if g10_latest else 0,
         'bureaucracy_billion': round(g10_latest['bureaucracy_million'] / 1000, 1) if g10_latest else 0,
         'efficiency_pct': g10_latest['efficiency_pct'] if g10_latest else 0,

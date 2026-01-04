@@ -804,6 +804,7 @@ export interface PublicSpendingData {
 export interface SubcategoryTimeSeriesEntry {
   year: number;
   total_million: number;
+  total_gdp_pct: number;
   benefits_million: number;
   bureaucracy_million: number;
   efficiency_pct: number;
@@ -846,6 +847,7 @@ export interface SpendingEfficiencyData {
   summary: {
     year: number;
     total_billion: number;
+    total_gdp_pct: number;
     benefits_billion: number;
     bureaucracy_billion: number;
     efficiency_pct: number;
