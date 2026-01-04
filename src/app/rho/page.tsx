@@ -782,12 +782,7 @@ function AnnualFlowChart({ data }: { data: ChartDataPoint[] }) {
             );
           }}
         />
-        <Legend 
-          payload={[
-            { value: 'Net Contributor', type: 'square', color: '#22C55E' },
-            { value: 'Net Recipient', type: 'square', color: '#EF4444' },
-          ]}
-        />
+        <Legend />
         <ReferenceLine y={0} stroke="#6B7280" strokeWidth={2} />
         <Bar dataKey="positiveFlow" fill="#22C55E" name="Net Contributor" />
         <Bar dataKey="negativeFlow" fill="#EF4444" name="Net Recipient" />
