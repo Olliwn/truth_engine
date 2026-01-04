@@ -29,6 +29,11 @@ import {
   IMMIGRATION_PROFILES,
   DEFAULT_IMMIGRATION,
 } from '@/lib/populationSimulator';
+import {
+  IMMIGRATION_REFERENCE_PERIODS,
+  HISTORICAL_IMMIGRATION,
+  HISTORICAL_IMMIGRATION_BY_TYPE,
+} from '@/lib/constants/demographicScenarios';
 
 // ===========================================
 // Formatting Helpers
@@ -496,6 +501,76 @@ export default function SigmaPage() {
                   <div className={`font-bold ${totalImmigrationImpact >= 0 ? 'text-green-400' : 'text-red-400'}`}>
                     Net: {formatMillions(totalImmigrationImpact)}/year
                   </div>
+                </div>
+                
+                {/* Historical Reference */}
+                <div className="mt-6 pt-4 border-t border-gray-700">
+                  <h4 className="text-sm font-semibold text-gray-400 mb-3">📊 Historical Reference</h4>
+                  <div className="grid grid-cols-3 gap-3 text-xs">
+                    <HistoricalReference
+                      period={IMMIGRATION_REFERENCE_PERIODS['2010s_average']}
+                      currentTotal={workBasedImmigration + familyImmigration + humanitarianImmigration}
+                      currentWorkBased={workBasedImmigration}
+                    />
+                    <HistoricalReference
+                      period={IMMIGRATION_REFERENCE_PERIODS['2022_2024_average']}
+                      currentTotal={workBasedImmigration + familyImmigration + humanitarianImmigration}
+                      currentWorkBased={workBasedImmigration}
+                    />
+                    <HistoricalReference
+                      period={IMMIGRATION_REFERENCE_PERIODS['peak_2023']}
+                      currentTotal={workBasedImmigration + familyImmigration + humanitarianImmigration}
+                      currentWorkBased={workBasedImmigration}
+                    />
+                  </div>
+                  
+                  {/* Historical trend mini-chart */}
+                  <div className="mt-4 h-24 bg-gray-900/50 rounded-lg p-2">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart
+                        data={Object.entries(HISTORICAL_IMMIGRATION).map(([year, total]) => ({
+                          year: parseInt(year),
+                          total: total / 1000,
+                          workBased: (HISTORICAL_IMMIGRATION_BY_TYPE[parseInt(year)]?.workBased || 0) / 1000,
+                        }))}
+                        margin={{ top: 5, right: 5, bottom: 5, left: 5 }}
+                      >
+                        <XAxis 
+                          dataKey="year" 
+                          tick={{ fontSize: 9 }} 
+                          stroke="#6B7280"
+                          tickFormatter={(v) => `'${String(v).slice(-2)}`}
+                        />
+                        <YAxis 
+                          tick={{ fontSize: 9 }} 
+                          stroke="#6B7280"
+                          tickFormatter={(v) => `${v}k`}
+                          width={25}
+                        />
+                        <Tooltip
+                          contentStyle={{
+                            backgroundColor: '#1F2937',
+                            border: '1px solid #374151',
+                            borderRadius: '6px',
+                            fontSize: '11px',
+                          }}
+                          formatter={(value) => [`${((value as number) * 1000).toLocaleString()}`, '']}
+                        />
+                        <Bar dataKey="total" fill="#6B7280" name="Total" />
+                        <Bar dataKey="workBased" fill="#22C55E" name="Work-based" />
+                        {/* Reference line for current scenario */}
+                        <ReferenceLine 
+                          y={(workBasedImmigration + familyImmigration + humanitarianImmigration) / 1000} 
+                          stroke="#F59E0B" 
+                          strokeDasharray="3 3"
+                          label={{ value: 'Scenario', fontSize: 9, fill: '#F59E0B' }}
+                        />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <p className="text-[10px] text-gray-600 mt-1 text-center">
+                    Historical immigration 2010-2024 vs your scenario (dashed line)
+                  </p>
                 </div>
               </div>
             )}
@@ -1051,6 +1126,53 @@ function ImmigrationSlider({
         className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
         style={{ accentColor: profile.color }}
       />
+    </div>
+  );
+}
+
+function HistoricalReference({
+  period,
+  currentTotal,
+  currentWorkBased,
+}: {
+  period: {
+    label: string;
+    years: string;
+    total: number;
+    workBased: number;
+    family: number;
+    humanitarian: number;
+    description: string;
+  };
+  currentTotal: number;
+  currentWorkBased: number;
+}) {
+  const diffTotal = ((currentTotal - period.total) / period.total) * 100;
+  const diffWorkBased = ((currentWorkBased - period.workBased) / period.workBased) * 100;
+  
+  return (
+    <div className="bg-gray-800/50 rounded-lg p-2">
+      <div className="font-medium text-gray-300 mb-1">{period.label}</div>
+      <div className="text-gray-500 mb-2">{period.years}</div>
+      <div className="space-y-1">
+        <div className="flex justify-between">
+          <span className="text-gray-500">Total:</span>
+          <span className="text-gray-300">{formatCompact(period.total)}</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="text-gray-500">Work:</span>
+          <span className="text-green-400">{formatCompact(period.workBased)}</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="text-gray-500">Hum:</span>
+          <span className="text-red-400">{formatCompact(period.humanitarian)}</span>
+        </div>
+      </div>
+      <div className={`mt-2 pt-2 border-t border-gray-700 text-center ${
+        diffTotal >= 0 ? 'text-green-400' : 'text-red-400'
+      }`}>
+        {diffTotal >= 0 ? '↑' : '↓'} {Math.abs(diffTotal).toFixed(0)}% vs scenario
+      </div>
     </div>
   );
 }

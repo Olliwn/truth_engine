@@ -248,6 +248,124 @@ export const DEFAULT_IMMIGRATION = {
 };
 
 // ===========================================
+// Historical Immigration Data (Finland)
+// ===========================================
+
+// Total immigration to Finland by year
+export const HISTORICAL_IMMIGRATION: Record<number, number> = {
+  2010: 25636,
+  2011: 29481,
+  2012: 31278,
+  2013: 31941,
+  2014: 31507,
+  2015: 28746,
+  2016: 34905,
+  2017: 31797,
+  2018: 31720,
+  2019: 32758,
+  2020: 28917,
+  2021: 33372,
+  2022: 49998,  // Surge
+  2023: 71918,  // Record high (Ukrainian refugees)
+  2024: 63965,  // Slightly lower
+};
+
+// Estimated breakdown by immigration type (based on Finnish statistics)
+// Note: These are estimates as official breakdowns vary by classification method
+export const HISTORICAL_IMMIGRATION_BY_TYPE: Record<number, {
+  workBased: number;
+  family: number;
+  humanitarian: number;
+  other: number;  // Students, returnees, etc.
+}> = {
+  2015: { workBased: 8000, family: 10000, humanitarian: 3200, other: 7546 },
+  2016: { workBased: 9000, family: 11000, humanitarian: 5500, other: 9405 },
+  2017: { workBased: 9500, family: 10500, humanitarian: 3800, other: 7997 },
+  2018: { workBased: 10000, family: 10000, humanitarian: 3500, other: 8220 },
+  2019: { workBased: 11000, family: 10000, humanitarian: 3300, other: 8458 },
+  2020: { workBased: 9000, family: 9000, humanitarian: 2500, other: 8417 },   // COVID impact
+  2021: { workBased: 11000, family: 10000, humanitarian: 3000, other: 9372 },
+  2022: { workBased: 14000, family: 12000, humanitarian: 12000, other: 11998 }, // Ukraine
+  2023: { workBased: 16000, family: 14000, humanitarian: 28000, other: 13918 }, // Ukraine peak
+  2024: { workBased: 15000, family: 13000, humanitarian: 22000, other: 13965 },
+};
+
+// Reference periods for context
+export const IMMIGRATION_REFERENCE_PERIODS = {
+  '2010s_average': {
+    label: '2010s Average',
+    years: '2010-2019',
+    total: 30000,
+    workBased: 9500,
+    family: 10000,
+    humanitarian: 3500,
+    description: 'Pre-pandemic baseline',
+  },
+  '2022_2024_average': {
+    label: 'Recent (2022-24)',
+    years: '2022-2024',
+    total: 62000,
+    workBased: 15000,
+    family: 13000,
+    humanitarian: 21000,
+    description: 'Post-pandemic surge, Ukrainian refugees',
+  },
+  'peak_2023': {
+    label: '2023 Peak',
+    years: '2023',
+    total: 72000,
+    workBased: 16000,
+    family: 14000,
+    humanitarian: 28000,
+    description: 'Record year (Ukrainian refugee wave)',
+  },
+};
+
+// Net migration (immigrants - emigrants)
+export const HISTORICAL_NET_MIGRATION: Record<number, number> = {
+  2010: 13754,
+  2015: 12441,
+  2018: 15997,
+  2019: 17547,
+  2020: 14103,
+  2021: 22480,
+  2022: 60353,  // Record net migration
+  2023: 38156,
+  2024: 26894,
+};
+
+// Helper function to get average immigration for a period
+export function getAverageImmigration(startYear: number, endYear: number): {
+  total: number;
+  workBased: number;
+  family: number;
+  humanitarian: number;
+} {
+  let count = 0;
+  let totals = { total: 0, workBased: 0, family: 0, humanitarian: 0 };
+  
+  for (let year = startYear; year <= endYear; year++) {
+    const byType = HISTORICAL_IMMIGRATION_BY_TYPE[year];
+    if (byType) {
+      totals.total += byType.workBased + byType.family + byType.humanitarian + byType.other;
+      totals.workBased += byType.workBased;
+      totals.family += byType.family;
+      totals.humanitarian += byType.humanitarian;
+      count++;
+    }
+  }
+  
+  if (count === 0) return { total: 0, workBased: 0, family: 0, humanitarian: 0 };
+  
+  return {
+    total: Math.round(totals.total / count),
+    workBased: Math.round(totals.workBased / count),
+    family: Math.round(totals.family / count),
+    humanitarian: Math.round(totals.humanitarian / count),
+  };
+}
+
+// ===========================================
 // Combined Demographic Scenario
 // ===========================================
 
