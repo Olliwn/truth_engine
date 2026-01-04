@@ -166,7 +166,8 @@ export interface PopulationSimulationResult {
 function calculatePersonYearFiscal(
   age: number,
   incomeDecile: number,
-  year: number
+  year: number,
+  gdpIncomeMultiplier: number = 1.0  // Wages grow with cumulative GDP growth
 ): { contributions: number; stateCosts: number; breakdown: Record<string, number> } {
   const decileChar = DECILE_CHARACTERISTICS[incomeDecile];
   const workStartAge = 19; // Simplified
@@ -210,7 +211,8 @@ function calculatePersonYearFiscal(
   // Pension costs (only for retirees)
   if (age >= retirementAge) {
     // Pension based on lifetime earnings (simplified)
-    const peakIncome = INCOME_BY_DECILE[incomeDecile];
+    // Pensions grow with GDP as they are indexed to wages
+    const peakIncome = INCOME_BY_DECILE[incomeDecile] * gdpIncomeMultiplier;
     const yearsWorked = Math.max(0, retirementAge - workStartAge - decileChar.avgUnemploymentYears);
     const avgIncome = peakIncome * 0.7; // Lifetime average ~70% of peak
     const pensionAccrual = avgIncome * PENSION_SYSTEM.accrualRates.age17to52 * yearsWorked;
@@ -218,7 +220,7 @@ function calculatePersonYearFiscal(
     // Apply life expectancy coefficient
     breakdown.pension = Math.max(
       pensionAccrual * 0.7, // Simplified pension calculation
-      PENSION_SYSTEM.nationalPension.single * 12 // Minimum pension
+      PENSION_SYSTEM.nationalPension.single * 12 * gdpIncomeMultiplier // Minimum pension also indexed
     );
   }
   
@@ -244,7 +246,9 @@ function calculatePersonYearFiscal(
     const employmentProbability = 1 - decileChar.avgUnemploymentYears / (retirementAge - workStartAge);
     
     if (employmentProbability > 0) {
-      const income = calculateIncomeByAge(age, workStartAge, incomeDecile, true);
+      const baseIncome = calculateIncomeByAge(age, workStartAge, incomeDecile, true);
+      // Apply GDP growth to wages - real wages grow with productivity/GDP
+      const income = baseIncome * gdpIncomeMultiplier;
       const effectiveIncome = income * employmentProbability;
       
       if (effectiveIncome > 0) {
@@ -485,7 +489,8 @@ export function simulatePopulationYear(
     for (let decile = 1; decile <= 10; decile++) {
       const decilePopulation = cohortSize * 0.10;
       
-      const personYear = calculatePersonYearFiscal(age, decile, year);
+      // Pass GDP multiplier so wages/pensions grow with cumulative GDP growth
+      const personYear = calculatePersonYearFiscal(age, decile, year, cumulativeGdpMultiplier);
       
       totalContributions += decilePopulation * personYear.contributions;
       totalStateCosts += decilePopulation * personYear.stateCosts;
@@ -530,40 +535,46 @@ export function simulatePopulationYear(
     currentGDP = projectGDP(baseYear, year, growthRate, baseGDP);
   }
   
-  // Apply GDP growth multiplier to fiscal figures
-  // Revenues grow with GDP (elasticity ~1.0)
-  // Costs grow with GDP + sector-specific premiums
+  // Apply GDP growth effects to fiscal figures
+  // Note: Wages and pensions already grow with cumulativeGdpMultiplier (applied in calculatePersonYearFiscal)
+  // So contributions, pensions, and benefits are ALREADY GDP-adjusted
+  // 
+  // Only apply ADDITIONAL growth premiums for sectors that grow faster than GDP:
+  // - Healthcare: Baumol's disease (labor-intensive services grow faster than productivity)
+  // - Education: Already baked into wage-based calculations
   const yearsFromBase = Math.max(0, year - baseYear);
   
-  // Revenue multiplier: grows with GDP
-  const revenueMultiplier = cumulativeGdpMultiplier * gdpScenario.revenueElasticity;
+  // Contributions: Already GDP-adjusted via wage growth
+  // Apply only revenue elasticity deviation from 1.0
+  const revenueElasticityAdjustment = Math.pow(gdpScenario.revenueElasticity, yearsFromBase);
   
-  // Cost multipliers: different sectors grow at different rates
-  // Healthcare and pensions grow faster than GDP (aging + Baumol's disease)
-  const healthcareCostMultiplier = cumulativeGdpMultiplier * 
-    Math.pow(1 + gdpScenario.healthcareCostGrowthPremium, yearsFromBase);
-  const pensionCostMultiplier = cumulativeGdpMultiplier * 
-    Math.pow(1 + gdpScenario.pensionCostGrowthPremium, yearsFromBase);
-  // Education and benefits roughly track GDP
-  const baseCostMultiplier = cumulativeGdpMultiplier;
+  // Healthcare: Apply premium for Baumol's disease (costs grow faster than GDP)
+  const healthcarePremiumMultiplier = Math.pow(1 + gdpScenario.healthcareCostGrowthPremium, yearsFromBase);
   
-  // Apply multipliers (only for future years)
+  // Pensions: Already GDP-adjusted via pension calculation, apply only premium
+  const pensionPremiumMultiplier = Math.pow(1 + gdpScenario.pensionCostGrowthPremium, yearsFromBase);
+  
+  // Apply adjustments (only for future years)
+  // Contributions already have GDP growth baked in, just apply elasticity adjustment
   const gdpAdjustedContributions = year > baseYear 
-    ? totalContributions * revenueMultiplier 
+    ? totalContributions * revenueElasticityAdjustment
     : totalContributions;
   
+  // Healthcare needs GDP multiplier (not in wage calc) + premium
   const gdpAdjustedHealthcare = year > baseYear 
-    ? healthcareCosts * healthcareCostMultiplier 
+    ? healthcareCosts * cumulativeGdpMultiplier * healthcarePremiumMultiplier 
     : healthcareCosts;
+  
+  // Pensions already GDP-adjusted via pension calculation, add premium
   const gdpAdjustedPensions = year > baseYear 
-    ? pensionCosts * pensionCostMultiplier 
+    ? pensionCosts * pensionPremiumMultiplier 
     : pensionCosts;
-  const gdpAdjustedEducation = year > baseYear 
-    ? educationCosts * baseCostMultiplier 
-    : educationCosts;
-  const gdpAdjustedBenefits = year > baseYear 
-    ? benefitCosts * baseCostMultiplier 
-    : benefitCosts;
+  
+  // Education already tracks wages via cost calculation
+  const gdpAdjustedEducation = educationCosts * (year > baseYear ? cumulativeGdpMultiplier : 1);
+  
+  // Benefits already GDP-adjusted via wage-based calculation
+  const gdpAdjustedBenefits = benefitCosts;
   
   const gdpAdjustedCosts = gdpAdjustedHealthcare + gdpAdjustedPensions + 
     gdpAdjustedEducation + gdpAdjustedBenefits;
