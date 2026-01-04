@@ -380,6 +380,10 @@ export interface DemographicScenario {
     family: number;
     humanitarian: number;
   };
+  gdp: {
+    scenarioId: string;
+    customGrowthRate: number | null;  // If set, overrides scenario
+  };
 }
 
 export const DEFAULT_SCENARIO: DemographicScenario = {
@@ -389,7 +393,217 @@ export const DEFAULT_SCENARIO: DemographicScenario = {
     transitionYear: 2060,
   },
   immigration: { ...DEFAULT_IMMIGRATION },
+  gdp: {
+    scenarioId: 'slow_growth',  // DEFAULT_GDP_SCENARIO value
+    customGrowthRate: null,
+  },
 };
+
+// ===========================================
+// GDP Growth Scenarios
+// ===========================================
+
+export interface GDPScenario {
+  id: string;
+  name: string;
+  description: string;
+  realGrowthRate: number;          // Annual real GDP growth rate (e.g., 0.015 = 1.5%)
+  revenueElasticity: number;       // How much revenues grow per 1% GDP growth (typically ~1.0)
+  healthcareCostGrowthPremium: number;  // Extra growth rate for healthcare above GDP (Baumol's disease)
+  pensionCostGrowthPremium: number;     // Extra growth rate for pensions above GDP
+  color: string;
+}
+
+export const GDP_SCENARIOS: Record<string, GDPScenario> = {
+  stagnation: {
+    id: 'stagnation',
+    name: 'Stagnation',
+    description: 'No real GDP growth (0%/year)',
+    realGrowthRate: 0.00,
+    revenueElasticity: 1.0,
+    healthcareCostGrowthPremium: 0.02,  // Healthcare costs still grow 2% faster than GDP
+    pensionCostGrowthPremium: 0.01,
+    color: '#6B7280',
+  },
+  slow_growth: {
+    id: 'slow_growth',
+    name: 'Slow Growth',
+    description: 'Modest growth (1%/year) - Finnish recent trend',
+    realGrowthRate: 0.01,
+    revenueElasticity: 1.0,
+    healthcareCostGrowthPremium: 0.02,
+    pensionCostGrowthPremium: 0.01,
+    color: '#F59E0B',
+  },
+  moderate_growth: {
+    id: 'moderate_growth',
+    name: 'Moderate Growth',
+    description: 'Historical average (1.5%/year)',
+    realGrowthRate: 0.015,
+    revenueElasticity: 1.0,
+    healthcareCostGrowthPremium: 0.015,
+    pensionCostGrowthPremium: 0.01,
+    color: '#3B82F6',
+  },
+  strong_growth: {
+    id: 'strong_growth',
+    name: 'Strong Growth',
+    description: 'Optimistic scenario (2.5%/year)',
+    realGrowthRate: 0.025,
+    revenueElasticity: 1.0,
+    healthcareCostGrowthPremium: 0.01,
+    pensionCostGrowthPremium: 0.005,
+    color: '#22C55E',
+  },
+  productivity_boom: {
+    id: 'productivity_boom',
+    name: 'Productivity Boom',
+    description: 'Tech/AI-driven growth (3.5%/year)',
+    realGrowthRate: 0.035,
+    revenueElasticity: 1.05,  // Slightly higher - more corporate profits
+    healthcareCostGrowthPremium: 0.005,  // Tech might improve healthcare efficiency
+    pensionCostGrowthPremium: 0.005,
+    color: '#8B5CF6',
+  },
+};
+
+export const DEFAULT_GDP_SCENARIO = 'slow_growth';
+
+// Historical Finnish GDP data (billions EUR, current prices)
+export const HISTORICAL_GDP: Record<number, number> = {
+  1990: 89.4,
+  1995: 96.1,
+  2000: 132.2,
+  2005: 164.4,
+  2010: 187.1,
+  2015: 209.6,
+  2018: 233.5,
+  2019: 240.1,
+  2020: 236.3,  // COVID dip
+  2021: 251.4,
+  2022: 268.7,
+  2023: 275.0,
+  2024: 282.0,  // Estimate
+};
+
+// Historical Finnish government spending as % of GDP
+export const HISTORICAL_GOVT_SPENDING_PCT: Record<number, number> = {
+  1990: 45.5,
+  1995: 61.5,  // Post-recession peak
+  2000: 48.3,
+  2005: 50.0,
+  2010: 55.1,
+  2015: 57.0,
+  2018: 53.4,
+  2019: 53.2,
+  2020: 57.3,  // COVID spike
+  2021: 55.6,
+  2022: 53.4,
+  2023: 54.5,
+  2024: 55.0,  // Estimate
+};
+
+// Get GDP for a specific year (with interpolation)
+export function getHistoricalGDP(year: number): number {
+  const years = Object.keys(HISTORICAL_GDP).map(Number).sort((a, b) => a - b);
+  
+  if (year <= years[0]) return HISTORICAL_GDP[years[0]];
+  if (year >= years[years.length - 1]) return HISTORICAL_GDP[years[years.length - 1]];
+  
+  for (let i = 0; i < years.length - 1; i++) {
+    if (year >= years[i] && year < years[i + 1]) {
+      const ratio = (year - years[i]) / (years[i + 1] - years[i]);
+      return HISTORICAL_GDP[years[i]] + 
+        (HISTORICAL_GDP[years[i + 1]] - HISTORICAL_GDP[years[i]]) * ratio;
+    }
+  }
+  return HISTORICAL_GDP[2024];
+}
+
+// Calculate GDP for a future year given a growth scenario
+export function projectGDP(
+  baseYear: number,
+  targetYear: number,
+  growthRate: number,
+  baseGDP?: number
+): number {
+  const startGDP = baseGDP ?? getHistoricalGDP(baseYear);
+  const years = targetYear - baseYear;
+  return startGDP * Math.pow(1 + growthRate, years);
+}
+
+// Calculate the GDP growth rate needed to balance the budget by target year
+export function calculateBreakevenGrowthRate(
+  currentDeficit: number,           // Deficit in €B
+  currentGDP: number,               // GDP in €B
+  targetYear: number,
+  currentYear: number = 2024,
+  revenueElasticity: number = 1.0,
+  avgCostGrowthPremium: number = 0.015  // Avg of healthcare + pension premiums
+): number {
+  // We need revenue growth to outpace cost growth enough to close the deficit
+  // Let D = deficit, G = GDP, r = revenue growth, c = cost growth
+  // At balance: revenue_growth_per_year > cost_growth_per_year by enough to close D
+  
+  // Simplified model:
+  // deficit as % of GDP
+  const deficitRatio = currentDeficit / currentGDP;
+  
+  // Years to close the gap
+  const years = targetYear - currentYear;
+  if (years <= 0) return Infinity;
+  
+  // Required net improvement per year (assuming linear closure)
+  // This is a simplification - reality is compounding
+  const requiredAnnualImprovement = deficitRatio / years;
+  
+  // Growth rate needed where:
+  // GDP_growth * revenue_elasticity - (GDP_growth + cost_premium) = required_improvement
+  // g * 1.0 - g - premium = required_improvement
+  // -premium = required_improvement (impossible if costs grow faster)
+  
+  // More accurate: we need compounding revenue growth to close cumulative gap
+  // This is a rough approximation
+  const estimatedGrowthNeeded = (requiredAnnualImprovement + avgCostGrowthPremium) / 
+    (revenueElasticity - 1 + 0.3); // The 0.3 accounts for non-linear effects
+  
+  // Clamp to reasonable bounds
+  return Math.min(0.10, Math.max(0, estimatedGrowthNeeded));
+}
+
+// Second-order effect: government deficit spending as % of GDP
+// This highlights that cutting deficit would itself reduce GDP
+export interface SecondOrderEffects {
+  deficitAsPercentOfGDP: number;
+  fiscalMultiplier: number;        // ~0.5-1.5 for developed economies
+  gdpReductionIfBalanced: number;  // % GDP reduction if deficit eliminated
+  effectiveGrowthNeeded: number;   // Growth needed accounting for this effect
+}
+
+export function calculateSecondOrderEffects(
+  deficit: number,       // in €B (negative = deficit)
+  gdp: number,          // in €B
+  baseGrowthNeeded: number,
+  fiscalMultiplier: number = 0.8  // Conservative estimate for Finland
+): SecondOrderEffects {
+  // Deficit is negative, so abs for percentage
+  const deficitAsPercentOfGDP = (Math.abs(deficit) / gdp) * 100;
+  
+  // If we cut the deficit entirely, GDP would fall by multiplier * deficit
+  const gdpReductionIfBalanced = deficitAsPercentOfGDP * fiscalMultiplier;
+  
+  // This means we need even more private sector growth to compensate
+  // If deficit = 3% of GDP and multiplier = 0.8, eliminating it reduces GDP by 2.4%
+  // So to maintain GDP level while balancing, we need 2.4% extra private growth
+  const effectiveGrowthNeeded = baseGrowthNeeded + (gdpReductionIfBalanced / 100);
+  
+  return {
+    deficitAsPercentOfGDP,
+    fiscalMultiplier,
+    gdpReductionIfBalanced,
+    effectiveGrowthNeeded,
+  };
+}
 
 // ===========================================
 // Fiscal Impact Calculations

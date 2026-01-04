@@ -26,8 +26,11 @@ import {
   BIRTH_RATE_PRESETS,
   IMMIGRATION_PROFILES,
   DEFAULT_IMMIGRATION,
+  GDP_SCENARIOS,
+  DEFAULT_GDP_SCENARIO,
+  HISTORICAL_GDP,
 } from '@/lib/populationSimulator';
-import type { AnnualPopulationResult, DemographicScenario } from '@/lib/populationSimulator';
+import type { AnnualPopulationResult, DemographicScenario, GDPScenario } from '@/lib/populationSimulator';
 import {
   IMMIGRATION_REFERENCE_PERIODS,
   HISTORICAL_IMMIGRATION,
@@ -79,6 +82,12 @@ export default function SigmaPage() {
   const [humanitarianImmigration, setHumanitarianImmigration] = useState(DEFAULT_IMMIGRATION.humanitarian);
   const [showImmigrationPanel, setShowImmigrationPanel] = useState(true);
   
+  // GDP scenario state
+  const [gdpScenarioId, setGdpScenarioId] = useState<string>(DEFAULT_GDP_SCENARIO);
+  const [useCustomGrowth, setUseCustomGrowth] = useState(false);
+  const [customGrowthRate, setCustomGrowthRate] = useState(0.015);
+  const [showGdpPanel, setShowGdpPanel] = useState(true);
+  
   // Build scenario from state
   const scenario: DemographicScenario = useMemo(() => {
     const preset = BIRTH_RATE_PRESETS[birthRatePreset];
@@ -93,9 +102,14 @@ export default function SigmaPage() {
         family: familyImmigration,
         humanitarian: humanitarianImmigration,
       },
+      gdp: {
+        scenarioId: gdpScenarioId,
+        customGrowthRate: useCustomGrowth ? customGrowthRate : null,
+      },
     };
   }, [birthRatePreset, customTFR, transitionYear, useCustomBirthRate, 
-      workBasedImmigration, familyImmigration, humanitarianImmigration]);
+      workBasedImmigration, familyImmigration, humanitarianImmigration,
+      gdpScenarioId, useCustomGrowth, customGrowthRate]);
   
   // Run simulation with scenario
   const simulationResult = useMemo(() => 
@@ -140,14 +154,31 @@ export default function SigmaPage() {
   
   const { annualResults, summary } = simulationResult;
   
+  // Get current GDP scenario details
+  const activeGdpScenario = GDP_SCENARIOS[gdpScenarioId];
+  const effectiveGrowthRate = useCustomGrowth ? customGrowthRate : activeGdpScenario?.realGrowthRate || 0.01;
+  
   // Prepare chart data
   const fiscalChartData = annualResults.map(r => ({
     year: r.year,
     contributions: r.totalContributions,
     costs: r.totalStateCosts,
     balance: r.netFiscalBalance,
+    gdpAdjustedBalance: r.gdpAdjustedBalance,
     dependencyRatio: r.oldAgeDependencyRatio,
     tfr: r.tfr,
+    gdp: r.gdp,
+    deficitPctGDP: r.deficitPctGDP,
+  }));
+  
+  // GDP and fiscal sustainability chart data
+  const gdpChartData = annualResults.map(r => ({
+    year: r.year,
+    gdp: r.gdp,
+    baseBalance: r.netFiscalBalance,
+    gdpAdjustedBalance: r.gdpAdjustedBalance,
+    deficitPctGDP: r.deficitPctGDP,
+    govtSpendingPct: r.govtSpendingPctGDP,
   }));
   
   const demographicChartData = annualResults.map(r => ({
@@ -240,7 +271,7 @@ export default function SigmaPage() {
           </p>
 
           {/* Key Metrics */}
-          <div className="grid md:grid-cols-5 gap-4 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-6 gap-4 max-w-7xl mx-auto">
             <MetricCard
               label="Birth Rate (TFR)"
               value={currentYearData.tfr.toFixed(2)}
@@ -260,16 +291,22 @@ export default function SigmaPage() {
               color="blue"
             />
             <MetricCard
-              label="Annual Fiscal Balance"
+              label="Fiscal Balance (base)"
               value={formatMillions(currentYearData.netFiscalBalance)}
               sublabel={currentYearData.netFiscalBalance >= 0 ? 'surplus' : 'deficit'}
               color={currentYearData.netFiscalBalance >= 0 ? 'green' : 'red'}
             />
             <MetricCard
-              label="Immigration Impact"
-              value={formatMillions(totalImmigrationImpact)}
-              sublabel={`net ${totalImmigrationImpact >= 0 ? '+' : ''}`}
-              color={totalImmigrationImpact >= 0 ? 'green' : 'red'}
+              label="With GDP Growth"
+              value={formatMillions(currentYearData.gdpAdjustedBalance)}
+              sublabel={`${(effectiveGrowthRate * 100).toFixed(1)}%/yr`}
+              color={currentYearData.gdpAdjustedBalance >= 0 ? 'green' : 'amber'}
+            />
+            <MetricCard
+              label="Deficit % GDP"
+              value={`${currentYearData.deficitPctGDP.toFixed(1)}%`}
+              sublabel={`€${currentYearData.gdp.toFixed(0)}B GDP`}
+              color={currentYearData.deficitPctGDP >= 0 ? 'green' : currentYearData.deficitPctGDP >= -3 ? 'amber' : 'red'}
             />
           </div>
         </div>
@@ -574,6 +611,198 @@ export default function SigmaPage() {
               </div>
             )}
           </div>
+          
+          {/* GDP Growth Scenario */}
+          <div className="card p-6">
+            <button
+              onClick={() => setShowGdpPanel(!showGdpPanel)}
+              className="w-full flex items-center justify-between mb-4"
+            >
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <span className="text-2xl">📈</span>
+                GDP Growth Scenario
+              </h3>
+              <span className="text-gray-500">{showGdpPanel ? '▼' : '▶'}</span>
+            </button>
+            
+            {showGdpPanel && (
+              <div className="space-y-4">
+                {/* Preset Buttons */}
+                <div className="flex flex-wrap gap-2">
+                  {Object.values(GDP_SCENARIOS).map((gdpScenario) => (
+                    <button
+                      key={gdpScenario.id}
+                      onClick={() => {
+                        setGdpScenarioId(gdpScenario.id);
+                        setUseCustomGrowth(false);
+                        setCustomGrowthRate(gdpScenario.realGrowthRate);
+                      }}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        gdpScenarioId === gdpScenario.id && !useCustomGrowth
+                          ? 'bg-purple-600 text-white'
+                          : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                      }`}
+                      style={{ borderLeft: `4px solid ${gdpScenario.color}` }}
+                    >
+                      {gdpScenario.name}
+                      <span className="ml-2 text-xs opacity-70">{(gdpScenario.realGrowthRate * 100).toFixed(1)}%</span>
+                    </button>
+                  ))}
+                </div>
+                
+                {/* Custom Growth Rate */}
+                <div className="flex items-center gap-2 mt-4">
+                  <input
+                    type="checkbox"
+                    checked={useCustomGrowth}
+                    onChange={(e) => setUseCustomGrowth(e.target.checked)}
+                    className="rounded bg-gray-800 border-gray-700"
+                  />
+                  <span className="text-sm text-gray-400">Custom growth rate</span>
+                </div>
+                
+                {useCustomGrowth && (
+                  <div className="mt-2">
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="text-gray-400">Annual Real GDP Growth</span>
+                      <span className="text-purple-400 font-semibold">{(customGrowthRate * 100).toFixed(1)}%</span>
+                    </div>
+                    <input
+                      type="range"
+                      min={-0.02}
+                      max={0.05}
+                      step={0.001}
+                      value={customGrowthRate}
+                      onChange={(e) => setCustomGrowthRate(Number(e.target.value))}
+                      className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
+                    />
+                    <div className="flex justify-between text-xs text-gray-600 mt-1">
+                      <span>-2% (recession)</span>
+                      <span>1.5% (hist avg)</span>
+                      <span>5% (boom)</span>
+                    </div>
+                  </div>
+                )}
+                
+                {/* GDP Scenario Description */}
+                <div className="mt-4 p-3 bg-gray-900/50 rounded-lg">
+                  <p className="text-sm text-gray-400">
+                    {useCustomGrowth ? (
+                      `Custom growth rate: ${(customGrowthRate * 100).toFixed(1)}% real GDP growth per year from 2024.`
+                    ) : (
+                      activeGdpScenario?.description || 'Select a GDP growth scenario.'
+                    )}
+                  </p>
+                </div>
+                
+                {/* Second-order effects warning */}
+                {summary.secondOrderEffects && (
+                  <div className="mt-4 p-4 bg-amber-950/30 border border-amber-800/50 rounded-lg">
+                    <h4 className="text-amber-400 font-semibold text-sm mb-2 flex items-center gap-2">
+                      ⚠️ Second-Order Effects (Fiscal Multiplier)
+                    </h4>
+                    <p className="text-xs text-gray-400 mb-3">
+                      Government deficit spending contributes to GDP. Eliminating the deficit would itself reduce GDP.
+                    </p>
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <div className="text-gray-500">Current deficit</div>
+                        <div className="text-red-400 font-semibold">
+                          {summary.secondOrderEffects.deficitAsPercentOfGDP.toFixed(1)}% of GDP
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-gray-500">If balanced, GDP would fall</div>
+                        <div className="text-amber-400 font-semibold">
+                          ~{summary.secondOrderEffects.gdpReductionIfBalanced.toFixed(1)}%
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-gray-500">Basic growth needed</div>
+                        <div className="text-gray-300 font-semibold">
+                          {summary.breakevenGrowthRate 
+                            ? `${(summary.breakevenGrowthRate * 100).toFixed(1)}%/year`
+                            : 'N/A'}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-gray-500">Effective growth needed</div>
+                        <div className="text-purple-400 font-semibold">
+                          {summary.secondOrderEffects.effectiveGrowthNeeded
+                            ? `${(summary.secondOrderEffects.effectiveGrowthNeeded * 100).toFixed(1)}%/year`
+                            : 'N/A'}
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-[10px] text-gray-500 mt-3">
+                      * Fiscal multiplier assumed at 0.8 (conservative for developed economies)
+                    </p>
+                  </div>
+                )}
+                
+                {/* GDP projection mini-chart */}
+                <div className="mt-4 h-32 bg-gray-900/50 rounded-lg p-2">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <ComposedChart data={gdpChartData.filter(d => d.year >= 2010)}>
+                      <XAxis dataKey="year" tick={{ fontSize: 10 }} stroke="#6B7280" />
+                      <YAxis 
+                        yAxisId="gdp"
+                        tick={{ fontSize: 10 }} 
+                        stroke="#6B7280"
+                        tickFormatter={(v) => `€${v}B`}
+                      />
+                      <YAxis 
+                        yAxisId="pct"
+                        orientation="right"
+                        tick={{ fontSize: 10 }} 
+                        stroke="#6B7280"
+                        tickFormatter={(v) => `${v.toFixed(0)}%`}
+                        domain={[-10, 10]}
+                      />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: '#1F2937',
+                          border: '1px solid #374151',
+                          borderRadius: '8px',
+                          fontSize: '12px',
+                        }}
+                        formatter={(value, name) => {
+                          if (name === 'GDP') return [`€${(value as number).toFixed(0)}B`, name];
+                          if (name === 'Deficit % GDP') return [`${(value as number).toFixed(1)}%`, name];
+                          return [value, name];
+                        }}
+                      />
+                      <ReferenceLine yAxisId="pct" y={0} stroke="#6B7280" strokeDasharray="3 3" />
+                      <ReferenceLine x={selectedYear} stroke="#F59E0B" strokeWidth={2} />
+                      <ReferenceLine x={2024} stroke="#A855F7" strokeDasharray="3 3" label={{ value: 'Now', fontSize: 9, fill: '#A855F7' }} />
+                      <Area 
+                        yAxisId="gdp"
+                        type="monotone" 
+                        dataKey="gdp" 
+                        fill="#8B5CF6"
+                        fillOpacity={0.2}
+                        stroke="#8B5CF6" 
+                        strokeWidth={2}
+                        name="GDP"
+                      />
+                      <Line
+                        yAxisId="pct"
+                        type="monotone"
+                        dataKey="deficitPctGDP"
+                        stroke="#EF4444"
+                        strokeWidth={2}
+                        dot={false}
+                        name="Deficit % GDP"
+                      />
+                    </ComposedChart>
+                  </ResponsiveContainer>
+                </div>
+                <p className="text-[10px] text-gray-600 text-center">
+                  GDP projection and deficit as % of GDP (historical 2010-2024, projected 2025-2060)
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
@@ -717,7 +946,7 @@ export default function SigmaPage() {
                     borderRadius: '8px',
                   }}
                   formatter={(value, name) => {
-                    if (name === 'tfr') return [(value as number).toFixed(2), 'Birth Rate (TFR)'];
+                    if (name === 'Birth Rate (TFR)') return [(value as number).toFixed(2), name];
                     if (name === 'dependencyRatio') return [`${(value as number).toFixed(1)}%`, 'Dependency Ratio'];
                     return [`€${((value as number)/1000).toFixed(1)}B`, name];
                   }}
@@ -726,6 +955,7 @@ export default function SigmaPage() {
                 <ReferenceLine yAxisId="left" y={0} stroke="#6B7280" strokeDasharray="3 3" />
                 <ReferenceLine yAxisId="right" y={2.1} stroke="#22C55E" strokeDasharray="3 3" />
                 <ReferenceLine x={selectedYear} stroke="#F59E0B" strokeWidth={2} />
+                <ReferenceLine x={2024} stroke="#A855F7" strokeDasharray="3 3" />
                 <Area
                   yAxisId="left"
                   type="monotone"
@@ -748,9 +978,19 @@ export default function SigmaPage() {
                   yAxisId="left"
                   type="monotone"
                   dataKey="balance"
-                  name="Net Balance"
+                  name="Net Balance (base)"
                   stroke="#A855F7"
+                  strokeWidth={2}
+                  dot={false}
+                />
+                <Line
+                  yAxisId="left"
+                  type="monotone"
+                  dataKey="gdpAdjustedBalance"
+                  name={`With ${(effectiveGrowthRate * 100).toFixed(1)}% GDP growth`}
+                  stroke="#8B5CF6"
                   strokeWidth={3}
+                  strokeDasharray="5 5"
                   dot={false}
                 />
                 <Line
@@ -767,7 +1007,7 @@ export default function SigmaPage() {
             </ResponsiveContainer>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-6 mt-6">
+          <div className="grid md:grid-cols-4 gap-4 mt-6">
             <div className="card p-4 text-center">
               <div className="text-sm text-gray-500 uppercase tracking-wide">Peak Surplus</div>
               <div className="text-2xl font-bold text-green-400">{summary.peakSurplusYear}</div>
@@ -779,12 +1019,66 @@ export default function SigmaPage() {
               <div className="text-sm text-gray-400">when costs exceed contributions</div>
             </div>
             <div className="card p-4 text-center">
-              <div className="text-sm text-gray-500 uppercase tracking-wide">Cumulative 1990-2060</div>
+              <div className="text-sm text-gray-500 uppercase tracking-wide">Cumulative (base)</div>
               <div className={`text-2xl font-bold ${summary.cumulativeBalance >= 0 ? 'text-green-400' : 'text-red-400'}`}>
                 {formatMillions(summary.cumulativeBalance)}
               </div>
-              <div className="text-sm text-gray-400">total balance</div>
+              <div className="text-sm text-gray-400">1990-2060</div>
             </div>
+            <div className="card p-4 text-center bg-purple-950/20">
+              <div className="text-sm text-gray-500 uppercase tracking-wide">With GDP Growth</div>
+              <div className={`text-2xl font-bold ${summary.gdpAdjustedCumulativeBalance >= 0 ? 'text-green-400' : 'text-amber-400'}`}>
+                {formatMillions(summary.gdpAdjustedCumulativeBalance)}
+              </div>
+              <div className="text-sm text-gray-400">{(effectiveGrowthRate * 100).toFixed(1)}%/year</div>
+            </div>
+          </div>
+          
+          {/* Breakeven Growth Rate Analysis */}
+          <div className="mt-6 p-4 bg-gradient-to-r from-purple-950/30 to-transparent rounded-lg border border-purple-800/30">
+            <h4 className="text-purple-400 font-semibold mb-3 flex items-center gap-2">
+              🎯 GDP Growth Required to Balance Budget
+            </h4>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div>
+                <div className="text-sm text-gray-500 mb-1">Basic breakeven growth (by 2060)</div>
+                <div className="text-2xl font-bold text-gray-300">
+                  {summary.breakevenGrowthRate 
+                    ? `${(summary.breakevenGrowthRate * 100).toFixed(1)}%`
+                    : 'N/A'}/year
+                </div>
+                <div className="text-xs text-gray-600">Required to close deficit gap</div>
+              </div>
+              <div>
+                <div className="text-sm text-gray-500 mb-1">Accounting for fiscal multiplier</div>
+                <div className="text-2xl font-bold text-purple-400">
+                  {summary.secondOrderEffects?.effectiveGrowthNeeded 
+                    ? `${(summary.secondOrderEffects.effectiveGrowthNeeded * 100).toFixed(1)}%`
+                    : 'N/A'}/year
+                </div>
+                <div className="text-xs text-gray-600">Deficit cut reduces GDP by {summary.secondOrderEffects?.gdpReductionIfBalanced.toFixed(1) || '?'}%</div>
+              </div>
+              <div>
+                <div className="text-sm text-gray-500 mb-1">Your scenario</div>
+                <div className={`text-2xl font-bold ${
+                  effectiveGrowthRate >= (summary.secondOrderEffects?.effectiveGrowthNeeded || 0)
+                    ? 'text-green-400'
+                    : 'text-amber-400'
+                }`}>
+                  {(effectiveGrowthRate * 100).toFixed(1)}%/year
+                </div>
+                <div className="text-xs text-gray-600">
+                  {effectiveGrowthRate >= (summary.secondOrderEffects?.effectiveGrowthNeeded || 0)
+                    ? '✓ Potentially sustainable'
+                    : '⚠ Below breakeven threshold'}
+                </div>
+              </div>
+            </div>
+            <p className="text-xs text-gray-500 mt-4">
+              <strong>Note:</strong> The fiscal multiplier effect means that cutting government spending (to balance the budget) 
+              would itself reduce GDP. This creates a &quot;moving target&quot; — the more you cut, the more the economy shrinks, 
+              requiring even higher private sector growth to compensate. Finland&apos;s historical real GDP growth averaged ~1.5%/year.
+            </p>
           </div>
         </section>
 
@@ -985,7 +1279,7 @@ export default function SigmaPage() {
         <section className="mt-12 pt-12 border-t border-gray-800">
           <h2 className="text-2xl font-bold mb-6">Methodology</h2>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
               <h3 className="text-lg font-semibold text-amber-400 mb-3">📊 Birth Rate Model</h3>
               <ul className="text-gray-400 text-sm space-y-2">
@@ -1007,14 +1301,50 @@ export default function SigmaPage() {
             </div>
 
             <div>
+              <h3 className="text-lg font-semibold text-purple-400 mb-3">📈 GDP Growth Model</h3>
+              <ul className="text-gray-400 text-sm space-y-2">
+                <li>• Revenues grow with GDP (elasticity ~1.0)</li>
+                <li>• Healthcare costs: GDP + 1-2% (Baumol)</li>
+                <li>• Pension costs: GDP + 0.5-1%</li>
+                <li>• Fiscal multiplier: 0.8 (second-order)</li>
+              </ul>
+            </div>
+
+            <div>
               <h3 className="text-lg font-semibold text-amber-400 mb-3">⚠️ Limitations</h3>
               <ul className="text-gray-400 text-sm space-y-2">
-                <li>• No productivity growth assumed</li>
+                <li>• GDP growth doesn&apos;t include deficit contribution</li>
                 <li>• Constant tax/benefit rules (2024)</li>
                 <li>• Simplified pension calculation</li>
                 <li>• Immigration cohorts start from 1990</li>
               </ul>
             </div>
+          </div>
+          
+          {/* Second-order effects explanation */}
+          <div className="mt-8 p-6 bg-gray-900/50 rounded-lg border border-gray-800">
+            <h3 className="text-lg font-semibold text-purple-400 mb-3">🔄 Understanding the Fiscal Multiplier (Second-Order Effects)</h3>
+            <p className="text-gray-400 text-sm mb-4">
+              The &quot;breakeven GDP growth&quot; calculation accounts for a critical economic feedback loop:
+            </p>
+            <div className="grid md:grid-cols-3 gap-4 text-sm">
+              <div className="p-3 bg-gray-800/50 rounded-lg">
+                <div className="text-amber-400 font-semibold mb-1">1. Deficit in GDP</div>
+                <p className="text-gray-500">Government deficit spending (G) contributes directly to GDP = C + I + G + (X-M)</p>
+              </div>
+              <div className="p-3 bg-gray-800/50 rounded-lg">
+                <div className="text-amber-400 font-semibold mb-1">2. Cutting the Deficit</div>
+                <p className="text-gray-500">Reducing the deficit removes this GDP contribution, shrinking the economy</p>
+              </div>
+              <div className="p-3 bg-gray-800/50 rounded-lg">
+                <div className="text-amber-400 font-semibold mb-1">3. Moving Target</div>
+                <p className="text-gray-500">Private sector growth must compensate — requiring higher growth than naive calculation suggests</p>
+              </div>
+            </div>
+            <p className="text-gray-500 text-xs mt-4">
+              Example: If deficit = 3% of GDP and fiscal multiplier = 0.8, eliminating the deficit directly reduces GDP by ~2.4%. 
+              To maintain GDP while balancing the budget, private sector activity must grow an additional 2.4% beyond what would otherwise be needed.
+            </p>
           </div>
         </section>
       </div>

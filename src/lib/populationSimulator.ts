@@ -39,6 +39,13 @@ import {
   IMMIGRATION_PROFILES,
   estimateAnnualFiscalImpact,
   getHistoricalTFR,
+  GDP_SCENARIOS,
+  GDPScenario,
+  getHistoricalGDP,
+  projectGDP,
+  calculateBreakevenGrowthRate,
+  calculateSecondOrderEffects,
+  SecondOrderEffects,
 } from './constants/demographicScenarios';
 
 import { calculateTaxes } from './finnishTaxCalculator';
@@ -60,10 +67,15 @@ export interface AnnualPopulationResult {
   dependencyRatio: number;        // (children + elderly) / workingAge
   oldAgeDependencyRatio: number;  // elderly / workingAge
   
-  // Fiscal aggregates (in millions EUR)
+  // Fiscal aggregates (in millions EUR) - BASE (without GDP growth)
   totalContributions: number;
   totalStateCosts: number;
   netFiscalBalance: number;
+  
+  // GDP-adjusted fiscal figures (in millions EUR)
+  gdpAdjustedContributions: number;
+  gdpAdjustedCosts: number;
+  gdpAdjustedBalance: number;
   
   // Per capita metrics
   avgContributionPerWorker: number;
@@ -91,6 +103,12 @@ export interface AnnualPopulationResult {
     family: { count: number; fiscalImpact: number };
     humanitarian: { count: number; fiscalImpact: number };
   };
+  
+  // GDP data
+  gdp: number;                     // GDP in billions EUR
+  gdpGrowthRate: number;           // Applied growth rate this year
+  govtSpendingPctGDP: number;      // Government spending as % of GDP
+  deficitPctGDP: number;           // Deficit as % of GDP (negative = deficit)
 }
 
 export interface PopulationSimulationResult {
@@ -106,6 +124,11 @@ export interface PopulationSimulationResult {
     cumulativeBalance: number;
     avgDependencyRatio: number;
     populationChange: number;
+    // GDP-adjusted summaries
+    gdpAdjustedCumulativeBalance: number;
+    firstGdpAdjustedSurplusYear: number | null;  // Year budget becomes balanced with GDP growth
+    breakevenGrowthRate: number | null;          // Growth rate needed to balance by 2060
+    secondOrderEffects: SecondOrderEffects | null;
   };
 }
 
@@ -365,7 +388,8 @@ function calculateImmigrationImpact(
 export function simulatePopulationYear(
   year: number,
   scenario: DemographicScenario = DEFAULT_SCENARIO,
-  simulationStartYear: number = 1990
+  simulationStartYear: number = 1990,
+  cumulativeGdpMultiplier: number = 1.0  // Passed from range simulation for compounding
 ): AnnualPopulationResult {
   let totalContributions = 0;
   let totalStateCosts = 0;
@@ -383,6 +407,11 @@ export function simulatePopulationYear(
   let children = 0;
   let workingAge = 0;
   let elderly = 0;
+  
+  // Get GDP scenario
+  const gdpScenarioId = scenario.gdp?.scenarioId || 'slow_growth';
+  const gdpScenario = GDP_SCENARIOS[gdpScenarioId] || GDP_SCENARIOS['slow_growth'];
+  const growthRate = scenario.gdp?.customGrowthRate ?? gdpScenario.realGrowthRate;
   
   // Iterate through all ages (0-100)
   for (let age = 0; age <= 100; age++) {
@@ -457,6 +486,65 @@ export function simulatePopulationYear(
   const dependencyRatio = workingAge > 0 ? (children + elderly) / workingAge * 100 : 100;
   const oldAgeDependencyRatio = workingAge > 0 ? elderly / workingAge * 100 : 100;
   
+  // Calculate GDP for this year
+  const baseYear = 2024;
+  const baseGDP = getHistoricalGDP(baseYear);  // ~282 billion EUR
+  let currentGDP: number;
+  
+  if (year <= baseYear) {
+    currentGDP = getHistoricalGDP(year);
+  } else {
+    // Project GDP with growth rate
+    currentGDP = projectGDP(baseYear, year, growthRate, baseGDP);
+  }
+  
+  // Apply GDP growth multiplier to fiscal figures
+  // Revenues grow with GDP (elasticity ~1.0)
+  // Costs grow with GDP + sector-specific premiums
+  const yearsFromBase = Math.max(0, year - baseYear);
+  
+  // Revenue multiplier: grows with GDP
+  const revenueMultiplier = cumulativeGdpMultiplier * gdpScenario.revenueElasticity;
+  
+  // Cost multipliers: different sectors grow at different rates
+  // Healthcare and pensions grow faster than GDP (aging + Baumol's disease)
+  const healthcareCostMultiplier = cumulativeGdpMultiplier * 
+    Math.pow(1 + gdpScenario.healthcareCostGrowthPremium, yearsFromBase);
+  const pensionCostMultiplier = cumulativeGdpMultiplier * 
+    Math.pow(1 + gdpScenario.pensionCostGrowthPremium, yearsFromBase);
+  // Education and benefits roughly track GDP
+  const baseCostMultiplier = cumulativeGdpMultiplier;
+  
+  // Apply multipliers (only for future years)
+  const gdpAdjustedContributions = year > baseYear 
+    ? totalContributions * revenueMultiplier 
+    : totalContributions;
+  
+  const gdpAdjustedHealthcare = year > baseYear 
+    ? healthcareCosts * healthcareCostMultiplier 
+    : healthcareCosts;
+  const gdpAdjustedPensions = year > baseYear 
+    ? pensionCosts * pensionCostMultiplier 
+    : pensionCosts;
+  const gdpAdjustedEducation = year > baseYear 
+    ? educationCosts * baseCostMultiplier 
+    : educationCosts;
+  const gdpAdjustedBenefits = year > baseYear 
+    ? benefitCosts * baseCostMultiplier 
+    : benefitCosts;
+  
+  const gdpAdjustedCosts = gdpAdjustedHealthcare + gdpAdjustedPensions + 
+    gdpAdjustedEducation + gdpAdjustedBenefits;
+  const gdpAdjustedBalance = gdpAdjustedContributions - gdpAdjustedCosts;
+  
+  // Government spending as % of GDP
+  const totalStateCostsInBillions = toMillions(totalStateCosts) / 1000;  // Convert to billions
+  const govtSpendingPctGDP = (totalStateCostsInBillions / currentGDP) * 100;
+  
+  // Deficit as % of GDP
+  const netBalanceInBillions = toMillions(totalContributions - totalStateCosts) / 1000;
+  const deficitPctGDP = (netBalanceInBillions / currentGDP) * 100;
+  
   return {
     year,
     totalPopulation: Math.round(totalPopulation),
@@ -468,6 +556,9 @@ export function simulatePopulationYear(
     totalContributions: toMillions(totalContributions),
     totalStateCosts: toMillions(totalStateCosts),
     netFiscalBalance: toMillions(totalContributions - totalStateCosts),
+    gdpAdjustedContributions: toMillions(gdpAdjustedContributions),
+    gdpAdjustedCosts: toMillions(gdpAdjustedCosts),
+    gdpAdjustedBalance: toMillions(gdpAdjustedBalance),
     avgContributionPerWorker: workingAge > 0 ? totalContributions / workingAge : 0,
     avgCostPerPerson: totalPopulation > 0 ? totalStateCosts / totalPopulation : 0,
     educationCosts: toMillions(educationCosts),
@@ -477,7 +568,7 @@ export function simulatePopulationYear(
     incomeTaxRevenue: toMillions(incomeTaxRevenue),
     socialInsuranceRevenue: toMillions(socialInsuranceRevenue),
     vatRevenue: toMillions(vatRevenue),
-    // New demographic data
+    // Demographic data
     tfr: birthData.tfr,
     annualBirths: birthData.births,
     immigrationFiscalImpact: toMillions(immigrationResult.totalImpact),
@@ -495,6 +586,11 @@ export function simulatePopulationYear(
         fiscalImpact: toMillions(immigrationResult.byType.humanitarian.fiscalImpact),
       },
     },
+    // GDP data
+    gdp: currentGDP,
+    gdpGrowthRate: growthRate,
+    govtSpendingPctGDP,
+    deficitPctGDP,
   };
 }
 
@@ -518,8 +614,21 @@ export function simulatePopulationRange(
   
   const annualResults: AnnualPopulationResult[] = [];
   
+  // Get GDP growth rate for compounding multiplier
+  const gdpScenarioId = scenario.gdp?.scenarioId || 'slow_growth';
+  const gdpScenario = GDP_SCENARIOS[gdpScenarioId] || GDP_SCENARIOS['slow_growth'];
+  const growthRate = scenario.gdp?.customGrowthRate ?? gdpScenario.realGrowthRate;
+  
+  const baseYear = 2024;
+  let cumulativeGdpMultiplier = 1.0;
+  
   for (let year = startYear; year <= endYear; year++) {
-    annualResults.push(simulatePopulationYear(year, scenario, startYear));
+    // Update cumulative multiplier for years after base year
+    if (year > baseYear) {
+      cumulativeGdpMultiplier *= (1 + growthRate);
+    }
+    
+    annualResults.push(simulatePopulationYear(year, scenario, startYear, cumulativeGdpMultiplier));
   }
   
   // Calculate summary statistics
@@ -527,10 +636,13 @@ export function simulatePopulationRange(
   let peakSurplusAmount = -Infinity;
   let firstDeficitYear: number | null = null;
   let cumulativeBalance = 0;
+  let gdpAdjustedCumulativeBalance = 0;
+  let firstGdpAdjustedSurplusYear: number | null = null;
   let totalDependencyRatio = 0;
   
   for (const result of annualResults) {
     cumulativeBalance += result.netFiscalBalance;
+    gdpAdjustedCumulativeBalance += result.gdpAdjustedBalance;
     totalDependencyRatio += result.dependencyRatio;
     
     if (result.netFiscalBalance > peakSurplusAmount) {
@@ -541,11 +653,44 @@ export function simulatePopulationRange(
     if (result.netFiscalBalance < 0 && firstDeficitYear === null) {
       firstDeficitYear = result.year;
     }
+    
+    // Track when GDP-adjusted balance becomes positive (budget balanced with growth)
+    if (result.gdpAdjustedBalance > 0 && result.year > baseYear && firstGdpAdjustedSurplusYear === null) {
+      firstGdpAdjustedSurplusYear = result.year;
+    }
   }
   
   const populationChange = annualResults.length > 1
     ? annualResults[annualResults.length - 1].totalPopulation - annualResults[0].totalPopulation
     : 0;
+  
+  // Calculate breakeven growth rate needed to balance by 2060
+  // Use the current (2024) deficit as the baseline
+  const year2024Data = annualResults.find(r => r.year === 2024);
+  let breakevenGrowthRate: number | null = null;
+  let secondOrderEffects: SecondOrderEffects | null = null;
+  
+  if (year2024Data && year2024Data.netFiscalBalance < 0) {
+    const currentDeficitBillions = year2024Data.netFiscalBalance / 1000;  // Convert millions to billions
+    const avgCostPremium = (gdpScenario.healthcareCostGrowthPremium + gdpScenario.pensionCostGrowthPremium) / 2;
+    
+    breakevenGrowthRate = calculateBreakevenGrowthRate(
+      currentDeficitBillions,
+      year2024Data.gdp,
+      2060,
+      2024,
+      gdpScenario.revenueElasticity,
+      avgCostPremium
+    );
+    
+    // Calculate second-order effects (deficit contribution to GDP)
+    secondOrderEffects = calculateSecondOrderEffects(
+      currentDeficitBillions,
+      year2024Data.gdp,
+      breakevenGrowthRate,
+      0.8  // Conservative fiscal multiplier for Finland
+    );
+  }
   
   return {
     startYear,
@@ -558,6 +703,10 @@ export function simulatePopulationRange(
       cumulativeBalance,
       avgDependencyRatio: totalDependencyRatio / annualResults.length,
       populationChange,
+      gdpAdjustedCumulativeBalance,
+      firstGdpAdjustedSurplusYear,
+      breakevenGrowthRate,
+      secondOrderEffects,
     },
   };
 }
@@ -621,7 +770,20 @@ export {
   BIRTH_RATE_PRESETS,
   IMMIGRATION_PROFILES,
   DEFAULT_IMMIGRATION,
+  GDP_SCENARIOS,
+  DEFAULT_GDP_SCENARIO,
+  HISTORICAL_GDP,
+  getHistoricalGDP,
+  projectGDP,
+  calculateBreakevenGrowthRate,
+  calculateSecondOrderEffects,
 } from './constants/demographicScenarios';
 
-export type { DemographicScenario, BirthRatePreset, ImmigrationProfile } from './constants/demographicScenarios';
+export type { 
+  DemographicScenario, 
+  BirthRatePreset, 
+  ImmigrationProfile,
+  GDPScenario,
+  SecondOrderEffects,
+} from './constants/demographicScenarios';
 
