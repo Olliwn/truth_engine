@@ -103,6 +103,14 @@ export function PopulationTab({
     births: r.annualBirths / 1000,
   }));
 
+  // Immigration chart data
+  const immigrationChartData = annualResults.map(r => ({
+    year: r.year,
+    annualImmigration: r.annualImmigration / 1000,
+    cumulativeImmigration: r.cumulativeImmigration / 1000,
+    foreignBornShare: r.foreignBornShare,
+  }));
+
   return (
     <div className="space-y-6">
       {/* Population Pyramid and Breakdown */}
@@ -320,6 +328,137 @@ export function PopulationTab({
               />
             </ComposedChart>
           </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Immigration Section */}
+      <div className="grid lg:grid-cols-2 gap-6">
+        {/* Immigration Summary */}
+        <div className="bg-gradient-to-br from-blue-950/30 to-gray-900/50 rounded-lg p-4 border border-blue-800/30">
+          <h3 className="text-sm font-semibold text-gray-300 mb-4">
+            ✈️ Immigration & Foreign-Born Population ({selectedYear})
+          </h3>
+          
+          <div className="space-y-4">
+            {/* Foreign-born share bar */}
+            <div className="space-y-1">
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-400">Foreign-Born Share</span>
+                <span className="text-blue-400 font-medium">
+                  {currentYearData.foreignBornShare.toFixed(1)}%
+                </span>
+              </div>
+              <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-blue-500 transition-all duration-300"
+                  style={{ width: `${Math.min(currentYearData.foreignBornShare, 100)}%` }}
+                />
+              </div>
+            </div>
+
+            {/* Key stats */}
+            <div className="grid grid-cols-2 gap-3 text-sm">
+              <div className="bg-gray-900/50 rounded-lg p-3">
+                <div className="text-gray-500 text-xs">This Year</div>
+                <div className="text-blue-400 font-semibold">
+                  +{formatCompact(currentYearData.annualImmigration)}
+                </div>
+              </div>
+              <div className="bg-gray-900/50 rounded-lg p-3">
+                <div className="text-gray-500 text-xs">Cumulative (since 1990)</div>
+                <div className="text-blue-400 font-semibold">
+                  {formatCompact(currentYearData.cumulativeImmigration)}
+                </div>
+              </div>
+            </div>
+
+            {/* Annual immigration breakdown */}
+            <div className="text-xs text-gray-400 space-y-1">
+              <div className="flex justify-between">
+                <span>💼 Work-based:</span>
+                <span className="text-green-400">+{formatCompact(currentYearData.immigrationByType.workBased.count)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>👨‍👩‍👧 Family:</span>
+                <span className="text-gray-300">+{formatCompact(currentYearData.immigrationByType.family.count)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>🏥 Humanitarian:</span>
+                <span className="text-gray-300">+{formatCompact(currentYearData.immigrationByType.humanitarian.count)}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Warning note */}
+          <div className="mt-4 p-3 bg-amber-950/30 border border-amber-800/30 rounded-lg">
+            <p className="text-[10px] text-amber-400/80 leading-relaxed">
+              ⚠️ <strong>Note:</strong> This model assumes immigrants adopt the national average birth rate. 
+              In reality, some immigrant groups have higher fertility rates, which could increase future population 
+              and births. This effect is not included in the current analysis.
+            </p>
+          </div>
+        </div>
+
+        {/* Immigration Timeline */}
+        <div className="bg-gray-900/50 rounded-lg p-4 border border-gray-800">
+          <h3 className="text-sm font-semibold text-gray-300 mb-4">
+            📈 Immigration Over Time
+          </h3>
+          <div className="h-[250px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={immigrationChartData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                <XAxis dataKey="year" stroke="#9CA3AF" tick={{ fontSize: 11 }} />
+                <YAxis
+                  yAxisId="left"
+                  stroke="#3B82F6"
+                  tick={{ fontSize: 11 }}
+                  tickFormatter={(v) => `${v}k`}
+                />
+                <YAxis
+                  yAxisId="right"
+                  orientation="right"
+                  stroke="#8B5CF6"
+                  tick={{ fontSize: 11 }}
+                  tickFormatter={(v) => `${v.toFixed(0)}%`}
+                  domain={[0, 'auto']}
+                />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#1F2937',
+                    border: '1px solid #374151',
+                    borderRadius: '8px',
+                    fontSize: '12px',
+                  }}
+                  formatter={(value, name) => {
+                    if (name === 'Foreign-Born %') return [`${(value as number).toFixed(1)}%`, name];
+                    return [`${(value as number).toFixed(1)}k`, name];
+                  }}
+                />
+                <Legend />
+                <ReferenceLine x={selectedYear} stroke="#F59E0B" strokeWidth={2} />
+                <ReferenceLine x={2024} stroke="#A855F7" strokeDasharray="3 3" />
+                <Area
+                  yAxisId="left"
+                  type="monotone"
+                  dataKey="cumulativeImmigration"
+                  name="Cumulative (k)"
+                  fill="#3B82F6"
+                  fillOpacity={0.3}
+                  stroke="#3B82F6"
+                />
+                <Line
+                  yAxisId="right"
+                  type="monotone"
+                  dataKey="foreignBornShare"
+                  name="Foreign-Born %"
+                  stroke="#8B5CF6"
+                  strokeWidth={2}
+                  dot={false}
+                />
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
     </div>

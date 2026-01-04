@@ -50,6 +50,7 @@ import {
   InterestRateScenario,
   getHistoricalDebt,
   calculateEffectiveGDPGrowth,
+  HISTORICAL_IMMIGRATION_BY_TYPE,
 } from './constants/demographicScenarios';
 
 import { calculateTaxes } from './finnishTaxCalculator';
@@ -107,6 +108,11 @@ export interface AnnualPopulationResult {
     family: { count: number; fiscalImpact: number };
     humanitarian: { count: number; fiscalImpact: number };
   };
+  
+  // Cumulative immigration (for population tracking)
+  annualImmigration: number;           // Annual gross immigration this year
+  cumulativeImmigration: number;       // Total immigrants since simulation start
+  foreignBornShare: number;            // % of population that is foreign-born (cumulative immigrants / total pop)
   
   // GDP data
   gdp: number;                     // GDP in billions EUR
@@ -335,6 +341,43 @@ function getBirthsForYear(
 }
 
 /**
+ * Get immigration for a specific year - uses historical data when available,
+ * scenario settings for future years, and estimates for early historical years
+ */
+function getImmigrationForYear(
+  year: number,
+  scenario: DemographicScenario
+): { workBased: number; family: number; humanitarian: number } {
+  // Use historical data for 2010-2024
+  const historicalData = HISTORICAL_IMMIGRATION_BY_TYPE[year];
+  if (historicalData) {
+    return {
+      workBased: historicalData.workBased,
+      family: historicalData.family,
+      humanitarian: historicalData.humanitarian,
+    };
+  }
+  
+  // For years before 2010, use lower estimates (Finland had less immigration)
+  if (year < 2010) {
+    // Scale down from 2010 levels based on how far back
+    const scale = Math.max(0.2, 0.5 + (year - 1990) * 0.025); // 20% in 1990 → 70% in 2010
+    return {
+      workBased: Math.round(8000 * scale),
+      family: Math.round(6000 * scale),
+      humanitarian: Math.round(2000 * scale),
+    };
+  }
+  
+  // For years after 2024, use scenario settings
+  return {
+    workBased: scenario.immigration.workBased,
+    family: scenario.immigration.family,
+    humanitarian: scenario.immigration.humanitarian,
+  };
+}
+
+/**
  * Calculate immigration fiscal impact for a year
  */
 function calculateImmigrationImpact(
@@ -349,9 +392,11 @@ function calculateImmigrationImpact(
     humanitarian: { count: number; fiscalImpact: number };
   };
   populationAddition: number;
+  newArrivals: number;  // New arrivals this year only (for display)
 } {
   let totalImpact = 0;
   let populationAddition = 0;
+  let newArrivals = 0;
   
   const byType = {
     workBased: { count: 0, fiscalImpact: 0 },
@@ -361,12 +406,17 @@ function calculateImmigrationImpact(
   
   // Only add new immigrants from simulation start year onwards
   if (year >= simulationStartYear) {
+    // Get immigration for this year (historical or scenario-based)
+    const yearImmigration = getImmigrationForYear(year, scenario);
+    
     // Store this year's arrivals
     immigrantCohorts.set(year, {
-      workBased: scenario.immigration.workBased,
-      family: scenario.immigration.family,
-      humanitarian: scenario.immigration.humanitarian,
+      workBased: yearImmigration.workBased,
+      family: yearImmigration.family,
+      humanitarian: yearImmigration.humanitarian,
     });
+    
+    newArrivals = yearImmigration.workBased + yearImmigration.family + yearImmigration.humanitarian;
   }
   
   // Calculate fiscal impact of all immigrant cohorts still in country
@@ -406,7 +456,7 @@ function calculateImmigrationImpact(
     byType.family.fiscalImpact + 
     byType.humanitarian.fiscalImpact;
   
-  return { totalImpact, byType, populationAddition };
+  return { totalImpact, byType, populationAddition, newArrivals };
 }
 
 /**
@@ -420,7 +470,8 @@ export function simulatePopulationYear(
   previousDebtStock: number = 0,  // Previous year's debt in billions EUR
   previousWorkingAge: number = 0,  // Previous year's working-age population
   workforceChangeRate: number = 0,  // Calculated workforce change (Y-1 to Y-2) / Y-2
-  calculatedEffectiveGrowthRate: number | null = null  // Effective GDP growth rate calculated by parent
+  calculatedEffectiveGrowthRate: number | null = null,  // Effective GDP growth rate calculated by parent
+  previousCumulativeImmigration: number = 0  // Track cumulative immigrants since start
 ): AnnualPopulationResult {
   let totalContributions = 0;
   let totalStateCosts = 0;
@@ -659,6 +710,12 @@ export function simulatePopulationYear(
         fiscalImpact: toMillions(immigrationResult.byType.humanitarian.fiscalImpact),
       },
     },
+    // Cumulative immigration tracking
+    annualImmigration: immigrationResult.newArrivals,  // New arrivals this year
+    cumulativeImmigration: previousCumulativeImmigration + immigrationResult.newArrivals,  // Cumulative new arrivals
+    foreignBornShare: totalPopulation > 0 
+      ? ((previousCumulativeImmigration + immigrationResult.newArrivals) / totalPopulation) * 100 
+      : 0,
     // GDP data
     gdp: currentGDP,
     gdpGrowthRate: growthRate,
@@ -714,6 +771,9 @@ export function simulatePopulationRange(
   let workingAgeYearN_2 = 0;
   let workingAgeYearN_1 = 0;
   
+  // Track cumulative immigration since simulation start
+  let cumulativeImmigration = 0;
+  
   const tempResults: AnnualPopulationResult[] = [];
   
   for (let year = startYear; year <= endYear; year++) {
@@ -749,14 +809,16 @@ export function simulatePopulationRange(
       previousDebtStock,
       workingAgeYearN_1,  // Pass previous year's working age for display purposes
       workforceChangeRate,  // Pass the calculated workforce change rate
-      effectiveGrowthRate  // Pass the effective growth rate we calculated
+      effectiveGrowthRate,  // Pass the effective growth rate we calculated
+      cumulativeImmigration  // Pass cumulative immigration for tracking
     );
     tempResults.push(yearResult);
     
-    // Shift values for next iteration: Y-1 becomes Y-2, current becomes Y-1
+    // Update cumulative tracking values for next iteration
     previousDebtStock = yearResult.debtStock;
     workingAgeYearN_2 = workingAgeYearN_1;
     workingAgeYearN_1 = yearResult.workingAge;
+    cumulativeImmigration = yearResult.cumulativeImmigration;
   }
   
   // Use temp results as final results
