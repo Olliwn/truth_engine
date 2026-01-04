@@ -569,16 +569,20 @@ export function simulatePopulationYear(
     gdpAdjustedEducation + gdpAdjustedBenefits;
   const gdpAdjustedBalance = gdpAdjustedContributions - gdpAdjustedCosts;
   
-  // Government spending as % of GDP
-  const totalStateCostsInBillions = toMillions(totalStateCosts) / 1000;  // Convert to billions
-  const govtSpendingPctGDP = (totalStateCostsInBillions / currentGDP) * 100;
+  // Government spending as % of GDP (use GDP-adjusted costs for future years)
+  const gdpAdjustedCostsInBillions = toMillions(gdpAdjustedCosts) / 1000;  // Convert to billions
+  const govtSpendingPctGDP = (gdpAdjustedCostsInBillions / currentGDP) * 100;
   
-  // Primary balance (before interest) as % of GDP
-  const primaryBalanceInBillions = toMillions(totalContributions - totalStateCosts) / 1000;
-  const deficitPctGDP = (primaryBalanceInBillions / currentGDP) * 100;
+  // Primary balance (before interest) - use GDP-adjusted values for future years
+  // This is the fiscal balance that drives debt accumulation
+  const basePrimaryBalanceInBillions = toMillions(totalContributions - totalStateCosts) / 1000;
+  const gdpAdjustedPrimaryBalanceInBillions = toMillions(gdpAdjustedBalance) / 1000;
+  
+  // Use GDP-adjusted balance for deficit calculation (for future years)
+  const deficitPctGDP = (gdpAdjustedPrimaryBalanceInBillions / currentGDP) * 100;
   
   // Debt calculations
-  // For historical years, use actual debt data; for future years, accumulate
+  // For historical years, use actual debt data; for future years, accumulate using GDP-adjusted balance
   const baseDebtYear = 2024;
   let debtStock: number;
   let interestExpenseMillions: number;
@@ -593,9 +597,9 @@ export function simulatePopulationYear(
     interestExpenseMillions = previousDebtStock * interestRate * 1000;  // billions * rate * 1000 = millions EUR
     
     // Total balance including interest
-    // Primary balance is already calculated (contributions - costs before interest)
-    // Total deficit = primary deficit + interest expense
-    const totalDeficitBillions = -primaryBalanceInBillions + (interestExpenseMillions / 1000);
+    // PRIMARY BALANCE uses GDP-adjusted values (this is what drives real debt accumulation)
+    // Total deficit = -GDP_adjusted_primary_balance + interest expense
+    const totalDeficitBillions = -gdpAdjustedPrimaryBalanceInBillions + (interestExpenseMillions / 1000);
     
     // Debt grows by total deficit (if positive = we're borrowing more)
     debtStock = previousDebtStock + totalDeficitBillions;
@@ -654,7 +658,7 @@ export function simulatePopulationYear(
     debtToGDP,
     interestExpense: interestExpenseMillions,  // Already in millions EUR
     interestRate,
-    primaryBalance: toMillions(totalContributions - totalStateCosts),
+    primaryBalance: toMillions(gdpAdjustedBalance),  // Use GDP-adjusted balance for consistency
     // Workforce-adjusted GDP data
     // Use the passed-in values calculated by the parent function (simulatePopulationRange)
     // which correctly tracks Y-2 to Y-1 workforce change for year Y's GDP growth

@@ -26,7 +26,10 @@ export const HISTORICAL_TFR: Record<number, number> = {
 
 // Current baseline: women of childbearing age (15-49)
 // Used to convert TFR to annual births
-export const WOMEN_CHILDBEARING_AGE_RATIO = 0.22; // ~22% of population
+// Finland has ~1.1M women aged 15-49 out of ~5.5M total population
+// That's ~40% of all women (who are ~51% of population)
+// Calibrated to match 2024 actual births (~43k) with TFR ~1.3
+export const WOMEN_CHILDBEARING_AGE_RATIO = 0.40; // ~40% of women are childbearing age
 
 export interface BirthRatePreset {
   id: string;

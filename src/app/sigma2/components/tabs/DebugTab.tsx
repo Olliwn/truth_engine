@@ -212,6 +212,48 @@ const DEBUG_PARAMETERS: Record<string, DebugParameter[]> = {
       color: '#F59E0B',
     },
   ],
+  'GDP Multipliers': [
+    {
+      id: 'revenueMultiplier',
+      label: 'Revenue Multiplier',
+      accessor: r => r.totalContributions > 0 ? (r.gdpAdjustedContributions / r.totalContributions) : 1,
+      format: v => `${v.toFixed(3)}x`,
+      unit: 'x',
+      color: '#22C55E',
+    },
+    {
+      id: 'costMultiplier',
+      label: 'Cost Multiplier',
+      accessor: r => r.totalStateCosts > 0 ? (r.gdpAdjustedCosts / r.totalStateCosts) : 1,
+      format: v => `${v.toFixed(3)}x`,
+      unit: 'x',
+      color: '#EF4444',
+    },
+    {
+      id: 'gdpAdjContributions',
+      label: 'GDP-Adj Contributions',
+      accessor: r => r.gdpAdjustedContributions,
+      format: v => `€${(v / 1000).toFixed(1)}B`,
+      unit: '€B',
+      color: '#10B981',
+    },
+    {
+      id: 'gdpAdjCosts',
+      label: 'GDP-Adj Costs',
+      accessor: r => r.gdpAdjustedCosts,
+      format: v => `€${(v / 1000).toFixed(1)}B`,
+      unit: '€B',
+      color: '#F87171',
+    },
+    {
+      id: 'gdpAdjBalance',
+      label: 'GDP-Adj Balance',
+      accessor: r => r.gdpAdjustedBalance,
+      format: v => `€${(v / 1000).toFixed(1)}B`,
+      unit: '€B',
+      color: '#8B5CF6',
+    },
+  ],
   'GDP & Growth': [
     {
       id: 'gdp',
