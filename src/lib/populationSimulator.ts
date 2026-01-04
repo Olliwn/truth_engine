@@ -414,7 +414,9 @@ export function simulatePopulationYear(
   simulationStartYear: number = 1990,
   cumulativeGdpMultiplier: number = 1.0,  // Passed from range simulation for compounding
   previousDebtStock: number = 0,  // Previous year's debt in billions EUR
-  previousWorkingAge: number = 0  // Previous year's working-age population
+  previousWorkingAge: number = 0,  // Previous year's working-age population
+  workforceChangeRate: number = 0,  // Calculated workforce change (Y-1 to Y-2) / Y-2
+  calculatedEffectiveGrowthRate: number | null = null  // Effective GDP growth rate calculated by parent
 ): AnnualPopulationResult {
   let totalContributions = 0;
   let totalStateCosts = 0;
@@ -654,11 +656,11 @@ export function simulatePopulationYear(
     interestRate,
     primaryBalance: toMillions(totalContributions - totalStateCosts),
     // Workforce-adjusted GDP data
-    workforceChangeRate: previousWorkingAge > 0 
-      ? (workingAge - previousWorkingAge) / previousWorkingAge 
-      : 0,
+    // Use the passed-in values calculated by the parent function (simulatePopulationRange)
+    // which correctly tracks Y-2 to Y-1 workforce change for year Y's GDP growth
+    workforceChangeRate: workforceChangeRate,  // Passed from parent's correct calculation
     productivityGrowthRate: gdpScenario.productivityGrowthRate,
-    effectiveGdpGrowthRate: growthRate,
+    effectiveGdpGrowthRate: calculatedEffectiveGrowthRate ?? growthRate,  // Use parent's calculation if provided
     isWorkforceAdjusted: gdpScenario.adjustForWorkforce,
   };
 }
@@ -690,24 +692,25 @@ export function simulatePopulationRange(
   const baseYear = 2024;
   let cumulativeGdpMultiplier = 1.0;
   let previousDebtStock = getHistoricalDebt(startYear - 1);  // Start with debt from year before simulation
-  let previousWorkingAge = 0;  // Will be set from first year's data
   
-  // First pass: simulate to get population data
-  // (needed to calculate workforce change rates for GDP adjustment)
+  // Track TWO years of working age data to calculate year-over-year change correctly
+  // workingAgeYearN_2 = working age from year Y-2
+  // workingAgeYearN_1 = working age from year Y-1
+  let workingAgeYearN_2 = 0;
+  let workingAgeYearN_1 = 0;
+  
   const tempResults: AnnualPopulationResult[] = [];
   
   for (let year = startYear; year <= endYear; year++) {
     // For first iteration, use base growth rate
     let effectiveGrowthRate = scenario.gdp?.customGrowthRate ?? gdpScenario.realGrowthRate;
     
-    // Calculate workforce change rate from previous year
+    // Calculate workforce change rate: (Y-1 working age - Y-2 working age) / Y-2 working age
+    // This represents the workforce growth that occurred leading into year Y
     let workforceChangeRate = 0;
-    if (previousWorkingAge > 0 && year > startYear) {
-      // Get last year's result to calculate workforce change
-      const lastResult = tempResults[tempResults.length - 1];
-      if (lastResult) {
-        workforceChangeRate = (lastResult.workingAge - previousWorkingAge) / previousWorkingAge;
-      }
+    if (workingAgeYearN_2 > 0 && year > startYear + 1) {
+      // We need at least 2 years of data to calculate change
+      workforceChangeRate = (workingAgeYearN_1 - workingAgeYearN_2) / workingAgeYearN_2;
     }
     
     // Calculate effective GDP growth rate (productivity + workforce change)
@@ -726,13 +729,16 @@ export function simulatePopulationRange(
       startYear, 
       cumulativeGdpMultiplier, 
       previousDebtStock,
-      previousWorkingAge
+      workingAgeYearN_1,  // Pass previous year's working age for display purposes
+      workforceChangeRate,  // Pass the calculated workforce change rate
+      effectiveGrowthRate  // Pass the effective growth rate we calculated
     );
     tempResults.push(yearResult);
     
-    // Update for next year
+    // Shift values for next iteration: Y-1 becomes Y-2, current becomes Y-1
     previousDebtStock = yearResult.debtStock;
-    previousWorkingAge = yearResult.workingAge;
+    workingAgeYearN_2 = workingAgeYearN_1;
+    workingAgeYearN_1 = yearResult.workingAge;
   }
   
   // Use temp results as final results

@@ -773,14 +773,15 @@ export default function SigmaPage() {
                   )}
                 </div>
                 
-                {/* Second-order effects warning */}
+                {/* Second-order effects warning - informational only */}
                 {summary.secondOrderEffects && (
                   <div className="mt-4 p-4 bg-amber-950/30 border border-amber-800/50 rounded-lg">
                     <h4 className="text-amber-400 font-semibold text-sm mb-2 flex items-center gap-2">
-                      ⚠️ Second-Order Effects (Fiscal Multiplier)
+                      ⚠️ Fiscal Multiplier Warning
                     </h4>
                     <p className="text-xs text-gray-400 mb-3">
-                      Government deficit spending contributes to GDP. Eliminating the deficit would itself reduce GDP.
+                      Government deficit spending is part of GDP. Eliminating the deficit would cause a <strong>one-time level drop</strong> in GDP 
+                      (not a permanent reduction in growth rate). This complicates any &quot;breakeven&quot; analysis.
                     </p>
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
@@ -790,30 +791,14 @@ export default function SigmaPage() {
                         </div>
                       </div>
                       <div>
-                        <div className="text-gray-500">If balanced, GDP would fall</div>
+                        <div className="text-gray-500">One-time GDP drop if balanced</div>
                         <div className="text-amber-400 font-semibold">
                           ~{summary.secondOrderEffects.gdpReductionIfBalanced.toFixed(1)}%
                         </div>
                       </div>
-                      <div>
-                        <div className="text-gray-500">Basic growth needed</div>
-                        <div className="text-gray-300 font-semibold">
-                          {summary.breakevenGrowthRate 
-                            ? `${(summary.breakevenGrowthRate * 100).toFixed(1)}%/year`
-                            : 'N/A'}
-                        </div>
-                      </div>
-                      <div>
-                        <div className="text-gray-500">Effective growth needed</div>
-                        <div className="text-purple-400 font-semibold">
-                          {summary.secondOrderEffects.effectiveGrowthNeeded
-                            ? `${(summary.secondOrderEffects.effectiveGrowthNeeded * 100).toFixed(1)}%/year`
-                            : 'N/A'}
-                        </div>
-                      </div>
                     </div>
                     <p className="text-[10px] text-gray-500 mt-3">
-                      * Fiscal multiplier assumed at 0.8 (conservative for developed economies)
+                      * Fiscal multiplier ~0.8 (conservative). This is a one-time shock, not an annual effect.
                     </p>
                   </div>
                 )}
@@ -1291,45 +1276,36 @@ export default function SigmaPage() {
             <h4 className="text-purple-400 font-semibold mb-3 flex items-center gap-2">
               🎯 GDP Growth Required to Balance Budget
             </h4>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <div className="text-sm text-gray-500 mb-1">Basic breakeven growth (by 2060)</div>
+                <div className="text-sm text-gray-500 mb-1">Breakeven growth (by 2060)</div>
                 <div className="text-2xl font-bold text-gray-300">
                   {summary.breakevenGrowthRate 
                     ? `${(summary.breakevenGrowthRate * 100).toFixed(1)}%`
                     : 'N/A'}/year
                 </div>
-                <div className="text-xs text-gray-600">Required to close deficit gap</div>
-              </div>
-              <div>
-                <div className="text-sm text-gray-500 mb-1">Accounting for fiscal multiplier</div>
-                <div className="text-2xl font-bold text-purple-400">
-                  {summary.secondOrderEffects?.effectiveGrowthNeeded 
-                    ? `${(summary.secondOrderEffects.effectiveGrowthNeeded * 100).toFixed(1)}%`
-                    : 'N/A'}/year
-                </div>
-                <div className="text-xs text-gray-600">Deficit cut reduces GDP by {summary.secondOrderEffects?.gdpReductionIfBalanced.toFixed(1) || '?'}%</div>
+                <div className="text-xs text-gray-600">Required to close cumulative deficit gap</div>
               </div>
               <div>
                 <div className="text-sm text-gray-500 mb-1">Your scenario</div>
                 <div className={`text-2xl font-bold ${
-                  effectiveGrowthRate >= (summary.secondOrderEffects?.effectiveGrowthNeeded || 0)
+                  effectiveGrowthRate >= (summary.breakevenGrowthRate || 0)
                     ? 'text-green-400'
                     : 'text-amber-400'
                 }`}>
                   {(effectiveGrowthRate * 100).toFixed(1)}%/year
                 </div>
                 <div className="text-xs text-gray-600">
-                  {effectiveGrowthRate >= (summary.secondOrderEffects?.effectiveGrowthNeeded || 0)
-                    ? '✓ Potentially sustainable'
+                  {effectiveGrowthRate >= (summary.breakevenGrowthRate || 0)
+                    ? '✓ Above breakeven threshold'
                     : '⚠ Below breakeven threshold'}
                 </div>
               </div>
             </div>
             <p className="text-xs text-gray-500 mt-4">
-              <strong>Note:</strong> The fiscal multiplier effect means that cutting government spending (to balance the budget) 
-              would itself reduce GDP. This creates a &quot;moving target&quot; — the more you cut, the more the economy shrinks, 
-              requiring even higher private sector growth to compensate. Finland&apos;s historical real GDP growth averaged ~1.5%/year.
+              <strong>Note:</strong> Finland&apos;s historical real GDP growth averaged ~1.5%/year. With shrinking working-age population, 
+              achieving this growth requires higher productivity gains. Fiscal multiplier effects (cutting deficit reduces GDP one-time) 
+              complicate any path to balance.
             </p>
           </div>
         </section>
