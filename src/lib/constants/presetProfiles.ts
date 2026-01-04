@@ -352,7 +352,7 @@ export function createCustomProfile(
     careerPath: 'continuous',
     workStartAge: 19,
     retirementAge: 65,
-    peakIncomeMultiplier: 1.0,
+    incomeDecile: 5, // D5 = median
     incomeVolatility: 0.1,
     lifetimeUnemploymentYears: 2,
     unemploymentPattern: 'spread',
