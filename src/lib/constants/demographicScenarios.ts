@@ -411,11 +411,20 @@ export const DEFAULT_SCENARIO: DemographicScenario = {
 // GDP Growth Scenarios
 // ===========================================
 
+/**
+ * GDP Growth = Productivity Growth + Labor Force Growth
+ * 
+ * If working-age population shrinks, GDP growth will be lower than productivity growth.
+ * Example: 2% productivity + (-0.5%) workforce = 1.5% GDP growth
+ */
+
 export interface GDPScenario {
   id: string;
   name: string;
   description: string;
-  realGrowthRate: number;          // Annual real GDP growth rate (e.g., 0.015 = 1.5%)
+  productivityGrowthRate: number;  // Annual productivity growth (output per worker)
+  realGrowthRate: number;          // Fixed GDP growth rate (used when adjustForWorkforce=false)
+  adjustForWorkforce: boolean;     // If true, GDP = productivity + workforce change
   revenueElasticity: number;       // How much revenues grow per 1% GDP growth (typically ~1.0)
   healthcareCostGrowthPremium: number;  // Extra growth rate for healthcare above GDP (Baumol's disease)
   pensionCostGrowthPremium: number;     // Extra growth rate for pensions above GDP
@@ -426,18 +435,22 @@ export const GDP_SCENARIOS: Record<string, GDPScenario> = {
   stagnation: {
     id: 'stagnation',
     name: 'Stagnation',
-    description: 'No real GDP growth (0%/year)',
+    description: 'No productivity growth (0%/year)',
+    productivityGrowthRate: 0.00,
     realGrowthRate: 0.00,
+    adjustForWorkforce: false,
     revenueElasticity: 1.0,
-    healthcareCostGrowthPremium: 0.02,  // Healthcare costs still grow 2% faster than GDP
+    healthcareCostGrowthPremium: 0.02,
     pensionCostGrowthPremium: 0.01,
     color: '#6B7280',
   },
   slow_growth: {
     id: 'slow_growth',
-    name: 'Slow Growth',
-    description: 'Modest growth (1%/year) - Finnish recent trend',
+    name: 'Fixed 1%',
+    description: 'Fixed 1%/year GDP growth (ignores workforce)',
+    productivityGrowthRate: 0.01,
     realGrowthRate: 0.01,
+    adjustForWorkforce: false,
     revenueElasticity: 1.0,
     healthcareCostGrowthPremium: 0.02,
     pensionCostGrowthPremium: 0.01,
@@ -445,19 +458,60 @@ export const GDP_SCENARIOS: Record<string, GDPScenario> = {
   },
   moderate_growth: {
     id: 'moderate_growth',
-    name: 'Moderate Growth',
-    description: 'Historical average (1.5%/year)',
+    name: 'Fixed 1.5%',
+    description: 'Fixed 1.5%/year GDP growth (ignores workforce)',
+    productivityGrowthRate: 0.015,
     realGrowthRate: 0.015,
+    adjustForWorkforce: false,
     revenueElasticity: 1.0,
     healthcareCostGrowthPremium: 0.015,
     pensionCostGrowthPremium: 0.01,
     color: '#3B82F6',
   },
+  // Workforce-adjusted scenarios (more realistic)
+  productivity_1pct: {
+    id: 'productivity_1pct',
+    name: '1% Productivity',
+    description: '1% productivity growth + workforce change',
+    productivityGrowthRate: 0.01,
+    realGrowthRate: 0.01,  // Baseline, adjusted at runtime
+    adjustForWorkforce: true,
+    revenueElasticity: 1.0,
+    healthcareCostGrowthPremium: 0.02,
+    pensionCostGrowthPremium: 0.01,
+    color: '#06B6D4',
+  },
+  productivity_15pct: {
+    id: 'productivity_15pct',
+    name: '1.5% Productivity',
+    description: '1.5% productivity growth + workforce change (Finnish historical)',
+    productivityGrowthRate: 0.015,
+    realGrowthRate: 0.015,
+    adjustForWorkforce: true,
+    revenueElasticity: 1.0,
+    healthcareCostGrowthPremium: 0.015,
+    pensionCostGrowthPremium: 0.01,
+    color: '#8B5CF6',
+  },
+  productivity_2pct: {
+    id: 'productivity_2pct',
+    name: '2% Productivity',
+    description: '2% productivity growth + workforce change',
+    productivityGrowthRate: 0.02,
+    realGrowthRate: 0.02,
+    adjustForWorkforce: true,
+    revenueElasticity: 1.0,
+    healthcareCostGrowthPremium: 0.01,
+    pensionCostGrowthPremium: 0.005,
+    color: '#22C55E',
+  },
   strong_growth: {
     id: 'strong_growth',
-    name: 'Strong Growth',
-    description: 'Optimistic scenario (2.5%/year)',
+    name: 'Fixed 2.5%',
+    description: 'Optimistic fixed 2.5%/year GDP growth',
+    productivityGrowthRate: 0.025,
     realGrowthRate: 0.025,
+    adjustForWorkforce: false,
     revenueElasticity: 1.0,
     healthcareCostGrowthPremium: 0.01,
     pensionCostGrowthPremium: 0.005,
@@ -465,17 +519,33 @@ export const GDP_SCENARIOS: Record<string, GDPScenario> = {
   },
   productivity_boom: {
     id: 'productivity_boom',
-    name: 'Productivity Boom',
-    description: 'Tech/AI-driven growth (3.5%/year)',
-    realGrowthRate: 0.035,
-    revenueElasticity: 1.05,  // Slightly higher - more corporate profits
-    healthcareCostGrowthPremium: 0.005,  // Tech might improve healthcare efficiency
+    name: '3% Productivity',
+    description: 'Tech/AI-driven 3% productivity + workforce change',
+    productivityGrowthRate: 0.03,
+    realGrowthRate: 0.03,
+    adjustForWorkforce: true,
+    revenueElasticity: 1.05,
+    healthcareCostGrowthPremium: 0.005,
     pensionCostGrowthPremium: 0.005,
-    color: '#8B5CF6',
+    color: '#EC4899',
   },
 };
 
-export const DEFAULT_GDP_SCENARIO = 'slow_growth';
+export const DEFAULT_GDP_SCENARIO = 'productivity_15pct';
+
+/**
+ * Calculate effective GDP growth rate accounting for workforce changes
+ */
+export function calculateEffectiveGDPGrowth(
+  scenario: GDPScenario,
+  workforceChangeRate: number  // e.g., -0.005 for -0.5% workforce decline
+): number {
+  if (scenario.adjustForWorkforce) {
+    // GDP = Productivity + Labor Force Change
+    return scenario.productivityGrowthRate + workforceChangeRate;
+  }
+  return scenario.realGrowthRate;
+}
 
 // ===========================================
 // Interest Rate Scenarios

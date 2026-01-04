@@ -49,6 +49,7 @@ import {
   INTEREST_RATE_SCENARIOS,
   InterestRateScenario,
   getHistoricalDebt,
+  calculateEffectiveGDPGrowth,
 } from './constants/demographicScenarios';
 
 import { calculateTaxes } from './finnishTaxCalculator';
@@ -119,6 +120,12 @@ export interface AnnualPopulationResult {
   interestExpense: number;         // Annual interest payment in millions EUR
   interestRate: number;            // Applied interest rate this year
   primaryBalance: number;          // Fiscal balance before interest (millions EUR)
+  
+  // Workforce-adjusted GDP data
+  workforceChangeRate: number;     // Annual change in working-age population (e.g., -0.005 = -0.5%)
+  productivityGrowthRate: number;  // Productivity growth component
+  effectiveGdpGrowthRate: number;  // Actual GDP growth = productivity + workforce change
+  isWorkforceAdjusted: boolean;    // Whether GDP is adjusted for workforce
 }
 
 export interface PopulationSimulationResult {
@@ -406,7 +413,8 @@ export function simulatePopulationYear(
   scenario: DemographicScenario = DEFAULT_SCENARIO,
   simulationStartYear: number = 1990,
   cumulativeGdpMultiplier: number = 1.0,  // Passed from range simulation for compounding
-  previousDebtStock: number = 0  // Previous year's debt in billions EUR
+  previousDebtStock: number = 0,  // Previous year's debt in billions EUR
+  previousWorkingAge: number = 0  // Previous year's working-age population
 ): AnnualPopulationResult {
   let totalContributions = 0;
   let totalStateCosts = 0;
@@ -645,6 +653,13 @@ export function simulatePopulationYear(
     interestExpense: interestExpenseMillions,  // Already in millions EUR
     interestRate,
     primaryBalance: toMillions(totalContributions - totalStateCosts),
+    // Workforce-adjusted GDP data
+    workforceChangeRate: previousWorkingAge > 0 
+      ? (workingAge - previousWorkingAge) / previousWorkingAge 
+      : 0,
+    productivityGrowthRate: gdpScenario.productivityGrowthRate,
+    effectiveGdpGrowthRate: growthRate,
+    isWorkforceAdjusted: gdpScenario.adjustForWorkforce,
   };
 }
 
@@ -668,27 +683,60 @@ export function simulatePopulationRange(
   
   const annualResults: AnnualPopulationResult[] = [];
   
-  // Get GDP growth rate for compounding multiplier
-  const gdpScenarioId = scenario.gdp?.scenarioId || 'slow_growth';
-  const gdpScenario = GDP_SCENARIOS[gdpScenarioId] || GDP_SCENARIOS['slow_growth'];
-  const growthRate = scenario.gdp?.customGrowthRate ?? gdpScenario.realGrowthRate;
+  // Get GDP scenario
+  const gdpScenarioId = scenario.gdp?.scenarioId || 'productivity_15pct';
+  const gdpScenario = GDP_SCENARIOS[gdpScenarioId] || GDP_SCENARIOS['productivity_15pct'];
   
   const baseYear = 2024;
   let cumulativeGdpMultiplier = 1.0;
   let previousDebtStock = getHistoricalDebt(startYear - 1);  // Start with debt from year before simulation
+  let previousWorkingAge = 0;  // Will be set from first year's data
+  
+  // First pass: simulate to get population data
+  // (needed to calculate workforce change rates for GDP adjustment)
+  const tempResults: AnnualPopulationResult[] = [];
   
   for (let year = startYear; year <= endYear; year++) {
-    // Update cumulative multiplier for years after base year
-    if (year > baseYear) {
-      cumulativeGdpMultiplier *= (1 + growthRate);
+    // For first iteration, use base growth rate
+    let effectiveGrowthRate = scenario.gdp?.customGrowthRate ?? gdpScenario.realGrowthRate;
+    
+    // Calculate workforce change rate from previous year
+    let workforceChangeRate = 0;
+    if (previousWorkingAge > 0 && year > startYear) {
+      // Get last year's result to calculate workforce change
+      const lastResult = tempResults[tempResults.length - 1];
+      if (lastResult) {
+        workforceChangeRate = (lastResult.workingAge - previousWorkingAge) / previousWorkingAge;
+      }
     }
     
-    const yearResult = simulatePopulationYear(year, scenario, startYear, cumulativeGdpMultiplier, previousDebtStock);
-    annualResults.push(yearResult);
+    // Calculate effective GDP growth rate (productivity + workforce change)
+    if (year > baseYear && gdpScenario.adjustForWorkforce && !scenario.gdp?.customGrowthRate) {
+      effectiveGrowthRate = calculateEffectiveGDPGrowth(gdpScenario, workforceChangeRate);
+    }
     
-    // Update debt stock for next year
+    // Update cumulative multiplier for years after base year
+    if (year > baseYear) {
+      cumulativeGdpMultiplier *= (1 + effectiveGrowthRate);
+    }
+    
+    const yearResult = simulatePopulationYear(
+      year, 
+      scenario, 
+      startYear, 
+      cumulativeGdpMultiplier, 
+      previousDebtStock,
+      previousWorkingAge
+    );
+    tempResults.push(yearResult);
+    
+    // Update for next year
     previousDebtStock = yearResult.debtStock;
+    previousWorkingAge = yearResult.workingAge;
   }
+  
+  // Use temp results as final results
+  annualResults.push(...tempResults);
   
   // Calculate summary statistics
   let peakSurplusYear = startYear;
@@ -860,6 +908,7 @@ export {
   DEFAULT_INTEREST_RATE_SCENARIO,
   HISTORICAL_DEBT,
   getHistoricalDebt,
+  calculateEffectiveGDPGrowth,
 } from './constants/demographicScenarios';
 
 export type { 

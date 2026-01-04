@@ -31,7 +31,7 @@ import {
   DEFAULT_INTEREST_RATE_SCENARIO,
   HISTORICAL_DEBT,
 } from '@/lib/populationSimulator';
-import type { DemographicScenario } from '@/lib/populationSimulator';
+import type { DemographicScenario, GDPScenario } from '@/lib/populationSimulator';
 import {
   IMMIGRATION_REFERENCE_PERIODS,
   HISTORICAL_IMMIGRATION,
@@ -171,7 +171,17 @@ export default function SigmaPage() {
   
   // Get current GDP scenario details
   const activeGdpScenario = GDP_SCENARIOS[gdpScenarioId];
-  const effectiveGrowthRate = useCustomGrowth ? customGrowthRate : activeGdpScenario?.realGrowthRate || 0.01;
+  
+  // Use the effective GDP growth rate from simulation (accounts for workforce changes)
+  // This is the actual growth rate applied, which may differ from the preset if workforce-adjusted
+  const effectiveGrowthRate = useCustomGrowth 
+    ? customGrowthRate 
+    : currentYearData.effectiveGdpGrowthRate || activeGdpScenario?.realGrowthRate || 0.01;
+  
+  // Workforce change rate from current year data
+  const workforceChangeRate = currentYearData.workforceChangeRate || 0;
+  const isWorkforceAdjusted = currentYearData.isWorkforceAdjusted && !useCustomGrowth;
+  const productivityGrowthRate = activeGdpScenario?.productivityGrowthRate || 0.015;
   
   // Prepare chart data
   const fiscalChartData = annualResults.map(r => ({
@@ -224,6 +234,7 @@ export default function SigmaPage() {
     healthcare: r.healthcareCosts,
     pensions: r.pensionCosts,
     benefits: r.benefitCosts,
+    interest: r.interestExpense,  // Debt interest
   }));
   
   const birthRateChartData = annualResults.map(r => ({
@@ -340,7 +351,7 @@ export default function SigmaPage() {
             <MetricCard
               label="GDP"
               value={`€${currentYearData.gdp.toFixed(0)}B`}
-              sublabel={`${(effectiveGrowthRate * 100).toFixed(1)}%/yr growth`}
+              sublabel={`${(effectiveGrowthRate * 100).toFixed(1)}%/yr ${isWorkforceAdjusted ? '(adj)' : ''}`}
               color="purple"
             />
           </div>
@@ -728,6 +739,38 @@ export default function SigmaPage() {
                       activeGdpScenario?.description || 'Select a GDP growth scenario.'
                     )}
                   </p>
+                  
+                  {/* Workforce adjustment breakdown */}
+                  {isWorkforceAdjusted && !useCustomGrowth && (
+                    <div className="mt-3 pt-3 border-t border-gray-700">
+                      <div className="text-xs text-cyan-400 font-semibold mb-2">
+                        📊 GDP = Productivity + Workforce Change (in {selectedYear})
+                      </div>
+                      <div className="grid grid-cols-3 gap-2 text-xs">
+                        <div className="p-2 bg-gray-800/50 rounded">
+                          <div className="text-gray-500">Productivity</div>
+                          <div className="text-purple-400 font-semibold">
+                            +{(productivityGrowthRate * 100).toFixed(1)}%
+                          </div>
+                        </div>
+                        <div className="p-2 bg-gray-800/50 rounded">
+                          <div className="text-gray-500">Workforce Δ</div>
+                          <div className={`font-semibold ${workforceChangeRate >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                            {workforceChangeRate >= 0 ? '+' : ''}{(workforceChangeRate * 100).toFixed(2)}%
+                          </div>
+                        </div>
+                        <div className="p-2 bg-gray-800/50 rounded">
+                          <div className="text-gray-500">= GDP Growth</div>
+                          <div className={`font-semibold ${effectiveGrowthRate >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                            {effectiveGrowthRate >= 0 ? '+' : ''}{(effectiveGrowthRate * 100).toFixed(2)}%
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-[10px] text-gray-500 mt-2">
+                        With shrinking working-age population, GDP growth is lower than productivity growth alone.
+                      </p>
+                    </div>
+                  )}
                 </div>
                 
                 {/* Second-order effects warning */}
@@ -1527,6 +1570,14 @@ export default function SigmaPage() {
                   fill="#EF4444"
                   stroke="#EF4444"
                 />
+                <Area
+                  type="monotone"
+                  dataKey="interest"
+                  name="Debt Interest"
+                  stackId="1"
+                  fill="#991B1B"
+                  stroke="#991B1B"
+                />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -1615,7 +1666,8 @@ export default function SigmaPage() {
             <div>
               <h3 className="text-lg font-semibold text-purple-400 mb-3">📈 GDP Growth Model</h3>
               <ul className="text-gray-400 text-sm space-y-2">
-                <li>• Revenues grow with GDP (elasticity ~1.0)</li>
+                <li>• <span className="text-cyan-400">Workforce-adjusted:</span> GDP = Productivity + Labor Force Δ</li>
+                <li>• Shrinking workforce reduces GDP growth below productivity</li>
                 <li>• Healthcare costs: GDP + 1-2% (Baumol)</li>
                 <li>• Pension costs: GDP + 0.5-1%</li>
                 <li>• Fiscal multiplier: 0.8 (second-order)</li>
