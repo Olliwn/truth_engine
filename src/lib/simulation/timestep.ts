@@ -221,9 +221,14 @@ export function advanceYear(input: TimeStepInput): TimeStepOutput {
     interestExpense: economyResult.debtResult.interestExpense,
     interestRate: economyResult.debtResult.interestRate,
     
-    // Government metrics
-    govtSpendingPctGDP: economyResult.govtMetrics.govtSpendingPctGDP,
-    deficitPctGDP: economyResult.govtMetrics.deficitPctGDP,
+    // Government metrics - recalculate with interest included
+    // economyResult.govtMetrics uses base balance (no interest), so we recalculate here
+    govtSpendingPctGDP: economyResult.newState.gdpBillions > 0 
+      ? (fiscalFlowsWithInterest.totalStateCosts / (economyResult.newState.gdpBillions * 1000)) * 100 
+      : 0,
+    deficitPctGDP: economyResult.newState.gdpBillions > 0 
+      ? (fiscalFlowsWithInterest.netFiscalBalance / (economyResult.newState.gdpBillions * 1000)) * 100 
+      : 0,
     
     // Immigration breakdown
     immigrationByType: {
