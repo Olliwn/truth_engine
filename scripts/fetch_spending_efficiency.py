@@ -151,6 +151,74 @@ def get_unemployment_data():
     }
 
 
+def get_cpi_data():
+    """Get Consumer Price Index data for inflation adjustment (2015=100)."""
+    print("Using embedded CPI data (Statistics Finland)...")
+    # Source: Statistics Finland - Consumer Price Index
+    # Base year 2015 = 100
+    return {
+        2000: 79.5,
+        2001: 81.6,
+        2002: 83.0,
+        2003: 83.7,
+        2004: 83.9,
+        2005: 84.6,
+        2006: 85.8,
+        2007: 87.9,
+        2008: 91.4,
+        2009: 91.5,
+        2010: 92.6,
+        2011: 95.8,
+        2012: 98.5,
+        2013: 99.9,
+        2014: 100.9,
+        2015: 100.0,
+        2016: 100.4,
+        2017: 101.2,
+        2018: 102.4,
+        2019: 103.5,
+        2020: 103.8,
+        2021: 106.0,
+        2022: 113.5,
+        2023: 120.2,
+        2024: 122.5,  # Estimate
+    }
+
+
+def get_gdp_data():
+    """Get GDP data in millions EUR (current prices)."""
+    print("Using embedded GDP data (Statistics Finland)...")
+    # Source: Statistics Finland - National accounts
+    # GDP at current prices, million EUR
+    return {
+        2000: 136261,
+        2001: 144435,
+        2002: 148289,
+        2003: 152094,
+        2004: 158457,
+        2005: 164387,
+        2006: 176263,
+        2007: 189639,
+        2008: 193711,
+        2009: 181029,
+        2010: 187100,
+        2011: 196869,
+        2012: 199793,
+        2013: 203338,
+        2014: 205474,
+        2015: 209604,
+        2016: 216073,
+        2017: 225785,
+        2018: 234490,
+        2019: 240261,
+        2020: 238389,
+        2021: 251440,
+        2022: 268702,
+        2023: 275836,
+        2024: 282000,  # Estimate
+    }
+
+
 def parse_population_data(records):
     """Parse population records into year -> {age_group: count}."""
     pop_by_year = {}
@@ -498,10 +566,25 @@ def calculate_cost_per_beneficiary(subcategories, pop_by_year, unemployed_by_yea
     return cost_per_beneficiary
 
 
-def calculate_decomposition(subcategories, pop_by_year, unemployed_by_year, base_year, latest_year):
-    """Calculate decomposition of spending growth into demographic vs policy effects."""
+def calculate_decomposition(subcategories, pop_by_year, unemployed_by_year, cpi_by_year, gdp_by_year, base_year, latest_year):
+    """Calculate decomposition of spending growth into demographic vs policy effects.
+    
+    Returns three versions:
+    - nominal: Current EUR (unadjusted)
+    - real: Inflation-adjusted EUR (to latest year prices)
+    - gdp_share: As % of GDP
+    """
     
     decomposition = []
+    
+    # Get CPI and GDP for deflation
+    cpi_base = cpi_by_year.get(base_year, cpi_by_year.get(2000, 79.5))
+    cpi_latest = cpi_by_year.get(latest_year, cpi_by_year.get(2024, 122.5))
+    gdp_base = gdp_by_year.get(base_year, gdp_by_year.get(2000, 136261))
+    gdp_latest = gdp_by_year.get(latest_year, gdp_by_year.get(2024, 282000))
+    
+    # Deflator to convert base year nominal to latest year real prices
+    deflator = cpi_latest / cpi_base
     
     # Get population data for both years (use closest available year)
     pop_base = pop_by_year.get(base_year, pop_by_year.get(2000, {}))
@@ -537,20 +620,35 @@ def calculate_decomposition(subcategories, pop_by_year, unemployed_by_year, base
             continue
         
         # Get spending for base year from time series
-        base_spending = None
-        latest_spending = sub['total_million']
+        base_spending_nominal = None
+        latest_spending_nominal = sub['total_million']
+        base_gdp_pct = None
+        latest_gdp_pct = None
         
         time_series = sub.get('time_series', [])
         for ts in time_series:
             if ts['year'] == base_year:
-                base_spending = ts['total_million']
+                base_spending_nominal = ts['total_million']
+                base_gdp_pct = ts.get('total_gdp_pct', 0)
+                break
+        
+        # Get latest GDP %
+        for ts in time_series:
+            if ts['year'] == latest_year:
+                latest_gdp_pct = ts.get('total_gdp_pct', 0)
                 break
         
         # If no exact base year, try to find closest
-        if base_spending is None and time_series:
+        base_year_actual = base_year
+        if base_spending_nominal is None and time_series:
             earliest = time_series[0]
-            base_spending = earliest['total_million']
+            base_spending_nominal = earliest['total_million']
+            base_gdp_pct = earliest.get('total_gdp_pct', 0)
             base_year_actual = earliest['year']
+            # Adjust CPI and GDP for actual base year
+            cpi_base = cpi_by_year.get(base_year_actual, cpi_base)
+            gdp_base = gdp_by_year.get(base_year_actual, gdp_base)
+            deflator = cpi_latest / cpi_base
             # Adjust population to that year
             if base_year_actual in pop_by_year:
                 pop_base_adj = pop_by_year[base_year_actual]
@@ -558,28 +656,52 @@ def calculate_decomposition(subcategories, pop_by_year, unemployed_by_year, base
                 if pop_key == 'children_0_17':
                     ben_base = int(ben_base * 1.2)
             print(f"  Using {base_year_actual} as base year for {sub['code']}")
-        else:
-            base_year_actual = base_year
         
-        if base_spending is None or base_spending == 0:
+        if base_spending_nominal is None or base_spending_nominal == 0:
             print(f"  Skipping {sub['code']}: no base spending data")
             continue
         
-        # Calculate decomposition
-        # Δ Spending = (Δ Beneficiaries × old_cost/ben) + (Δ Cost/ben × new_beneficiaries)
-        cost_per_ben_base = base_spending * 1_000_000 / ben_base  # Convert to EUR per person
-        cost_per_ben_latest = latest_spending * 1_000_000 / ben_latest
+        # Calculate GDP % if not available from time series
+        if base_gdp_pct is None or base_gdp_pct == 0:
+            base_gdp_pct = base_spending_nominal / gdp_base * 100
+        if latest_gdp_pct is None or latest_gdp_pct == 0:
+            latest_gdp_pct = latest_spending_nominal / gdp_latest * 100
+        
+        # === NOMINAL EUR calculations ===
+        cost_per_ben_base_nominal = base_spending_nominal * 1_000_000 / ben_base
+        cost_per_ben_latest_nominal = latest_spending_nominal * 1_000_000 / ben_latest
         
         delta_beneficiaries = ben_latest - ben_base
-        delta_cost_per_ben = cost_per_ben_latest - cost_per_ben_base
+        delta_cost_per_ben_nominal = cost_per_ben_latest_nominal - cost_per_ben_base_nominal
         
-        # Effects in million EUR
-        demographic_effect = (delta_beneficiaries * cost_per_ben_base) / 1_000_000
-        policy_effect = (delta_cost_per_ben * ben_latest) / 1_000_000
+        demographic_effect_nominal = (delta_beneficiaries * cost_per_ben_base_nominal) / 1_000_000
+        policy_effect_nominal = (delta_cost_per_ben_nominal * ben_latest) / 1_000_000
+        total_change_nominal = latest_spending_nominal - base_spending_nominal
         
-        total_change = latest_spending - base_spending
+        # === REAL EUR (inflation-adjusted) calculations ===
+        # Convert base year spending to latest year prices
+        base_spending_real = base_spending_nominal * deflator
+        cost_per_ben_base_real = base_spending_real * 1_000_000 / ben_base
+        cost_per_ben_latest_real = latest_spending_nominal * 1_000_000 / ben_latest  # Latest is already in latest prices
         
-        if abs(total_change) < 1:  # Skip if no meaningful change
+        delta_cost_per_ben_real = cost_per_ben_latest_real - cost_per_ben_base_real
+        
+        demographic_effect_real = (delta_beneficiaries * cost_per_ben_base_real) / 1_000_000
+        policy_effect_real = (delta_cost_per_ben_real * ben_latest) / 1_000_000
+        total_change_real = latest_spending_nominal - base_spending_real
+        
+        # === GDP SHARE calculations ===
+        # Using GDP-normalized cost per beneficiary
+        gdp_per_ben_base = base_gdp_pct / ben_base * 1_000_000  # % GDP per million beneficiaries
+        gdp_per_ben_latest = latest_gdp_pct / ben_latest * 1_000_000
+        
+        delta_gdp_per_ben = gdp_per_ben_latest - gdp_per_ben_base
+        
+        demographic_effect_gdp = (delta_beneficiaries * gdp_per_ben_base) / 1_000_000
+        policy_effect_gdp = (delta_gdp_per_ben * ben_latest) / 1_000_000
+        total_change_gdp = latest_gdp_pct - base_gdp_pct
+        
+        if abs(total_change_nominal) < 1:  # Skip if no meaningful change
             continue
         
         decomposition.append({
@@ -587,17 +709,59 @@ def calculate_decomposition(subcategories, pop_by_year, unemployed_by_year, base
             'name': sub['name'],
             'base_year': base_year_actual,
             'latest_year': latest_year,
-            'base_spending_million': round(base_spending, 1),
-            'latest_spending_million': round(latest_spending, 1),
-            'total_change_million': round(total_change, 1),
-            'demographic_effect_million': round(demographic_effect, 1),
-            'policy_effect_million': round(policy_effect, 1),
-            'demographic_pct': round(demographic_effect / total_change * 100, 1) if total_change != 0 else 0,
-            'policy_pct': round(policy_effect / total_change * 100, 1) if total_change != 0 else 0,
             'beneficiary_change_pct': round((ben_latest - ben_base) / ben_base * 100, 1) if ben_base != 0 else 0,
-            'cost_per_ben_base': round(cost_per_ben_base, 0),
-            'cost_per_ben_latest': round(cost_per_ben_latest, 0),
-            'cost_per_ben_change_pct': round((cost_per_ben_latest - cost_per_ben_base) / cost_per_ben_base * 100, 1) if cost_per_ben_base != 0 else 0,
+            
+            # Nominal EUR
+            'nominal': {
+                'base_spending_million': round(base_spending_nominal, 1),
+                'latest_spending_million': round(latest_spending_nominal, 1),
+                'total_change_million': round(total_change_nominal, 1),
+                'demographic_effect_million': round(demographic_effect_nominal, 1),
+                'policy_effect_million': round(policy_effect_nominal, 1),
+                'demographic_pct': round(demographic_effect_nominal / total_change_nominal * 100, 1) if total_change_nominal != 0 else 0,
+                'policy_pct': round(policy_effect_nominal / total_change_nominal * 100, 1) if total_change_nominal != 0 else 0,
+                'cost_per_ben_base': round(cost_per_ben_base_nominal, 0),
+                'cost_per_ben_latest': round(cost_per_ben_latest_nominal, 0),
+                'cost_per_ben_change_pct': round((cost_per_ben_latest_nominal - cost_per_ben_base_nominal) / cost_per_ben_base_nominal * 100, 1) if cost_per_ben_base_nominal != 0 else 0,
+            },
+            
+            # Real EUR (inflation-adjusted to latest year)
+            'real': {
+                'base_spending_million': round(base_spending_real, 1),
+                'latest_spending_million': round(latest_spending_nominal, 1),
+                'total_change_million': round(total_change_real, 1),
+                'demographic_effect_million': round(demographic_effect_real, 1),
+                'policy_effect_million': round(policy_effect_real, 1),
+                'demographic_pct': round(demographic_effect_real / total_change_real * 100, 1) if total_change_real != 0 else 0,
+                'policy_pct': round(policy_effect_real / total_change_real * 100, 1) if total_change_real != 0 else 0,
+                'cost_per_ben_base': round(cost_per_ben_base_real, 0),
+                'cost_per_ben_latest': round(cost_per_ben_latest_real, 0),
+                'cost_per_ben_change_pct': round((cost_per_ben_latest_real - cost_per_ben_base_real) / cost_per_ben_base_real * 100, 1) if cost_per_ben_base_real != 0 else 0,
+                'deflator': round(deflator, 3),
+            },
+            
+            # GDP share
+            'gdp_share': {
+                'base_pct': round(base_gdp_pct, 2),
+                'latest_pct': round(latest_gdp_pct, 2),
+                'total_change_pp': round(total_change_gdp, 2),  # Percentage points
+                'demographic_effect_pp': round(demographic_effect_gdp, 2),
+                'policy_effect_pp': round(policy_effect_gdp, 2),
+                'demographic_pct': round(demographic_effect_gdp / total_change_gdp * 100, 1) if total_change_gdp != 0 else 0,
+                'policy_pct': round(policy_effect_gdp / total_change_gdp * 100, 1) if total_change_gdp != 0 else 0,
+            },
+            
+            # Legacy fields for backward compatibility
+            'base_spending_million': round(base_spending_nominal, 1),
+            'latest_spending_million': round(latest_spending_nominal, 1),
+            'total_change_million': round(total_change_nominal, 1),
+            'demographic_effect_million': round(demographic_effect_nominal, 1),
+            'policy_effect_million': round(policy_effect_nominal, 1),
+            'demographic_pct': round(demographic_effect_nominal / total_change_nominal * 100, 1) if total_change_nominal != 0 else 0,
+            'policy_pct': round(policy_effect_nominal / total_change_nominal * 100, 1) if total_change_nominal != 0 else 0,
+            'cost_per_ben_base': round(cost_per_ben_base_nominal, 0),
+            'cost_per_ben_latest': round(cost_per_ben_latest_nominal, 0),
+            'cost_per_ben_change_pct': round((cost_per_ben_latest_nominal - cost_per_ben_base_nominal) / cost_per_ben_base_nominal * 100, 1) if cost_per_ben_base_nominal != 0 else 0,
         })
     
     return decomposition
@@ -636,6 +800,15 @@ def main():
         unemployed_by_year = get_unemployment_data()
         print(f"  Got unemployment data for {len(unemployed_by_year)} years")
         
+        # Get CPI and GDP data for inflation adjustment
+        print("=" * 60)
+        cpi_by_year = get_cpi_data()
+        print(f"  Got CPI data for {len(cpi_by_year)} years")
+        
+        print("=" * 60)
+        gdp_by_year = get_gdp_data()
+        print(f"  Got GDP data for {len(gdp_by_year)} years")
+        
         # Calculate cost per beneficiary
         print("=" * 60)
         print("Calculating cost per beneficiary...")
@@ -647,17 +820,28 @@ def main():
         )
         transformed['cost_per_beneficiary'] = cost_per_beneficiary
         
-        # Calculate decomposition
+        # Calculate decomposition (now with inflation and GDP normalization)
         print("Calculating spending decomposition...")
         decomposition = calculate_decomposition(
             transformed['subcategories'],
             pop_by_year,
             unemployed_by_year,
+            cpi_by_year,
+            gdp_by_year,
             base_year,
             latest_year
         )
         transformed['decomposition'] = decomposition
         transformed['decomposition_base_year'] = base_year
+        
+        # Add inflation reference data
+        transformed['inflation_data'] = {
+            'cpi_base_year': base_year,
+            'cpi_base_value': cpi_by_year.get(base_year, 79.5),
+            'cpi_latest_year': latest_year,
+            'cpi_latest_value': cpi_by_year.get(latest_year, 122.5),
+            'cumulative_inflation_pct': round((cpi_by_year.get(latest_year, 122.5) / cpi_by_year.get(base_year, 79.5) - 1) * 100, 1),
+        }
         
         # Add OECD benchmark
         transformed['oecd_benchmark'] = OECD_BENCHMARK

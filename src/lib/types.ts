@@ -846,11 +846,7 @@ export interface CostPerBeneficiary {
   admin_per_beneficiary: number;
 }
 
-export interface DecompositionEntry {
-  code: string;
-  name: string;
-  base_year: number;
-  latest_year: number;
+export interface DecompositionNominal {
   base_spending_million: number;
   latest_spending_million: number;
   total_change_million: number;
@@ -858,10 +854,56 @@ export interface DecompositionEntry {
   policy_effect_million: number;
   demographic_pct: number;
   policy_pct: number;
-  beneficiary_change_pct: number;
   cost_per_ben_base: number;
   cost_per_ben_latest: number;
   cost_per_ben_change_pct: number;
+}
+
+export interface DecompositionReal extends DecompositionNominal {
+  deflator: number;
+}
+
+export interface DecompositionGdpShare {
+  base_pct: number;
+  latest_pct: number;
+  total_change_pp: number;
+  demographic_effect_pp: number;
+  policy_effect_pp: number;
+  demographic_pct: number;
+  policy_pct: number;
+}
+
+export interface DecompositionEntry {
+  code: string;
+  name: string;
+  base_year: number;
+  latest_year: number;
+  beneficiary_change_pct: number;
+  
+  // Three views
+  nominal: DecompositionNominal;
+  real: DecompositionReal;
+  gdp_share: DecompositionGdpShare;
+  
+  // Legacy fields (nominal values for backward compatibility)
+  base_spending_million: number;
+  latest_spending_million: number;
+  total_change_million: number;
+  demographic_effect_million: number;
+  policy_effect_million: number;
+  demographic_pct: number;
+  policy_pct: number;
+  cost_per_ben_base: number;
+  cost_per_ben_latest: number;
+  cost_per_ben_change_pct: number;
+}
+
+export interface InflationData {
+  cpi_base_year: number;
+  cpi_base_value: number;
+  cpi_latest_year: number;
+  cpi_latest_value: number;
+  cumulative_inflation_pct: number;
 }
 
 export interface OECDBenchmarkCountry {
@@ -901,4 +943,5 @@ export interface SpendingEfficiencyData {
   decomposition?: DecompositionEntry[];
   decomposition_base_year?: number;
   oecd_benchmark?: Record<string, OECDBenchmarkCountry>;
+  inflation_data?: InflationData;
 }

@@ -37,6 +37,7 @@ export default function XiPage() {
   const [loading, setLoading] = useState(true);
   const [selectedSub, setSelectedSub] = useState<SocialProtectionSubcategory | null>(null);
   const [chartMode, setChartMode] = useState<'gdp' | 'absolute' | 'efficiency'>('gdp');
+  const [decompMode, setDecompMode] = useState<'nominal' | 'real' | 'gdp_share'>('real');
 
   useEffect(() => {
     async function loadData() {
@@ -80,7 +81,7 @@ export default function XiPage() {
     );
   }
 
-  const { summary, g10_time_series, subcategories, cost_per_beneficiary, decomposition, oecd_benchmark, decomposition_base_year } = data;
+  const { summary, g10_time_series, subcategories, cost_per_beneficiary, decomposition, oecd_benchmark, decomposition_base_year, inflation_data } = data;
 
   // Prepare stacked area chart data for subcategories over time (€ Billions)
   const stackedAreaData = g10_time_series.map((entry) => {
@@ -906,38 +907,112 @@ export default function XiPage() {
       {decomposition && decomposition.length > 0 && (
         <section className="py-8 px-6 border-b border-gray-800">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold mb-2">
-                Spending Growth Decomposition ({decomposition_base_year || 2000}-{summary.year})
-              </h2>
-              <p className="text-gray-400 text-sm max-w-3xl">
-                Breaking down total spending growth into two components: changes in the <span className="text-blue-400">number of beneficiaries</span> (demographic/economic shifts) 
-                vs changes in <span className="text-amber-400">spending per beneficiary</span> (policy decisions like benefit levels, inflation adjustments, scope expansion).
-              </p>
+            <div className="flex items-start justify-between mb-6">
+              <div>
+                <h2 className="text-2xl font-bold mb-2">
+                  Spending Growth Decomposition ({decomposition_base_year || 2000}-{summary.year})
+                </h2>
+                <p className="text-gray-400 text-sm max-w-3xl">
+                  Breaking down total spending growth into two components: changes in the <span className="text-blue-400">number of beneficiaries</span> (demographic/economic shifts) 
+                  vs changes in <span className="text-amber-400">spending per beneficiary</span> (policy decisions like benefit levels, inflation adjustments, scope expansion).
+                </p>
+              </div>
+              
+              {/* Mode toggle */}
+              <div className="flex gap-1 bg-gray-800 rounded-lg p-1">
+                <button
+                  onClick={() => setDecompMode('nominal')}
+                  className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
+                    decompMode === 'nominal' 
+                      ? 'bg-emerald-600 text-white' 
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  Nominal €
+                </button>
+                <button
+                  onClick={() => setDecompMode('real')}
+                  className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
+                    decompMode === 'real' 
+                      ? 'bg-emerald-600 text-white' 
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  Real € (inflation-adj)
+                </button>
+                <button
+                  onClick={() => setDecompMode('gdp_share')}
+                  className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
+                    decompMode === 'gdp_share' 
+                      ? 'bg-emerald-600 text-white' 
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  % of GDP
+                </button>
+              </div>
             </div>
 
-            {/* Two charts side by side: Absolute € and Relative % */}
+            {/* Inflation info banner for real mode */}
+            {decompMode === 'real' && inflation_data && (
+              <div className="mb-4 p-3 bg-purple-900/20 border border-purple-800/30 rounded-lg text-sm">
+                <span className="text-purple-400 font-medium">Inflation Adjustment:</span>
+                <span className="text-gray-400 ml-2">
+                  {decomposition_base_year || 2001} values adjusted to {summary.year} prices 
+                  (CPI: {inflation_data.cpi_base_value} → {inflation_data.cpi_latest_value}, 
+                  cumulative inflation: +{inflation_data.cumulative_inflation_pct}%)
+                </span>
+              </div>
+            )}
+
+            {/* Two charts side by side: Absolute and Relative % */}
             <div className="grid md:grid-cols-2 gap-8 mb-8">
-              {/* Absolute € chart */}
+              {/* Absolute chart (€ or % GDP) */}
               <div className="card p-6 h-[400px]">
-                <h3 className="text-lg font-semibold mb-2">Absolute Growth (€ Billions)</h3>
+                <h3 className="text-lg font-semibold mb-2">
+                  {decompMode === 'gdp_share' ? 'GDP Share Change (pp)' : 
+                   decompMode === 'real' ? 'Real Growth (€ Billions, 2024 prices)' : 
+                   'Nominal Growth (€ Billions)'}
+                </h3>
                 <p className="text-xs text-gray-500 mb-4">
-                  € added to spending from {decomposition_base_year || 2001} baseline
+                  {decompMode === 'gdp_share' 
+                    ? 'Percentage point change in GDP share'
+                    : decompMode === 'real'
+                    ? 'Inflation-adjusted € added from baseline'
+                    : 'Current € added from baseline (not inflation-adjusted)'}
                 </p>
                 <ResponsiveContainer width="100%" height="85%">
                   <BarChart 
-                    data={decomposition.map(d => ({
-                      name: d.name.split(' ')[0],
-                      beneficiary_effect: d.demographic_effect_million / 1000,
-                      cost_effect: d.policy_effect_million / 1000,
-                    }))}
+                    data={decomposition.map(d => {
+                      if (decompMode === 'gdp_share') {
+                        return {
+                          name: d.name.split(' ')[0],
+                          beneficiary_effect: d.gdp_share?.demographic_effect_pp || 0,
+                          cost_effect: d.gdp_share?.policy_effect_pp || 0,
+                        };
+                      } else if (decompMode === 'real') {
+                        return {
+                          name: d.name.split(' ')[0],
+                          beneficiary_effect: (d.real?.demographic_effect_million || 0) / 1000,
+                          cost_effect: (d.real?.policy_effect_million || 0) / 1000,
+                        };
+                      } else {
+                        return {
+                          name: d.name.split(' ')[0],
+                          beneficiary_effect: (d.nominal?.demographic_effect_million || d.demographic_effect_million) / 1000,
+                          cost_effect: (d.nominal?.policy_effect_million || d.policy_effect_million) / 1000,
+                        };
+                      }
+                    })}
                     layout="vertical"
                   >
                     <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                     <XAxis 
                       type="number" 
                       stroke="#9CA3AF" 
-                      tickFormatter={(v: number) => `€${v.toFixed(0)}B`}
+                      tickFormatter={(v: number) => 
+                        decompMode === 'gdp_share' ? `${v.toFixed(1)}pp` : `€${v.toFixed(0)}B`
+                      }
                     />
                     <YAxis type="category" dataKey="name" stroke="#9CA3AF" width={90} />
                     <Tooltip
@@ -950,11 +1025,12 @@ export default function XiPage() {
                         if (value === undefined) return ['N/A', ''];
                         const label = name === 'beneficiary_effect' ? 'Δ Beneficiaries' : 'Δ Cost/Person';
                         const sign = value >= 0 ? '+' : '';
-                        return [`${sign}€${value.toFixed(1)}B`, label];
+                        const unit = decompMode === 'gdp_share' ? 'pp' : 'B';
+                        const prefix = decompMode === 'gdp_share' ? '' : '€';
+                        return [`${sign}${prefix}${value.toFixed(2)}${unit}`, label];
                       }}
                     />
                     <Legend />
-                    {/* Use separate bars, not stacked, to show negative values properly */}
                     <Bar dataKey="beneficiary_effect" name="Δ Beneficiaries" fill="#3B82F6" />
                     <Bar dataKey="cost_effect" name="Δ Cost/Person" fill="#F59E0B" />
                   </BarChart>
@@ -969,11 +1045,15 @@ export default function XiPage() {
                 </p>
                 <ResponsiveContainer width="100%" height="85%">
                   <BarChart 
-                    data={decomposition.map(d => ({
-                      name: d.name.split(' ')[0],
-                      beneficiary_pct: d.demographic_pct,
-                      cost_pct: d.policy_pct,
-                    }))}
+                    data={decomposition.map(d => {
+                      const data = decompMode === 'gdp_share' ? d.gdp_share : 
+                                   decompMode === 'real' ? d.real : d.nominal;
+                      return {
+                        name: d.name.split(' ')[0],
+                        beneficiary_pct: data?.demographic_pct || d.demographic_pct,
+                        cost_pct: data?.policy_pct || d.policy_pct,
+                      };
+                    })}
                     layout="vertical"
                   >
                     <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -1007,111 +1087,190 @@ export default function XiPage() {
 
             {/* Detail cards with €/person focus */}
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {decomposition.map((dec) => (
-                <div key={dec.code} className="card p-4">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div
-                      className="w-3 h-3 rounded-sm"
-                      style={{ backgroundColor: SUBCATEGORY_COLORS[dec.code] }}
-                    />
-                    <span className="font-medium text-sm">{dec.name}</span>
-                  </div>
-                  
-                  {/* Cost per person visualization */}
-                  <div className="bg-gray-800/50 rounded p-3 mb-3">
-                    <div className="text-xs text-gray-500 mb-2">Cost per Beneficiary</div>
-                    <div className="flex items-center justify-between">
-                      <div className="text-center">
-                        <div className="text-xs text-gray-600">{dec.base_year}</div>
-                        <div className="font-mono text-sm text-gray-400">
-                          €{(dec.cost_per_ben_base / 1000).toFixed(1)}K
-                        </div>
-                      </div>
-                      <div className="flex-1 mx-3">
-                        <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-gradient-to-r from-gray-500 to-amber-500 rounded-full"
-                            style={{ width: '100%' }}
-                          />
-                        </div>
-                        <div className="text-center text-xs text-amber-400 mt-1">
-                          +{dec.cost_per_ben_change_pct.toFixed(0)}%
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-xs text-gray-600">{dec.latest_year}</div>
-                        <div className="font-mono text-sm text-amber-400">
-                          €{(dec.cost_per_ben_latest / 1000).toFixed(1)}K
-                        </div>
-                      </div>
+              {decomposition.map((dec) => {
+                // Get the appropriate data based on mode
+                const nominalData = dec.nominal;
+                const realData = dec.real;
+                const gdpData = dec.gdp_share;
+                
+                const costBase = decompMode === 'real' ? realData?.cost_per_ben_base : nominalData?.cost_per_ben_base || dec.cost_per_ben_base;
+                const costLatest = decompMode === 'real' ? realData?.cost_per_ben_latest : nominalData?.cost_per_ben_latest || dec.cost_per_ben_latest;
+                const costChangePct = decompMode === 'real' ? realData?.cost_per_ben_change_pct : nominalData?.cost_per_ben_change_pct || dec.cost_per_ben_change_pct;
+                
+                const demoEffect = decompMode === 'gdp_share' 
+                  ? gdpData?.demographic_effect_pp || 0
+                  : decompMode === 'real' 
+                    ? realData?.demographic_effect_million || 0 
+                    : nominalData?.demographic_effect_million || dec.demographic_effect_million;
+                    
+                const policyEffect = decompMode === 'gdp_share'
+                  ? gdpData?.policy_effect_pp || 0
+                  : decompMode === 'real'
+                    ? realData?.policy_effect_million || 0
+                    : nominalData?.policy_effect_million || dec.policy_effect_million;
+                    
+                const totalChange = decompMode === 'gdp_share'
+                  ? gdpData?.total_change_pp || 0
+                  : decompMode === 'real'
+                    ? realData?.total_change_million || 0
+                    : nominalData?.total_change_million || dec.total_change_million;
+                
+                return (
+                  <div key={dec.code} className="card p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div
+                        className="w-3 h-3 rounded-sm"
+                        style={{ backgroundColor: SUBCATEGORY_COLORS[dec.code] }}
+                      />
+                      <span className="font-medium text-sm">{dec.name}</span>
                     </div>
-                  </div>
+                    
+                    {/* Cost per person visualization */}
+                    {decompMode !== 'gdp_share' && costBase && costLatest && (
+                      <div className="bg-gray-800/50 rounded p-3 mb-3">
+                        <div className="text-xs text-gray-500 mb-2">
+                          Cost per Beneficiary {decompMode === 'real' ? '(real)' : '(nominal)'}
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div className="text-center">
+                            <div className="text-xs text-gray-600">{dec.base_year}</div>
+                            <div className="font-mono text-sm text-gray-400">
+                              €{(costBase / 1000).toFixed(1)}K
+                            </div>
+                          </div>
+                          <div className="flex-1 mx-3">
+                            <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
+                              <div 
+                                className="h-full bg-gradient-to-r from-gray-500 to-amber-500 rounded-full"
+                                style={{ width: '100%' }}
+                              />
+                            </div>
+                            <div className="text-center text-xs text-amber-400 mt-1">
+                              {costChangePct !== undefined && costChangePct >= 0 ? '+' : ''}{costChangePct?.toFixed(0) || 0}%
+                            </div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-xs text-gray-600">{dec.latest_year}</div>
+                            <div className="font-mono text-sm text-amber-400">
+                              €{(costLatest / 1000).toFixed(1)}K
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
 
-                  {/* Growth breakdown */}
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className={`rounded p-2 ${dec.demographic_effect_million >= 0 ? 'bg-blue-900/20' : 'bg-emerald-900/20'}`}>
-                      <div className="text-gray-500">Δ Beneficiaries</div>
-                      <div className={`font-mono ${dec.demographic_effect_million >= 0 ? 'text-blue-400' : 'text-emerald-400'}`}>
-                        {dec.demographic_effect_million >= 0 ? '+' : ''}€{(dec.demographic_effect_million / 1000).toFixed(1)}B
+                    {/* GDP share view */}
+                    {decompMode === 'gdp_share' && gdpData && (
+                      <div className="bg-gray-800/50 rounded p-3 mb-3">
+                        <div className="text-xs text-gray-500 mb-2">GDP Share</div>
+                        <div className="flex items-center justify-between">
+                          <div className="text-center">
+                            <div className="text-xs text-gray-600">{dec.base_year}</div>
+                            <div className="font-mono text-sm text-gray-400">
+                              {gdpData.base_pct.toFixed(1)}%
+                            </div>
+                          </div>
+                          <div className="flex-1 mx-3 text-center">
+                            <div className={`text-sm font-mono ${gdpData.total_change_pp >= 0 ? 'text-red-400' : 'text-emerald-400'}`}>
+                              {gdpData.total_change_pp >= 0 ? '+' : ''}{gdpData.total_change_pp.toFixed(2)}pp
+                            </div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-xs text-gray-600">{dec.latest_year}</div>
+                            <div className="font-mono text-sm text-amber-400">
+                              {gdpData.latest_pct.toFixed(1)}%
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="text-gray-600">
-                        ({dec.beneficiary_change_pct >= 0 ? '+' : ''}{dec.beneficiary_change_pct.toFixed(0)}%)
-                      </div>
-                    </div>
-                    <div className="bg-amber-900/20 rounded p-2">
-                      <div className="text-gray-500">Δ Cost/Person</div>
-                      <div className="font-mono text-amber-400">
-                        +€{(dec.policy_effect_million / 1000).toFixed(1)}B
-                      </div>
-                      <div className="text-gray-600">
-                        (+{dec.cost_per_ben_change_pct.toFixed(0)}%)
-                      </div>
-                    </div>
-                  </div>
+                    )}
 
-                  {/* Total */}
-                  <div className="mt-2 pt-2 border-t border-gray-800 text-center">
-                    <span className="text-xs text-gray-500">Total growth: </span>
-                    <span className="font-mono text-sm text-emerald-400">
-                      +€{(dec.total_change_million / 1000).toFixed(1)}B
-                    </span>
+                    {/* Growth breakdown */}
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div className={`rounded p-2 ${demoEffect >= 0 ? 'bg-blue-900/20' : 'bg-emerald-900/20'}`}>
+                        <div className="text-gray-500">Δ Beneficiaries</div>
+                        <div className={`font-mono ${demoEffect >= 0 ? 'text-blue-400' : 'text-emerald-400'}`}>
+                          {decompMode === 'gdp_share' 
+                            ? `${demoEffect >= 0 ? '+' : ''}${demoEffect.toFixed(2)}pp`
+                            : `${demoEffect >= 0 ? '+' : ''}€${(demoEffect / 1000).toFixed(1)}B`
+                          }
+                        </div>
+                        <div className="text-gray-600">
+                          ({dec.beneficiary_change_pct >= 0 ? '+' : ''}{dec.beneficiary_change_pct.toFixed(0)}% recipients)
+                        </div>
+                      </div>
+                      <div className="bg-amber-900/20 rounded p-2">
+                        <div className="text-gray-500">Δ Cost/Person</div>
+                        <div className="font-mono text-amber-400">
+                          {decompMode === 'gdp_share'
+                            ? `${policyEffect >= 0 ? '+' : ''}${policyEffect.toFixed(2)}pp`
+                            : `+€${(policyEffect / 1000).toFixed(1)}B`
+                          }
+                        </div>
+                        <div className="text-gray-600">
+                          ({decompMode === 'real' ? 'real' : decompMode === 'gdp_share' ? 'GDP-norm' : 'nominal'})
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Total */}
+                    <div className="mt-2 pt-2 border-t border-gray-800 text-center">
+                      <span className="text-xs text-gray-500">Total growth: </span>
+                      <span className="font-mono text-sm text-emerald-400">
+                        {decompMode === 'gdp_share'
+                          ? `${totalChange >= 0 ? '+' : ''}${totalChange.toFixed(2)}pp`
+                          : `+€${(totalChange / 1000).toFixed(1)}B`
+                        }
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Methodology explanation */}
             <div className="mt-6 card p-6 border-gray-700">
               <h4 className="text-sm font-semibold text-white mb-3">Methodology: What do these terms mean?</h4>
-              <div className="grid md:grid-cols-2 gap-6 text-sm">
+              <div className="grid md:grid-cols-3 gap-6 text-sm">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-3 h-3 rounded-sm bg-blue-500" />
-                    <span className="font-medium text-blue-400">Δ Beneficiaries (Demographic/Economic)</span>
+                    <span className="font-medium text-blue-400">Δ Beneficiaries</span>
                   </div>
                   <p className="text-gray-400 text-xs">
                     Spending change due to <strong className="text-white">more or fewer people</strong> receiving benefits.
-                    Calculated as: (change in recipient count) × (original cost per person).
+                    Formula: (Δ recipient count) × (original cost per person).
                   </p>
                   <ul className="text-gray-500 text-xs mt-2 space-y-1 list-disc list-inside">
-                    <li><strong>Old age:</strong> More retirees = demographic change</li>
-                    <li><strong>Unemployment:</strong> More/fewer unemployed = economic cycle, not policy</li>
-                    <li><strong>Family:</strong> More/fewer children = birth rate changes</li>
+                    <li>Old age: More retirees = demographic</li>
+                    <li>Unemployment: Economic cycle, not policy</li>
+                    <li>Family: Birth rate changes</li>
                   </ul>
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-3 h-3 rounded-sm bg-amber-500" />
-                    <span className="font-medium text-amber-400">Δ Cost/Person (Policy Decisions)</span>
+                    <span className="font-medium text-amber-400">Δ Cost/Person</span>
                   </div>
                   <p className="text-gray-400 text-xs">
                     Spending change due to <strong className="text-white">higher spending per recipient</strong>.
-                    Calculated as: (change in cost per person) × (current recipient count).
+                    Formula: (Δ cost per person) × (current recipient count).
                   </p>
                   <ul className="text-gray-500 text-xs mt-2 space-y-1 list-disc list-inside">
-                    <li><strong>Benefit increases:</strong> Higher pension/unemployment payments</li>
-                    <li><strong>Inflation adjustments:</strong> Index-linked benefit increases</li>
-                    <li><strong>Scope expansion:</strong> More services covered per person</li>
+                    <li>Benefit increases (policy decision)</li>
+                    <li>Inflation adjustments</li>
+                    <li>Scope expansion</li>
+                  </ul>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-3 h-3 rounded-sm bg-purple-500" />
+                    <span className="font-medium text-purple-400">View Modes</span>
+                  </div>
+                  <ul className="text-gray-400 text-xs space-y-2">
+                    <li><strong className="text-white">Nominal €:</strong> Current prices (includes inflation)</li>
+                    <li><strong className="text-white">Real €:</strong> Adjusted to {summary.year} prices — shows true purchasing power growth</li>
+                    <li><strong className="text-white">% of GDP:</strong> Relative to economy size — shows fiscal burden change</li>
                   </ul>
                 </div>
               </div>
@@ -1122,17 +1281,20 @@ export default function XiPage() {
               <div className="card p-4 border-blue-900/30">
                 <h4 className="text-sm font-semibold text-blue-400 mb-2">Beneficiary Changes</h4>
                 <p className="text-gray-400 text-sm">
-                  <strong className="text-white">Old age (+€8.8B)</strong>: Aging population drives spending — 80% more retirees since 2001.
-                  <strong className="text-white"> Unemployment (-€0.4B)</strong>: Fewer unemployed reduces costs — but this reflects economic cycles, not policy success.
-                  <strong className="text-white"> Family (-€0.5B)</strong>: Declining birth rate = fewer children needing support.
+                  <strong className="text-white">Old age</strong>: Aging population drives spending — 80% more retirees since 2001.
+                  <strong className="text-white"> Unemployment</strong>: Fewer unemployed reduces costs — but this reflects economic cycles, not policy success.
+                  <strong className="text-white"> Family</strong>: Declining birth rate = fewer children needing support.
                 </p>
               </div>
               <div className="card p-4 border-amber-900/30">
                 <h4 className="text-sm font-semibold text-amber-400 mb-2">Policy-Driven Cost Increases</h4>
                 <p className="text-gray-400 text-sm">
-                  <strong className="text-white">All programs</strong> show significant cost-per-person increases (70-200%).
-                  This is the <em>true policy effect</em>: decisions to raise benefit levels, expand coverage, or add services.
-                  Even unemployment (+€1.4B) grew per-person despite fewer recipients — benefits were increased.
+                  {decompMode === 'real' 
+                    ? 'Even after removing inflation, cost per person grew significantly. This is real policy expansion.'
+                    : decompMode === 'gdp_share'
+                    ? 'Social spending as % of GDP has grown, meaning these programs take a larger share of the economy.'
+                    : 'All programs show significant cost-per-person increases. Use "Real €" mode to separate policy changes from inflation.'
+                  }
                 </p>
               </div>
             </div>
