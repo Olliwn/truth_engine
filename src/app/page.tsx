@@ -142,7 +142,7 @@ export default async function Home() {
               color="indigo"
             />
           </div>
-          {/* Row 5: Spending Efficiency, Lifetime Fiscal, Population */}
+          {/* Row 5: Spending Efficiency, Lifetime Fiscal, Fiscal Future */}
           <div className="grid md:grid-cols-3 gap-4">
             <FeaturedCard
               emoji="⚡"
@@ -159,26 +159,36 @@ export default async function Home() {
               color="teal"
             />
             <FeaturedCard
-              emoji="Σ"
-              title="Population Fiscal"
-              subtitle="Demographic Sustainability"
-              href="/sigma"
-              color="amber"
-            />
-            <FeaturedCard
-              emoji="Σ²"
-              title="Population Fiscal v2"
-              subtitle="Redesigned Interface"
-              href="/sigma2"
-              color="purple"
-            />
-            <FeaturedCard
               emoji="Σ³"
               title="Fiscal Future"
               subtitle="COFOG Spending Model"
               href="/sigma3"
               color="emerald"
+              badge="ALPHA"
             />
+          </div>
+          
+          {/* Deprecated Section */}
+          <div className="mt-8 pt-6 border-t border-gray-800/50">
+            <div className="text-xs text-gray-500 uppercase tracking-wide mb-3 flex items-center gap-2">
+              <span>📦</span> Legacy Simulators (Deprecated)
+            </div>
+            <div className="grid md:grid-cols-3 gap-4 opacity-60">
+              <FeaturedCard
+                emoji="Σ"
+                title="Population Fiscal"
+                subtitle="Superseded by Σ³"
+                href="/sigma"
+                color="gray"
+              />
+              <FeaturedCard
+                emoji="Σ²"
+                title="Population Fiscal v2"
+                subtitle="Superseded by Σ³"
+                href="/sigma2"
+                color="gray"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -388,42 +398,42 @@ export default async function Home() {
             />
             
             <ProjectCard
-              title="Population Fiscal Simulator"
-              emoji="Σ"
-              status="live"
-              description="Watch Finland's demographic transition from 1990-2060. See how the baby boom retirement wave transforms the population pyramid and strains fiscal sustainability."
-              href="/sigma"
+              title="Fiscal Future (COFOG)"
+              emoji="Σ³"
+              status="alpha"
+              description="Comprehensive fiscal simulation combining COFOG spending model, demographic projections, and economic scenarios. Historical data (1990-2024) + scenario projections (2025-2060). Requires thorough validation before production use."
+              href="/sigma3"
+              highlight
               metrics={[
-                { label: 'Years', value: '1990-2060' },
-                { label: 'Dependency', value: '22%→45%' },
-                { label: 'Cohorts', value: '80+' },
+                { label: 'COFOG Categories', value: '10' },
+                { label: 'Scenario Groups', value: '6' },
+                { label: 'Timeline', value: '1990-2060' },
               ]}
             />
             
             <ProjectCard
               title="Population Fiscal v2"
               emoji="Σ²"
-              status="live"
-              description="Redesigned population fiscal simulator with sidebar controls, tabbed results, and improved UX. Configure scenarios on the left, explore results on the right."
+              status="deprecated"
+              description="Previous iteration of the population fiscal simulator. Superseded by Σ³ Fiscal Future which adds COFOG spending projections and improved scenario controls."
               href="/sigma2"
               metrics={[
+                { label: 'Status', value: 'Legacy' },
+                { label: 'Replacement', value: 'Σ³' },
                 { label: 'Layout', value: 'Sidebar' },
-                { label: 'Tabs', value: '4' },
-                { label: 'Components', value: '10+' },
               ]}
             />
             
             <ProjectCard
-              title="Fiscal Future (COFOG)"
-              emoji="Σ³"
-              status="live"
-              description="Full COFOG government spending model. Historical data (1990-2024) + scenario projections (2025-2060). Control spending by group: healthcare, education, security, infrastructure, government, culture."
-              href="/sigma3"
-              highlight
+              title="Population Fiscal Simulator"
+              emoji="Σ"
+              status="deprecated"
+              description="Original population fiscal simulator. Superseded by Σ³ Fiscal Future which provides more comprehensive scenario modeling and COFOG spending integration."
+              href="/sigma"
               metrics={[
-                { label: 'COFOG Categories', value: '10' },
-                { label: 'Scenario Groups', value: '6' },
-                { label: 'Base Year', value: '2024' },
+                { label: 'Status', value: 'Legacy' },
+                { label: 'Replacement', value: 'Σ³' },
+                { label: 'Years', value: '1990-2060' },
               ]}
             />
           </div>
@@ -475,13 +485,15 @@ function FeaturedCard({
   title, 
   subtitle,
   href,
-  color = 'red'
+  color = 'red',
+  badge,
 }: { 
   emoji: string;
   title: string; 
   subtitle: string;
   href: string;
-  color?: 'red' | 'amber' | 'orange' | 'green' | 'blue' | 'teal' | 'rose' | 'pink' | 'purple' | 'indigo' | 'emerald';
+  color?: 'red' | 'amber' | 'orange' | 'green' | 'blue' | 'teal' | 'rose' | 'pink' | 'purple' | 'indigo' | 'emerald' | 'gray';
+  badge?: string;
 }) {
   const colorClasses = {
     red: 'hover:border-red-500/50 hover:bg-red-950/20',
@@ -495,6 +507,13 @@ function FeaturedCard({
     purple: 'hover:border-purple-500/50 hover:bg-purple-950/20',
     indigo: 'hover:border-indigo-500/50 hover:bg-indigo-950/20',
     emerald: 'hover:border-emerald-500/50 hover:bg-emerald-950/20',
+    gray: 'hover:border-gray-600/50 hover:bg-gray-900/30',
+  };
+
+  const badgeClasses: Record<string, string> = {
+    ALPHA: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+    BETA: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+    NEW: 'bg-green-500/20 text-green-400 border-green-500/30',
   };
   
   return (
@@ -502,8 +521,15 @@ function FeaturedCard({
       <div className={`p-4 rounded-lg border border-gray-800 bg-gray-900/50 transition-all cursor-pointer ${colorClasses[color]}`}>
         <div className="flex items-center gap-3">
           <span className="text-2xl">{emoji}</span>
-          <div>
-            <div className="font-semibold text-white">{title}</div>
+          <div className="flex-1">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-white">{title}</span>
+              {badge && (
+                <span className={`px-1.5 py-0.5 text-[10px] font-bold rounded border ${badgeClasses[badge] || 'bg-gray-500/20 text-gray-400 border-gray-500/30'}`}>
+                  {badge}
+                </span>
+              )}
+            </div>
             <div className="text-xs text-gray-500">{subtitle}</div>
           </div>
         </div>
@@ -523,24 +549,30 @@ function ProjectCard({
 }: { 
   title: string; 
   emoji: string;
-  status: 'live' | 'coming'; 
+  status: 'live' | 'coming' | 'alpha' | 'deprecated'; 
   description: string; 
   href?: string; 
   metrics: { label: string; value: string }[];
   highlight?: boolean;
 }) {
+  const statusStyles: Record<string, { bg: string; text: string; label: string }> = {
+    live: { bg: 'bg-green-500/20', text: 'text-green-400', label: 'LIVE' },
+    coming: { bg: 'bg-gray-700/50', text: 'text-gray-400', label: 'COMING SOON' },
+    alpha: { bg: 'bg-amber-500/20', text: 'text-amber-400', label: 'ALPHA' },
+    deprecated: { bg: 'bg-gray-700/50', text: 'text-gray-500', label: 'DEPRECATED' },
+  };
+
+  const statusStyle = statusStyles[status];
+  const isDeprecated = status === 'deprecated';
+
   const content = (
     <div className={`card p-6 h-full transition-all ${
       href ? 'hover:border-red-900/50 hover:shadow-lg hover:shadow-red-950/20 cursor-pointer' : 'opacity-70'
-    } ${highlight ? 'border-amber-500/30 bg-amber-950/10' : ''}`}>
+    } ${highlight ? 'border-amber-500/30 bg-amber-950/10' : ''} ${isDeprecated ? 'opacity-60' : ''}`}>
       <div className="flex items-center gap-3 mb-4">
         <span className="text-2xl">{emoji}</span>
-        <span className={`px-2 py-1 rounded text-xs font-medium ${
-          status === 'live' 
-            ? 'bg-green-500/20 text-green-400' 
-            : 'bg-gray-700/50 text-gray-400'
-        }`}>
-          {status === 'live' ? 'LIVE' : 'COMING SOON'}
+        <span className={`px-2 py-1 rounded text-xs font-medium ${statusStyle.bg} ${statusStyle.text}`}>
+          {statusStyle.label}
         </span>
       </div>
       <h3 className="text-lg font-bold mb-2">{title}</h3>
