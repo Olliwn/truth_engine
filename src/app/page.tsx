@@ -142,7 +142,7 @@ export default async function Home() {
               color="indigo"
             />
           </div>
-          {/* Row 5: Spending Efficiency, Lifetime Fiscal */}
+          {/* Row 5: Spending Efficiency, Lifetime Fiscal, Population */}
           <div className="grid md:grid-cols-3 gap-4">
             <FeaturedCard
               emoji="⚡"
@@ -157,6 +157,13 @@ export default async function Home() {
               subtitle="Birth to Death Simulation"
               href="/rho"
               color="teal"
+            />
+            <FeaturedCard
+              emoji="Σ"
+              title="Population Fiscal"
+              subtitle="Demographic Sustainability"
+              href="/sigma"
+              color="amber"
             />
           </div>
         </div>
@@ -360,9 +367,22 @@ export default async function Home() {
               description="Simulate a person's fiscal relationship with Finland from birth to death. See cumulative taxes paid vs education, healthcare, benefits, and pension received across different life paths."
               href="/rho"
               metrics={[
-                { label: 'Profiles', value: '7' },
+                { label: 'Profiles', value: '8' },
                 { label: 'Break-even', value: '~41 yrs' },
                 { label: 'Lifespan', value: '0-85' },
+              ]}
+            />
+            
+            <ProjectCard
+              title="Population Fiscal Simulator"
+              emoji="Σ"
+              status="live"
+              description="Watch Finland's demographic transition from 1990-2060. See how the baby boom retirement wave transforms the population pyramid and strains fiscal sustainability."
+              href="/sigma"
+              metrics={[
+                { label: 'Years', value: '1990-2060' },
+                { label: 'Dependency', value: '22%→45%' },
+                { label: 'Cohorts', value: '80+' },
               ]}
             />
           </div>

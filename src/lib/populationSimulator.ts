@@ -1,0 +1,417 @@
+/**
+ * Population-Level Fiscal Sustainability Simulator
+ * 
+ * Simulates Finland's aggregate fiscal balance by:
+ * 1. Tracking all birth cohorts over time
+ * 2. Applying decile-based income/cost distributions
+ * 3. Summing contributions and state costs across the entire population
+ * 
+ * This provides a macro view of fiscal sustainability that accounts for
+ * demographic transitions (baby boom → baby bust).
+ */
+
+import {
+  FINNISH_BIRTHS_BY_YEAR,
+  getSurvivalProbability,
+  getCohortSizeAtAge,
+  DECILE_CHARACTERISTICS,
+  getPopulationPyramid,
+  getWorkingAgePopulation,
+  getElderlyPopulation,
+  getPopulationByYear,
+} from './constants/finnishDemographics';
+
+import {
+  INCOME_BY_DECILE,
+  calculateIncomeByAge,
+  getHealthcareCost,
+  EDUCATION_COSTS,
+  PENSION_SYSTEM,
+  VAT_RATES,
+} from './constants/lifecycleCosts';
+
+import { calculateTaxes } from './finnishTaxCalculator';
+
+// ===========================================
+// Types
+// ===========================================
+
+export interface AnnualPopulationResult {
+  year: number;
+  
+  // Population breakdown
+  totalPopulation: number;
+  children: number;       // 0-14
+  workingAge: number;     // 15-64  
+  elderly: number;        // 65+
+  
+  // Dependency ratios
+  dependencyRatio: number;        // (children + elderly) / workingAge
+  oldAgeDependencyRatio: number;  // elderly / workingAge
+  
+  // Fiscal aggregates (in millions EUR)
+  totalContributions: number;
+  totalStateCosts: number;
+  netFiscalBalance: number;
+  
+  // Per capita metrics
+  avgContributionPerWorker: number;
+  avgCostPerPerson: number;
+  
+  // Breakdown of costs
+  educationCosts: number;
+  healthcareCosts: number;
+  pensionCosts: number;
+  benefitCosts: number;
+  
+  // Breakdown of contributions
+  incomeTaxRevenue: number;
+  socialInsuranceRevenue: number;
+  vatRevenue: number;
+}
+
+export interface PopulationSimulationResult {
+  startYear: number;
+  endYear: number;
+  annualResults: AnnualPopulationResult[];
+  
+  // Summary statistics
+  summary: {
+    peakSurplusYear: number;
+    peakSurplusAmount: number;
+    firstDeficitYear: number | null;
+    cumulativeBalance: number;
+    avgDependencyRatio: number;
+    populationChange: number;
+  };
+}
+
+// ===========================================
+// Core Simulation Functions
+// ===========================================
+
+/**
+ * Calculate fiscal contributions and costs for a single person-year
+ * at a given age and income decile
+ */
+function calculatePersonYearFiscal(
+  age: number,
+  incomeDecile: number,
+  year: number
+): { contributions: number; stateCosts: number; breakdown: Record<string, number> } {
+  const decileChar = DECILE_CHARACTERISTICS[incomeDecile];
+  const workStartAge = 19; // Simplified
+  const retirementAge = decileChar.avgRetirementAge;
+  
+  let contributions = 0;
+  let stateCosts = 0;
+  const breakdown: Record<string, number> = {
+    incomeTax: 0,
+    socialInsurance: 0,
+    vat: 0,
+    education: 0,
+    healthcare: 0,
+    pension: 0,
+    benefits: 0,
+  };
+  
+  // === STATE COSTS ===
+  
+  // Education costs (ages 1-25 depending on path)
+  if (age >= 1 && age <= 6) {
+    breakdown.education = EDUCATION_COSTS.daycare.perYear;
+  } else if (age >= 7 && age <= 15) {
+    breakdown.education = EDUCATION_COSTS.primarySchool.perYear;
+  } else if (age >= 16 && age <= 18) {
+    // Higher deciles more likely to continue education
+    if (incomeDecile >= 5) {
+      breakdown.education = EDUCATION_COSTS.upperSecondary.perYear;
+    } else {
+      breakdown.education = EDUCATION_COSTS.vocational.perYear * 0.7; // Some drop out
+    }
+  } else if (age >= 19 && age <= 24 && incomeDecile >= 7) {
+    // Higher deciles more likely to have university education
+    breakdown.education = EDUCATION_COSTS.universityBachelor.perYear * 0.5; // Prorated
+  }
+  
+  // Healthcare costs (U-shaped by age, modified by decile)
+  const baseHealthcare = getHealthcareCost(age, false);
+  breakdown.healthcare = baseHealthcare * decileChar.healthMultiplier;
+  
+  // Pension costs (only for retirees)
+  if (age >= retirementAge) {
+    // Pension based on lifetime earnings (simplified)
+    const peakIncome = INCOME_BY_DECILE[incomeDecile];
+    const yearsWorked = Math.max(0, retirementAge - workStartAge - decileChar.avgUnemploymentYears);
+    const avgIncome = peakIncome * 0.7; // Lifetime average ~70% of peak
+    const pensionAccrual = avgIncome * PENSION_SYSTEM.accrualRates.age17to52 * yearsWorked;
+    
+    // Apply life expectancy coefficient
+    breakdown.pension = Math.max(
+      pensionAccrual * 0.7, // Simplified pension calculation
+      PENSION_SYSTEM.nationalPension.single * 12 // Minimum pension
+    );
+  }
+  
+  // Benefits (unemployment, housing allowance for lower deciles)
+  if (age >= workStartAge && age < retirementAge) {
+    // Probability of being unemployed this year
+    const unemploymentProbability = decileChar.avgUnemploymentYears / (retirementAge - workStartAge);
+    breakdown.benefits = unemploymentProbability * 10000; // Annual unemployment benefit
+    
+    // Housing allowance for lowest deciles
+    if (incomeDecile <= 3) {
+      breakdown.benefits += 3000 * (4 - incomeDecile) / 3; // Scaled by need
+    }
+  }
+  
+  stateCosts = breakdown.education + breakdown.healthcare + breakdown.pension + breakdown.benefits;
+  
+  // === CONTRIBUTIONS ===
+  
+  // Only working-age, employed people contribute significantly
+  if (age >= workStartAge && age < retirementAge) {
+    // Probability of being employed
+    const employmentProbability = 1 - decileChar.avgUnemploymentYears / (retirementAge - workStartAge);
+    
+    if (employmentProbability > 0) {
+      const income = calculateIncomeByAge(age, workStartAge, incomeDecile, true);
+      const effectiveIncome = income * employmentProbability;
+      
+      if (effectiveIncome > 0) {
+        // Calculate taxes
+        const monthlyIncome = effectiveIncome / 12;
+        try {
+          const taxResult = calculateTaxes({
+            grossMonthlyIncome: monthlyIncome,
+            municipality: 'helsinki',
+            age: age,
+          });
+          
+          breakdown.incomeTax = (taxResult.nationalTax + taxResult.municipalTax) * 12;
+          breakdown.socialInsurance = (
+            taxResult.pensionContribution + 
+            taxResult.unemploymentInsurance + 
+            taxResult.healthInsurance
+          ) * 12;
+          
+        // VAT on consumption (assume 60% of net income is consumed with VAT)
+        const netIncome = taxResult.netMonthlyIncome * 12;
+        breakdown.vat = netIncome * 0.6 * VAT_RATES.effectiveRate;
+        } catch {
+          // If tax calculation fails, use simplified estimate
+          breakdown.incomeTax = effectiveIncome * 0.25;
+          breakdown.socialInsurance = effectiveIncome * 0.10;
+          breakdown.vat = effectiveIncome * 0.65 * 0.6 * VAT_RATES.effectiveRate;
+        }
+      }
+    }
+  } else if (age >= retirementAge) {
+    // Retirees still pay VAT on consumption
+    const pensionIncome = breakdown.pension;
+    breakdown.vat = pensionIncome * 0.7 * VAT_RATES.effectiveRate;
+  }
+  
+  contributions = breakdown.incomeTax + breakdown.socialInsurance + breakdown.vat;
+  
+  // Ensure no NaN values
+  if (!isFinite(contributions)) contributions = 0;
+  if (!isFinite(stateCosts)) stateCosts = 0;
+  
+  return { contributions, stateCosts, breakdown };
+}
+
+/**
+ * Simulate the entire Finnish population for a single year
+ */
+export function simulatePopulationYear(year: number): AnnualPopulationResult {
+  let totalContributions = 0;
+  let totalStateCosts = 0;
+  
+  let educationCosts = 0;
+  let healthcareCosts = 0;
+  let pensionCosts = 0;
+  let benefitCosts = 0;
+  
+  let incomeTaxRevenue = 0;
+  let socialInsuranceRevenue = 0;
+  let vatRevenue = 0;
+  
+  let totalPopulation = 0;
+  let children = 0;
+  let workingAge = 0;
+  let elderly = 0;
+  
+  // Iterate through all ages (0-100)
+  for (let age = 0; age <= 100; age++) {
+    const birthYear = year - age;
+    const cohortSize = getCohortSizeAtAge(birthYear, age);
+    
+    if (cohortSize <= 0) continue;
+    
+    totalPopulation += cohortSize;
+    
+    // Categorize by age group
+    if (age < 15) {
+      children += cohortSize;
+    } else if (age < 65) {
+      workingAge += cohortSize;
+    } else {
+      elderly += cohortSize;
+    }
+    
+    // For each income decile (10% of population each)
+    for (let decile = 1; decile <= 10; decile++) {
+      const decilePopulation = cohortSize * 0.10;
+      
+      const personYear = calculatePersonYearFiscal(age, decile, year);
+      
+      totalContributions += decilePopulation * personYear.contributions;
+      totalStateCosts += decilePopulation * personYear.stateCosts;
+      
+      educationCosts += decilePopulation * personYear.breakdown.education;
+      healthcareCosts += decilePopulation * personYear.breakdown.healthcare;
+      pensionCosts += decilePopulation * personYear.breakdown.pension;
+      benefitCosts += decilePopulation * personYear.breakdown.benefits;
+      
+      incomeTaxRevenue += decilePopulation * personYear.breakdown.incomeTax;
+      socialInsuranceRevenue += decilePopulation * personYear.breakdown.socialInsurance;
+      vatRevenue += decilePopulation * personYear.breakdown.vat;
+    }
+  }
+  
+  // Convert to millions EUR
+  const toMillions = (x: number) => x / 1_000_000;
+  
+  const dependencyRatio = (children + elderly) / workingAge * 100;
+  const oldAgeDependencyRatio = elderly / workingAge * 100;
+  
+  return {
+    year,
+    totalPopulation: Math.round(totalPopulation),
+    children: Math.round(children),
+    workingAge: Math.round(workingAge),
+    elderly: Math.round(elderly),
+    dependencyRatio,
+    oldAgeDependencyRatio,
+    totalContributions: toMillions(totalContributions),
+    totalStateCosts: toMillions(totalStateCosts),
+    netFiscalBalance: toMillions(totalContributions - totalStateCosts),
+    avgContributionPerWorker: workingAge > 0 ? totalContributions / workingAge : 0,
+    avgCostPerPerson: totalPopulation > 0 ? totalStateCosts / totalPopulation : 0,
+    educationCosts: toMillions(educationCosts),
+    healthcareCosts: toMillions(healthcareCosts),
+    pensionCosts: toMillions(pensionCosts),
+    benefitCosts: toMillions(benefitCosts),
+    incomeTaxRevenue: toMillions(incomeTaxRevenue),
+    socialInsuranceRevenue: toMillions(socialInsuranceRevenue),
+    vatRevenue: toMillions(vatRevenue),
+  };
+}
+
+/**
+ * Run full population simulation across a range of years
+ */
+export function simulatePopulationRange(
+  startYear: number = 1990,
+  endYear: number = 2060
+): PopulationSimulationResult {
+  const annualResults: AnnualPopulationResult[] = [];
+  
+  for (let year = startYear; year <= endYear; year++) {
+    annualResults.push(simulatePopulationYear(year));
+  }
+  
+  // Calculate summary statistics
+  let peakSurplusYear = startYear;
+  let peakSurplusAmount = -Infinity;
+  let firstDeficitYear: number | null = null;
+  let cumulativeBalance = 0;
+  let totalDependencyRatio = 0;
+  
+  for (const result of annualResults) {
+    cumulativeBalance += result.netFiscalBalance;
+    totalDependencyRatio += result.dependencyRatio;
+    
+    if (result.netFiscalBalance > peakSurplusAmount) {
+      peakSurplusAmount = result.netFiscalBalance;
+      peakSurplusYear = result.year;
+    }
+    
+    if (result.netFiscalBalance < 0 && firstDeficitYear === null) {
+      firstDeficitYear = result.year;
+    }
+  }
+  
+  const populationChange = annualResults.length > 1
+    ? annualResults[annualResults.length - 1].totalPopulation - annualResults[0].totalPopulation
+    : 0;
+  
+  return {
+    startYear,
+    endYear,
+    annualResults,
+    summary: {
+      peakSurplusYear,
+      peakSurplusAmount,
+      firstDeficitYear,
+      cumulativeBalance,
+      avgDependencyRatio: totalDependencyRatio / annualResults.length,
+      populationChange,
+    },
+  };
+}
+
+/**
+ * Get population pyramid data for visualization
+ */
+export function getPopulationPyramidData(year: number): Array<{
+  age: number;
+  male: number;
+  female: number;
+  total: number;
+}> {
+  const pyramid = getPopulationPyramid(year);
+  
+  // Approximate 49% male, 51% female (actual Finnish ratio)
+  return pyramid.map(({ age, population }) => ({
+    age,
+    male: Math.round(population * 0.49),
+    female: Math.round(population * 0.51),
+    total: population,
+  }));
+}
+
+/**
+ * Compare two years to show demographic shift
+ */
+export function compareDemographics(year1: number, year2: number): {
+  year1: AnnualPopulationResult;
+  year2: AnnualPopulationResult;
+  changes: {
+    populationChange: number;
+    workingAgeChange: number;
+    elderlyChange: number;
+    dependencyRatioChange: number;
+    fiscalBalanceChange: number;
+  };
+} {
+  const result1 = simulatePopulationYear(year1);
+  const result2 = simulatePopulationYear(year2);
+  
+  return {
+    year1: result1,
+    year2: result2,
+    changes: {
+      populationChange: result2.totalPopulation - result1.totalPopulation,
+      workingAgeChange: result2.workingAge - result1.workingAge,
+      elderlyChange: result2.elderly - result1.elderly,
+      dependencyRatioChange: result2.dependencyRatio - result1.dependencyRatio,
+      fiscalBalanceChange: result2.netFiscalBalance - result1.netFiscalBalance,
+    },
+  };
+}
+
+// Re-export demographic helpers
+export { getPopulationPyramid, getWorkingAgePopulation, getElderlyPopulation };
+
