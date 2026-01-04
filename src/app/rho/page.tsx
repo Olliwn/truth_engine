@@ -485,7 +485,7 @@ export default function RhoPage() {
                 </li>
                 <li className="flex gap-2">
                   <span className="text-amber-400">•</span>
-                  <span>Children&apos;s education costs attributed to parent</span>
+                  <span>Individual-only costs (children tracked separately)</span>
                 </li>
                 <li className="flex gap-2">
                   <span className="text-amber-400">•</span>

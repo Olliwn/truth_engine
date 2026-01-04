@@ -510,18 +510,17 @@ export function simulateLifetime(
       ? calculatePension(age, convertInputToProfile(input), lifetimeEarnings)
       : 0;
     
-    // Children's education cost (state cost attributed to parent)
-    const childrenEducationCost = calculateChildrenEducationCost(age, convertInputToProfile(input));
-    
-    // Birth costs
+    // Birth costs (maternity care, hospital stay)
     const birthCosts = input.childrenAges.includes(age)
       ? CHILD_STATE_COSTS.birthCost
       : 0;
     
     // Total state costs for this year
+    // Note: Children's education is NOT included here - each child is a separate
+    // individual who will have their own lifetime fiscal impact when simulated.
+    // Child benefits ARE included since those are direct transfers to the parent.
     const totalStateCosts = 
       educationCost +
-      childrenEducationCost +
       healthcareCost +
       childBenefitReceived +
       studentAid +
@@ -558,7 +557,7 @@ export function simulateLifetime(
       year: BASE_YEAR + age,
       phase,
       stateCosts: {
-        educationCost: educationCost + childrenEducationCost,
+        educationCost,
         healthcareCost,
         childBenefitReceived,
         parentalAllowance,
