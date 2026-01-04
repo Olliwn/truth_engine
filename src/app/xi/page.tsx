@@ -1298,6 +1298,38 @@ export default function XiPage() {
                 </p>
               </div>
             </div>
+
+            {/* Future Analysis Note */}
+            <div className="mt-6 card p-5 border-rose-900/30 bg-rose-950/10">
+              <div className="flex items-start gap-3">
+                <div className="text-rose-400 text-xl">🔍</div>
+                <div>
+                  <h4 className="text-sm font-semibold text-rose-400 mb-2">
+                    Future Deep Dive: Why Did Family Benefits Cost/Person Grow &gt;100%?
+                  </h4>
+                  <p className="text-gray-400 text-sm mb-3">
+                    Family &amp; children spending per child has more than doubled since 2001, even as the number of children declined.
+                    This is the most dramatic per-capita increase of any social program and warrants deeper investigation.
+                  </p>
+                  <div className="text-xs text-gray-500 space-y-1">
+                    <div className="font-medium text-gray-400 mb-1">Potential factors to investigate:</div>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Expansion of subsidized daycare (päivähoito) — costs shifted from parents to state</li>
+                      <li>Introduction/expansion of home care allowance (kotihoidon tuki)</li>
+                      <li>Private daycare subsidies (yksityisen hoidon tuki) growth</li>
+                      <li>Increased parental leave benefits and duration</li>
+                      <li>Child benefit (lapsilisä) increases vs inflation</li>
+                      <li>Quality improvements in early childhood education (staff ratios, training)</li>
+                      <li>Special needs support and inclusion programs</li>
+                    </ul>
+                  </div>
+                  <div className="mt-3 pt-3 border-t border-gray-800 text-xs text-gray-600">
+                    <strong className="text-gray-500">Data needed:</strong> Breakdown of G1004 by sub-transaction, 
+                    daycare enrollment rates, benefit take-up rates, cost per daycare place over time
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       )}

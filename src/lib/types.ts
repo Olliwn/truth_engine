@@ -945,3 +945,234 @@ export interface SpendingEfficiencyData {
   oecd_benchmark?: Record<string, OECDBenchmarkCountry>;
   inflation_data?: InflationData;
 }
+
+// ============================================
+// Lifetime Fiscal Simulation Types (Project Rho)
+// ============================================
+
+export type LifecyclePhase = 
+  | 'childhood'        // 0-6 years
+  | 'primary_school'   // 7-15 years
+  | 'secondary'        // 16-18/19 years
+  | 'higher_education' // University/polytechnic
+  | 'working'          // Employed
+  | 'unemployed'       // Job-seeking
+  | 'parental_leave'   // Parental leave
+  | 'disability'       // Long-term illness/disability
+  | 'retirement';      // Pension
+
+export type LifetimeEducationLevel = 
+  | 'basic'
+  | 'vocational'
+  | 'upperSecondary'
+  | 'polytechnic'
+  | 'bachelor'
+  | 'master'
+  | 'phd';
+
+export type LifetimeOccupationType = 
+  | 'private_sector'
+  | 'public_sector'
+  | 'entrepreneur'
+  | 'self_employed';
+
+export type LifetimeHealthTrajectory = 
+  | 'healthy'
+  | 'average'
+  | 'chronic_condition'
+  | 'early_disability';
+
+export type LifetimeFamilyPath = 
+  | 'single_no_children'
+  | 'single_with_children'
+  | 'couple_no_children'
+  | 'couple_with_children';
+
+export type LifetimeCareerPath = 
+  | 'continuous'
+  | 'interrupted'
+  | 'late_start'
+  | 'part_time'
+  | 'unstable';
+
+export interface LifetimeSimulationInput {
+  // Profile identification
+  profileId: string;
+  profileName: string;
+  
+  // Demographics
+  gender: 'male' | 'female' | 'average';
+  lifeExpectancy: number;
+  
+  // Education
+  educationLevel: LifetimeEducationLevel;
+  
+  // Career
+  occupationType: LifetimeOccupationType;
+  careerPath: LifetimeCareerPath;
+  workStartAge: number;
+  retirementAge: number;
+  
+  // Income
+  peakIncomeMultiplier: number;
+  
+  // Employment
+  lifetimeUnemploymentYears: number;
+  
+  // Health
+  healthTrajectory: LifetimeHealthTrajectory;
+  disabilityStartAge?: number;
+  
+  // Family
+  familyPath: LifetimeFamilyPath;
+  numberOfChildren: number;
+  childrenAges: number[];
+  parentalLeaveYears: number;
+  
+  // Housing
+  averageRent: number;
+  homeOwner: boolean;
+}
+
+export interface AnnualFiscalFlow {
+  // Year info
+  age: number;
+  year: number; // Calendar year (for reference)
+  phase: LifecyclePhase;
+  
+  // STATE COSTS (Benefits/Services Received by Person)
+  stateCosts: {
+    // Education
+    educationCost: number;
+    
+    // Healthcare
+    healthcareCost: number;
+    
+    // Cash transfers
+    childBenefitReceived: number;      // Lapsilisä for person's children
+    parentalAllowance: number;
+    housingAllowance: number;
+    socialAssistance: number;
+    unemploymentBenefit: number;
+    studentAid: number;
+    disabilityBenefit: number;
+    
+    // Pension
+    pensionReceived: number;
+    
+    // Other state costs for this person
+    otherStateCosts: number;
+    
+    // Total
+    totalStateCosts: number;
+  };
+  
+  // CONTRIBUTIONS (Taxes & Contributions to State)
+  contributions: {
+    // Income taxes
+    incomeTax: number;
+    municipalTax: number;
+    
+    // Social insurance
+    pensionContribution: number;
+    unemploymentInsurance: number;
+    healthInsurance: number;
+    
+    // Consumption taxes
+    vatPaid: number;
+    
+    // Indirect
+    corporateTaxContribution: number;
+    
+    // Total
+    totalContributions: number;
+  };
+  
+  // NET FLOW
+  netFlow: number; // contributions - stateCosts (positive = net contributor)
+  cumulativeNetFlow: number; // Running total since birth
+  
+  // Income/financial status
+  grossIncome: number;
+  netIncome: number;
+  disposableIncome: number;
+  
+  // For debugging/detail views
+  isEmployed: boolean;
+  isRetired: boolean;
+  hasChildren: boolean;
+  numberOfDependentChildren: number;
+}
+
+export interface LifetimeSimulationResult {
+  // Input profile reference
+  input: LifetimeSimulationInput;
+  
+  // Year-by-year results
+  annualFlows: AnnualFiscalFlow[];
+  
+  // Summary statistics
+  summary: {
+    // Totals
+    totalStateCosts: number;
+    totalContributions: number;
+    netLifetimeContribution: number;
+    
+    // Breakdowns
+    totalEducationCost: number;
+    totalHealthcareCost: number;
+    totalBenefitsReceived: number;
+    totalPensionReceived: number;
+    
+    totalIncomeTaxPaid: number;
+    totalVatPaid: number;
+    totalSocialInsurancePaid: number;
+    
+    // Key metrics
+    breakEvenAge: number | null; // Age when cumulative turns positive
+    peakDebtAge: number; // Age with maximum negative cumulative
+    peakDebtAmount: number;
+    
+    // Lifetime earnings
+    lifetimeGrossEarnings: number;
+    lifetimeNetEarnings: number;
+    averageAnnualIncome: number;
+    
+    // Fiscal return
+    fiscalReturnRatio: number; // contributions / stateCosts
+    
+    // NPV (discounted)
+    npvContributions: number;
+    npvStateCosts: number;
+    npvNet: number;
+  };
+  
+  // Metadata
+  simulatedAt: string;
+  simulationVersion: string;
+}
+
+// Color scheme for lifecycle phases
+export const LIFECYCLE_PHASE_COLORS: Record<LifecyclePhase, string> = {
+  childhood: '#f472b6',       // Pink
+  primary_school: '#fb923c',  // Orange
+  secondary: '#facc15',       // Yellow
+  higher_education: '#a78bfa', // Purple
+  working: '#22c55e',         // Green
+  unemployed: '#ef4444',      // Red
+  parental_leave: '#14b8a6',  // Teal
+  disability: '#f97316',      // Dark orange
+  retirement: '#3b82f6',      // Blue
+};
+
+export const LIFECYCLE_PHASE_LABELS: Record<LifecyclePhase, string> = {
+  childhood: 'Childhood (0-6)',
+  primary_school: 'School (7-15)',
+  secondary: 'Secondary (16-18)',
+  higher_education: 'Higher Education',
+  working: 'Working',
+  unemployed: 'Unemployed',
+  parental_leave: 'Parental Leave',
+  disability: 'Disability',
+  retirement: 'Retirement',
+};
