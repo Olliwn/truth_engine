@@ -43,7 +43,12 @@ import {
   EconomyStepResult,
 } from './economy';
 
-import { GDP_SCENARIOS } from '../constants/demographicScenarios';
+import { 
+  GDP_SCENARIOS, 
+  UNEMPLOYMENT_SCENARIOS,
+  calculateUnemploymentRate,
+  BASE_UNEMPLOYMENT_RATE,
+} from '../constants/demographicScenarios';
 
 // ===========================================
 // Constants
@@ -120,12 +125,21 @@ export function advanceYear(input: TimeStepInput): TimeStepOutput {
   const gdpScenarioId = scenario.gdp.scenarioId || 'slow_growth';
   const gdpScenario = GDP_SCENARIOS[gdpScenarioId] || GDP_SCENARIOS['slow_growth'];
   
+  // Get unemployment scenario and calculate rate
+  const unemploymentScenarioId = scenario.unemployment?.scenarioId || 'status_quo';
+  const unemploymentScenario = UNEMPLOYMENT_SCENARIOS[unemploymentScenarioId] || UNEMPLOYMENT_SCENARIOS['status_quo'];
+  const currentUnemploymentRate = scenario.unemployment?.customRate ?? 
+    calculateUnemploymentRate(year, unemploymentScenario);
+  // Convert unemployment rate to a multiplier relative to baseline
+  const unemploymentRateMultiplier = currentUnemploymentRate / BASE_UNEMPLOYMENT_RATE;
+  
   // Calculate base fiscal flows (without interest, to be added later)
   const baseFiscalFlows = calculateAggregeFiscalFlows(
     populationState,
     year,
     currentState.economy.cumulativeGdpMultiplier,
-    0  // Interest will be calculated and added in economy step
+    0,  // Interest will be calculated and added in economy step
+    unemploymentRateMultiplier
   );
   
   // ========================================
@@ -237,6 +251,9 @@ export function advanceYear(input: TimeStepInput): TimeStepOutput {
     // Government metrics (using final values including interest)
     govtSpendingPctGDP: finalGovtMetrics.govtSpendingPctGDP,
     deficitPctGDP: finalGovtMetrics.deficitPctGDP,
+    
+    // Labor market
+    unemploymentRate: currentUnemploymentRate,
     
     // Immigration breakdown
     immigrationByType: {

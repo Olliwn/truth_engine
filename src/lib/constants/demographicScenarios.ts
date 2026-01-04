@@ -602,6 +602,114 @@ export const INTEREST_RATE_SCENARIOS: Record<string, InterestRateScenario> = {
 
 export const DEFAULT_INTEREST_RATE_SCENARIO = 'low';
 
+// ===========================================
+// Unemployment Rate Scenarios
+// ===========================================
+
+// Historical Finnish unemployment rates
+export const HISTORICAL_UNEMPLOYMENT: Record<number, number> = {
+  1990: 3.2,
+  1991: 6.6,
+  1992: 11.7,  // Recession peak
+  1993: 16.4,
+  1994: 16.6,  // Peak
+  1995: 15.4,
+  2000: 9.8,
+  2005: 8.4,
+  2008: 6.4,
+  2010: 8.4,   // Financial crisis
+  2015: 9.4,
+  2018: 7.4,
+  2019: 6.7,
+  2020: 7.8,   // COVID
+  2021: 7.6,
+  2022: 6.8,
+  2023: 7.2,
+  2024: 8.3,   // Current
+};
+
+// Get historical unemployment rate for a year (with interpolation)
+export function getHistoricalUnemployment(year: number): number {
+  const years = Object.keys(HISTORICAL_UNEMPLOYMENT).map(Number).sort((a, b) => a - b);
+  
+  if (year <= years[0]) return HISTORICAL_UNEMPLOYMENT[years[0]];
+  if (year >= years[years.length - 1]) return HISTORICAL_UNEMPLOYMENT[years[years.length - 1]];
+  
+  for (let i = 0; i < years.length - 1; i++) {
+    if (year >= years[i] && year < years[i + 1]) {
+      const ratio = (year - years[i]) / (years[i + 1] - years[i]);
+      return HISTORICAL_UNEMPLOYMENT[years[i]] + 
+        (HISTORICAL_UNEMPLOYMENT[years[i + 1]] - HISTORICAL_UNEMPLOYMENT[years[i]]) * ratio;
+    }
+  }
+  return HISTORICAL_UNEMPLOYMENT[2024];
+}
+
+export interface UnemploymentScenario {
+  id: string;
+  name: string;
+  description: string;
+  rate: number;  // Target unemployment rate (e.g., 0.065 = 6.5%)
+  transitionYear: number;  // Year to reach target
+  color: string;
+}
+
+export const UNEMPLOYMENT_SCENARIOS: Record<string, UnemploymentScenario> = {
+  improving: {
+    id: 'improving',
+    name: 'Improving',
+    description: 'Structural reforms bring unemployment to 4.5% by 2035',
+    rate: 0.045,
+    transitionYear: 2035,
+    color: '#22C55E',  // green
+  },
+  status_quo: {
+    id: 'status_quo',
+    name: 'Status Quo',
+    description: 'Unemployment stays around current level (~7%)',
+    rate: 0.07,
+    transitionYear: 2060,
+    color: '#6B7280',  // gray
+  },
+  elevated: {
+    id: 'elevated',
+    name: 'Elevated',
+    description: 'Structural unemployment rises to 9% due to automation/globalization',
+    rate: 0.09,
+    transitionYear: 2040,
+    color: '#EF4444',  // red
+  },
+};
+
+export const DEFAULT_UNEMPLOYMENT_SCENARIO = 'status_quo';
+
+// Reference: base unemployment rate used in decile characteristics
+// This is used to scale individual decile unemployment rates
+export const BASE_UNEMPLOYMENT_RATE = 0.065;  // ~6.5% baseline
+
+// Calculate unemployment rate for a year based on scenario
+export function calculateUnemploymentRate(
+  year: number,
+  scenario: UnemploymentScenario,
+  startYear: number = 2024
+): number {
+  // Historical data takes precedence
+  if (year <= 2024) {
+    return getHistoricalUnemployment(year) / 100;
+  }
+  
+  const startRate = HISTORICAL_UNEMPLOYMENT[2024] / 100;
+  
+  // After transition year, use target
+  if (year >= scenario.transitionYear) {
+    return scenario.rate;
+  }
+  
+  // Linear interpolation between start and target
+  const progress = (year - startYear) / (scenario.transitionYear - startYear);
+  return startRate + (scenario.rate - startRate) * progress;
+}
+
 // Historical Finnish government debt data (billions EUR)
 export const HISTORICAL_DEBT: Record<number, number> = {
   1990: 11.0,

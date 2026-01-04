@@ -47,13 +47,15 @@ function getCacheKey(
   decile: number,
   gdpMultiplier: number,
   employmentRate?: number,
-  welfareMultiplier?: number
+  welfareMultiplier?: number,
+  unemploymentRateMultiplier?: number
 ): string {
-  // Round GDP multiplier to avoid cache misses from floating point differences
+  // Round multipliers to avoid cache misses from floating point differences
   const gdpRounded = Math.round(gdpMultiplier * 100) / 100;
   const empRounded = employmentRate ? Math.round(employmentRate * 100) : 'x';
   const welRounded = welfareMultiplier ? Math.round(welfareMultiplier * 100) : 'x';
-  return `${age}:${decile}:${gdpRounded}:${empRounded}:${welRounded}`;
+  const uneRounded = unemploymentRateMultiplier ? Math.round(unemploymentRateMultiplier * 100) : 100;
+  return `${age}:${decile}:${gdpRounded}:${empRounded}:${welRounded}:${uneRounded}`;
 }
 
 /** Clear the fiscal calculation cache */
@@ -82,6 +84,12 @@ export interface FiscalCalculationOptions {
   
   /** Override welfare dependency (for immigrants) */
   welfareMultiplier?: number;
+  
+  /** 
+   * Multiplier for unemployment rate relative to baseline (6.5%).
+   * E.g., 1.0 = 6.5%, 1.5 = 9.75%, 0.7 = 4.55%
+   */
+  unemploymentRateMultiplier?: number;
 }
 
 /**
@@ -101,12 +109,13 @@ export function calculatePersonYearFiscal(
     employmentRate,
     incomeDecileOverride,
     welfareMultiplier = 1.0,
+    unemploymentRateMultiplier = 1.0,
   } = options;
   
   const incomeDecile = incomeDecileOverride ?? baseIncomeDecile;
   
   // Check cache first
-  const cacheKey = getCacheKey(age, incomeDecile, gdpIncomeMultiplier, employmentRate, welfareMultiplier);
+  const cacheKey = getCacheKey(age, incomeDecile, gdpIncomeMultiplier, employmentRate, welfareMultiplier, unemploymentRateMultiplier);
   const cached = fiscalCache.get(cacheKey);
   if (cached) {
     return cached;
@@ -155,7 +164,9 @@ export function calculatePersonYearFiscal(
   // Pension costs (only for retirees)
   if (age >= retirementAge) {
     const peakIncome = INCOME_BY_DECILE[incomeDecile] * gdpIncomeMultiplier;
-    const avgUnemploymentYears = decileChar?.avgUnemploymentYears ?? 2;
+    // Scale unemployment years by national rate multiplier
+    const baseUnemploymentYears = decileChar?.avgUnemploymentYears ?? 2;
+    const avgUnemploymentYears = baseUnemploymentYears * unemploymentRateMultiplier;
     const yearsWorked = Math.max(0, retirementAge - workStartAge - avgUnemploymentYears);
     const avgIncome = peakIncome * 0.7;  // Lifetime average ~70% of peak
     const pensionAccrual = avgIncome * PENSION_SYSTEM.accrualRates.age17to52 * yearsWorked;
@@ -169,7 +180,9 @@ export function calculatePersonYearFiscal(
   
   // Benefits (unemployment, housing allowance for lower deciles)
   if (age >= workStartAge && age < retirementAge) {
-    const avgUnemploymentYears = decileChar?.avgUnemploymentYears ?? 2;
+    // Scale unemployment probability by national rate multiplier
+    const baseUnemploymentYears = decileChar?.avgUnemploymentYears ?? 2;
+    const avgUnemploymentYears = baseUnemploymentYears * unemploymentRateMultiplier;
     const unemploymentProbability = avgUnemploymentYears / (retirementAge - workStartAge);
     result.benefits = unemploymentProbability * 10000 * welfareMultiplier;
     
@@ -185,9 +198,10 @@ export function calculatePersonYearFiscal(
   
   // Only working-age people contribute significantly
   if (age >= workStartAge && age < retirementAge) {
-    // Get effective employment rate
-    const avgUnemploymentYears = decileChar?.avgUnemploymentYears ?? 2;
-    const baseEmploymentRate = 1 - avgUnemploymentYears / (retirementAge - workStartAge);
+    // Get effective employment rate (scaled by unemployment rate multiplier)
+    const baseUnemploymentYears = decileChar?.avgUnemploymentYears ?? 2;
+    const scaledUnemploymentYears = baseUnemploymentYears * unemploymentRateMultiplier;
+    const baseEmploymentRate = 1 - scaledUnemploymentYears / (retirementAge - workStartAge);
     const effectiveEmploymentRate = employmentRate ?? baseEmploymentRate;
     
     if (effectiveEmploymentRate > 0) {
@@ -285,7 +299,8 @@ export function calculateAggregeFiscalFlows(
   state: PopulationState,
   year: number,
   gdpIncomeMultiplier: number = 1.0,
-  interestExpense: number = 0
+  interestExpense: number = 0,
+  unemploymentRateMultiplier: number = 1.0
 ): AnnualFiscalFlows {
   // Initialize result
   const result: AnnualFiscalFlows = {
@@ -339,6 +354,7 @@ export function calculateAggregeFiscalFlows(
       const decileCount = count * 0.10;
       const personFiscal = calculatePersonYearFiscal(age, decile, {
         gdpIncomeMultiplier,
+        unemploymentRateMultiplier,
       });
       
       // Aggregate contributions

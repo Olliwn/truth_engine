@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 import type { ScenarioState, ScenarioActions } from '../page';
-import type { AnnualPopulationResult } from '@/lib/populationSimulator';
+import type { LegacyAnnualPopulationResult as AnnualPopulationResult } from '@/lib/simulation/index';
 import type { YearlySpending } from '@/lib/simulation/spending';
 import { BirthRateControl } from './controls/BirthRateControl';
 import { ImmigrationControl } from './controls/ImmigrationControl';
 import { GDPControl } from './controls/GDPControl';
 import { InterestRateControl } from './controls/InterestRateControl';
+import { UnemploymentControl } from './controls/UnemploymentControl';
 import { SpendingControl } from './controls/SpendingControl';
 
 // ===========================================
@@ -117,6 +118,10 @@ function ScenarioSummary({ state, currentYearData, currentYearSpending, effectiv
         <div>
           <span className="text-gray-500">Rate:</span>{' '}
           <span className="text-rose-400 font-semibold">{(effectiveInterestRate * 100).toFixed(1)}%</span>
+        </div>
+        <div>
+          <span className="text-gray-500">Unemp:</span>{' '}
+          <span className="text-amber-400 font-semibold">{(currentYearData.unemploymentRate * 100).toFixed(1)}%</span>
         </div>
         {currentYearSpending && (
           <>
@@ -232,6 +237,16 @@ export function ScenarioPanel({
             onScenarioChange={actions.setInterestRateScenarioId}
             onUseCustomChange={actions.setUseCustomInterestRate}
             onCustomRateChange={actions.setCustomInterestRate}
+            currentYearData={currentYearData}
+          />
+
+          <UnemploymentControl
+            scenarioId={state.unemploymentScenarioId}
+            useCustomUnemployment={state.useCustomUnemployment}
+            customUnemploymentRate={state.customUnemploymentRate}
+            onScenarioChange={actions.setUnemploymentScenarioId}
+            onUseCustomChange={actions.setUseCustomUnemployment}
+            onCustomRateChange={actions.setCustomUnemploymentRate}
             currentYearData={currentYearData}
           />
         </div>

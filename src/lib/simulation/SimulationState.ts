@@ -317,6 +317,9 @@ export interface YearResult {
   govtSpendingPctGDP: number;
   deficitPctGDP: number;
   
+  // Labor market
+  unemploymentRate: number;  // As decimal (e.g., 0.07 = 7%)
+  
   // COFOG detailed spending (millions EUR) - optional for backward compatibility
   cofogSpending?: COFOGSpendingBreakdown;
   
@@ -398,11 +401,17 @@ export interface InterestRateScenarioConfig {
   customRate: number | null;
 }
 
+export interface UnemploymentScenarioConfig {
+  scenarioId: string;
+  customRate: number | null;
+}
+
 export interface DemographicScenario {
   birthRate: BirthRateScenario;
   immigration: ImmigrationScenario;
   gdp: GDPScenarioConfig;
   interestRate: InterestRateScenarioConfig;
+  unemployment: UnemploymentScenarioConfig;
 }
 
 // ===========================================

@@ -257,6 +257,9 @@ export function convertToLegacyFormat(result: YearResult): LegacyAnnualPopulatio
     tfr: result.tfr,
     annualBirths: result.annualBirths,
     
+    // Labor market
+    unemploymentRate: result.unemploymentRate,
+    
     // Immigration
     immigrationFiscalImpact: result.immigrationByType.workBased.fiscalImpact +
                              result.immigrationByType.family.fiscalImpact +
@@ -330,6 +333,7 @@ export interface LegacyAnnualPopulationResult {
   vatRevenue: number;
   tfr: number;
   annualBirths: number;
+  unemploymentRate: number;  // As decimal (e.g., 0.07 = 7%)
   immigrationFiscalImpact: number;
   immigrationByType: {
     workBased: { count: number; fiscalImpact: number };

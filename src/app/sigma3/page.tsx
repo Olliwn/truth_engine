@@ -14,6 +14,8 @@ import {
   DEFAULT_GDP_SCENARIO,
   INTEREST_RATE_SCENARIOS,
   DEFAULT_INTEREST_RATE_SCENARIO,
+  UNEMPLOYMENT_SCENARIOS,
+  DEFAULT_UNEMPLOYMENT_SCENARIO,
 } from '@/lib/simulation/adapter';
 import type { DemographicScenario } from '@/lib/simulation/adapter';
 
@@ -63,6 +65,10 @@ export interface ScenarioState {
   interestRateScenarioId: string;
   useCustomInterestRate: boolean;
   customInterestRate: number;
+  // Unemployment
+  unemploymentScenarioId: string;
+  useCustomUnemployment: boolean;
+  customUnemploymentRate: number;
   // Spending scenarios (NEW)
   spendingPreset: string;
   spendingScenario: SpendingScenario;
@@ -83,6 +89,9 @@ export interface ScenarioActions {
   setInterestRateScenarioId: (value: string) => void;
   setUseCustomInterestRate: (value: boolean) => void;
   setCustomInterestRate: (value: number) => void;
+  setUnemploymentScenarioId: (value: string) => void;
+  setUseCustomUnemployment: (value: boolean) => void;
+  setCustomUnemploymentRate: (value: number) => void;
   handleBirthRatePresetSelect: (presetId: string) => void;
   // Spending actions (NEW)
   setSpendingPreset: (value: string) => void;
@@ -128,6 +137,11 @@ export default function Sigma3Page() {
   const [useCustomInterestRate, setUseCustomInterestRate] = useState(false);
   const [customInterestRate, setCustomInterestRate] = useState(0.025);
 
+  // Unemployment state
+  const [unemploymentScenarioId, setUnemploymentScenarioId] = useState<string>(DEFAULT_UNEMPLOYMENT_SCENARIO);
+  const [useCustomUnemployment, setUseCustomUnemployment] = useState(false);
+  const [customUnemploymentRate, setCustomUnemploymentRate] = useState(0.07);
+
   // Spending scenario state (NEW)
   const [spendingPreset, setSpendingPreset] = useState<string>('status_quo');
   const [spendingScenario, setSpendingScenario] = useState<SpendingScenario>(DEFAULT_SPENDING_SCENARIO);
@@ -155,12 +169,17 @@ export default function Sigma3Page() {
         scenarioId: interestRateScenarioId,
         customRate: useCustomInterestRate ? customInterestRate : null,
       },
+      unemployment: {
+        scenarioId: unemploymentScenarioId,
+        customRate: useCustomUnemployment ? customUnemploymentRate : null,
+      },
     };
   }, [
     birthRatePreset, customTFR, transitionYear, useCustomBirthRate,
     workBasedImmigration, familyImmigration, humanitarianImmigration,
     gdpScenarioId, useCustomGrowth, customGrowthRate,
-    interestRateScenarioId, useCustomInterestRate, customInterestRate
+    interestRateScenarioId, useCustomInterestRate, customInterestRate,
+    unemploymentScenarioId, useCustomUnemployment, customUnemploymentRate
   ]);
 
   // Get effective spending scenario
@@ -335,6 +354,9 @@ export default function Sigma3Page() {
     interestRateScenarioId,
     useCustomInterestRate,
     customInterestRate,
+    unemploymentScenarioId,
+    useCustomUnemployment,
+    customUnemploymentRate,
     spendingPreset,
     spendingScenario,
     useCustomSpending,
@@ -354,6 +376,9 @@ export default function Sigma3Page() {
     setInterestRateScenarioId,
     setUseCustomInterestRate,
     setCustomInterestRate,
+    setUnemploymentScenarioId,
+    setUseCustomUnemployment,
+    setCustomUnemploymentRate,
     handleBirthRatePresetSelect,
     setSpendingPreset: handleSpendingPresetSelect,
     setSpendingScenario,

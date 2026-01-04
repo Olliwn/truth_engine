@@ -305,5 +305,9 @@ export const DEFAULT_SCENARIO: DemographicScenario = {
     scenarioId: 'low',
     customRate: null,
   },
+  unemployment: {
+    scenarioId: 'status_quo',
+    customRate: null,
+  },
 };
 

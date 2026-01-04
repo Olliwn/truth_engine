@@ -111,6 +111,10 @@ export default function Sigma2Page() {
         scenarioId: interestRateScenarioId,
         customRate: useCustomInterestRate ? customInterestRate : null,
       },
+      unemployment: {
+        scenarioId: 'status_quo',
+        customRate: null,
+      },
     };
   }, [
     birthRatePreset, customTFR, transitionYear, useCustomBirthRate,

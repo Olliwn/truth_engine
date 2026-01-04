@@ -25,6 +25,11 @@ export {
   DEFAULT_IMMIGRATION,
   GDP_SCENARIOS,
   INTEREST_RATE_SCENARIOS,
+  UNEMPLOYMENT_SCENARIOS,
+  DEFAULT_UNEMPLOYMENT_SCENARIO,
+  calculateUnemploymentRate,
+  getHistoricalUnemployment,
+  BASE_UNEMPLOYMENT_RATE,
 } from '../constants/demographicScenarios';
 
 // Default scenarios
@@ -50,6 +55,10 @@ export interface DemographicScenario {
     customGrowthRate: number | null;
   };
   interestRate: {
+    scenarioId: string;
+    customRate: number | null;
+  };
+  unemployment: {
     scenarioId: string;
     customRate: number | null;
   };
@@ -115,6 +124,10 @@ export function simulatePopulationRange(
     interestRate: {
       scenarioId: scenario.interestRate.scenarioId,
       customRate: scenario.interestRate.customRate,
+    },
+    unemployment: {
+      scenarioId: scenario.unemployment?.scenarioId || 'status_quo',
+      customRate: scenario.unemployment?.customRate ?? null,
     },
   };
 

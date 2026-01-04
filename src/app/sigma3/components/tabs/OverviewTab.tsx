@@ -12,7 +12,8 @@ import {
   ResponsiveContainer,
   ReferenceLine,
 } from 'recharts';
-import type { AnnualPopulationResult, PopulationSimulationResult } from '@/lib/populationSimulator';
+import type { LegacyAnnualPopulationResult as AnnualPopulationResult } from '@/lib/simulation/index';
+import type { PopulationSimulationResult } from '@/lib/simulation/adapter';
 
 type PopulationSimulationSummary = PopulationSimulationResult['summary'];
 
@@ -85,6 +86,7 @@ export function OverviewTab({
     balance: r.netFiscalBalance,
     gdpAdjustedBalance: r.gdpAdjustedBalance,
     tfr: r.tfr,
+    unemploymentRate: r.unemploymentRate * 100, // Convert to percentage for display
   }));
 
   return (
@@ -276,6 +278,12 @@ export function OverviewTab({
               <span className="text-gray-500">Workers/Retiree</span>
               <span className="text-white font-medium">
                 {(currentYearData.workingAge / currentYearData.elderly).toFixed(1)}
+              </span>
+            </div>
+            <div className="flex justify-between pt-1 border-t border-gray-800">
+              <span className="text-gray-500">Unemployment</span>
+              <span className={currentYearData.unemploymentRate < 0.06 ? 'text-green-400' : currentYearData.unemploymentRate > 0.08 ? 'text-amber-400' : 'text-white'}>
+                {(currentYearData.unemploymentRate * 100).toFixed(1)}%
               </span>
             </div>
           </div>

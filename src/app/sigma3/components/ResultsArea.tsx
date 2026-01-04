@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import type { PopulationSimulationResult, AnnualPopulationResult } from '@/lib/populationSimulator';
+import type { LegacyAnnualPopulationResult as AnnualPopulationResult } from '@/lib/simulation/index';
+import type { PopulationSimulationResult } from '@/lib/simulation/adapter';
 import type { ScenarioState } from '../page';
 import type { YearlySpending } from '@/lib/simulation/spending';
 import { OverviewTab } from './tabs/OverviewTab';
