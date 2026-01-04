@@ -83,11 +83,20 @@ export default function NuPage() {
 
   const { summary, by_function, by_sector, time_series } = data;
 
-  // Prepare stacked area chart data
+  // Prepare stacked area chart data (absolute EUR billions)
   const areaChartData = time_series.map((entry) => {
     const row: Record<string, number> = { year: entry.year };
     Object.entries(entry.categories).forEach(([code, cat]) => {
       row[code] = cat.amount_million / 1000; // Convert to billions
+    });
+    return row;
+  });
+
+  // Prepare stacked area chart data (% of GDP)
+  const areaChartDataPctGdp = time_series.map((entry) => {
+    const row: Record<string, number> = { year: entry.year, total: entry.total_pct_gdp };
+    Object.entries(entry.categories).forEach(([code, cat]) => {
+      row[code] = cat.pct_of_gdp;
     });
     return row;
   });
@@ -396,6 +405,70 @@ export default function NuPage() {
               </AreaChart>
             </ResponsiveContainer>
           </div>
+          <p className="text-xs text-gray-500 mt-2">
+            Note: Values in current prices (not inflation-adjusted). See GDP share chart below for real burden.
+          </p>
+        </div>
+      </section>
+
+      {/* Stacked Area Chart - % of GDP */}
+      <section className="py-8 px-6 border-b border-gray-800 bg-gray-950/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold mb-2">Spending as % of GDP (1990-{summary.year})</h2>
+            <p className="text-gray-400 text-sm">
+              Real burden on the economy — inflation-adjusted view of government spending share
+            </p>
+          </div>
+
+          <div className="card p-6 h-[450px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={areaChartDataPctGdp}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                <XAxis
+                  dataKey="year"
+                  stroke="#9CA3AF"
+                  tickFormatter={(v) => String(v)}
+                  interval="preserveStartEnd"
+                  minTickGap={40}
+                />
+                <YAxis
+                  stroke="#9CA3AF"
+                  tickFormatter={(v: number) => `${v}%`}
+                  domain={[0, 70]}
+                />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#1F2937',
+                    border: '1px solid #374151',
+                    borderRadius: '8px',
+                  }}
+                  formatter={(value: number | undefined, name: string | undefined) => {
+                    const catName = name ? (data.cofog_names[name] || name) : '';
+                    return value !== undefined ? [`${value.toFixed(1)}%`, catName] : ['N/A', catName];
+                  }}
+                  labelFormatter={(label) => `Year: ${label}`}
+                />
+                <Legend
+                  formatter={(value: string | undefined) => value ? (data.cofog_names[value] || value) : ''}
+                />
+                {/* Stack areas from largest to smallest */}
+                <Area type="monotone" dataKey="G10" stackId="1" fill={COFOG_COLORS.G10} stroke={COFOG_COLORS.G10} name="G10" />
+                <Area type="monotone" dataKey="G07" stackId="1" fill={COFOG_COLORS.G07} stroke={COFOG_COLORS.G07} name="G07" />
+                <Area type="monotone" dataKey="G01" stackId="1" fill={COFOG_COLORS.G01} stroke={COFOG_COLORS.G01} name="G01" />
+                <Area type="monotone" dataKey="G09" stackId="1" fill={COFOG_COLORS.G09} stroke={COFOG_COLORS.G09} name="G09" />
+                <Area type="monotone" dataKey="G04" stackId="1" fill={COFOG_COLORS.G04} stroke={COFOG_COLORS.G04} name="G04" />
+                <Area type="monotone" dataKey="G08" stackId="1" fill={COFOG_COLORS.G08} stroke={COFOG_COLORS.G08} name="G08" />
+                <Area type="monotone" dataKey="G02" stackId="1" fill={COFOG_COLORS.G02} stroke={COFOG_COLORS.G02} name="G02" />
+                <Area type="monotone" dataKey="G03" stackId="1" fill={COFOG_COLORS.G03} stroke={COFOG_COLORS.G03} name="G03" />
+                <Area type="monotone" dataKey="G06" stackId="1" fill={COFOG_COLORS.G06} stroke={COFOG_COLORS.G06} name="G06" />
+                <Area type="monotone" dataKey="G05" stackId="1" fill={COFOG_COLORS.G05} stroke={COFOG_COLORS.G05} name="G05" />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+          <p className="text-xs text-gray-500 mt-2">
+            Total: {areaChartDataPctGdp[0]?.total.toFixed(1)}% (1990) → {areaChartDataPctGdp[areaChartDataPctGdp.length - 1]?.total.toFixed(1)}% ({summary.year})
+          </p>
         </div>
       </section>
 
