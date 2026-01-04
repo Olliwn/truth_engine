@@ -494,6 +494,320 @@ export function convertToLegacyBreakdown(spending: YearlySpending): LegacySpendi
   };
 }
 
+/**
+ * Simulation fiscal data used for COFOG conversion
+ */
+export interface SimulationFiscalData {
+  year: number;
+  educationCosts: number;      // millions EUR
+  healthcareCosts: number;     // millions EUR
+  pensionCosts: number;        // millions EUR
+  benefitCosts: number;        // millions EUR
+  interestExpense: number;     // millions EUR
+  totalStateCosts: number;     // millions EUR
+  gdpBillions: number;
+  totalPopulation: number;
+}
+
+/**
+ * Simulation base year data for calculating growth rates
+ */
+export interface SimulationBaseYearData {
+  educationCosts: number;
+  healthcareCosts: number;
+  pensionCosts: number;
+  benefitCosts: number;
+  totalPopulation: number;
+  gdpBillions: number;
+}
+
+// Cache for base year simulation data
+let cachedBaseYearSimData: SimulationBaseYearData | null = null;
+
+/**
+ * Set the base year simulation data for growth rate calculations.
+ * This should be called once with the simulation's 2024 data.
+ */
+export function setSimulationBaseYearData(data: SimulationBaseYearData): void {
+  cachedBaseYearSimData = data;
+}
+
+/**
+ * Convert simulation fiscal costs to COFOG spending format.
+ * 
+ * Strategy: Anchor to historical 2024 COFOG data and apply simulation growth rates.
+ * This ensures continuity between historical and projected data while using
+ * the simulation's demographic-driven cost dynamics.
+ * 
+ * Mapping:
+ * - G09 (Education) ← historical 2024 * (sim education growth)
+ * - G07 (Health) ← historical 2024 * (sim healthcare growth)  
+ * - G10 (Social protection) ← historical 2024 * (sim pension+benefit growth)
+ * - Other categories (G01-G06, G08) ← GDP-scaled from historical
+ */
+export function convertSimulationToCOFOG(
+  fiscalData: SimulationFiscalData,
+  baseYearSpending: YearlySpending | null
+): YearlySpending {
+  const { year, educationCosts, healthcareCosts, pensionCosts, benefitCosts, 
+          interestExpense, gdpBillions, totalPopulation } = fiscalData;
+  
+  const gdpMillions = gdpBillions * 1000;
+  const byCategory: Record<string, COFOGSpending> = {};
+  
+  if (!baseYearSpending || !cachedBaseYearSimData) {
+    // Fallback: just use simulation values directly (will have discontinuity)
+    return createDirectCOFOGSpending(fiscalData);
+  }
+  
+  // Historical COFOG 2024 values (anchor points)
+  const histG07 = baseYearSpending.byCategory.G07?.amountMillion || 0;
+  const histG09 = baseYearSpending.byCategory.G09?.amountMillion || 0;
+  const histG10 = baseYearSpending.byCategory.G10?.amountMillion || 0;
+  
+  // Simulation base year values (for calculating growth rates)
+  const simBaseEducation = cachedBaseYearSimData.educationCosts || 1;
+  const simBaseHealth = cachedBaseYearSimData.healthcareCosts || 1;
+  const simBaseSocial = (cachedBaseYearSimData.pensionCosts + cachedBaseYearSimData.benefitCosts) || 1;
+  const simBaseGDP = cachedBaseYearSimData.gdpBillions || 1;
+  const simBasePop = cachedBaseYearSimData.totalPopulation || 1;
+  
+  // Calculate growth factors from simulation
+  const educationGrowth = educationCosts / simBaseEducation;
+  const healthGrowth = healthcareCosts / simBaseHealth;
+  const socialGrowth = (pensionCosts + benefitCosts) / simBaseSocial;
+  const gdpGrowth = gdpBillions / simBaseGDP;
+  const popGrowth = totalPopulation / simBasePop;
+  
+  // Apply growth rates to historical COFOG values
+  const g09Amount = histG09 * educationGrowth;
+  const g07Amount = histG07 * healthGrowth;
+  const g10Amount = histG10 * socialGrowth;
+  
+  byCategory['G07'] = {
+    code: 'G07' as COFOGCode,
+    name: 'Health',
+    amountMillion: g07Amount,
+    pctOfGDP: gdpMillions > 0 ? (g07Amount / gdpMillions) * 100 : 0,
+    perCapita: totalPopulation > 0 ? (g07Amount * 1_000_000) / totalPopulation : 0,
+  };
+  
+  byCategory['G09'] = {
+    code: 'G09' as COFOGCode,
+    name: 'Education',
+    amountMillion: g09Amount,
+    pctOfGDP: gdpMillions > 0 ? (g09Amount / gdpMillions) * 100 : 0,
+    perCapita: totalPopulation > 0 ? (g09Amount * 1_000_000) / totalPopulation : 0,
+  };
+  
+  byCategory['G10'] = {
+    code: 'G10' as COFOGCode,
+    name: 'Social protection',
+    amountMillion: g10Amount,
+    pctOfGDP: gdpMillions > 0 ? (g10Amount / gdpMillions) * 100 : 0,
+    perCapita: totalPopulation > 0 ? (g10Amount * 1_000_000) / totalPopulation : 0,
+  };
+  
+  // Other categories: scale based on GDP growth and population growth
+  // Use different scaling for different category types:
+  // - G01 (General public services): GDP growth + interest expense
+  // - G02, G03 (Defence, Public order): Population growth
+  // - G04, G05, G06 (Economic affairs, Environment, Housing): GDP growth
+  // - G08 (Culture): Mixed (slight GDP growth)
+  
+  const otherCategoriesConfig: Array<{ code: COFOGCode; name: string; driver: 'gdp' | 'population' | 'mixed' }> = [
+    { code: 'G01', name: 'General public services', driver: 'mixed' },
+    { code: 'G02', name: 'Defence', driver: 'population' },
+    { code: 'G03', name: 'Public order and safety', driver: 'population' },
+    { code: 'G04', name: 'Economic affairs', driver: 'gdp' },
+    { code: 'G05', name: 'Environmental protection', driver: 'gdp' },
+    { code: 'G06', name: 'Housing and community amenities', driver: 'gdp' },
+    { code: 'G08', name: 'Recreation, culture and religion', driver: 'mixed' },
+  ];
+  
+  for (const { code, name, driver } of otherCategoriesConfig) {
+    const histAmount = baseYearSpending.byCategory[code]?.amountMillion || 0;
+    let growth: number;
+    
+    switch (driver) {
+      case 'gdp':
+        growth = gdpGrowth;
+        break;
+      case 'population':
+        growth = popGrowth;
+        break;
+      case 'mixed':
+      default:
+        growth = (gdpGrowth + popGrowth) / 2;
+        break;
+    }
+    
+    // G01 also includes interest expense growth
+    let amount = histAmount * growth;
+    if (code === 'G01') {
+      // Add the change in interest expense beyond the base year
+      const baseInterest = baseYearSpending.byCategory.G01?.amountMillion 
+        ? baseYearSpending.byCategory.G01.amountMillion * 0.2  // Assume ~20% was interest
+        : 4000; // ~€4B baseline
+      amount = (histAmount - baseInterest) * growth + interestExpense;
+    }
+    
+    byCategory[code] = {
+      code,
+      name,
+      amountMillion: amount,
+      pctOfGDP: gdpMillions > 0 ? (amount / gdpMillions) * 100 : 0,
+      perCapita: totalPopulation > 0 ? (amount * 1_000_000) / totalPopulation : 0,
+    };
+  }
+  
+  // Calculate total from all categories
+  const totalMillion = Object.values(byCategory).reduce(
+    (sum, cat) => sum + cat.amountMillion, 0
+  );
+  
+  // Aggregate by spending groups
+  const byGroup: YearlySpending['byGroup'] = {} as YearlySpending['byGroup'];
+  
+  for (const [groupId, groupConfig] of Object.entries(SPENDING_GROUPS)) {
+    let groupTotal = 0;
+    let groupPctGDP = 0;
+    
+    for (const cofogCode of groupConfig.cofogCodes) {
+      const cat = byCategory[cofogCode];
+      if (cat) {
+        groupTotal += cat.amountMillion;
+        groupPctGDP += cat.pctOfGDP;
+      }
+    }
+    
+    byGroup[groupId as SpendingGroupId] = {
+      name: groupConfig.name,
+      amountMillion: groupTotal,
+      pctOfGDP: groupPctGDP,
+      categories: groupConfig.cofogCodes,
+    };
+  }
+  
+  return {
+    year,
+    isHistorical: false,
+    totalMillion,
+    totalPctGDP: gdpMillions > 0 ? (totalMillion / gdpMillions) * 100 : 0,
+    byCategory: byCategory as Record<COFOGCode, COFOGSpending>,
+    byGroup,
+  };
+}
+
+/**
+ * Fallback: Create COFOG spending directly from simulation data.
+ * Used when base year spending data is not available.
+ */
+function createDirectCOFOGSpending(fiscalData: SimulationFiscalData): YearlySpending {
+  const { year, educationCosts, healthcareCosts, pensionCosts, benefitCosts, 
+          interestExpense, gdpBillions, totalPopulation } = fiscalData;
+  
+  const gdpMillions = gdpBillions * 1000;
+  const byCategory: Record<string, COFOGSpending> = {};
+  
+  // Social categories from simulation
+  byCategory['G07'] = {
+    code: 'G07' as COFOGCode,
+    name: 'Health',
+    amountMillion: healthcareCosts,
+    pctOfGDP: gdpMillions > 0 ? (healthcareCosts / gdpMillions) * 100 : 0,
+    perCapita: totalPopulation > 0 ? (healthcareCosts * 1_000_000) / totalPopulation : 0,
+  };
+  
+  byCategory['G09'] = {
+    code: 'G09' as COFOGCode,
+    name: 'Education',
+    amountMillion: educationCosts,
+    pctOfGDP: gdpMillions > 0 ? (educationCosts / gdpMillions) * 100 : 0,
+    perCapita: totalPopulation > 0 ? (educationCosts * 1_000_000) / totalPopulation : 0,
+  };
+  
+  const socialProtection = pensionCosts + benefitCosts;
+  byCategory['G10'] = {
+    code: 'G10' as COFOGCode,
+    name: 'Social protection',
+    amountMillion: socialProtection,
+    pctOfGDP: gdpMillions > 0 ? (socialProtection / gdpMillions) * 100 : 0,
+    perCapita: totalPopulation > 0 ? (socialProtection * 1_000_000) / totalPopulation : 0,
+  };
+  
+  // Estimate other categories based on typical ratios
+  const socialTotal = healthcareCosts + educationCosts + socialProtection;
+  const otherTotal = socialTotal * 0.40;  // Other categories ~40% of social
+  
+  const otherRatios = {
+    G01: 0.40 + (interestExpense / otherTotal),  // General public services + interest
+    G02: 0.10,  // Defence
+    G03: 0.08,  // Public order
+    G04: 0.30,  // Economic affairs
+    G05: 0.02,  // Environment
+    G06: 0.03,  // Housing
+    G08: 0.07,  // Culture
+  };
+  
+  const otherCategoriesConfig: Array<{ code: COFOGCode; name: string; ratio: number }> = [
+    { code: 'G01', name: 'General public services', ratio: otherRatios.G01 },
+    { code: 'G02', name: 'Defence', ratio: otherRatios.G02 },
+    { code: 'G03', name: 'Public order and safety', ratio: otherRatios.G03 },
+    { code: 'G04', name: 'Economic affairs', ratio: otherRatios.G04 },
+    { code: 'G05', name: 'Environmental protection', ratio: otherRatios.G05 },
+    { code: 'G06', name: 'Housing and community amenities', ratio: otherRatios.G06 },
+    { code: 'G08', name: 'Recreation, culture and religion', ratio: otherRatios.G08 },
+  ];
+  
+  for (const { code, name, ratio } of otherCategoriesConfig) {
+    const amount = otherTotal * ratio;
+    byCategory[code] = {
+      code,
+      name,
+      amountMillion: amount,
+      pctOfGDP: gdpMillions > 0 ? (amount / gdpMillions) * 100 : 0,
+      perCapita: totalPopulation > 0 ? (amount * 1_000_000) / totalPopulation : 0,
+    };
+  }
+  
+  const totalMillion = Object.values(byCategory).reduce(
+    (sum, cat) => sum + cat.amountMillion, 0
+  );
+  
+  // Aggregate by spending groups
+  const byGroup: YearlySpending['byGroup'] = {} as YearlySpending['byGroup'];
+  
+  for (const [groupId, groupConfig] of Object.entries(SPENDING_GROUPS)) {
+    let groupTotal = 0;
+    let groupPctGDP = 0;
+    
+    for (const cofogCode of groupConfig.cofogCodes) {
+      const cat = byCategory[cofogCode];
+      if (cat) {
+        groupTotal += cat.amountMillion;
+        groupPctGDP += cat.pctOfGDP;
+      }
+    }
+    
+    byGroup[groupId as SpendingGroupId] = {
+      name: groupConfig.name,
+      amountMillion: groupTotal,
+      pctOfGDP: groupPctGDP,
+      categories: groupConfig.cofogCodes,
+    };
+  }
+  
+  return {
+    year,
+    isHistorical: false,
+    totalMillion,
+    totalPctGDP: gdpMillions > 0 ? (totalMillion / gdpMillions) * 100 : 0,
+    byCategory: byCategory as Record<COFOGCode, COFOGSpending>,
+    byGroup,
+  };
+}
+
 // ===========================================
 // JSON Types (for parsing public_spending.json)
 // ===========================================

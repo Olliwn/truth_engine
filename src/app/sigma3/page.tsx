@@ -20,13 +20,15 @@ import type { DemographicScenario } from '@/lib/simulation/adapter';
 // Spending engine
 import {
   loadHistoricalSpendingData,
-  projectSpending,
+  getHistoricalSpending,
+  convertSimulationToCOFOG,
+  setSimulationBaseYearData,
   type YearlySpending,
-  type ProjectionContext,
 } from '@/lib/simulation/spending';
 import {
   SPENDING_SCENARIO_PRESETS,
   DEFAULT_SPENDING_SCENARIO,
+  SPENDING_BASE_YEAR,
   type SpendingScenario,
   type DemographicScenarioId,
   type PopulationScenarioId,
@@ -206,55 +208,56 @@ export default function Sigma3Page() {
     simulatePopulationRange(1990, 2060, committedDemoScenario), [committedDemoScenario]
   );
 
-  // Generate spending timeline using committed scenario
+  // Generate spending timeline:
+  // - Historical years (≤2024): Use actual COFOG data from Statistics Finland
+  // - Projected years (>2024): Use simulation's fiscal costs converted to COFOG format
   const spendingTimeline = useMemo(() => {
     if (!spendingDataLoaded) return [];
     
     const results: YearlySpending[] = [];
-    const baseYear = 2024;
-    const baseYearData = simulationResult.annualResults.find(r => r.year === baseYear);
     
-    if (!baseYearData) return [];
+    // Get base year COFOG data for ratio calculations
+    const baseYearCOFOG = getHistoricalSpending(SPENDING_BASE_YEAR);
     
-    const baseDemographics = {
-      totalPopulation: baseYearData.totalPopulation,
-      children: baseYearData.children,
-      workingAge: baseYearData.workingAge,
-      elderly: baseYearData.elderly,
-    };
-    
-    const baseEconomics = {
-      gdpBillions: baseYearData.gdp,
-      gdpGrowthRate: baseYearData.gdpGrowthRate,
-      interestRate: baseYearData.interestRate,
-      debtStockBillions: baseYearData.debtStock,
-    };
+    // Get simulation data for base year to calculate growth rates
+    const simBaseYearData = simulationResult.annualResults.find(r => r.year === SPENDING_BASE_YEAR);
+    if (simBaseYearData) {
+      setSimulationBaseYearData({
+        educationCosts: simBaseYearData.educationCosts,
+        healthcareCosts: simBaseYearData.healthcareCosts,
+        pensionCosts: simBaseYearData.pensionCosts,
+        benefitCosts: simBaseYearData.benefitCosts,
+        totalPopulation: simBaseYearData.totalPopulation,
+        gdpBillions: simBaseYearData.gdp,
+      });
+    }
     
     for (const yearData of simulationResult.annualResults) {
-      const context: ProjectionContext = {
-        year: yearData.year,
-        demographics: {
-          totalPopulation: yearData.totalPopulation,
-          children: yearData.children,
-          workingAge: yearData.workingAge,
-          elderly: yearData.elderly,
-        },
-        economics: {
+      if (yearData.year <= SPENDING_BASE_YEAR) {
+        // Historical: Use actual COFOG data
+        const historicalSpending = getHistoricalSpending(yearData.year);
+        if (historicalSpending) {
+          results.push(historicalSpending);
+        }
+      } else {
+        // Projected: Convert simulation fiscal costs to COFOG format
+        const spending = convertSimulationToCOFOG({
+          year: yearData.year,
+          educationCosts: yearData.educationCosts,
+          healthcareCosts: yearData.healthcareCosts,
+          pensionCosts: yearData.pensionCosts,
+          benefitCosts: yearData.benefitCosts,
+          interestExpense: yearData.interestExpense,
+          totalStateCosts: yearData.totalStateCosts,
           gdpBillions: yearData.gdp,
-          gdpGrowthRate: yearData.gdpGrowthRate,
-          interestRate: yearData.interestRate,
-          debtStockBillions: yearData.debtStock,
-        },
-        baseDemographics,
-        baseEconomics,
-      };
-      
-      const spending = projectSpending(context, committedSpendingScenario);
-      results.push(spending);
+          totalPopulation: yearData.totalPopulation,
+        }, baseYearCOFOG);
+        results.push(spending);
+      }
     }
     
     return results;
-  }, [simulationResult, committedSpendingScenario, spendingDataLoaded]);
+  }, [simulationResult, spendingDataLoaded]);
 
   // Get current year data
   const currentYearData = useMemo(() => {
