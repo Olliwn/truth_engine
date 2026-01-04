@@ -7,12 +7,13 @@ import { OverviewTab } from './tabs/OverviewTab';
 import { PopulationTab } from './tabs/PopulationTab';
 import { FiscalTab } from './tabs/FiscalTab';
 import { DebtTab } from './tabs/DebtTab';
+import { DebugTab } from './tabs/DebugTab';
 
 // ===========================================
 // Types
 // ===========================================
 
-type TabId = 'overview' | 'population' | 'fiscal' | 'debt';
+type TabId = 'overview' | 'population' | 'fiscal' | 'debt' | 'debug';
 
 interface Tab {
   id: TabId;
@@ -25,6 +26,7 @@ const TABS: Tab[] = [
   { id: 'population', label: 'Population', emoji: '👥' },
   { id: 'fiscal', label: 'Fiscal', emoji: '💰' },
   { id: 'debt', label: 'Debt', emoji: '💳' },
+  { id: 'debug', label: 'Debug', emoji: '🔬' },
 ];
 
 // ===========================================
@@ -286,6 +288,13 @@ export function ResultsArea({
             currentYearData={currentYearData}
             summary={summary}
             effectiveInterestRate={effectiveInterestRate}
+          />
+        )}
+        {activeTab === 'debug' && (
+          <DebugTab
+            selectedYear={selectedYear}
+            annualResults={annualResults}
+            currentYearData={currentYearData}
           />
         )}
       </div>

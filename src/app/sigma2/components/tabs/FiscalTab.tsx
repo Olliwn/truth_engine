@@ -77,6 +77,30 @@ export function FiscalTab({
     total: r.immigrationFiscalImpact,
   }));
 
+  // GDP analysis data
+  const gdpChartData = annualResults.map(r => ({
+    year: r.year,
+    gdp: r.gdp,
+    gdpGrowthRate: r.effectiveGdpGrowthRate * 100,
+    productivityGrowth: r.productivityGrowthRate * 100,
+    workforceChange: r.workforceChangeRate * 100,
+    deficitPctGDP: r.deficitPctGDP,
+    govtSpendingPctGDP: r.govtSpendingPctGDP,
+  }));
+
+  // Base vs GDP-Adjusted comparison data
+  const baseVsAdjustedData = annualResults.map(r => ({
+    year: r.year,
+    baseContributions: r.totalContributions,
+    adjustedContributions: r.gdpAdjustedContributions,
+    baseCosts: r.totalStateCosts,
+    adjustedCosts: r.gdpAdjustedCosts,
+    baseBalance: r.netFiscalBalance,
+    adjustedBalance: r.gdpAdjustedBalance,
+    contributionMultiplier: r.totalContributions > 0 ? (r.gdpAdjustedContributions / r.totalContributions - 1) * 100 : 0,
+    costMultiplier: r.totalStateCosts > 0 ? (r.gdpAdjustedCosts / r.totalStateCosts - 1) * 100 : 0,
+  }));
+
   return (
     <div className="space-y-6">
       {/* Summary Cards */}
@@ -305,6 +329,223 @@ export function FiscalTab({
             <div className="text-[10px] text-gray-500">Interest</div>
             <div className="text-sm font-semibold text-rose-400">
               {formatMillions(currentYearData.interestExpense)}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* GDP Analysis Section */}
+      <div className="bg-gradient-to-r from-purple-950/30 to-gray-900/50 rounded-lg p-4 border border-purple-800/30">
+        <h3 className="text-sm font-semibold text-gray-300 mb-4">
+          📈 GDP Analysis & Impact
+        </h3>
+        
+        {/* GDP Summary Cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+          <div className="bg-gray-900/50 rounded-lg p-3 text-center">
+            <div className="text-[10px] text-gray-500 uppercase">GDP ({selectedYear})</div>
+            <div className="text-lg font-bold text-purple-400">€{currentYearData.gdp.toFixed(0)}B</div>
+          </div>
+          <div className="bg-gray-900/50 rounded-lg p-3 text-center">
+            <div className="text-[10px] text-gray-500 uppercase">Effective Growth</div>
+            <div className={`text-lg font-bold ${currentYearData.effectiveGdpGrowthRate >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+              {(currentYearData.effectiveGdpGrowthRate * 100).toFixed(2)}%
+            </div>
+          </div>
+          <div className="bg-gray-900/50 rounded-lg p-3 text-center">
+            <div className="text-[10px] text-gray-500 uppercase">Deficit % GDP</div>
+            <div className={`text-lg font-bold ${currentYearData.deficitPctGDP >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+              {currentYearData.deficitPctGDP.toFixed(1)}%
+            </div>
+          </div>
+          <div className="bg-gray-900/50 rounded-lg p-3 text-center">
+            <div className="text-[10px] text-gray-500 uppercase">Govt/GDP</div>
+            <div className="text-lg font-bold text-amber-400">
+              {currentYearData.govtSpendingPctGDP.toFixed(1)}%
+            </div>
+          </div>
+        </div>
+
+        {/* GDP Timeline Chart */}
+        <div className="mb-4">
+          <h4 className="text-xs font-medium text-gray-400 mb-2">GDP Timeline & Growth Rate</h4>
+          <div className="h-[200px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={gdpChartData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                <XAxis dataKey="year" stroke="#9CA3AF" tick={{ fontSize: 10 }} />
+                <YAxis
+                  yAxisId="gdp"
+                  stroke="#A855F7"
+                  tick={{ fontSize: 10 }}
+                  tickFormatter={(v) => `€${v}B`}
+                  label={{ value: 'GDP (€B)', angle: -90, position: 'insideLeft', fill: '#A855F7', fontSize: 9 }}
+                />
+                <YAxis
+                  yAxisId="rate"
+                  orientation="right"
+                  stroke="#22C55E"
+                  tick={{ fontSize: 10 }}
+                  tickFormatter={(v) => `${v.toFixed(1)}%`}
+                  domain={[-2, 5]}
+                  label={{ value: 'Growth %', angle: 90, position: 'insideRight', fill: '#22C55E', fontSize: 9 }}
+                />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#1F2937',
+                    border: '1px solid #374151',
+                    borderRadius: '8px',
+                    fontSize: '11px',
+                  }}
+                  formatter={(value, name) => {
+                    if (name === 'GDP') return [`€${(value as number).toFixed(0)}B`, name];
+                    return [`${(value as number).toFixed(2)}%`, name];
+                  }}
+                />
+                <Legend />
+                <ReferenceLine x={selectedYear} stroke="#F59E0B" strokeWidth={2} />
+                <ReferenceLine x={2024} stroke="#A855F7" strokeDasharray="3 3" />
+                <ReferenceLine yAxisId="rate" y={0} stroke="#6B7280" strokeDasharray="3 3" />
+                <Area
+                  yAxisId="gdp"
+                  type="monotone"
+                  dataKey="gdp"
+                  name="GDP"
+                  fill="#A855F7"
+                  fillOpacity={0.2}
+                  stroke="#A855F7"
+                  strokeWidth={2}
+                />
+                <Line
+                  yAxisId="rate"
+                  type="monotone"
+                  dataKey="gdpGrowthRate"
+                  name="Effective Growth"
+                  stroke="#22C55E"
+                  strokeWidth={2}
+                  dot={false}
+                />
+                <Line
+                  yAxisId="rate"
+                  type="monotone"
+                  dataKey="productivityGrowth"
+                  name="Productivity"
+                  stroke="#3B82F6"
+                  strokeWidth={1}
+                  strokeDasharray="3 3"
+                  dot={false}
+                />
+                <Line
+                  yAxisId="rate"
+                  type="monotone"
+                  dataKey="workforceChange"
+                  name="Workforce Δ"
+                  stroke="#F59E0B"
+                  strokeWidth={1}
+                  strokeDasharray="3 3"
+                  dot={false}
+                />
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Base vs Adjusted Comparison */}
+        <div className="mb-4">
+          <h4 className="text-xs font-medium text-gray-400 mb-2">Base vs GDP-Adjusted Fiscal Values</h4>
+          <div className="h-[200px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={baseVsAdjustedData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                <XAxis dataKey="year" stroke="#9CA3AF" tick={{ fontSize: 10 }} />
+                <YAxis
+                  yAxisId="values"
+                  stroke="#9CA3AF"
+                  tick={{ fontSize: 10 }}
+                  tickFormatter={(v) => `€${(v / 1000).toFixed(0)}B`}
+                />
+                <YAxis
+                  yAxisId="pct"
+                  orientation="right"
+                  stroke="#6B7280"
+                  tick={{ fontSize: 10 }}
+                  tickFormatter={(v) => `${v.toFixed(0)}%`}
+                  domain={[-50, 150]}
+                />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#1F2937',
+                    border: '1px solid #374151',
+                    borderRadius: '8px',
+                    fontSize: '11px',
+                  }}
+                  formatter={(value, name) => {
+                    const nameStr = String(name || '');
+                    if (nameStr.includes('Multiplier')) return [`${(value as number).toFixed(1)}%`, nameStr];
+                    return [`€${((value as number) / 1000).toFixed(1)}B`, nameStr];
+                  }}
+                />
+                <Legend />
+                <ReferenceLine x={selectedYear} stroke="#F59E0B" strokeWidth={2} />
+                <ReferenceLine yAxisId="values" y={0} stroke="#6B7280" strokeDasharray="3 3" />
+                <Line
+                  yAxisId="values"
+                  type="monotone"
+                  dataKey="baseBalance"
+                  name="Base Balance"
+                  stroke="#A855F7"
+                  strokeWidth={2}
+                  dot={false}
+                />
+                <Line
+                  yAxisId="values"
+                  type="monotone"
+                  dataKey="adjustedBalance"
+                  name="Adjusted Balance"
+                  stroke="#8B5CF6"
+                  strokeWidth={2}
+                  strokeDasharray="5 5"
+                  dot={false}
+                />
+                <Line
+                  yAxisId="pct"
+                  type="monotone"
+                  dataKey="contributionMultiplier"
+                  name="Contribution Multiplier"
+                  stroke="#22C55E"
+                  strokeWidth={1}
+                  dot={false}
+                />
+                <Line
+                  yAxisId="pct"
+                  type="monotone"
+                  dataKey="costMultiplier"
+                  name="Cost Multiplier"
+                  stroke="#EF4444"
+                  strokeWidth={1}
+                  dot={false}
+                />
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* GDP Impact Explanation */}
+        <div className="p-3 bg-gray-900/50 rounded-lg text-xs text-gray-500">
+          <p className="mb-2">
+            <span className="text-purple-400 font-semibold">GDP Growth Impact:</span> The simulation applies revenue elasticity 
+            (how tax revenues grow with GDP) and cost growth premiums (healthcare/pension costs growing faster than GDP).
+          </p>
+          <div className="grid grid-cols-2 gap-4 mt-2">
+            <div>
+              <span className="text-green-400">Contribution Multiplier:</span> {((currentYearData.gdpAdjustedContributions / currentYearData.totalContributions - 1) * 100).toFixed(1)}%
+              <br/>
+              <span className="text-gray-600">Base: {formatMillions(currentYearData.totalContributions)} → Adjusted: {formatMillions(currentYearData.gdpAdjustedContributions)}</span>
+            </div>
+            <div>
+              <span className="text-red-400">Cost Multiplier:</span> {((currentYearData.gdpAdjustedCosts / currentYearData.totalStateCosts - 1) * 100).toFixed(1)}%
+              <br/>
+              <span className="text-gray-600">Base: {formatMillions(currentYearData.totalStateCosts)} → Adjusted: {formatMillions(currentYearData.gdpAdjustedCosts)}</span>
             </div>
           </div>
         </div>
