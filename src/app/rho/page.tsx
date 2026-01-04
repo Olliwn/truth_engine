@@ -31,7 +31,7 @@ import {
   LifecyclePhase,
 } from '@/lib/types';
 import { PROFILE_ADJUSTMENT_RANGES } from '@/lib/constants/presetProfiles';
-import { EDUCATION_TIMELINES, EducationLevel } from '@/lib/constants/lifecycleCosts';
+import { EDUCATION_TIMELINES, EducationLevel, INCOME_BY_DECILE, DECILE_LABELS } from '@/lib/constants/lifecycleCosts';
 
 // ===========================================
 // Helper Functions
@@ -227,13 +227,13 @@ export default function RhoPage() {
               <h3 className="text-lg font-semibold mb-4">Customize Parameters</h3>
               <div className="space-y-4">
                 <ParamSlider
-                  label="Income Level"
-                  value={simulationInput.peakIncomeMultiplier}
-                  min={0.5}
-                  max={2.0}
-                  step={0.05}
-                  formatValue={(v) => `${(v * 100).toFixed(0)}%`}
-                  onChange={(v) => handleParamChange('peakIncomeMultiplier', v)}
+                  label="Income Decile"
+                  value={simulationInput.incomeDecile}
+                  min={1}
+                  max={10}
+                  step={1}
+                  formatValue={(v) => `D${v} (€${Math.round(INCOME_BY_DECILE[v] / 1000)}k)`}
+                  onChange={(v) => handleParamChange('incomeDecile', v)}
                 />
                 <ParamSlider
                   label="Retirement Age"

@@ -1013,8 +1013,8 @@ export interface LifetimeSimulationInput {
   workStartAge: number;
   retirementAge: number;
   
-  // Income
-  peakIncomeMultiplier: number;
+  // Income (1-10 decile, where 5 = median, 10 = top 10% average)
+  incomeDecile: number;
   
   // Employment
   lifetimeUnemploymentYears: number;

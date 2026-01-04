@@ -56,8 +56,8 @@ export interface LifetimeProfile {
   workStartAge: number;
   retirementAge: number;
   
-  // Income
-  peakIncomeMultiplier: number; // Relative to education level median
+  // Income - now based on decile
+  incomeDecile: number; // 1-10, where 5 is median, 10 is top 10% average
   incomeVolatility: number; // 0 = stable, 1 = very variable
   
   // Employment
@@ -88,11 +88,40 @@ export interface LifetimeProfile {
 // ===========================================
 
 export const PRESET_PROFILES: LifetimeProfile[] = [
-  // 1. High Achiever - Tech Career
+  // 0. Top Earner (D10) - Executives, Doctors, Senior Lawyers
+  {
+    id: 'top_earner',
+    name: 'Top Earner',
+    description: 'Executive, doctor, or senior professional. Top 10% average income (€120k peak). Long education, late start, high earnings.',
+    emoji: '💎',
+    gender: 'average',
+    lifeExpectancy: 87, // Higher life expectancy for top earners
+    educationLevel: 'master',
+    educationStartAge: 19,
+    occupationType: 'private_sector',
+    careerPath: 'continuous',
+    workStartAge: 26,
+    retirementAge: 67, // Often work longer
+    incomeDecile: 10, // D10 = €120k peak
+    incomeVolatility: 0.2,
+    lifetimeUnemploymentYears: 0.3,
+    unemploymentPattern: 'spread',
+    healthTrajectory: 'healthy',
+    familyPath: 'couple_with_children',
+    numberOfChildren: 2,
+    childrenAges: [34, 37],
+    parentalLeaveYears: 0.3,
+    homeOwner: true,
+    averageRent: 1500,
+    receivesHousingAllowance: false,
+    receivesStudentAid: true,
+  },
+
+  // 1. High Achiever (D9) - Top 10% threshold
   {
     id: 'high_achiever',
     name: 'High Achiever',
-    description: 'Master\'s degree, tech/finance career, full career with high earnings. Represents top 10% income trajectory.',
+    description: 'Master\'s degree, tech/finance career. Top 10% threshold (€78k peak). Strong career trajectory.',
     emoji: '🚀',
     gender: 'average',
     lifeExpectancy: 85,
@@ -100,9 +129,9 @@ export const PRESET_PROFILES: LifetimeProfile[] = [
     educationStartAge: 19,
     occupationType: 'private_sector',
     careerPath: 'continuous',
-    workStartAge: 25, // After master's + possible gap year
+    workStartAge: 25,
     retirementAge: 65,
-    peakIncomeMultiplier: 1.4, // 40% above median for education level
+    incomeDecile: 9, // D9 = €78k peak
     incomeVolatility: 0.15,
     lifetimeUnemploymentYears: 0.5,
     unemploymentPattern: 'spread',
@@ -110,18 +139,18 @@ export const PRESET_PROFILES: LifetimeProfile[] = [
     familyPath: 'couple_with_children',
     numberOfChildren: 2,
     childrenAges: [32, 35],
-    parentalLeaveYears: 0.5, // Short parental leaves
+    parentalLeaveYears: 0.5,
     homeOwner: true,
     averageRent: 1200,
     receivesHousingAllowance: false,
     receivesStudentAid: true,
   },
   
-  // 2. Average Worker
+  // 2. Average Worker (D5) - Median
   {
     id: 'average_worker',
     name: 'Average Worker',
-    description: 'Vocational education, stable employment in service/manufacturing sector. Median Finnish outcome.',
+    description: 'Vocational education, stable employment. Median Finnish income (€40k peak).',
     emoji: '👷',
     gender: 'average',
     lifeExpectancy: 82,
@@ -131,7 +160,7 @@ export const PRESET_PROFILES: LifetimeProfile[] = [
     careerPath: 'continuous',
     workStartAge: 19,
     retirementAge: 64,
-    peakIncomeMultiplier: 1.0,
+    incomeDecile: 5, // D5 = €40k peak (median)
     incomeVolatility: 0.1,
     lifetimeUnemploymentYears: 2,
     unemploymentPattern: 'spread',
@@ -146,11 +175,11 @@ export const PRESET_PROFILES: LifetimeProfile[] = [
     receivesStudentAid: false,
   },
   
-  // 3. Public Servant
+  // 3. Public Servant (D7) - Stable, moderate income
   {
     id: 'public_servant',
     name: 'Public Servant',
-    description: 'University degree, municipal or state employee. Very stable career, good pension, moderate income.',
+    description: 'University degree, municipal/state employee. D7 income (€54k peak). Very stable, good pension.',
     emoji: '🏛️',
     gender: 'average',
     lifeExpectancy: 84,
@@ -160,7 +189,7 @@ export const PRESET_PROFILES: LifetimeProfile[] = [
     careerPath: 'continuous',
     workStartAge: 26,
     retirementAge: 65,
-    peakIncomeMultiplier: 0.85, // Public sector pays less
+    incomeDecile: 7, // D7 = €54k peak
     incomeVolatility: 0.05, // Very stable
     lifetimeUnemploymentYears: 0.2,
     unemploymentPattern: 'early',
@@ -168,18 +197,18 @@ export const PRESET_PROFILES: LifetimeProfile[] = [
     familyPath: 'couple_with_children',
     numberOfChildren: 2,
     childrenAges: [30, 33],
-    parentalLeaveYears: 1.5, // More likely to take full parental leave
+    parentalLeaveYears: 1.5,
     homeOwner: true,
     averageRent: 900,
     receivesHousingAllowance: false,
     receivesStudentAid: true,
   },
   
-  // 4. Early Retiree (Health Issues)
+  // 4. Early Retiree (D4) - Health Issues
   {
     id: 'early_retiree',
     name: 'Early Retiree',
-    description: 'Vocational background, develops health issues at 52, disability pension from 55. Shows healthcare cost impact.',
+    description: 'Vocational background, disability from 55. D4 income (€34k peak). Shows healthcare cost impact.',
     emoji: '🏥',
     gender: 'average',
     lifeExpectancy: 78, // Reduced due to health
@@ -189,7 +218,7 @@ export const PRESET_PROFILES: LifetimeProfile[] = [
     careerPath: 'interrupted',
     workStartAge: 19,
     retirementAge: 55, // Early due to disability
-    peakIncomeMultiplier: 0.9,
+    incomeDecile: 4, // D4 = €34k peak
     incomeVolatility: 0.15,
     lifetimeUnemploymentYears: 3,
     unemploymentPattern: 'late',
@@ -205,13 +234,13 @@ export const PRESET_PROFILES: LifetimeProfile[] = [
     receivesStudentAid: false,
   },
   
-  // 5. Parent Focused
+  // 5. Parent Focused (D5) - Career breaks
   {
     id: 'parent_focused',
     name: 'Parent Focused',
-    description: 'Polytechnic degree, career breaks for children, part-time work periods. Shows impact of family choices.',
+    description: 'Polytechnic degree, extended parental leaves. D5 income (€40k peak) due to career gaps.',
     emoji: '👨‍👩‍👧‍👦',
-    gender: 'female', // More commonly affects women
+    gender: 'female',
     lifeExpectancy: 85,
     educationLevel: 'polytechnic',
     educationStartAge: 19,
@@ -219,7 +248,7 @@ export const PRESET_PROFILES: LifetimeProfile[] = [
     careerPath: 'interrupted',
     workStartAge: 23,
     retirementAge: 65,
-    peakIncomeMultiplier: 0.85, // Lower due to career breaks
+    incomeDecile: 5, // D5 = €40k peak (lower due to breaks)
     incomeVolatility: 0.2,
     lifetimeUnemploymentYears: 1,
     unemploymentPattern: 'mid',
@@ -227,18 +256,18 @@ export const PRESET_PROFILES: LifetimeProfile[] = [
     familyPath: 'couple_with_children',
     numberOfChildren: 3,
     childrenAges: [28, 31, 34],
-    parentalLeaveYears: 6, // Extended home care for each child
+    parentalLeaveYears: 6, // Extended home care
     homeOwner: true,
     averageRent: 950,
     receivesHousingAllowance: true,
     receivesStudentAid: true,
   },
   
-  // 6. Entrepreneur
+  // 6. Entrepreneur (D8) - Variable income
   {
     id: 'entrepreneur',
     name: 'Entrepreneur',
-    description: 'Bachelor\'s degree, starts business at 28. Higher peaks but also gaps. Variable pension accrual.',
+    description: 'Business owner, variable income. D8 income (€64k peak) but with gaps. Works longer.',
     emoji: '💼',
     gender: 'average',
     lifeExpectancy: 82,
@@ -248,14 +277,14 @@ export const PRESET_PROFILES: LifetimeProfile[] = [
     careerPath: 'interrupted',
     workStartAge: 22,
     retirementAge: 67, // Often work longer
-    peakIncomeMultiplier: 1.3, // Higher potential
+    incomeDecile: 8, // D8 = €64k peak
     incomeVolatility: 0.5, // Very variable
     lifetimeUnemploymentYears: 3, // Business failures
     unemploymentPattern: 'spread',
     healthTrajectory: 'average',
     familyPath: 'couple_with_children',
     numberOfChildren: 2,
-    childrenAges: [34, 37], // Later family formation
+    childrenAges: [34, 37],
     parentalLeaveYears: 0.3,
     homeOwner: true,
     averageRent: 1100,
@@ -263,11 +292,11 @@ export const PRESET_PROFILES: LifetimeProfile[] = [
     receivesStudentAid: true,
   },
   
-  // 7. Long-term Unemployed
+  // 7. Struggling Worker (D2) - Low income
   {
     id: 'long_term_unemployed',
     name: 'Struggling Worker',
-    description: 'Basic education, frequent unemployment, low income trajectory. Shows benefit dependency.',
+    description: 'Basic education, frequent unemployment. D2 income (€26k peak). Benefit dependent.',
     emoji: '🔄',
     gender: 'average',
     lifeExpectancy: 76, // Lower due to socioeconomic factors
@@ -277,7 +306,7 @@ export const PRESET_PROFILES: LifetimeProfile[] = [
     careerPath: 'unstable',
     workStartAge: 17,
     retirementAge: 63, // Earliest possible
-    peakIncomeMultiplier: 0.8,
+    incomeDecile: 2, // D2 = €26k peak
     incomeVolatility: 0.4,
     lifetimeUnemploymentYears: 15, // Significant unemployment
     unemploymentPattern: 'spread',
@@ -346,7 +375,7 @@ export function createCustomProfile(
 // ===========================================
 
 export const PROFILE_ADJUSTMENT_RANGES = {
-  peakIncomeMultiplier: { min: 0.5, max: 2.0, step: 0.05, label: 'Income Level' },
+  incomeDecile: { min: 1, max: 10, step: 1, label: 'Income Decile' },
   retirementAge: { min: 55, max: 70, step: 1, label: 'Retirement Age' },
   lifetimeUnemploymentYears: { min: 0, max: 20, step: 0.5, label: 'Unemployment Years' },
   numberOfChildren: { min: 0, max: 5, step: 1, label: 'Number of Children' },

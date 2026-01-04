@@ -14,7 +14,7 @@ import {
   PENSION_SYSTEM,
   VAT_RATES,
   CORPORATE_TAX_CONTRIBUTION,
-  INCOME_PEAKS,
+  INCOME_BY_DECILE,
   calculateIncomeByAge,
   UNEMPLOYMENT_BENEFITS,
   DISABILITY_BENEFITS,
@@ -114,17 +114,19 @@ function calculateAnnualIncome(
     return 0;
   }
   
+  // Get peak income from decile
+  const peakIncome = INCOME_BY_DECILE[profile.incomeDecile] || INCOME_BY_DECILE[5];
+  
   // Disability pension (simplified)
   if (phase === 'disability') {
     // Disability pension is based on accrued earnings + projected earnings
     const accruedPension = accumulatedWorkYears * 
-      INCOME_PEAKS[profile.educationLevel] * 
-      profile.peakIncomeMultiplier * 
+      peakIncome * 
       PENSION_SYSTEM.accrualRates.age17to52;
     
     const projectedYears = 63 - age;
     const projectedPension = projectedYears * 
-      calculateIncomeByAge(age, profile.educationLevel, profile.peakIncomeMultiplier) *
+      calculateIncomeByAge(age, profile.workStartAge, profile.incomeDecile) *
       DISABILITY_BENEFITS.disabilityPension.projectedAccrualRate;
     
     return (accruedPension + projectedPension) * 0.6; // Simplified disability rate
@@ -134,8 +136,8 @@ function calculateAnnualIncome(
   if (phase === 'parental_leave') {
     const previousIncome = calculateIncomeByAge(
       age - 1, 
-      profile.educationLevel, 
-      profile.peakIncomeMultiplier
+      profile.workStartAge, 
+      profile.incomeDecile
     );
     return previousIncome * FAMILY_BENEFITS.parentalAllowance.rate;
   }
@@ -146,11 +148,11 @@ function calculateAnnualIncome(
     return UNEMPLOYMENT_BENEFITS.labourMarketSubsidy.monthlyApprox * 12;
   }
   
-  // Working - calculate based on age and education
+  // Working - calculate based on age and income decile
   const baseIncome = calculateIncomeByAge(
     age, 
-    profile.educationLevel, 
-    profile.peakIncomeMultiplier
+    profile.workStartAge, 
+    profile.incomeDecile
   );
   
   // Add income volatility (random variation)
@@ -727,7 +729,7 @@ function convertInputToProfile(input: LifetimeSimulationInput): LifetimeProfile 
     careerPath: input.careerPath,
     workStartAge: input.workStartAge,
     retirementAge: input.retirementAge,
-    peakIncomeMultiplier: input.peakIncomeMultiplier,
+    incomeDecile: input.incomeDecile,
     incomeVolatility: 0.1,
     lifetimeUnemploymentYears: input.lifetimeUnemploymentYears,
     unemploymentPattern: 'spread',
@@ -755,7 +757,7 @@ export function convertProfileToInput(profile: LifetimeProfile): LifetimeSimulat
     careerPath: profile.careerPath,
     workStartAge: profile.workStartAge,
     retirementAge: profile.retirementAge,
-    peakIncomeMultiplier: profile.peakIncomeMultiplier,
+    incomeDecile: profile.incomeDecile,
     lifetimeUnemploymentYears: profile.lifetimeUnemploymentYears,
     healthTrajectory: profile.healthTrajectory,
     disabilityStartAge: profile.disabilityStartAge,

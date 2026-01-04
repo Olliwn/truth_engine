@@ -254,61 +254,108 @@ export const CORPORATE_TAX_CONTRIBUTION = {
 };
 
 // ===========================================
-// Income Trajectories by Education Level
+// Income by Decile (Finnish Income Distribution)
 // ===========================================
 
-// Peak annual income by education level (median outcomes)
-// Source: Statistics Finland income statistics
-export const INCOME_PEAKS: Record<EducationLevel, number> = {
-  basic: 32000,
-  vocational: 42000,
-  upperSecondary: 38000,
-  polytechnic: 52000,
-  bachelor: 55000,
-  master: 70000,
-  phd: 85000,
+// Peak annual gross income by income decile
+// Source: Statistics Finland income statistics 2022-2023
+// These represent PEAK career income (around age 45-55)
+export const INCOME_BY_DECILE: Record<number, number> = {
+  1: 20000,   // D1 - bottom 10% (part-time, struggling)
+  2: 26000,   // D2 - low income workers
+  3: 30000,   // D3 
+  4: 34000,   // D4
+  5: 40000,   // D5 - median Finnish worker
+  6: 46000,   // D6
+  7: 54000,   // D7 - skilled workers, teachers
+  8: 64000,   // D8 - professionals
+  9: 78000,   // D9 - top 10% threshold
+  10: 120000, // D10 - top 10% average (executives, doctors, lawyers)
 };
 
-// Age at which peak income is typically reached
-export const PEAK_INCOME_AGES: Record<EducationLevel, number> = {
-  basic: 40,
-  vocational: 42,
-  upperSecondary: 40,
-  polytechnic: 45,
-  bachelor: 45,
-  master: 48,
-  phd: 50,
+// For UI display
+export const DECILE_LABELS: Record<number, string> = {
+  1: 'D1 (Bottom 10%)',
+  2: 'D2 (20th percentile)',
+  3: 'D3 (30th percentile)',
+  4: 'D4 (40th percentile)',
+  5: 'D5 (Median)',
+  6: 'D6 (60th percentile)',
+  7: 'D7 (70th percentile)',
+  8: 'D8 (80th percentile)',
+  9: 'D9 (Top 10%)',
+  10: 'D10 (Top 10% avg)',
 };
 
-// Starting income (% of peak)
-export const STARTING_INCOME_RATIO = 0.55; // Start at 55% of peak
+// Age at which peak income is typically reached (varies by decile)
+export const PEAK_INCOME_AGE_BY_DECILE: Record<number, number> = {
+  1: 35,   // Lower earners peak earlier
+  2: 38,
+  3: 40,
+  4: 42,
+  5: 44,   // Median peaks around mid-40s
+  6: 46,
+  7: 48,
+  8: 50,
+  9: 52,
+  10: 55,  // Top earners peak later (executives)
+};
+
+// Starting income as % of peak (lower deciles start closer to peak)
+export const STARTING_INCOME_RATIO_BY_DECILE: Record<number, number> = {
+  1: 0.70,  // Low earners have flatter trajectory
+  2: 0.65,
+  3: 0.62,
+  4: 0.60,
+  5: 0.58,
+  6: 0.55,
+  7: 0.52,
+  8: 0.48,
+  9: 0.45,
+  10: 0.40, // High earners have steeper growth
+};
 
 // Income decline after peak (% per year)
 export const POST_PEAK_DECLINE_RATE = 0.005; // 0.5% per year decline after peak
 
-// Calculate income at a given age based on education level
+// ===========================================
+// Legacy: Income by Education (for reference)
+// ===========================================
+
+// Typical income decile by education level (median outcomes)
+export const TYPICAL_DECILE_BY_EDUCATION: Record<EducationLevel, number> = {
+  basic: 3,        // D3 - basic education → ~€30k
+  vocational: 5,   // D5 - vocational → median ~€40k  
+  upperSecondary: 4, // D4 - lukio only → ~€34k
+  polytechnic: 6,  // D6 - AMK → ~€46k
+  bachelor: 7,     // D7 - university bachelor → ~€54k
+  master: 8,       // D8 - master's → ~€64k
+  phd: 9,          // D9 - PhD → ~€78k
+};
+
+// Calculate income at a given age based on income decile
 export function calculateIncomeByAge(
   age: number,
-  educationLevel: EducationLevel,
-  peakIncomeMultiplier: number = 1.0, // Allows for variation
+  workStartAge: number,
+  incomeDecile: number,
   isEmployed: boolean = true
 ): number {
   if (!isEmployed) return 0;
-  
-  const timeline = EDUCATION_TIMELINES[educationLevel];
-  const workStartAge = timeline.workStartAge;
-  
   if (age < workStartAge) return 0;
   
-  const peakIncome = INCOME_PEAKS[educationLevel] * peakIncomeMultiplier;
-  const peakAge = PEAK_INCOME_AGES[educationLevel];
-  const startIncome = peakIncome * STARTING_INCOME_RATIO;
+  const peakIncome = INCOME_BY_DECILE[incomeDecile] || INCOME_BY_DECILE[5];
+  const peakAge = PEAK_INCOME_AGE_BY_DECILE[incomeDecile] || 45;
+  const startRatio = STARTING_INCOME_RATIO_BY_DECILE[incomeDecile] || 0.55;
+  const startIncome = peakIncome * startRatio;
   
   if (age <= peakAge) {
     // S-curve growth from start to peak
     const yearsWorking = age - workStartAge;
     const totalYearsToPeak = peakAge - workStartAge;
-    const progress = yearsWorking / totalYearsToPeak;
+    
+    if (totalYearsToPeak <= 0) return peakIncome;
+    
+    const progress = Math.min(1, yearsWorking / totalYearsToPeak);
     
     // Sigmoid-like growth (accelerates then decelerates)
     const growthFactor = 1 / (1 + Math.exp(-10 * (progress - 0.5)));
