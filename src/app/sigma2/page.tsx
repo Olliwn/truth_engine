@@ -2,6 +2,9 @@
 
 import { useState, useMemo, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+
+// Use the new time-step simulation engine via the adapter
+// This provides a drop-in replacement API with improved immigrant tracking
 import {
   simulatePopulationRange,
   getPopulationPyramidData,
@@ -12,8 +15,9 @@ import {
   DEFAULT_GDP_SCENARIO,
   INTEREST_RATE_SCENARIOS,
   DEFAULT_INTEREST_RATE_SCENARIO,
-} from '@/lib/populationSimulator';
-import type { DemographicScenario } from '@/lib/populationSimulator';
+  USE_NEW_SIMULATION_ENGINE,
+} from '@/lib/simulation/adapter';
+import type { DemographicScenario } from '@/lib/simulation/adapter';
 import { ScenarioPanel } from './components/ScenarioPanel';
 import { ResultsArea } from './components/ResultsArea';
 
