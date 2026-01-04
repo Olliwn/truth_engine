@@ -910,31 +910,34 @@ export default function XiPage() {
               <h2 className="text-2xl font-bold mb-2">
                 Spending Growth Decomposition ({decomposition_base_year || 2000}-{summary.year})
               </h2>
-              <p className="text-gray-400 text-sm">
-                How much of spending growth is demographics vs policy decisions?
+              <p className="text-gray-400 text-sm max-w-3xl">
+                Breaking down total spending growth into two components: changes in the <span className="text-blue-400">number of beneficiaries</span> (demographic/economic shifts) 
+                vs changes in <span className="text-amber-400">spending per beneficiary</span> (policy decisions like benefit levels, inflation adjustments, scope expansion).
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              {/* Decomposition bar chart */}
-              <div className="card p-6 h-[400px]">
-                <h3 className="text-lg font-semibold mb-4">Growth Attribution</h3>
-                <ResponsiveContainer width="100%" height="90%">
+              {/* Decomposition bar chart - showing absolute € billions */}
+              <div className="card p-6 h-[450px]">
+                <h3 className="text-lg font-semibold mb-2">Growth Attribution (€ Billions)</h3>
+                <p className="text-xs text-gray-500 mb-4">
+                  Starting from {decomposition_base_year || 2001} baseline, how much did each factor add to spending?
+                </p>
+                <ResponsiveContainer width="100%" height="85%">
                   <BarChart 
                     data={decomposition.map(d => ({
                       name: d.name.split(' ')[0],
-                      demographic: d.demographic_pct,
-                      policy: d.policy_pct,
-                      total_change: d.total_change_million / 1000,
+                      beneficiary_effect: d.demographic_effect_million / 1000,
+                      cost_effect: d.policy_effect_million / 1000,
+                      total: d.total_change_million / 1000,
                     }))}
                     layout="vertical"
                   >
                     <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                     <XAxis 
                       type="number" 
-                      domain={[-100, 200]} 
                       stroke="#9CA3AF" 
-                      tickFormatter={(v: number) => `${v}%`}
+                      tickFormatter={(v: number) => `€${v.toFixed(0)}B`}
                     />
                     <YAxis type="category" dataKey="name" stroke="#9CA3AF" width={80} />
                     <Tooltip
@@ -945,19 +948,21 @@ export default function XiPage() {
                       }}
                       formatter={(value: number | undefined, name: string | undefined) => {
                         if (value === undefined) return ['N/A', ''];
-                        const label = name === 'demographic' ? 'Demographics' : 'Policy/Cost';
-                        return [`${value.toFixed(1)}%`, label];
+                        const label = name === 'beneficiary_effect' ? 'Δ Beneficiaries' : 
+                                      name === 'cost_effect' ? 'Δ Cost/Person' : 'Total';
+                        const sign = value >= 0 ? '+' : '';
+                        return [`${sign}€${value.toFixed(1)}B`, label];
                       }}
                     />
                     <Legend />
-                    <Bar dataKey="demographic" name="Demographics" fill="#3B82F6" stackId="a" />
-                    <Bar dataKey="policy" name="Policy/Cost" fill="#F59E0B" stackId="a" />
+                    <Bar dataKey="beneficiary_effect" name="Δ Beneficiaries" fill="#3B82F6" stackId="a" />
+                    <Bar dataKey="cost_effect" name="Δ Cost/Person" fill="#F59E0B" stackId="a" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
 
               {/* Detail cards */}
-              <div className="space-y-3 max-h-[400px] overflow-y-auto">
+              <div className="space-y-3 max-h-[450px] overflow-y-auto">
                 {decomposition.map((dec) => (
                   <div key={dec.code} className="card p-4">
                     <div className="flex items-center justify-between mb-3">
@@ -969,45 +974,42 @@ export default function XiPage() {
                         <span className="font-medium text-sm">{dec.name}</span>
                       </div>
                       <span className="text-emerald-400 font-mono text-sm">
-                        +€{(dec.total_change_million / 1000).toFixed(1)}B
+                        +€{(dec.total_change_million / 1000).toFixed(1)}B total
                       </span>
                     </div>
                     
+                    {/* Absolute € contributions */}
                     <div className="grid grid-cols-2 gap-4 mb-3">
-                      <div>
-                        <div className="flex justify-between text-xs mb-1">
-                          <span className="text-gray-500">Demographics</span>
-                          <span className={dec.demographic_pct > 0 ? 'text-blue-400' : 'text-emerald-400'}>
-                            {dec.demographic_pct > 0 ? '+' : ''}{dec.demographic_pct.toFixed(0)}%
-                          </span>
+                      <div className="bg-gray-800/50 rounded p-2">
+                        <div className="text-xs text-gray-500 mb-1">Δ Beneficiaries</div>
+                        <div className={`font-mono text-sm ${dec.demographic_effect_million >= 0 ? 'text-blue-400' : 'text-emerald-400'}`}>
+                          {dec.demographic_effect_million >= 0 ? '+' : ''}€{(dec.demographic_effect_million / 1000).toFixed(1)}B
                         </div>
-                        <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full bg-blue-500"
-                            style={{ width: `${Math.min(100, Math.max(0, dec.demographic_pct))}%` }}
-                          />
+                        <div className="text-xs text-gray-600 mt-1">
+                          ({dec.beneficiary_change_pct >= 0 ? '+' : ''}{dec.beneficiary_change_pct.toFixed(0)}% recipients)
                         </div>
                       </div>
-                      <div>
-                        <div className="flex justify-between text-xs mb-1">
-                          <span className="text-gray-500">Policy/Cost</span>
-                          <span className="text-amber-400">{dec.policy_pct.toFixed(0)}%</span>
+                      <div className="bg-gray-800/50 rounded p-2">
+                        <div className="text-xs text-gray-500 mb-1">Δ Cost/Person</div>
+                        <div className="font-mono text-sm text-amber-400">
+                          +€{(dec.policy_effect_million / 1000).toFixed(1)}B
                         </div>
-                        <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full bg-amber-500"
-                            style={{ width: `${Math.min(100, Math.max(0, dec.policy_pct))}%` }}
-                          />
+                        <div className="text-xs text-gray-600 mt-1">
+                          (+{dec.cost_per_ben_change_pct.toFixed(0)}% per person)
                         </div>
                       </div>
                     </div>
 
-                    <div className="text-xs text-gray-500 flex justify-between">
+                    {/* Cost per beneficiary comparison */}
+                    <div className="text-xs text-gray-500 flex justify-between border-t border-gray-800 pt-2">
                       <span>
-                        Beneficiaries: {dec.beneficiary_change_pct > 0 ? '+' : ''}{dec.beneficiary_change_pct.toFixed(0)}%
+                        {dec.base_year}: €{dec.cost_per_ben_base.toLocaleString()}/person
+                      </span>
+                      <span className="text-white">
+                        →
                       </span>
                       <span>
-                        €/person: {dec.cost_per_ben_change_pct > 0 ? '+' : ''}{dec.cost_per_ben_change_pct.toFixed(0)}%
+                        {dec.latest_year}: €{dec.cost_per_ben_latest.toLocaleString()}/person
                       </span>
                     </div>
                   </div>
@@ -1015,19 +1017,59 @@ export default function XiPage() {
               </div>
             </div>
 
+            {/* Methodology explanation */}
+            <div className="mt-6 card p-6 border-gray-700">
+              <h4 className="text-sm font-semibold text-white mb-3">Methodology: What do these terms mean?</h4>
+              <div className="grid md:grid-cols-2 gap-6 text-sm">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-3 h-3 rounded-sm bg-blue-500" />
+                    <span className="font-medium text-blue-400">Δ Beneficiaries (Demographic/Economic)</span>
+                  </div>
+                  <p className="text-gray-400 text-xs">
+                    Spending change due to <strong className="text-white">more or fewer people</strong> receiving benefits.
+                    Calculated as: (change in recipient count) × (original cost per person).
+                  </p>
+                  <ul className="text-gray-500 text-xs mt-2 space-y-1 list-disc list-inside">
+                    <li><strong>Old age:</strong> More retirees = demographic change</li>
+                    <li><strong>Unemployment:</strong> More/fewer unemployed = economic cycle, not policy</li>
+                    <li><strong>Family:</strong> More/fewer children = birth rate changes</li>
+                  </ul>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-3 h-3 rounded-sm bg-amber-500" />
+                    <span className="font-medium text-amber-400">Δ Cost/Person (Policy Decisions)</span>
+                  </div>
+                  <p className="text-gray-400 text-xs">
+                    Spending change due to <strong className="text-white">higher spending per recipient</strong>.
+                    Calculated as: (change in cost per person) × (current recipient count).
+                  </p>
+                  <ul className="text-gray-500 text-xs mt-2 space-y-1 list-disc list-inside">
+                    <li><strong>Benefit increases:</strong> Higher pension/unemployment payments</li>
+                    <li><strong>Inflation adjustments:</strong> Index-linked benefit increases</li>
+                    <li><strong>Scope expansion:</strong> More services covered per person</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Key insights */}
             <div className="mt-6 grid md:grid-cols-2 gap-6">
               <div className="card p-4 border-blue-900/30">
-                <h4 className="text-sm font-semibold text-blue-400 mb-2">Demographic Effect</h4>
+                <h4 className="text-sm font-semibold text-blue-400 mb-2">Beneficiary Changes</h4>
                 <p className="text-gray-400 text-sm">
-                  <strong className="text-white">Old age (+28%)</strong> grows mostly due to aging population — more retirees need pensions.
-                  <strong className="text-white"> Unemployment (-50%)</strong> shows negative demographic effect — fewer unemployed saves money.
+                  <strong className="text-white">Old age (+€8.8B)</strong>: Aging population drives spending — 80% more retirees since 2001.
+                  <strong className="text-white"> Unemployment (-€0.4B)</strong>: Fewer unemployed reduces costs — but this reflects economic cycles, not policy success.
+                  <strong className="text-white"> Family (-€0.5B)</strong>: Declining birth rate = fewer children needing support.
                 </p>
               </div>
               <div className="card p-4 border-amber-900/30">
-                <h4 className="text-sm font-semibold text-amber-400 mb-2">Policy Effect</h4>
+                <h4 className="text-sm font-semibold text-amber-400 mb-2">Policy-Driven Cost Increases</h4>
                 <p className="text-gray-400 text-sm">
-                  All programs show high policy effects (70-150%) — spending per beneficiary has increased faster than demographics.
-                  This reflects <strong className="text-white">benefit increases</strong>, <strong className="text-white">inflation adjustments</strong>, and <strong className="text-white">scope expansion</strong>.
+                  <strong className="text-white">All programs</strong> show significant cost-per-person increases (70-200%).
+                  This is the <em>true policy effect</em>: decisions to raise benefit levels, expand coverage, or add services.
+                  Even unemployment (+€1.4B) grew per-person despite fewer recipients — benefits were increased.
                 </p>
               </div>
             </div>
