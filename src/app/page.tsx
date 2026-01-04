@@ -142,7 +142,7 @@ export default async function Home() {
               color="indigo"
             />
           </div>
-          {/* Row 5: Spending Efficiency */}
+          {/* Row 5: Spending Efficiency, Lifetime Fiscal */}
           <div className="grid md:grid-cols-3 gap-4">
             <FeaturedCard
               emoji="⚡"
@@ -150,6 +150,13 @@ export default async function Home() {
               subtitle="Beneficiaries vs Bureaucracy"
               href="/xi"
               color="emerald"
+            />
+            <FeaturedCard
+              emoji="🧬"
+              title="Lifetime Fiscal"
+              subtitle="Birth to Death Simulation"
+              href="/rho"
+              color="teal"
             />
           </div>
         </div>
@@ -343,6 +350,19 @@ export default async function Home() {
                 { label: 'To Citizens', value: '54%' },
                 { label: 'Bureaucracy', value: '14%' },
                 { label: 'Programs', value: '3' },
+              ]}
+            />
+            
+            <ProjectCard
+              title="Lifetime Fiscal Simulator"
+              emoji="🧬"
+              status="live"
+              description="Simulate a person's fiscal relationship with Finland from birth to death. See cumulative taxes paid vs education, healthcare, benefits, and pension received across different life paths."
+              href="/rho"
+              metrics={[
+                { label: 'Profiles', value: '7' },
+                { label: 'Break-even', value: '~41 yrs' },
+                { label: 'Lifespan', value: '0-85' },
               ]}
             />
           </div>
