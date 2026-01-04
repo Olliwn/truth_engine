@@ -22,13 +22,12 @@ import {
   simulatePopulationRange,
   simulatePopulationYear,
   getPopulationPyramidData,
-  AnnualPopulationResult,
-  DemographicScenario,
   DEFAULT_SCENARIO,
   BIRTH_RATE_PRESETS,
   IMMIGRATION_PROFILES,
   DEFAULT_IMMIGRATION,
 } from '@/lib/populationSimulator';
+import type { AnnualPopulationResult, DemographicScenario } from '@/lib/populationSimulator';
 import {
   IMMIGRATION_REFERENCE_PERIODS,
   HISTORICAL_IMMIGRATION,

@@ -617,12 +617,11 @@ export { getPopulationPyramid, getWorkingAgePopulation, getElderlyPopulation };
 
 // Re-export scenario types and utilities
 export { 
-  DemographicScenario, 
   DEFAULT_SCENARIO,
   BIRTH_RATE_PRESETS,
   IMMIGRATION_PROFILES,
   DEFAULT_IMMIGRATION,
 } from './constants/demographicScenarios';
 
-export type { BirthRatePreset, ImmigrationProfile } from './constants/demographicScenarios';
+export type { DemographicScenario, BirthRatePreset, ImmigrationProfile } from './constants/demographicScenarios';
 
