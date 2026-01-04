@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
-Fetch Finnish government expenditure efficiency data.
+Fetch Finnish Social Protection spending efficiency data.
 Breaks down spending by transaction type to measure what % goes to beneficiaries vs bureaucracy.
+
+Focused exclusively on G10 (Social Protection) and its subcategories.
 
 Table: statfin_jmete_pxt_12a6 - General government expenditure by function
 
@@ -10,8 +12,6 @@ Key transaction types:
 - D632K: Social transfers in kind (via private providers)
 - D1K: Compensation of employees (bureaucracy)
 - P2K: Intermediate consumption (overhead)
-- D3K: Subsidies
-- P5K: Capital formation (investment)
 """
 
 import json
@@ -21,45 +21,17 @@ from datetime import datetime
 
 BASE_URL = "https://pxdata.stat.fi/PxWeb/api/v1/en/StatFin"
 
-# Categories to analyze
-FOCUS_CATEGORIES = {
-    'G10': {
-        'name': 'Social protection',
-        'subcategories': {
-            'G1001': 'Sickness and disability',
-            'G1002': 'Old age (pensions)',
-            'G1003': 'Survivors',
-            'G1004': 'Family and children',
-            'G1005': 'Unemployment',
-            'G1006': 'Housing assistance',
-            'G1007': 'Social exclusion',
-        }
-    },
-    'G01': {
-        'name': 'General public services',
-        'subcategories': {
-            'G0101': 'Executive and legislative',
-            'G0102': 'Foreign economic aid',
-            'G0103': 'General services',
-            'G0104': 'Basic research',
-            'G0105': 'R&D public services',
-            'G0106': 'Other public services',
-            'G0107': 'Public debt transactions',
-        }
-    },
-    'G04': {
-        'name': 'Economic affairs',
-        'subcategories': {
-            'G0401': 'Economic and labour affairs',
-            'G0402': 'Agriculture, forestry, fishing',
-            'G0403': 'Fuel and energy',
-            'G0404': 'Mining, manufacturing',
-            'G0405': 'Transport',
-            'G0406': 'Communications',
-            'G0407': 'Other industries',
-            'G0408': 'R&D economic affairs',
-        }
-    },
+# Social Protection subcategories (G10)
+SOCIAL_PROTECTION_SUBS = {
+    'G1001': 'Sickness and disability',
+    'G1002': 'Old age (pensions)',
+    'G1003': 'Survivors',
+    'G1004': 'Family and children',
+    'G1005': 'Unemployment',
+    'G1006': 'Housing assistance',
+    'G1007': 'Social exclusion',
+    'G1008': 'R&D social protection',
+    'G1009': 'Other social protection',
 }
 
 # Transaction types
@@ -68,10 +40,6 @@ TRANSACTION_TYPES = {
     'D632K': {'name': 'In-kind benefits (via private)', 'category': 'benefits'},
     'D1K': {'name': 'Employee compensation', 'category': 'bureaucracy'},
     'P2K': {'name': 'Intermediate consumption', 'category': 'overhead'},
-    'D3K': {'name': 'Subsidies', 'category': 'subsidies'},
-    'P5K': {'name': 'Capital formation', 'category': 'investment'},
-    'D4KS': {'name': 'Property income', 'category': 'other'},
-    'D7KS': {'name': 'Other transfers', 'category': 'other'},
     'OTES': {'name': 'Total expenditure', 'category': 'total'},
 }
 
@@ -141,27 +109,24 @@ def parse_json_stat(data: dict) -> list[dict]:
     return records
 
 
-def fetch_efficiency_data():
-    """Fetch expenditure data by function and transaction type."""
-    print("Fetching efficiency data by function and transaction...")
+def fetch_social_protection_data():
+    """Fetch Social Protection (G10) expenditure data by subcategory and transaction type."""
+    print("Fetching Social Protection efficiency data...")
     url = f"{BASE_URL}/jmete/statfin_jmete_pxt_12a6.px"
     
-    # Get all functions we care about
-    all_functions = ['SSS']  # Total
-    for cat_code, cat_info in FOCUS_CATEGORIES.items():
-        all_functions.append(cat_code)
-        all_functions.extend(cat_info['subcategories'].keys())
+    # G10 and all subcategories
+    functions = ['G10'] + list(SOCIAL_PROTECTION_SUBS.keys())
     
-    # All transaction types
+    # Key transaction types
     transaction_codes = list(TRANSACTION_TYPES.keys())
     
     query = {
         "query": [
             {"code": "Sektori", "selection": {"filter": "item", "values": ["S13"]}},
             {"code": "Taloustoimi", "selection": {"filter": "item", "values": transaction_codes}},
-            {"code": "Tehtävä", "selection": {"filter": "item", "values": all_functions}},
+            {"code": "Tehtävä", "selection": {"filter": "item", "values": functions}},
             {"code": "Vuosi", "selection": {"filter": "all", "values": ["*"]}},
-            {"code": "Tiedot", "selection": {"filter": "item", "values": ["cp"]}},  # Current prices only
+            {"code": "Tiedot", "selection": {"filter": "item", "values": ["cp"]}},
         ],
         "response": {"format": "json-stat2"}
     }
@@ -170,7 +135,7 @@ def fetch_efficiency_data():
 
 
 def transform_data(records):
-    """Transform records into efficiency analysis data."""
+    """Transform records into social protection efficiency analysis."""
     
     # Organize by year, function, transaction
     by_year_func_trans = {}
@@ -201,121 +166,119 @@ def transform_data(records):
         if total == 0:
             return None
         
-        benefits = (
-            by_year_func_trans.get((year, func_code, 'D62K'), 0) +
-            by_year_func_trans.get((year, func_code, 'D632K'), 0)
-        )
+        d62k = by_year_func_trans.get((year, func_code, 'D62K'), 0)
+        d632k = by_year_func_trans.get((year, func_code, 'D632K'), 0)
+        benefits = d62k + d632k
         bureaucracy = by_year_func_trans.get((year, func_code, 'D1K'), 0)
         overhead = by_year_func_trans.get((year, func_code, 'P2K'), 0)
-        subsidies = by_year_func_trans.get((year, func_code, 'D3K'), 0)
-        investment = by_year_func_trans.get((year, func_code, 'P5K'), 0)
-        other = total - benefits - bureaucracy - overhead - subsidies - investment
+        other = total - benefits - bureaucracy - overhead
         
         return {
             'total_million': round(total, 1),
             'benefits_million': round(benefits, 1),
+            'd62k_million': round(d62k, 1),  # Cash benefits
+            'd632k_million': round(d632k, 1),  # In-kind via private
             'bureaucracy_million': round(bureaucracy, 1),
             'overhead_million': round(overhead, 1),
-            'subsidies_million': round(subsidies, 1),
-            'investment_million': round(investment, 1),
             'other_million': round(max(0, other), 1),
             'efficiency_pct': round(benefits / total * 100, 1) if total > 0 else 0,
             'bureaucracy_pct': round(bureaucracy / total * 100, 1) if total > 0 else 0,
             'overhead_pct': round(overhead / total * 100, 1) if total > 0 else 0,
         }
     
-    # Build category analysis
-    categories = []
-    for cat_code, cat_info in FOCUS_CATEGORIES.items():
-        eff = calc_efficiency(cat_code, latest_year)
-        if not eff:
+    # Build subcategory analysis with full time series
+    subcategories = []
+    for sub_code, sub_name in SOCIAL_PROTECTION_SUBS.items():
+        latest_eff = calc_efficiency(sub_code, latest_year)
+        if not latest_eff or latest_eff['total_million'] < 10:  # Skip very small categories
             continue
         
-        # Get subcategory data
-        subcategories = []
-        for sub_code, sub_name in cat_info['subcategories'].items():
-            sub_eff = calc_efficiency(sub_code, latest_year)
-            if sub_eff and sub_eff['total_million'] > 0:
-                subcategories.append({
-                    'code': sub_code,
-                    'name': sub_name,
-                    **sub_eff
-                })
-        
-        # Sort subcategories by total
-        subcategories.sort(key=lambda x: -x['total_million'])
-        
-        categories.append({
-            'code': cat_code,
-            'name': cat_info['name'],
-            **eff,
-            'subcategories': subcategories,
-        })
-    
-    # Sort by total
-    categories.sort(key=lambda x: -x['total_million'])
-    
-    # Build time series for main categories
-    time_series = []
-    for year in all_years:
-        entry = {'year': year}
-        for cat_code in FOCUS_CATEGORIES.keys():
-            eff = calc_efficiency(cat_code, year)
+        # Build time series for this subcategory
+        time_series = []
+        for year in all_years:
+            eff = calc_efficiency(sub_code, year)
             if eff:
-                entry[cat_code] = {
+                time_series.append({
+                    'year': year,
+                    'total_million': eff['total_million'],
+                    'benefits_million': eff['benefits_million'],
+                    'bureaucracy_million': eff['bureaucracy_million'],
                     'efficiency_pct': eff['efficiency_pct'],
                     'bureaucracy_pct': eff['bureaucracy_pct'],
-                    'total_million': eff['total_million'],
-                }
-        time_series.append(entry)
+                })
+        
+        subcategories.append({
+            'code': sub_code,
+            'name': sub_name,
+            **latest_eff,
+            'time_series': time_series,
+        })
     
-    # Calculate summary
-    total_analyzed = sum(c['total_million'] for c in categories)
-    total_benefits = sum(c['benefits_million'] for c in categories)
-    total_bureaucracy = sum(c['bureaucracy_million'] for c in categories)
+    # Sort by total spending
+    subcategories.sort(key=lambda x: -x['total_million'])
+    
+    # Build total G10 time series
+    g10_time_series = []
+    for year in all_years:
+        eff = calc_efficiency('G10', year)
+        if eff:
+            g10_time_series.append({
+                'year': year,
+                'total_million': eff['total_million'],
+                'benefits_million': eff['benefits_million'],
+                'bureaucracy_million': eff['bureaucracy_million'],
+                'efficiency_pct': eff['efficiency_pct'],
+                'bureaucracy_pct': eff['bureaucracy_pct'],
+            })
+    
+    # Calculate G10 totals for latest year
+    g10_latest = calc_efficiency('G10', latest_year)
     
     # Find most and least efficient subcategories
-    all_subcats = []
-    for cat in categories:
-        for sub in cat['subcategories']:
-            if sub['total_million'] > 100:  # Only include significant subcategories
-                all_subcats.append({
-                    'code': sub['code'],
-                    'name': sub['name'],
-                    'parent': cat['name'],
-                    'efficiency_pct': sub['efficiency_pct'],
-                    'bureaucracy_pct': sub['bureaucracy_pct'],
-                    'total_million': sub['total_million'],
-                })
-    
-    most_efficient = max(all_subcats, key=lambda x: x['efficiency_pct']) if all_subcats else None
-    least_efficient = min(all_subcats, key=lambda x: x['efficiency_pct']) if all_subcats else None
-    most_bureaucratic = max(all_subcats, key=lambda x: x['bureaucracy_pct']) if all_subcats else None
+    significant_subs = [s for s in subcategories if s['total_million'] > 500]
+    most_efficient = max(significant_subs, key=lambda x: x['efficiency_pct']) if significant_subs else None
+    least_efficient = min(significant_subs, key=lambda x: x['efficiency_pct']) if significant_subs else None
+    most_bureaucratic = max(significant_subs, key=lambda x: x['bureaucracy_pct']) if significant_subs else None
     
     summary = {
         'year': latest_year,
-        'total_analyzed_billion': round(total_analyzed / 1000, 1),
-        'total_benefits_billion': round(total_benefits / 1000, 1),
-        'total_bureaucracy_billion': round(total_bureaucracy / 1000, 1),
-        'overall_efficiency_pct': round(total_benefits / total_analyzed * 100, 1) if total_analyzed > 0 else 0,
-        'overall_bureaucracy_pct': round(total_bureaucracy / total_analyzed * 100, 1) if total_analyzed > 0 else 0,
-        'most_efficient': most_efficient,
-        'least_efficient': least_efficient,
-        'most_bureaucratic': most_bureaucratic,
+        'total_billion': round(g10_latest['total_million'] / 1000, 1) if g10_latest else 0,
+        'benefits_billion': round(g10_latest['benefits_million'] / 1000, 1) if g10_latest else 0,
+        'bureaucracy_billion': round(g10_latest['bureaucracy_million'] / 1000, 1) if g10_latest else 0,
+        'efficiency_pct': g10_latest['efficiency_pct'] if g10_latest else 0,
+        'bureaucracy_pct': g10_latest['bureaucracy_pct'] if g10_latest else 0,
+        'most_efficient': {
+            'code': most_efficient['code'],
+            'name': most_efficient['name'],
+            'efficiency_pct': most_efficient['efficiency_pct'],
+            'total_billion': round(most_efficient['total_million'] / 1000, 1),
+        } if most_efficient else None,
+        'least_efficient': {
+            'code': least_efficient['code'],
+            'name': least_efficient['name'],
+            'efficiency_pct': least_efficient['efficiency_pct'],
+            'total_billion': round(least_efficient['total_million'] / 1000, 1),
+        } if least_efficient else None,
+        'most_bureaucratic': {
+            'code': most_bureaucratic['code'],
+            'name': most_bureaucratic['name'],
+            'bureaucracy_pct': most_bureaucratic['bureaucracy_pct'],
+            'total_billion': round(most_bureaucratic['total_million'] / 1000, 1),
+        } if most_bureaucratic else None,
     }
     
     return {
         'metadata': {
             'source': 'Statistics Finland',
             'table': 'statfin_jmete_pxt_12a6',
-            'description': 'Government expenditure efficiency analysis by transaction type',
+            'description': 'Social Protection (G10) expenditure efficiency analysis',
             'fetched_at': datetime.now().isoformat(),
-            'methodology': 'Efficiency = (D62K cash benefits + D632K in-kind benefits) / Total expenditure. Bureaucracy = D1K employee compensation.',
-            'transaction_types': TRANSACTION_TYPES,
+            'methodology': 'Efficiency = (D62K cash + D632K in-kind) / Total. Bureaucracy = D1K wages.',
+            'focus': 'Social Protection only - this efficiency metric does not apply to administration or infrastructure.',
         },
         'summary': summary,
-        'categories': categories,
-        'time_series': time_series,
+        'g10_time_series': g10_time_series,
+        'subcategories': subcategories,
     }
 
 
@@ -328,9 +291,9 @@ def main():
     
     try:
         print("=" * 60)
-        raw_data = fetch_efficiency_data()
+        raw_data = fetch_social_protection_data()
         if not raw_data:
-            raise Exception("Failed to fetch efficiency data")
+            raise Exception("Failed to fetch data")
         
         records = parse_json_stat(raw_data)
         print(f"  Parsed {len(records)} records")
@@ -352,32 +315,23 @@ def main():
         
         # Print summary
         print("\n" + "=" * 60)
-        print("SPENDING EFFICIENCY ANALYSIS")
+        print("SOCIAL PROTECTION EFFICIENCY ANALYSIS")
         print("=" * 60)
         summary = transformed['summary']
         print(f"Year: {summary['year']}")
-        print(f"Total analyzed: €{summary['total_analyzed_billion']}B")
-        print(f"Direct benefits: €{summary['total_benefits_billion']}B ({summary['overall_efficiency_pct']}%)")
-        print(f"Bureaucracy: €{summary['total_bureaucracy_billion']}B ({summary['overall_bureaucracy_pct']}%)")
+        print(f"Total Social Protection: €{summary['total_billion']}B")
+        print(f"Direct Benefits: €{summary['benefits_billion']}B ({summary['efficiency_pct']}%)")
+        print(f"Bureaucracy: €{summary['bureaucracy_billion']}B ({summary['bureaucracy_pct']}%)")
         
-        print("\nBy Category:")
+        print("\nBy Subcategory:")
         print("-" * 70)
-        for cat in transformed['categories']:
-            print(f"\n{cat['name']} ({cat['code']})")
-            print(f"  Total: €{cat['total_million']/1000:.1f}B")
-            print(f"  Benefits to citizens: {cat['efficiency_pct']}%")
-            print(f"  Bureaucracy (wages): {cat['bureaucracy_pct']}%")
-            print(f"  Overhead: {cat['overhead_pct']}%")
-            
-            if cat['subcategories']:
-                print(f"  Top subcategories:")
-                for sub in cat['subcategories'][:3]:
-                    print(f"    - {sub['name']}: €{sub['total_million']/1000:.1f}B (eff: {sub['efficiency_pct']}%, bur: {sub['bureaucracy_pct']}%)")
+        for sub in transformed['subcategories']:
+            print(f"  {sub['name']:<25} €{sub['total_million']/1000:>5.1f}B  eff: {sub['efficiency_pct']:>5.1f}%  bur: {sub['bureaucracy_pct']:>5.1f}%")
         
         if summary.get('most_efficient'):
             print(f"\nMost Efficient: {summary['most_efficient']['name']} ({summary['most_efficient']['efficiency_pct']}%)")
-        if summary.get('most_bureaucratic'):
-            print(f"Most Bureaucratic: {summary['most_bureaucratic']['name']} ({summary['most_bureaucratic']['bureaucracy_pct']}%)")
+        if summary.get('least_efficient'):
+            print(f"Least Efficient: {summary['least_efficient']['name']} ({summary['least_efficient']['efficiency_pct']}%)")
         
     except Exception as e:
         print(f"Error: {e}")
@@ -390,4 +344,3 @@ def main():
 
 if __name__ == '__main__':
     exit(main())
-

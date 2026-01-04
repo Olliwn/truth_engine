@@ -798,55 +798,40 @@ export interface PublicSpendingData {
 
 // ============================================
 // Spending Efficiency Types (Project Xi)
+// Social Protection (G10) focused
 // ============================================
 
-export interface EfficiencySubcategory {
-  code: string;
-  name: string;
+export interface SubcategoryTimeSeriesEntry {
+  year: number;
   total_million: number;
   benefits_million: number;
   bureaucracy_million: number;
-  overhead_million: number;
-  subsidies_million: number;
-  investment_million: number;
-  other_million: number;
   efficiency_pct: number;
   bureaucracy_pct: number;
-  overhead_pct: number;
 }
 
-export interface EfficiencyCategory {
+export interface SocialProtectionSubcategory {
   code: string;
   name: string;
   total_million: number;
   benefits_million: number;
+  d62k_million: number;      // Cash benefits
+  d632k_million: number;     // In-kind via private
   bureaucracy_million: number;
   overhead_million: number;
-  subsidies_million: number;
-  investment_million: number;
   other_million: number;
   efficiency_pct: number;
   bureaucracy_pct: number;
   overhead_pct: number;
-  subcategories: EfficiencySubcategory[];
+  time_series: SubcategoryTimeSeriesEntry[];
 }
 
 export interface EfficiencyHighlight {
   code: string;
   name: string;
-  parent: string;
-  efficiency_pct: number;
-  bureaucracy_pct: number;
-  total_million: number;
-}
-
-export interface EfficiencyTimeSeriesEntry {
-  year: number;
-  [categoryCode: string]: {
-    efficiency_pct: number;
-    bureaucracy_pct: number;
-    total_million: number;
-  } | number;
+  efficiency_pct?: number;
+  bureaucracy_pct?: number;
+  total_billion: number;
 }
 
 export interface SpendingEfficiencyData {
@@ -856,19 +841,19 @@ export interface SpendingEfficiencyData {
     description: string;
     fetched_at: string;
     methodology: string;
-    transaction_types: Record<string, { name: string; category: string }>;
+    focus: string;
   };
   summary: {
     year: number;
-    total_analyzed_billion: number;
-    total_benefits_billion: number;
-    total_bureaucracy_billion: number;
-    overall_efficiency_pct: number;
-    overall_bureaucracy_pct: number;
+    total_billion: number;
+    benefits_billion: number;
+    bureaucracy_billion: number;
+    efficiency_pct: number;
+    bureaucracy_pct: number;
     most_efficient: EfficiencyHighlight | null;
     least_efficient: EfficiencyHighlight | null;
     most_bureaucratic: EfficiencyHighlight | null;
   };
-  categories: EfficiencyCategory[];
-  time_series: EfficiencyTimeSeriesEntry[];
+  g10_time_series: SubcategoryTimeSeriesEntry[];
+  subcategories: SocialProtectionSubcategory[];
 }
